@@ -1,4 +1,4 @@
-# ProductionReady API Spec
+# RealWorld API Spec
 
 ### Authentication Header:
 
