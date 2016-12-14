@@ -13,29 +13,29 @@ To solve this problem, we worked with (and funded) OSS community leaders to crea
 
 ## Frontend
 
-### Angular 2
+### Angular 2 ![Star](https://img.shields.io/github/stars/gothinkster/angular2-realworld-example-app.svg?style=social&label=Star) ![Fork](https://img.shields.io/github/forks/gothinkster/angular2-realworld-example-app.svg?style=social&label=Fork)
 - [Github Repo](https://github.com/GoThinkster/angular2-realworld-example-app)
 - _Tutorial (Nov '16)_
 
-### React / Redux
+### React / Redux ![Star](https://img.shields.io/github/stars/gothinkster/react-redux-realworld-example-app.svg?style=social&label=Star) ![Fork](https://img.shields.io/github/forks/gothinkster/react-redux-realworld-example-app.svg?style=social&label=Fork)
 - [Github Repo](https://github.com/GoThinkster/react-redux-realworld-example-app)
 - _Tutorial (Oct '16)_
 
-### Angular 1.5+ (ES6 & Components)
+### Angular 1.5+ (ES6 & Components) ![Star](https://img.shields.io/github/stars/gothinkster/angularjs-realworld-example-app.svg?style=social&label=Star) ![Fork](https://img.shields.io/github/forks/gothinkster/angularjs-realworld-example-app.svg?style=social&label=Fork)
 - [Github Repo](https://github.com/gothinkster/angularjs-realworld-example-app)
 - [Tutorial](https://thinkster.io/angularjs-es6-tutorial)
 
 ## Backend
 
-### Node
+### Node ![Star](https://img.shields.io/github/stars/gothinkster/node-express-realworld-example-app.svg?style=social&label=Star) ![Fork](https://img.shields.io/github/forks/gothinkster/node-express-realworld-example-app.svg?style=social&label=Fork)
 - [Github Repo](https://github.com/gothinkster/node-express-realworld-example-app)
 - _Tutorial (Nov/Dec '16)_
 
-### Django
+### Django ![Star](https://img.shields.io/github/stars/gothinkster/django-realworld-example-app.svg?style=social&label=Star) ![Fork](https://img.shields.io/github/forks/gothinkster/django-realworld-example-app.svg?style=social&label=Fork)
 - [Github Repo](https://github.com/gothinkster/django-realworld-example-app)
 - _Tutorial (Nov/Dec '16)_
 
-### Rails
+### Rails ![Star](https://img.shields.io/github/stars/gothinkster/rails-realworld-example-app.svg?style=social&label=Star) ![Fork](https://img.shields.io/github/forks/gothinkster/rails-realworld-example-app.svg?style=social&label=Fork)
 - [Github Repo](https://github.com/gothinkster/rails-realworld-example-app)
 - _Tutorial (Oct '16)_
 
