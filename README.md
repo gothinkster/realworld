@@ -10,10 +10,8 @@ To solve this problem, we worked with (and funded) OSS community leaders to crea
 
 **NOTE: Everything here is still a WIP -- PR's and issues welcome!**
 
-# Supported stacks
-> _These are continually kept up to date and we're always looking to add more -- PR's and issues welcome!_
 
-## Frontend
+# Supported Frontends
 
 | Angular 2+         |     React / Redux      |          Angular 1.5+ |
 | :---:         |     :---:      |          :---: |
@@ -21,19 +19,14 @@ To solve this problem, we worked with (and funded) OSS community leaders to crea
 | **Angular 2** codebase that strictly adheres to the official style guide; publicly reviewed by Angular community. | **React/Redux** codebase that was built by a Redux community member under guidance of Dan Abramov. | **Angular 1.5+** codebase utilizing ES6 classes and Component API |
 
 
-## Backend
+# Supported Backends
 
-### Node ![Star](https://img.shields.io/github/stars/gothinkster/node-express-realworld-example-app.svg?style=social&label=Star) ![Fork](https://img.shields.io/github/forks/gothinkster/node-express-realworld-example-app.svg?style=social&label=Fork)
-- [Github Repo](https://github.com/gothinkster/node-express-realworld-example-app)
-- _Tutorial (Nov/Dec '16)_
+| Node / Express         |     Django      |          Rails |
+| :---:         |     :---:      |          :---: |
+| [![Node/Express](https://raw.githubusercontent.com/gothinkster/node-express-realworld-example-app/master/project-logo.png)![Star](https://img.shields.io/github/stars/gothinkster/node-express-realworld-example-app.svg?style=social&label=Star) ![Fork](https://img.shields.io/github/forks/gothinkster/node-express-realworld-example-app.svg?style=social&label=Fork)](https://github.com/gothinkster/node-express-realworld-example-app) | [![Django](https://raw.githubusercontent.com/gothinkster/django-realworld-example-app/master/project-logo.png) ![Star](https://img.shields.io/github/stars/gothinkster/django-realworld-example-app.svg?style=social&label=Star) ![Fork](https://img.shields.io/github/forks/gothinkster/django-realworld-example-app.svg?style=social&label=Fork)](https://github.com/gothinkster/django-realworld-example-app) | [![Rails](https://raw.githubusercontent.com/gothinkster/rails-realworld-example-app/master/project-logo.png) ![Star](https://img.shields.io/github/stars/gothinkster/rails-realworld-example-app.svg?style=social&label=Star) ![Fork](https://img.shields.io/github/forks/gothinkster/rails-realworld-example-app.svg?style=social&label=Fork)](https://github.com/gothinkster/rails-realworld-example-app) |
+| **Node / Express** codebase. | **Django** codebase. | **Rails** codebase. |
 
-### Django ![Star](https://img.shields.io/github/stars/gothinkster/django-realworld-example-app.svg?style=social&label=Star) ![Fork](https://img.shields.io/github/forks/gothinkster/django-realworld-example-app.svg?style=social&label=Fork)
-- [Github Repo](https://github.com/gothinkster/django-realworld-example-app)
-- _Tutorial (Nov/Dec '16)_
 
-### Rails ![Star](https://img.shields.io/github/stars/gothinkster/rails-realworld-example-app.svg?style=social&label=Star) ![Fork](https://img.shields.io/github/forks/gothinkster/rails-realworld-example-app.svg?style=social&label=Fork)
-- [Github Repo](https://github.com/gothinkster/rails-realworld-example-app)
-- _Tutorial (Oct '16)_
 
 # How this works
 
