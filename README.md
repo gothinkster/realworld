@@ -2,6 +2,8 @@
 
 > ### Fullstack example codebases for React, Angular 2, AngularJS, Node, Rails, Django, and more
 
+It's kinda like TodoMVC, but for real world fullstack apps.
+
 Most examples and tutorials only cover simple examples like "todo" apps and rarely show you how to build real world, production ready fullstack apps. They don't cover actually deploying your applications into a production environment either.
 
 To solve this problem, we worked with (and funded) OSS community leaders to create a series of frontend, backend and deployment codebases & tutorials that can be mixed & matched (the backends all create the same API & the frontends use the same UI templates/styles). Every tutorial teaches you how to build Conduit [(demo)](https://angularjs.realworld.io), a beautifully designed and fully featured social blogging platform, from scratch. The tutorials also teach you best practices & expert protips for each stack as well as how to deploy it to production environments on AWS, Heroku, and more.
