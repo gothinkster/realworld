@@ -13,7 +13,7 @@ To solve this problem, we worked with (and funded) OSS community leaders to crea
 
 ## Frontend
 
-### Angular 2 ![Star](https://img.shields.io/github/stars/gothinkster/angular2-realworld-example-app.svg?style=social&label=Star) ![Fork](https://img.shields.io/github/forks/gothinkster/angular2-realworld-example-app.svg?style=social&label=Fork)
+### Angular 2 [![Star](https://img.shields.io/github/stars/gothinkster/angular2-realworld-example-app.svg?style=social&label=Star)](https://github.com/GoThinkster/angular2-realworld-example-app) ![Fork](https://img.shields.io/github/forks/gothinkster/angular2-realworld-example-app.svg?style=social&label=Fork)
 - [Github Repo](https://github.com/GoThinkster/angular2-realworld-example-app)
 - _Tutorial (Nov '16)_
 
