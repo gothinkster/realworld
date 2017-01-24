@@ -19,7 +19,7 @@ Interested in creating a RealWorld example app in a framework we don't support? 
 | Angular 2+         |     React / Redux      |          Angular 1.5+ |
 | :---:         |     :---:      |          :---: |
 | [![Angular 2](https://raw.githubusercontent.com/gothinkster/angular2-realworld-example-app/master/logo.png) ![Star](https://img.shields.io/github/stars/gothinkster/angular2-realworld-example-app.svg?style=social&label=Star) ![Fork](https://img.shields.io/github/forks/gothinkster/angular2-realworld-example-app.svg?style=social&label=Fork)](https://github.com/GoThinkster/angular2-realworld-example-app) | [![React / Redux](https://raw.githubusercontent.com/gothinkster/react-redux-realworld-example-app/master/project-logo.png) ![Star](https://img.shields.io/github/stars/gothinkster/react-redux-realworld-example-app.svg?style=social&label=Star) ![Fork](https://img.shields.io/github/forks/gothinkster/react-redux-realworld-example-app.svg?style=social&label=Fork)](https://github.com/GoThinkster/react-redux-realworld-example-app) | [![Angular 1.5+](https://raw.githubusercontent.com/gothinkster/angularjs-realworld-example-app/master/project-logo.png) ![Star](https://img.shields.io/github/stars/gothinkster/angularjs-realworld-example-app.svg?style=social&label=Star) ![Fork](https://img.shields.io/github/forks/gothinkster/angularjs-realworld-example-app.svg?style=social&label=Fork)](https://github.com/gothinkster/angularjs-realworld-example-app) |
-| **Angular 2** codebase that strictly adheres to the official style guide; publicly reviewed by Angular community. | **React/Redux** codebase that was built by a Redux community member under guidance of Dan Abramov. | **Angular 1.5+** codebase utilizing ES6 classes and Component API |
+
 
 
 ### Backends
@@ -27,7 +27,6 @@ Interested in creating a RealWorld example app in a framework we don't support? 
 | Node / Express         |     Django      |          Rails |
 | :---:         |     :---:      |          :---: |
 | [![Node/Express](https://raw.githubusercontent.com/gothinkster/node-express-realworld-example-app/master/project-logo.png)![Star](https://img.shields.io/github/stars/gothinkster/node-express-realworld-example-app.svg?style=social&label=Star) ![Fork](https://img.shields.io/github/forks/gothinkster/node-express-realworld-example-app.svg?style=social&label=Fork)](https://github.com/gothinkster/node-express-realworld-example-app) | [![Django](https://raw.githubusercontent.com/gothinkster/django-realworld-example-app/master/project-logo.png) ![Star](https://img.shields.io/github/stars/gothinkster/django-realworld-example-app.svg?style=social&label=Star) ![Fork](https://img.shields.io/github/forks/gothinkster/django-realworld-example-app.svg?style=social&label=Fork)](https://github.com/gothinkster/django-realworld-example-app) | [![Rails](https://raw.githubusercontent.com/gothinkster/rails-realworld-example-app/master/project-logo.png) ![Star](https://img.shields.io/github/stars/gothinkster/rails-realworld-example-app.svg?style=social&label=Star) ![Fork](https://img.shields.io/github/forks/gothinkster/rails-realworld-example-app.svg?style=social&label=Fork)](https://github.com/gothinkster/rails-realworld-example-app) |
-| **Node / Express** codebase. | **Django** codebase. | **Rails** codebase. |
 
 
 
