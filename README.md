@@ -15,17 +15,11 @@ To solve this problem, we worked with (and funded) OSS community leaders to crea
 
 ## Frontend
 
-### Angular 2 [![Star](https://img.shields.io/github/stars/gothinkster/angular2-realworld-example-app.svg?style=social&label=Star)](https://github.com/GoThinkster/angular2-realworld-example-app) ![Fork](https://img.shields.io/github/forks/gothinkster/angular2-realworld-example-app.svg?style=social&label=Fork)
-- [Github Repo](https://github.com/GoThinkster/angular2-realworld-example-app)
-- _Tutorial (Nov '16)_
+| Angular 2+         |     React / Redux      |          Angular 1.5+ |
+| :---:         |     :---:      |          :---: |
+| [![Angular 2](https://raw.githubusercontent.com/gothinkster/angular2-realworld-example-app/master/logo.png) ![Star](https://img.shields.io/github/stars/gothinkster/angular2-realworld-example-app.svg?style=social&label=Star) ![Fork](https://img.shields.io/github/forks/gothinkster/angular2-realworld-example-app.svg?style=social&label=Fork)](https://github.com/GoThinkster/angular2-realworld-example-app) | [![React / Redux](https://raw.githubusercontent.com/gothinkster/react-redux-realworld-example-app/master/project-logo.png) ![Star](https://img.shields.io/github/stars/gothinkster/react-redux-realworld-example-app.svg?style=social&label=Star) ![Fork](https://img.shields.io/github/forks/gothinkster/react-redux-realworld-example-app.svg?style=social&label=Fork)](https://github.com/GoThinkster/react-redux-realworld-example-app) | [![Angular 1.5+](https://raw.githubusercontent.com/gothinkster/angularjs-realworld-example-app/master/project-logo.png) ![Star](https://img.shields.io/github/stars/gothinkster/angularjs-realworld-example-app.svg?style=social&label=Star) ![Fork](https://img.shields.io/github/forks/gothinkster/angularjs-realworld-example-app.svg?style=social&label=Fork)](https://github.com/gothinkster/angularjs-realworld-example-app) |
+| **Angular 2** codebase that strictly adheres to the official style guide; publicly reviewed by Angular community. | **React/Redux** codebase that was built by Redux community member under guidance of Dan Abramov. | **Angular 1.5+** codebase utilizing ES6 classes and Component API |
 
-### React / Redux ![Star](https://img.shields.io/github/stars/gothinkster/react-redux-realworld-example-app.svg?style=social&label=Star) ![Fork](https://img.shields.io/github/forks/gothinkster/react-redux-realworld-example-app.svg?style=social&label=Fork)
-- [Github Repo](https://github.com/GoThinkster/react-redux-realworld-example-app)
-- _Tutorial (Oct '16)_
-
-### Angular 1.5+ (ES6 & Components) ![Star](https://img.shields.io/github/stars/gothinkster/angularjs-realworld-example-app.svg?style=social&label=Star) ![Fork](https://img.shields.io/github/forks/gothinkster/angularjs-realworld-example-app.svg?style=social&label=Fork)
-- [Github Repo](https://github.com/gothinkster/angularjs-realworld-example-app)
-- [Tutorial](https://thinkster.io/angularjs-es6-tutorial)
 
 ## Backend
 
