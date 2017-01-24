@@ -10,8 +10,11 @@ To solve this problem, we worked with (and funded) OSS community leaders to crea
 
 **NOTE: Everything here is still a WIP -- PR's and issues welcome!**
 
+# Supported Stacks
 
-# Supported Frontends
+Interested in creating a RealWorld example app in a framework we don't support? Get in touch.
+
+### Frontends
 
 | Angular 2+         |     React / Redux      |          Angular 1.5+ |
 | :---:         |     :---:      |          :---: |
@@ -19,7 +22,7 @@ To solve this problem, we worked with (and funded) OSS community leaders to crea
 | **Angular 2** codebase that strictly adheres to the official style guide; publicly reviewed by Angular community. | **React/Redux** codebase that was built by a Redux community member under guidance of Dan Abramov. | **Angular 1.5+** codebase utilizing ES6 classes and Component API |
 
 
-# Supported Backends
+### Backends
 
 | Node / Express         |     Django      |          Rails |
 | :---:         |     :---:      |          :---: |
