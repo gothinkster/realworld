@@ -12,9 +12,7 @@ While most "todo" app demos/tutorials provide an excellent cursory glance at a f
 
 ### How does it work?
 
-With the help of OSS community leaders, we created a series of frontend & backend codebases that can run Conduit [(demo)](https://angularjs.realworld.io), a beautifully designed and fully featured social blogging platform.
-
-You can use any frontend (React, Angular 2, etc) with any backend (Node, Django, etc) and see how they power a real world, fullstack app.
+You can choose any frontend (React, Angular 2, etc) and any backend (Node, Django, etc) and see how they power a real world, fullstack app called "Conduit" [(demo)](https://angularjs.realworld.io).
 
 ### Wait, I can use _any_ frontend with _any_ backend?
 
@@ -22,7 +20,7 @@ Yup! All of our frontends & backends adhere to the same [API spec](api/), so you
 
 ### What frontends and backends do you currently support?
 
-Below are the current frontends & backends we support. Interested in creating a RealWorld example app in a framework we don't support? Get in touch.
+Below are the current frontends & backends we support. All of our stacks are built & reviewed with the help of OSS communities and their leaders.
 
 #### Frontends
 
