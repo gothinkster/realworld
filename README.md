@@ -38,14 +38,14 @@ All of our stacks are built & reviewed by the OSS community. We're always workin
 
 <br />
 
+### Can you teach me how to build each stack from scratch?
+
+Yup! We've built step-by-step tutorials for all of our stacks that teach you how to go from `git init` all the way to the production ready application.
+
 ### How do I get a frontend and/or backend stack running on my computer?
 
 Simply follow the instructions in the README of whatever frontend and/or backend repo's you want to get up and running.
 
-
-### Can you teach me how to build each stack from scratch?
-
-Yup! We've built step-by-step tutorials for all of our stacks that teach you how to go from `git init` all the way to the production ready application.
 
 <br />
 
