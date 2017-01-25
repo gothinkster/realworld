@@ -1,30 +1,30 @@
 # ![RealWorld Example Applications](media/realworld.png)
 
-# Fullstack example codebases for React, Angular 2, AngularJS, Node, Rails, Django, and more
+> ### Fullstack example codebases for React, Angular 2, AngularJS, Node, Rails, Django, and more
 
-## What is this?
+### What is this?
 
 RealWorld is a collection of exemplary frontend and backend codebases that demonstrate how to build real world, full stack applications. 
 
-## Why?
+### Why?
 
 While most "todo" app demos/tutorials provide an excellent cursory glance at a framework's capabilities, they typically don't convey the knowledge & perspective required to actually build "real" applications with it.
 
-## How does it work?
+### How does it work?
 
 With the help of OSS community leaders, we created a series of frontend & backend codebases that can run Conduit [(demo)](https://angularjs.realworld.io), a beautifully designed and fully featured social blogging platform.
 
 You can use any frontend (React, Angular 2, etc) with any backend (Node, Django, etc) and see how they power a real world, fullstack app.
 
-## Wait, I can use _any_ frontend with _any_ backend?
+### Wait, I can use _any_ frontend with _any_ backend?
 
 Yup. All backends adhere to the same API spec for endpoints that the frontends to talk to.
 
-## What frontends and backends do you currently support?
+### What frontends and backends do you currently support?
 
 Below are the current frontends & backends we support. Interested in creating a RealWorld example app in a framework we don't support? Get in touch.
 
-### Frontends
+#### Frontends
 
 | [React / Redux](https://github.com/GoThinkster/react-redux-realworld-example-app) | [Angular 2+](https://github.com/GoThinkster/angular2-realworld-example-app) | [Angular 1.5+](https://github.com/gothinkster/angularjs-realworld-example-app) |
 | :---:         |     :---:      |          :---: |
@@ -32,7 +32,7 @@ Below are the current frontends & backends we support. Interested in creating a 
 
 
 
-### Backends
+#### Backends
 
 | [Node / Express](https://github.com/gothinkster/node-express-realworld-example-app) | [Django](https://github.com/gothinkster/django-realworld-example-app) | [Rails](https://github.com/gothinkster/rails-realworld-example-app) |
 | :---:         |     :---:      |          :---: |
@@ -40,12 +40,12 @@ Below are the current frontends & backends we support. Interested in creating a 
 
 <br />
 
-## How do I get a frontend and/or backend stack running on my computer?
+### How do I get a frontend and/or backend stack running on my computer?
 
 Simply follow the instructions in the README of whatever frontend and/or backend repo's you want to get up and running.
 
 
-## Can you teach me how to build each stack from scratch?
+### Can you teach me how to build each stack from scratch?
 
 We've built step-by-step tutorials for all of our stacks that teach you how to go from `git init` all the way to the production ready application.
 
