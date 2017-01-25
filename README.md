@@ -38,7 +38,7 @@ Below are the current frontends & backends we support. Interested in creating a 
 | :---:         |     :---:      |          :---: |
 | [![Node/Express](https://raw.githubusercontent.com/gothinkster/node-express-realworld-example-app/master/project-logo.png)![Star](https://img.shields.io/github/stars/gothinkster/node-express-realworld-example-app.svg?style=social&label=Star) ![Fork](https://img.shields.io/github/forks/gothinkster/node-express-realworld-example-app.svg?style=social&label=Fork)](https://github.com/gothinkster/node-express-realworld-example-app) | [![Django](https://raw.githubusercontent.com/gothinkster/django-realworld-example-app/master/project-logo.png) ![Star](https://img.shields.io/github/stars/gothinkster/django-realworld-example-app.svg?style=social&label=Star) ![Fork](https://img.shields.io/github/forks/gothinkster/django-realworld-example-app.svg?style=social&label=Fork)](https://github.com/gothinkster/django-realworld-example-app) | [![Rails](https://raw.githubusercontent.com/gothinkster/rails-realworld-example-app/master/project-logo.png) ![Star](https://img.shields.io/github/stars/gothinkster/rails-realworld-example-app.svg?style=social&label=Star) ![Fork](https://img.shields.io/github/forks/gothinkster/rails-realworld-example-app.svg?style=social&label=Fork)](https://github.com/gothinkster/rails-realworld-example-app) |
 
-<br /><br />
+<br />
 
 ## How do I get a frontend and/or backend stack running on my computer?
 
