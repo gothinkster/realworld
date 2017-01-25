@@ -1,8 +1,6 @@
 # ![RealWorld Example Applications](media/realworld.png)
 
-> ### Fullstack example codebases for React, Angular 2, AngularJS, Node, Rails, Django, and more
-
-## What is this?
+# Fullstack example codebases for React, Angular 2, AngularJS, Node, Rails, Django, and more
 
 RealWorld is a collection of exemplary frontend and backend codebases that demonstrate how to build real world, full stack applications. 
 
