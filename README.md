@@ -8,7 +8,7 @@ RealWorld is a collection of exemplary frontend and backend codebases that demon
 
 ## Why?
 
-While most "todo" app demos/tutorials provide an excellent cursory glance at a framework's capabilities, they typically don't convey the knowledge & perspective required for building "real" applications with it.
+While most "todo" app demos/tutorials provide an excellent cursory glance at a framework's capabilities, they typically don't convey the knowledge & perspective required to actually build "real" applications with it.
 
 ## How does it work?
 
