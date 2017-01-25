@@ -2,7 +2,7 @@
 
 > Fullstack example codebases for React, Angular 2, AngularJS, Node, Rails, Django, and more
 
-### What is this?
+# What is this?
 
 RealWorld is a collection of exemplary frontend and backend codebases that demonstrate how to build real world, full stack applications. 
 
@@ -18,7 +18,7 @@ You can choose any frontend (React, Angular 2, etc) and any backend (Node, Djang
 
 Yup! All of our frontends & backends adhere to the same [API spec](api/), so you can mix & match any desired frontend/backend combo.
 
-### What frontends and backends do you currently support?
+# What frontends and backends do you currently support?
 
 All of our stacks are built & reviewed by the OSS community. We're always working to [add more stacks to this list]().
 
