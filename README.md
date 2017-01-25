@@ -20,7 +20,7 @@ Yup! All of our frontends & backends adhere to the same [API spec](api/), so you
 
 ### What frontends and backends do you currently support?
 
-All of our stacks are built & reviewed by the OSS community, and we're always working to [add more stacks to this list]().
+All of our stacks are built & reviewed by the OSS community. We're always working to [add more stacks to this list]().
 
 #### Frontends
 
