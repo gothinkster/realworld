@@ -1,18 +1,28 @@
 # ![RealWorld Example Applications](media/realworld.png)
 
-> ### Fullstack example codebases for React, Angular 2, AngularJS, Node, Rails, Django, and more
+# What is this?
 
-It's kinda like TodoMVC, but for real world fullstack apps.
+It's kinda like [TodoMVC](https://github.com/tastejs/todomvc) but for _real world_ fullstack apps.
 
-Most examples and tutorials only cover simple examples like "todo" apps and rarely show you how to build real world, production ready fullstack apps. They don't cover actually deploying your applications into a production environment either.
+# Why?
 
-To solve this problem, we worked with (and funded) OSS community leaders to create a series of frontend, backend and deployment codebases & tutorials that can be mixed & matched (the backends all create the same API & the frontends use the same UI templates/styles). Every tutorial teaches you how to build Conduit [(demo)](https://angularjs.realworld.io), a beautifully designed and fully featured social blogging platform, from scratch. The tutorials also teach you best practices & expert protips for each stack as well as how to deploy it to production environments on AWS, Heroku, and more.
+Most examples and tutorials only cover simple examples like "todo" apps and rarely show you how to build real world, production ready fullstack apps.
 
-**NOTE: Everything here is still a WIP -- PR's and issues welcome!**
+# How does it work?
 
-# Supported Stacks
+With the help of OSS community leaders, we created a series of frontend & backend codebases that builds Conduit [(demo)](https://angularjs.realworld.io), a beautifully designed and fully featured social blogging platform. You can use any frontend with any backend and see how a real world, fullstack app works with them.
 
-Interested in creating a RealWorld example app in a framework we don't support? Get in touch.
+# Wait, I can use any frontend with any backend?
+
+Yup. All backends adhere to the same API spec for endpoints that the frontends to talk to, and all frontends use the same handcrafted bootstrap 4 templates/styles.
+
+# How do I learn to create a frontend and/or backend stack from scratch?
+
+We've built step-by-step tutorials for all of our stacks that teach you how to go from `git init` all the way to the production ready application.
+
+# What frontends and backends do you currently support?
+
+Below are the current frontends & backends we support. Interested in creating a RealWorld example app in a framework we don't support? Get in touch.
 
 ### Frontends
 
