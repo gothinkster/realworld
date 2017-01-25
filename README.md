@@ -18,7 +18,7 @@ You can use any frontend (React, Angular 2, etc) with any backend (Node, Django,
 
 ### Wait, I can use _any_ frontend with _any_ backend?
 
-Yup. All backends adhere to the same API spec for endpoints that the frontends to talk to.
+Yup! All of our frontends & backends adhere to the same API spec which ensures they can be completely mixed & matched.
 
 ### What frontends and backends do you currently support?
 
