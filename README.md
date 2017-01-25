@@ -18,6 +18,8 @@ You can choose any frontend (React, Angular 2, etc) and any backend (Node, Djang
 
 Yup! All of our frontends & backends adhere to the same [API spec](api/), so you can mix & match any desired frontend/backend combo.
 
+<br />
+
 # What frontends and backends do you currently support?
 
 All of our stacks are built & reviewed by the OSS community. We're always working to [add more stacks to this list]().
@@ -46,9 +48,6 @@ Simply follow the instructions in the README of whatever frontend and/or backend
 
 Yup! We've built step-by-step tutorials for all of our stacks that teach you how to go from `git init` all the way to the production ready application.
 
-
-
-
 <br />
 
 # Learn more
@@ -59,6 +58,7 @@ Yup! We've built step-by-step tutorials for all of our stacks that teach you how
 - Every frontend utilizes the same hand crafted Bootstrap 4 theme for identical UI/UX
 - There is a hosted version of the backend API available for public usage, no API keys required
 
+<br />
 
 # Who made this?
 
