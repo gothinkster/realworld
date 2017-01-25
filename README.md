@@ -18,7 +18,7 @@ You can use any frontend (React, Angular 2, etc) with any backend (Node, Django,
 
 ## Wait, I can use _any_ frontend with _any_ backend?
 
-Yup. All backends adhere to the same API spec for endpoints that the frontends to talk to, and all frontends use the same handcrafted Bootstrap 4 templates/styles.
+Yup. All backends adhere to the same API spec for endpoints that the frontends to talk to.
 
 ## What frontends and backends do you currently support?
 
