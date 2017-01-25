@@ -40,7 +40,7 @@ All of our stacks are built & reviewed by the OSS community. We're always workin
 
 <br />
 
-# Getting up and running
+# How do I get up & running?
 
 Simply follow the instructions in the README of whatever frontend and/or backend repo's you want to get up and running.
 
