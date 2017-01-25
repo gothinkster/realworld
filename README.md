@@ -24,10 +24,6 @@ Yup. All backends adhere to the same API spec for endpoints that the frontends t
 
 Below are the current frontends & backends we support. Interested in creating a RealWorld example app in a framework we don't support? Get in touch.
 
-#### How do I get it running on my computer?
-
-Simply follow the instructions in the README of whatever frontend and/or backend repo's you want to get up and running.
-
 ### Frontends
 
 | [React / Redux](https://github.com/GoThinkster/react-redux-realworld-example-app) | [Angular 2+](https://github.com/GoThinkster/angular2-realworld-example-app) | [Angular 1.5+](https://github.com/gothinkster/angularjs-realworld-example-app) |
@@ -41,6 +37,11 @@ Simply follow the instructions in the README of whatever frontend and/or backend
 | [Node / Express](https://github.com/gothinkster/node-express-realworld-example-app) | [Django](https://github.com/gothinkster/django-realworld-example-app) | [Rails](https://github.com/gothinkster/rails-realworld-example-app) |
 | :---:         |     :---:      |          :---: |
 | [![Node/Express](https://raw.githubusercontent.com/gothinkster/node-express-realworld-example-app/master/project-logo.png)![Star](https://img.shields.io/github/stars/gothinkster/node-express-realworld-example-app.svg?style=social&label=Star) ![Fork](https://img.shields.io/github/forks/gothinkster/node-express-realworld-example-app.svg?style=social&label=Fork)](https://github.com/gothinkster/node-express-realworld-example-app) | [![Django](https://raw.githubusercontent.com/gothinkster/django-realworld-example-app/master/project-logo.png) ![Star](https://img.shields.io/github/stars/gothinkster/django-realworld-example-app.svg?style=social&label=Star) ![Fork](https://img.shields.io/github/forks/gothinkster/django-realworld-example-app.svg?style=social&label=Fork)](https://github.com/gothinkster/django-realworld-example-app) | [![Rails](https://raw.githubusercontent.com/gothinkster/rails-realworld-example-app/master/project-logo.png) ![Star](https://img.shields.io/github/stars/gothinkster/rails-realworld-example-app.svg?style=social&label=Star) ![Fork](https://img.shields.io/github/forks/gothinkster/rails-realworld-example-app.svg?style=social&label=Fork)](https://github.com/gothinkster/rails-realworld-example-app) |
+
+
+## How do I get a frontend and/or backend stack running on my computer?
+
+Simply follow the instructions in the README of whatever frontend and/or backend repo's you want to get up and running.
 
 
 ## Can you teach me how to build each stack from scratch?
