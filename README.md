@@ -2,6 +2,8 @@
 
 # Fullstack example codebases for React, Angular 2, AngularJS, Node, Rails, Django, and more
 
+## What is this?
+
 RealWorld is a collection of exemplary frontend and backend codebases that demonstrate how to build real world, full stack applications. 
 
 ## Why?
@@ -36,6 +38,7 @@ Below are the current frontends & backends we support. Interested in creating a 
 | :---:         |     :---:      |          :---: |
 | [![Node/Express](https://raw.githubusercontent.com/gothinkster/node-express-realworld-example-app/master/project-logo.png)![Star](https://img.shields.io/github/stars/gothinkster/node-express-realworld-example-app.svg?style=social&label=Star) ![Fork](https://img.shields.io/github/forks/gothinkster/node-express-realworld-example-app.svg?style=social&label=Fork)](https://github.com/gothinkster/node-express-realworld-example-app) | [![Django](https://raw.githubusercontent.com/gothinkster/django-realworld-example-app/master/project-logo.png) ![Star](https://img.shields.io/github/stars/gothinkster/django-realworld-example-app.svg?style=social&label=Star) ![Fork](https://img.shields.io/github/forks/gothinkster/django-realworld-example-app.svg?style=social&label=Fork)](https://github.com/gothinkster/django-realworld-example-app) | [![Rails](https://raw.githubusercontent.com/gothinkster/rails-realworld-example-app/master/project-logo.png) ![Star](https://img.shields.io/github/stars/gothinkster/rails-realworld-example-app.svg?style=social&label=Star) ![Fork](https://img.shields.io/github/forks/gothinkster/rails-realworld-example-app.svg?style=social&label=Fork)](https://github.com/gothinkster/rails-realworld-example-app) |
 
+<br /><br />
 
 ## How do I get a frontend and/or backend stack running on my computer?
 
@@ -46,8 +49,11 @@ Simply follow the instructions in the README of whatever frontend and/or backend
 
 We've built step-by-step tutorials for all of our stacks that teach you how to go from `git init` all the way to the production ready application.
 
+<br />
 
-# How this works
+# Learn more
+
+(About the API spec, Bootstrap templates, Conduit project scope, Getting involved)
 
 - Every tutorial is built against the same [API spec](API.md) to ensure modularity of every frontend & backend 
 - Every frontend utilizes the same hand crafted Bootstrap 4 theme for identical UI/UX
@@ -68,6 +74,6 @@ RealWorld wouldn't be possible without the help of the open source community rev
 
 
 # License
-All of the codebases in the stacks folder are **MIT licensed** unless otherwise specified.
+All of the codebases are **MIT licensed** unless otherwise specified.
 
 Docs in this repo are [Creative Commons](https://creativecommons.org/licenses/by-nc-sa/4.0/) licensed.
