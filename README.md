@@ -20,9 +20,13 @@ You can use any frontend (React, Angular 2, etc) with any backend (Node, Django,
 
 Yup. All backends adhere to the same API spec for endpoints that the frontends to talk to, and all frontends use the same handcrafted Bootstrap 4 templates/styles.
 
-## Can I learn to create one of the frontend and/or backend stacks from scratch?
+## How do I get it running on my computer?
 
-Absolutely. We've built step-by-step tutorials for all of our stacks that teach you how to go from `git init` all the way to the production ready application.
+Simply follow the instructions in the README of whatever frontend and/or backend repo's you want to get up and running.
+
+## This sounds complicated. Can you teach me how to build each stack from scratch?
+
+We've built step-by-step tutorials for all of our stacks that teach you how to go from `git init` all the way to the production ready application.
 
 ## What frontends and backends do you currently support?
 
