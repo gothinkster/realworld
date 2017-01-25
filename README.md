@@ -16,7 +16,7 @@ With the help of OSS community leaders, we created a series of frontend & backen
 
 You can use any frontend (React, Angular 2, etc) with any backend (Node, Django, etc) and see how they power a real world, fullstack app.
 
-## Wait, I can use any frontend with any backend?
+## Wait, I can use _any_ frontend with _any_ backend?
 
 Yup. All backends adhere to the same API spec for endpoints that the frontends to talk to, and all frontends use the same handcrafted Bootstrap 4 templates/styles.
 
