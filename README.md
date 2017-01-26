@@ -80,4 +80,4 @@ Docs in this repo are [Creative Commons](https://creativecommons.org/licenses/by
 
 <br />
 
-[![Brought to you by Thinkster](media/end.png)](https://thinkster.io)
+[![Brought to you by Thinkster](media/end.png)](https://thinkster.io/about)
