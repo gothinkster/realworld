@@ -64,7 +64,10 @@ Yup! We've built step-by-step tutorials for all of our stacks that teach you how
 
 The core creators are **[Eric Simons](https://twitter.com/ericsimons40)** and **[Albert Pai](https://twitter.com/iamalbertpai)** &mdash; we personally run [Thinkster.io](https://thinkster.io), the developer tutorial site where all of these stacks are taught. Thinkster funds this entire project, so please consider investing in [a Pro subscription](https://thinkster.io/pro) to **support the ongoing development of RealWorld**!
 
-RealWorld wouldn't be possible without the help of the open source community reviewing codebases, creating new app implementations, and many other tasks that help push this project forward. We especially appreciate the OSS leaders who have helped contribute to RealWorld:
+
+RealWorld wouldn't be possible without the help of the open source community reviewing codebases, creating new app implementations, and many other tasks that help push this project forward. We especially appreciate the OSS leaders who have helped contribute to RealWorld.
+
+## Special thanks to...
 
 - **Val Karpov** (core contributor of Mongoose) created the React/Redux codebase and authored its accompanying tutorial
 - **James Brewer** (docs contributor to Django) for countless brainstorming sessions, helping name this project, and creating the Django codebase + tutorial
