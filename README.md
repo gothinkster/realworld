@@ -58,6 +58,13 @@ Yup! We've built step-by-step tutorials for all of our stacks that teach you how
 - Every frontend utilizes the same hand crafted Bootstrap 4 theme for identical UI/UX
 - There is a hosted version of the backend API available for public usage, no API keys required
 
+# Community created resources
+
+Forks, tutorials, workshops, and other resources based on the RealWorld project:
+
+- [React+Redux / Node testing workshop](https://github.com/kentcdodds/testing-workshop) by [Kent C. Dodds](https://github.com/kentcdodds)
+  > An example repo showing the React+Redux and Node stacks working together w/ TDD
+
 <br />
 
 # Who made this?
