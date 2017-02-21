@@ -62,8 +62,8 @@ Yup! We've built step-by-step tutorials for all of our stacks that teach you how
 
 Forks, tutorials, workshops, and other resources based on the RealWorld project:
 
-- [React+Redux / Node testing workshop](https://github.com/kentcdodds/testing-workshop) by [Kent C. Dodds](https://github.com/kentcdodds)
-  > An example repo showing the React+Redux and Node stacks working together w/ TDD
+- [**React+Redux / Node testing workshop**](https://github.com/kentcdodds/testing-workshop) by [**Kent C. Dodds**](https://github.com/kentcdodds)
+  - Example repo showing the React+Redux and Node stacks working together w/ TDD
 
 <br />
 
