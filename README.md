@@ -54,7 +54,7 @@ Yup! We've built step-by-step tutorials for all of our stacks that teach you how
 
 (About the API spec, Bootstrap templates, Conduit project scope, Getting involved)
 
-- Every tutorial is built against the same [API spec](API.md) to ensure modularity of every frontend & backend 
+- Every tutorial is built against the same [API spec](api/) to ensure modularity of every frontend & backend 
 - Every frontend utilizes the same hand crafted Bootstrap 4 theme for identical UI/UX
 - There is a hosted version of the backend API available for public usage, no API keys required
 
