@@ -8,7 +8,7 @@
 
 ### Users (for authentication)
 
-```
+```JSON
 {
   "user": {
     "email": "jake@jake.jake",
@@ -22,7 +22,7 @@
 
 ### Profile
 
-```
+```JSON
 {
   "profile": {
     "username": "jake",
@@ -35,7 +35,7 @@
 
 ### Single Article
 
-```
+```JSON
 {
   "article": {
     "slug": "how-to-train-your-dragon",
@@ -58,7 +58,7 @@
 
 ### Multiple Articles
 
-```
+```JSON
 {
   "articles":[{
     "description": "Ever wonder how?",
@@ -97,7 +97,7 @@
 
 ### Single comment
 
-```
+```JSON
 {
   "comment": {
     "id": 1,
@@ -115,7 +115,7 @@
 
 ### Multiple comments
 
-```
+```JSON
 {
   "comments": [{
     "id": 1,
@@ -133,7 +133,7 @@
 
 ### List of Tags
 
-```
+```JSON
 {
   "tags": [
     "reactjs",
@@ -146,7 +146,7 @@
 
 If a request fails any validations, expect a 422 and errors in the following format:
 
-```
+```JSON
 {
   "errors":{
     "body": [
@@ -172,7 +172,7 @@ If a request fails any validations, expect a 422 and errors in the following for
 `POST /api/users/login`
 
 Example request body:
-```
+```JSON
 {
   "user":{
     "email": "jake@jake.jake",
@@ -191,10 +191,10 @@ Required fields: `email`, `password`
 `POST /api/users`
 
 Example request body:
-```
+```JSON
 {
   "user":{
-    "username": "Jacob"
+    "username": "Jacob",
     "email": "jake@jake.jake",
     "password": "jakejake"
   }
@@ -220,7 +220,7 @@ Authentication required, returns a [User](#users-for-authentication) that's the 
 `PUT /api/user`
 
 Example request body:
-```
+```JSON
 {
   "user":{
     "email": "jake@jake.jake",
@@ -318,13 +318,13 @@ No authentication required, will return [single article](#single-article)
 
 Example request body:
 
-```
+```JSON
 {
   "article": {
     "title": "How to train your dragon",
     "description": "Ever wonder how?",
     "body": "You have to believe",
-    "tagList": ['reactjs', 'angularjs', 'dragons']
+    "tagList": ["reactjs", "angularjs", "dragons"]
   }
 }
 ```
@@ -343,7 +343,7 @@ Optional fields: `tagList` as an array of Strings
 
 Example request body:
 
-```
+```JSON
 {
   "article": {
     "title": "Did you train your dragon?"
@@ -365,7 +365,7 @@ The `slug` also gets updated when the `title` is changed
 
 Example request body:
 
-```
+```JSON
 {
   "comment": {
     "body": "His name was my name too."
