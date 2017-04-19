@@ -90,7 +90,7 @@ Albert is a Software Engineer, DevOps ninja, and author of many technical books 
 
 #### [Thinkster](https://twitter.com/gothinkster) - Funding/Support
 
-<img align="left" width="50" height="50" src="https://avatars0.githubusercontent.com/u/8601733?v=3&s=100">
+<img align="left" width="40" height="40" src="https://avatars0.githubusercontent.com/u/8601733?v=3&s=100">
 
 [Thinkster](https://thinkster.io) creates high quality resources that help Javascript developers succeed. The RealWorld project wouldn't exist without their (generous) funding, so please consider investing in [a Pro subscription](https://thinkster.io/pro) to help support us!
 
