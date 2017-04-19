@@ -90,8 +90,6 @@ RealWorld wouldn't be possible without the help of the open source community rev
 # License
 All of the codebases are **MIT licensed** unless otherwise specified.
 
-Docs in this repo are [Creative Commons](https://creativecommons.org/licenses/by-nc-sa/4.0/) licensed.
-
 <br />
 
 [![Brought to you by Thinkster](media/end.png)](https://thinkster.io/about)
