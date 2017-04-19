@@ -77,16 +77,16 @@ The core creators are **[Eric Simons](https://twitter.com/ericsimons40)** and **
 
 #### [Eric Simons](https://twitter.com/ericsimons40) - Founder/Lead
 
-<img align="left" width="50" height="50" src="https://avatars1.githubusercontent.com/u/556934?v=3&s=100">
+<img align="left" width="40" height="40" src="https://avatars1.githubusercontent.com/u/556934?v=3&s=100">
 
-Eric is a software engineer, UI designer, and an author of technical books & tutorials. He oversees the project direction, maintenance and organizes the planning and development efforts of the team.
+Eric is a Software Engineer, UI Designer, and author of many technical books & tutorials. He oversees the project direction, maintenance and organizes the planning and development efforts of the team.
 
 
 #### [Albert Pai](https://twitter.com/iamalbertpai) - Founder/Lead
 
-<img align="left" width="50" height="50" src="https://avatars0.githubusercontent.com/u/1776432?v=3&s=100">
+<img align="left" width="40" height="40" src="https://avatars0.githubusercontent.com/u/1776432?v=3&s=100">
 
-Eric is a software engineer, UI designer, and an author of technical books & tutorials. He oversees the project direction, maintenance and organizes the planning and development efforts of the team.
+Albert is a Software Engineer, DevOps ninja, and author of many technical books & tutorials. He oversees the project direction, maintenance and organizes the planning and development efforts of the team.
 
 #### [Thinkster](https://twitter.com/gothinkster) - Funding/Support
 
@@ -97,13 +97,12 @@ Thinkster provides the funding for this entire project, so please consider inves
 
 #### [James Brewer](https://twitter.com/brwr_) - Advisor, Creator of RealWorld Django
 
-<img align="left" width="50" height="50" src="https://avatars1.githubusercontent.com/u/4095660?v=3&s=100">
+<img align="left" width="40" height="40" src="https://avatars1.githubusercontent.com/u/4095660?v=3&s=100">
 
-James is a Software Engineer at Square and a core contributor to Django documentation. He created & maintains the RealWorld Django codebase and continually provides feedback & advice for the project as a whole.
+James is a Software Engineer at Square and a core contributor to Django documentation. He created & maintains the RW Django codebase and continually provides guidance for the RealWorld project itself.
 
 #### [Val Karpov](https://twitter.com/code_barbarian) - Creator of RealWorld React & Redux
-
-<img align="left" width="50" height="50" src="https://avatars2.githubusercontent.com/u/1620265?v=3&s=100">
+<img align="left" width="40" height="40" src="https://avatars2.githubusercontent.com/u/1620265?v=3&s=100">
 
 Val Karpov is a Software Engineer at Booster Fuels and is a core contributor to Mongoose. He created & maintains the RealWorld React/Redux codebase.
 
