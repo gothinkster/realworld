@@ -2,7 +2,7 @@
 
 > Fullstack example codebases for React, Angular 2, AngularJS, Node, Rails, Django, and more
 
-[![license](https://img.shields.io/github/license/gothinkster/realworld.svg)]()
+[![Travis](https://img.shields.io/travis/gothinkster/realworld.svg)]() [![license](https://img.shields.io/github/license/gothinkster/realworld.svg)]()
 
 # What is this?
 
