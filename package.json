@@ -1,0 +1,26 @@
+{
+  "name": "realworld",
+  "version": "1.0.0",
+  "description": "Fullstack example codebases for React, Angular, Node, Django, Rails & more",
+  "main": "index.js",
+  "scripts": {
+    "test": "true"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gothinkster/realworld.git"
+  },
+  "keywords": [
+    "react",
+    "angular",
+    "fullstack",
+    "examples",
+    "node"
+  ],
+  "author": "Thinkster",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gothinkster/realworld/issues"
+  },
+  "homepage": "https://github.com/gothinkster/realworld#readme"
+}
