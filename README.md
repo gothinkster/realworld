@@ -49,7 +49,7 @@ Simply follow the instructions in the README of whatever frontend and/or backend
 
 ### Can you teach me how to build each stack from scratch?
 
-Yup! We've built step-by-step tutorials for all of our stacks that teach you how to go from `git init` all the way to the production ready application.
+Yup! We've built step-by-step tutorials for all of our stacks that teach you how to go from `git init` all the way to the production ready application. [**Start learning now >>>**](https://thinkster.io/tutorials/fullstack)
 
 <br />
 
