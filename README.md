@@ -79,33 +79,33 @@ The core creators are **[Eric Simons](https://twitter.com/ericsimons40)** and **
 
 <img align="left" width="50" height="50" src="https://avatars1.githubusercontent.com/u/556934?v=3&s=100">
 
-Addy is a Software Engineer at Google who originally created TodoMVC. He oversees the project direction, maintenance and organizes the planning and development efforts of the team.
+Eric is a software engineer, UI designer, and an author of technical books & tutorials. He oversees the project direction, maintenance and organizes the planning and development efforts of the team.
 
 
 #### [Albert Pai](https://twitter.com/iamalbertpai) - Founder/Lead
 
 <img align="left" width="50" height="50" src="https://avatars0.githubusercontent.com/u/1776432?v=3&s=100">
 
-Addy is a Software Engineer at Google who originally created TodoMVC. He oversees the project direction, maintenance and organizes the planning and development efforts of the team.
+Eric is a software engineer, UI designer, and an author of technical books & tutorials. He oversees the project direction, maintenance and organizes the planning and development efforts of the team.
 
 #### [Thinkster](https://twitter.com/gothinkster) - Funding/Support
 
 <img align="left" width="50" height="50" src="https://avatars0.githubusercontent.com/u/8601733?v=3&s=100">
 
-Addy is a Software Engineer at Google who originally created TodoMVC. He oversees the project direction, maintenance and organizes the planning and development efforts of the team.
+Thinkster provides the funding for this entire project, so please consider investing in [a Pro subscription](https://thinkster.io/pro) to **support the ongoing development of RealWorld**!
 
 
 #### [James Brewer](https://twitter.com/brwr_) - Advisor, Creator of RealWorld Django
 
 <img align="left" width="50" height="50" src="https://avatars1.githubusercontent.com/u/4095660?v=3&s=100">
 
-Addy is a Software Engineer at Google who originally created TodoMVC. He oversees the project direction, maintenance and organizes the planning and development efforts of the team.
+James is a Software Engineer at Square and a core contributor to Django documentation. He created & maintains the RealWorld Django codebase and continually provides feedback & advice for the project as a whole.
 
 #### [Val Karpov](https://twitter.com/code_barbarian) - Creator of RealWorld React & Redux
 
 <img align="left" width="50" height="50" src="https://avatars2.githubusercontent.com/u/1620265?v=3&s=100">
 
-Addy is a Software Engineer at Google who originally created TodoMVC. He oversees the project direction, maintenance and organizes the planning and development efforts of the team.
+Val Karpov is a Software Engineer at Booster Fuels and is a core contributor to Mongoose. He created & maintains the RealWorld React/Redux codebase.
 
 <br />
 
@@ -113,10 +113,11 @@ Addy is a Software Engineer at Google who originally created TodoMVC. He oversee
 
 RealWorld wouldn't be possible without the help of the open source community reviewing codebases, creating new app implementations, and many other tasks that help push this project forward. We especially appreciate the OSS leaders who have helped contribute to RealWorld:
 
-- **Val Karpov** (core contributor of Mongoose) created the React/Redux codebase and authored its accompanying tutorial
-- **James Brewer** (docs contributor to Django) for countless brainstorming sessions, helping name this project, and creating the Django codebase + tutorial
 - **Dan Abramov** (creator of Redux) for [sparking the initial idea](https://twitter.com/dan_abramov/status/692009757775896577), [getting the Redux community involved](https://github.com/reactjs/redux/issues/1353), as well as graciously taking the time to provide feedback on the Redux codebase
 - **Max Lynch** (creator of Ionic) for taking the time to provide guidance in the early days of this project
+- **Addy Osmani** 
+- **James Brewer** (docs contributor to Django) for countless brainstorming sessions, helping name this project, and creating the Django codebase + tutorial
+
 
 
 
