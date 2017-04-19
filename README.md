@@ -73,7 +73,7 @@ Forks, tutorials, workshops, and other resources based on the RealWorld project:
 
 # Who made this?
 
-The core creators are **[Eric Simons](https://twitter.com/ericsimons40)** and **[Albert Pai](https://twitter.com/iamalbertpai)** &mdash; we personally run [Thinkster.io](https://thinkster.io), the developer tutorial site where all of these stacks are taught. Thinkster funds this entire project, so please consider investing in [a Pro subscription](https://thinkster.io/pro) to **support the ongoing development of RealWorld**!
+RealWorld would not be possible without the [open source community](#special-thanks-to) helping push the project forward each day. In addition, we have a core project team composed of:
 
 #### [Eric Simons](https://twitter.com/ericsimons40) - Founder/Lead
 
