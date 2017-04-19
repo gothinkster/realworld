@@ -104,7 +104,6 @@ James is a Software Engineer at Square and a core contributor to Django document
 
 Val Karpov is a Software Engineer at Booster Fuels and is a core contributor to Mongoose. He created & maintains the RealWorld React/Redux codebase.
 
-<br />
 
 ## Special thanks to...
 
