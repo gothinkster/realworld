@@ -4,7 +4,7 @@
 
 [![Travis](https://img.shields.io/travis/gothinkster/realworld.svg)]() [![npm](https://img.shields.io/npm/v/realworld.svg)]() [![license](https://img.shields.io/github/license/gothinkster/realworld.svg)]()
 
-<img src="media/conduit.png" align="right" width="300px" />
+<img src="media/conduit_demo.png" align="right" width="300px" />
 
 # What is this?
 
