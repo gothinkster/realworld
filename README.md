@@ -52,11 +52,10 @@ Yup! We've built step-by-step tutorials for all of our stacks that teach you how
 
 # Learn more
 
-(About the API spec, Bootstrap templates, Conduit project scope, Getting involved)
-
 - Every tutorial is built against the same [API spec](api/) to ensure modularity of every frontend & backend 
 - Every frontend utilizes the same hand crafted Bootstrap 4 theme for identical UI/UX
 - There is a hosted version of the backend API available for public usage, no API keys required
+- Interested in creating a RealWorld new stack? Head over to our [GH Issues](https://github.com/gothinkster/realworld/issues)
 
 <br />
 
