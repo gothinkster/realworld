@@ -75,6 +75,39 @@ Forks, tutorials, workshops, and other resources based on the RealWorld project:
 
 The core creators are **[Eric Simons](https://twitter.com/ericsimons40)** and **[Albert Pai](https://twitter.com/iamalbertpai)** &mdash; we personally run [Thinkster.io](https://thinkster.io), the developer tutorial site where all of these stacks are taught. Thinkster funds this entire project, so please consider investing in [a Pro subscription](https://thinkster.io/pro) to **support the ongoing development of RealWorld**!
 
+#### [Eric Simons](https://twitter.com/ericsimons40) - Founder/Lead
+
+<img align="left" width="50" height="50" src="https://avatars1.githubusercontent.com/u/556934?v=3&s=100">
+
+Addy is a Software Engineer at Google who originally created TodoMVC. He oversees the project direction, maintenance and organizes the planning and development efforts of the team.
+
+
+#### [Albert Pai](https://twitter.com/iamalbertpai) - Founder/Lead
+
+<img align="left" width="50" height="50" src="https://avatars0.githubusercontent.com/u/1776432?v=3&s=100">
+
+Addy is a Software Engineer at Google who originally created TodoMVC. He oversees the project direction, maintenance and organizes the planning and development efforts of the team.
+
+#### [Thinkster](https://twitter.com/gothinkster) - Funding/Support
+
+<img align="left" width="50" height="50" src="https://avatars0.githubusercontent.com/u/8601733?v=3&s=100">
+
+Addy is a Software Engineer at Google who originally created TodoMVC. He oversees the project direction, maintenance and organizes the planning and development efforts of the team.
+
+
+#### [James Brewer](https://twitter.com/brwr_) - Advisor, Creator of RealWorld Django
+
+<img align="left" width="50" height="50" src="https://avatars1.githubusercontent.com/u/4095660?v=3&s=100">
+
+Addy is a Software Engineer at Google who originally created TodoMVC. He oversees the project direction, maintenance and organizes the planning and development efforts of the team.
+
+#### [Val Karpov](https://twitter.com/code_barbarian) - Creator of RealWorld React & Redux
+
+<img align="left" width="50" height="50" src="https://avatars2.githubusercontent.com/u/1620265?v=3&s=100">
+
+Addy is a Software Engineer at Google who originally created TodoMVC. He oversees the project direction, maintenance and organizes the planning and development efforts of the team.
+
+<br />
 
 ## Special thanks to...
 
