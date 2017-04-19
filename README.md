@@ -4,6 +4,8 @@
 
 [![Travis](https://img.shields.io/travis/gothinkster/realworld.svg)]() [![npm](https://img.shields.io/npm/v/realworld.svg)]() [![license](https://img.shields.io/github/license/gothinkster/realworld.svg)]()
 
+<img src="media/conduit.png" align="right" width="300px" />
+
 # What is this?
 
 RealWorld is a collection of exemplary frontend and backend codebases that demonstrate how to build real world, full stack applications. 
@@ -19,6 +21,7 @@ You can choose any frontend (React, Angular 2, etc) and any backend (Node, Djang
 ### Wait, I can use _any_ frontend with _any_ backend?
 
 Yup! All of our frontends & backends adhere to the same [API spec](api/), so you can mix & match any desired frontend/backend combo.
+
 
 # What frontends and backends do you currently support?
 
