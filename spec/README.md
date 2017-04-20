@@ -1,12 +1,13 @@
 # Creating New Framework Implementations
 
-Here's how it works:
+Before getting started on a new implementation, please **check and see if there any [github issues](https://github.com/gothinkster/realworld/issues) for the framework** you want to implement.
 
-1. Check and see if there any github issues regarding the framework you want to implement
-2. If there aren't, feel free [fork our starter kit](https://github.com/gothinkster/realworld-starter-kit) & post the link to it in a new issue.
+If someone else has started working on an implementation, consider jumping in and helping them!
+
+Otherwise, feel free to **[fork our starter kit](https://github.com/gothinkster/realworld-starter-kit) & post the link to it in a new "stack wip" issue.**
 
 
-# Project Overview
+## Project Overview
 
 "Conduit" is a social blogging site (i.e. a Medium.com clone). It uses a custom API for all requests, including authentication. You can view a live demo over at https://react-redux.realworld.io
 
@@ -21,7 +22,7 @@ Here's how it works:
 - Follow other users
 
 
-# Frontend Specifications 
+## Frontend Specifications 
 
 https://github.com/gothinkster/conduit-bootstrap-template
 
@@ -46,6 +47,6 @@ https://github.com/gothinkster/conduit-bootstrap-template
     - List of articles populated from author's created articles or author's favorited articles
 
 
-# Backend Specifications
+## Backend Specifications
 
 
