@@ -1,6 +1,6 @@
 # Creating New Framework Implementations
 
-Before getting started on a new implementation, please **check and see if there any [github issues](https://github.com/gothinkster/realworld/issues) for the framework** you want to implement.
+Before getting started on a new implementation, **check and see if there any [github issues](https://github.com/gothinkster/realworld/issues) for the framework** you want to implement.
 
 If someone else has started working on an implementation, consider jumping in and helping them!
 
