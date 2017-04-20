@@ -1,4 +1,4 @@
-# Create A New Framework Implementation
+# Creating New Framework Implementations
 
 Here's how it works:
 
