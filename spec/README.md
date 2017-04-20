@@ -8,7 +8,7 @@ Here's how it works:
 
 # Project Overview
 
-"Conduit" is a social blogging site (i.e. a Medium.com clone). It uses a custom API for all requests, including authentication. You can view a live demo over at https://angular2.realworld.io
+"Conduit" is a social blogging site (i.e. a Medium.com clone). It uses a custom API for all requests, including authentication. You can view a live demo over at https://react-redux.realworld.io
 
 **General functionality:**
 
