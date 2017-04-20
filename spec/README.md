@@ -22,9 +22,9 @@ Otherwise, feel free to **[fork our starter kit](https://github.com/gothinkster/
 - Follow other users
 
 
-## Frontend Specifications 
+## Frontend Overview 
 
-https://github.com/gothinkster/conduit-bootstrap-template
+We created a custom Bootstrap 4 style & templates to ensure all frontends had consistent UI functionality. Our [starter kit](https://github.com/gothinkster/realworld-starter-kit) includes all the [templates & info required to get up and running](https://github.com/gothinkster/realworld-starter-kit/blob/master/FRONTEND_INSTRUCTIONS.md). 
 
 ### Routes
 
@@ -49,4 +49,9 @@ https://github.com/gothinkster/conduit-bootstrap-template
 
 ## Backend Specifications
 
+All backend implementations need to adhere to our [API spec](https://github.com/gothinkster/realworld/tree/master/api).
+
+For your convenience, we have a [Postman collection](https://github.com/gothinkster/realworld/blob/master/api/Conduit.json.postman_collection) that you can use to test your API endpoints as you build your app.
+
+Our [starter kit](https://github.com/gothinkster/realworld-starter-kit) includes [references to the API specs & testing](https://github.com/gothinkster/realworld-starter-kit/blob/master/BACKEND_INSTRUCTIONS.md) required for creating a new backend.
 
