@@ -53,6 +53,15 @@ Yup! We've built step-by-step tutorials for all of our stacks that teach you how
 
 <br />
 
+# Community created resources
+
+Forks, tutorials, workshops, and other resources based on the RealWorld project:
+
+- [**React+Redux / Node testing workshop**](https://github.com/kentcdodds/testing-workshop) by [**Kent C. Dodds**](https://github.com/kentcdodds)
+  - Example repo showing the React+Redux and Node stacks working together w/ TDD
+
+<br />
+
 # Learn more
 
 - Every tutorial is built against the same [API spec](api/) to ensure modularity of every frontend & backend 
@@ -62,14 +71,6 @@ Yup! We've built step-by-step tutorials for all of our stacks that teach you how
 
 <br />
 
-# Community created resources
-
-Forks, tutorials, workshops, and other resources based on the RealWorld project:
-
-- [**React+Redux / Node testing workshop**](https://github.com/kentcdodds/testing-workshop) by [**Kent C. Dodds**](https://github.com/kentcdodds)
-  - Example repo showing the React+Redux and Node stacks working together w/ TDD
-
-<br />
 
 # Who made this?
 
