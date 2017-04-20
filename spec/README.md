@@ -25,7 +25,7 @@ Here's how it works:
 
 https://github.com/gothinkster/conduit-bootstrap-template
 
-**The general page breakdown looks like this:**
+### Routes
 
 - Home page (URL: /#/ )
     - List of tags
