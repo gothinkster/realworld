@@ -4,7 +4,7 @@ Before getting started on a new implementation, please **check and see if there 
 
 If someone else has started working on an implementation, consider jumping in and helping them!
 
-Otherwise, feel free to **[fork our starter kit](https://github.com/gothinkster/realworld-starter-kit) & post the link to it in a new "stack wip" issue.**
+Otherwise, feel free to **[fork our starter kit](https://github.com/gothinkster/realworld-starter-kit) & post the link to it in a new issue tagged `stack wip`.**
 
 
 ## Project Overview
