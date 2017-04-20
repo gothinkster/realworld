@@ -379,7 +379,7 @@ Required fields: `body`
 
 
 
-### Get comments to an article
+### Get comments from an article
 
 `GET /api/articles/:slug/comments`
 
