@@ -1,6 +1,6 @@
 # ![RealWorld Example Applications](media/realworld.png)
 
-> Fullstack example codebases for React, Angular 2, AngularJS, Node, Rails, Django, and more
+> A Collection of Exemplary Frontend & Backend Codebases 🏅
 
 [![Travis](https://img.shields.io/travis/gothinkster/realworld.svg)]() [![npm](https://img.shields.io/npm/v/realworld.svg)]() [![license](https://img.shields.io/github/license/gothinkster/realworld.svg)]()
 
