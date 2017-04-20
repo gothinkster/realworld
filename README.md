@@ -1,4 +1,4 @@
-# ![RealWorld Example Applications](media/realworld.png)
+# ![RealWorld Example Applications](media/realworld-logo.png)
 
 > A Collection of Exemplary Frontend & Backend Codebases 🏅
 
