@@ -1,10 +1,12 @@
 # Creating New Framework Implementations
 
-Before getting started on a new implementation, **check and see if there any [github issues](https://github.com/gothinkster/realworld/issues) for the framework** you want to implement.
+1. **Check and see if there any [github issues](https://github.com/gothinkster/realworld/issues) for the framework** you want to implement.
 
-If someone else has started working on an implementation, consider jumping in and helping them!
+2. If someone else has started working on an implementation, **consider jumping in and helping them!**
 
-Otherwise, feel free to **[fork our starter kit](https://github.com/gothinkster/realworld-starter-kit) & post the link to it in a new issue with your framework's name tagged `stack wip`.**
+3. Otherwise, feel free to **[fork our starter kit](https://github.com/gothinkster/realworld-starter-kit) and get started**
+
+4. **Create a new issue** for your framework tagged `stack wip` & link to your repo
 
 
 ### [Fork our starter kit >>>](https://github.com/gothinkster/realworld-starter-kit)
