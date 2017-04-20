@@ -6,7 +6,7 @@ Here's how it works:
 2. If there aren't, feel free [fork our starter kit](https://github.com/gothinkster/realworld-starter-kit) & post the link to it in a new issue.
 
 
-## Project Overview
+# Project Overview
 
 "Conduit" is a social blogging site (i.e. a Medium.com clone). It uses a custom API for all requests, including authentication. You can view a live demo over at https://angular2.realworld.io
 
@@ -21,7 +21,7 @@ Here's how it works:
 - Follow other users
 
 
-## Frontend Overview 
+# Frontend Specifications 
 
 https://github.com/gothinkster/conduit-bootstrap-template
 
@@ -46,6 +46,6 @@ https://github.com/gothinkster/conduit-bootstrap-template
     - List of articles populated from author's created articles or author's favorited articles
 
 
-## Backend Overview
+# Backend Specifications
 
 
