@@ -20,7 +20,7 @@ You can choose any frontend (React, Angular 2, etc) and any backend (Node, Djang
 
 ### Wait, I can use _any_ frontend with _any_ backend?
 
-Yup! All of our frontends & backends adhere to the same [API spec](api/), so you can mix & match any desired frontend/backend combo.
+Yup! The frontends & backends adhere to the same [API spec](api/) and share the same custom Bootstrap 4 styles/templates, so you can mix & match any desired frontend/backend combo.
 
 
 # What frontends and backends do you currently support?
