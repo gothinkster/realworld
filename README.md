@@ -75,9 +75,9 @@ Forks, tutorials, workshops, and other resources based on the RealWorld project:
 # Learn more
 
 - Every tutorial is built against the same [API spec](api/) to ensure modularity of every frontend & backend 
-- Every frontend utilizes the same hand crafted Bootstrap 4 theme for identical UI/UX
+- Every frontend utilizes the same hand crafted [Bootstrap 4 theme](https://github.com/gothinkster/conduit-bootstrap-template) for identical UI/UX
 - There is a hosted version of the backend API available for public usage, no API keys required
-- Interested in creating a RealWorld new stack? Head over to our [GH Issues](https://github.com/gothinkster/realworld/issues)
+- Interested in creating a new RealWorld stack? View our [starter guide & spec](/spec)
 
 <br />
 
