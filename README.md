@@ -47,7 +47,7 @@ All of our stacks are built & reviewed by the OSS community. We're always workin
 
 [![Create a new stack](media/upcoming_stacks.png)](/spec)
 
-Do you use any of these frameworks (or one that isn't listed)? **We need your help!**
+Know any of these frameworks (or one that isn't listed)? **We need your help!**
 
 [**Create a new framework implementation >>>**](/spec)
 
