@@ -7,6 +7,9 @@ If someone else has started working on an implementation, consider jumping in an
 Otherwise, feel free to **[fork our starter kit](https://github.com/gothinkster/realworld-starter-kit) & post the link to it in a new issue with your framework's name tagged `stack wip`.**
 
 
+### [Fork our starter kit >>>](https://github.com/gothinkster/realworld-starter-kit)
+
+
 ## Project Overview
 
 "Conduit" is a social blogging site (i.e. a Medium.com clone). It uses a custom API for all requests, including authentication. You can view a live demo over at https://react-redux.realworld.io
