@@ -359,7 +359,7 @@ The `slug` also gets updated when the `title` is changed
 
 
 
-### Adding comments to an article
+### Add comments to an article
 
 `POST /api/articles/:slug/comments`
 
@@ -379,7 +379,7 @@ Required fields: `body`
 
 
 
-### Getting comments to an article
+### Get comments from an article
 
 `GET /api/articles/:slug/comments`
 
@@ -387,7 +387,7 @@ Authentication optional, returns [multiple comments](#multiple-comments)
 
 
 
-### Deleting a comment
+### Delete a comment
 
 `DELETE /api/articles/:slug/comments/:id`
 
@@ -395,7 +395,7 @@ Authentication required
 
 
 
-### Favoriting an article
+### Favorite an article
 
 `POST /api/articles/:slug/favorite`
 
@@ -405,7 +405,7 @@ No additional parameters required
 
 
 
-### Unfavoriting an article
+### Unfavorite an article
 
 `DELETE /api/articles/:slug/favorite`
 
