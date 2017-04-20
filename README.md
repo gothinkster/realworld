@@ -2,7 +2,9 @@
 
 > A Collection of Exemplary Frontend & Backend Codebases 🏅
 
-[![Travis](https://img.shields.io/travis/gothinkster/realworld.svg)]() [![npm](https://img.shields.io/npm/v/realworld.svg)]() [![license](https://img.shields.io/github/license/gothinkster/realworld.svg)]()
+[![Travis](https://img.shields.io/travis/gothinkster/realworld.svg)]() [![npm](https://img.shields.io/npm/v/realworld.svg)]() [![license](https://img.shields.io/github/license/gothinkster/realworld.svg)]() [![Twitter](https://img.shields.io/twitter/follow/gothinkster.svg?style=social&label=Follow)](https://twitter.com/gothinkster)
+
+
 
 <a href="https://react-redux.realworld.io/"><img src="media/conduit_l.png" align="right" width="300px" /></a>
 
