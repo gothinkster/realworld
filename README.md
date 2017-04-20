@@ -73,7 +73,7 @@ Forks, tutorials, workshops, and other resources based on the RealWorld project:
 
 # Who made this?
 
-RealWorld would not be possible without the [open source community](#special-thanks-to) helping push the project forward each day. In addition, we have a core project team composed of:
+RealWorld would not be possible without the [open source community](#special-thanks-to) continuously helping push the project forward. In addition, we have a core project team composed of:
 
 #### [Eric Simons](https://twitter.com/ericsimons40) - Founder/Lead
 
