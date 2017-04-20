@@ -27,7 +27,7 @@ Yup! The frontends & backends adhere to the same [API spec](api/), so you can mi
 
 All of our stacks are built & reviewed by the OSS community. We're always working to [add more stacks to this list](https://github.com/gothinkster/realworld/issues).
 
-#### Frontends
+### Frontends
 
 | [Angular 2+](https://github.com/GoThinkster/angular2-realworld-example-app) | [React / Redux](https://github.com/GoThinkster/react-redux-realworld-example-app) | [Angular 1.5+](https://github.com/gothinkster/angularjs-realworld-example-app) |
 | :---:         |     :---:      |          :---: |
@@ -35,11 +35,19 @@ All of our stacks are built & reviewed by the OSS community. We're always workin
 
 
 
-#### Backends
+### Backends
 
 | [Node / Express](https://github.com/gothinkster/node-express-realworld-example-app) | [Django](https://github.com/gothinkster/django-realworld-example-app) | [Rails](https://github.com/gothinkster/rails-realworld-example-app) |
 | :---:         |     :---:      |          :---: |
 | [![Node/Express](https://raw.githubusercontent.com/gothinkster/node-express-realworld-example-app/master/project-logo.png)![Star](https://img.shields.io/github/stars/gothinkster/node-express-realworld-example-app.svg?style=social&label=Star) ![Fork](https://img.shields.io/github/forks/gothinkster/node-express-realworld-example-app.svg?style=social&label=Fork)](https://github.com/gothinkster/node-express-realworld-example-app) | [![Django](https://raw.githubusercontent.com/gothinkster/django-realworld-example-app/master/project-logo.png) ![Star](https://img.shields.io/github/stars/gothinkster/django-realworld-example-app.svg?style=social&label=Star) ![Fork](https://img.shields.io/github/forks/gothinkster/django-realworld-example-app.svg?style=social&label=Fork)](https://github.com/gothinkster/django-realworld-example-app) | [![Rails](https://raw.githubusercontent.com/gothinkster/rails-realworld-example-app/master/project-logo.png) ![Star](https://img.shields.io/github/stars/gothinkster/rails-realworld-example-app.svg?style=social&label=Star) ![Fork](https://img.shields.io/github/forks/gothinkster/rails-realworld-example-app.svg?style=social&label=Fork)](https://github.com/gothinkster/rails-realworld-example-app) |
+
+### Upcoming
+
+[![Create a new stack](media/upcoming_stacks.png)](/spec)
+
+Do you use any of these frameworks (or one that isn't listed)? We need your help!
+
+[**Create a new framework implementation >>>**](/spec)
 
 <br />
 
