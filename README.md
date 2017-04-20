@@ -27,7 +27,7 @@ Yup! The frontends & backends adhere to the same [API spec](api/), so you can mi
 
 # What frontends and backends do you currently support?
 
-All of our stacks are built & reviewed by the OSS community. We're always working to [add more stacks to this list](https://github.com/gothinkster/realworld/issues).
+All of our stacks are built & reviewed by the OSS community. We're always working to [add more stacks to this list](#upcoming).
 
 ### Frontends
 
