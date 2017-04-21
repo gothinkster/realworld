@@ -31,9 +31,15 @@
 
 ## Frontend Overview 
 
+### Using the hosted API
+
+Simply point your [API](../api/) requests to `https://conduit.productionready.io/api` and you're good to go!
+
+### Styles/Templates
+
 We created a custom Bootstrap 4 style & templates to ensure all frontends had consistent UI functionality. Our [starter kit](https://github.com/gothinkster/realworld-starter-kit) includes all the [templates & info required to get up and running](https://github.com/gothinkster/realworld-starter-kit/blob/master/FRONTEND_INSTRUCTIONS.md). 
 
-### Routes
+### Routing Guidelines
 
 - Home page (URL: /#/ )
     - List of tags
