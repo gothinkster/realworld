@@ -1,4 +1,4 @@
-# Want to implement Conduit in a new framework?
+# Ready to implement Conduit in a new framework?
 
 1. **Check and see if there any [github issues](https://github.com/gothinkster/realworld/issues) for the framework** you want to implement.
 
