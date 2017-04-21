@@ -1,6 +1,6 @@
 # ![RealWorld Example Applications](media/realworld-logo.png)
 
-> A Collection of Exemplary Frontend & Backend Codebases 🏅
+> A Collection & Specification for Exemplary Frontend and Backend Codebases 🏅
 
 [![Travis](https://img.shields.io/travis/gothinkster/realworld.svg)]() [![npm](https://img.shields.io/npm/v/realworld.svg)]() [![license](https://img.shields.io/github/license/gothinkster/realworld.svg)]() [![Twitter](https://img.shields.io/twitter/follow/gothinkster.svg?style=social&label=Follow)](https://twitter.com/gothinkster)
 
