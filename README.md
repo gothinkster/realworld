@@ -10,9 +10,6 @@
 
 **TL;DR** — See how *the exact same* real world blogging platform is built using [React/Angular](#frontends) on top of [Node/Rails/Django](#backends) (and even more stacks coming soon). Yes, you can mix and match them, because **they all adhere to the same [API spec](spec/)** 😮😎
 
-# What is this?
-
-RealWorld is a collection of exemplary frontend and backend codebases that demonstrate how to build real world, full stack applications. 
 
 ### Why?
 
