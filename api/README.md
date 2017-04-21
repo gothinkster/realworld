@@ -101,8 +101,9 @@
 {
   "comment": {
     "id": 1,
-    "body": "It takes a Jacobian",
     "createdAt": "2016-02-18T03:22:56.637Z",
+    "updatedAt": "2016-02-18T03:22:56.637Z",
+    "body": "It takes a Jacobian",
     "author": {
       "username": "jake",
       "bio": "I work at statefarm",
@@ -119,8 +120,9 @@
 {
   "comments": [{
     "id": 1,
-    "body": "It takes a Jacobian",
     "createdAt": "2016-02-18T03:22:56.637Z",
+    "updatedAt": "2016-02-18T03:22:56.637Z",
+    "body": "It takes a Jacobian",
     "author": {
       "username": "jake",
       "bio": "I work at statefarm",
@@ -289,7 +291,7 @@ Limit number of articles (default is 20):
 
 `?limit=20`
 
-Offset/skip number of articles:
+Offset/skip number of articles (default is 0):
 
 `?offset=0`
 
