@@ -8,6 +8,8 @@
 
 <a href="https://react-redux.realworld.io/"><img src="media/conduit_l.png" align="right" width="300px" /></a>
 
+**TL;DR** — See how *the exact same* real world blogging platform was built using React/Angular on top of Node/Rails/Django (and even more stacks coming soon). Yes, you can mix and match them, because **they all adhere to the same API spec** 😮😎
+
 # What is this?
 
 RealWorld is a collection of exemplary frontend and backend codebases that demonstrate how to build real world, full stack applications. 
