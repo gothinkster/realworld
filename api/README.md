@@ -95,7 +95,7 @@
 }
 ```
 
-### Single comment
+### Single Comment
 
 ```JSON
 {
@@ -114,7 +114,7 @@
 }
 ```
 
-### Multiple comments
+### Multiple Comments
 
 ```JSON
 {
@@ -299,7 +299,7 @@ Authentication optional, will return [multiple articles](#multiple-articles), or
 
 
 
-### Feed articles
+### Feed Articles
 
 `GET /api/articles/feed`
 
@@ -308,7 +308,7 @@ Can also take `limit` and `offset` query parameters like [List Articles](#list-a
 Authentication required, will return [multiple articles](#multiple-articles) created by followed users, ordered by most recent first.
 
 
-### Retrieve Article
+### Get Article
 
 `GET /api/articles/:slug`
 
@@ -339,7 +339,7 @@ Optional fields: `tagList` as an array of Strings
 
 
 
-### Update article
+### Update Article
 
 `PUT /api/articles/:slug`
 
@@ -360,8 +360,15 @@ Optional fields: `title`, `description`, `body`
 The `slug` also gets updated when the `title` is changed
 
 
+### Delete Article
 
-### Add comments to an article
+`DELETE /api/articles/:slug`
+
+Authentication required
+
+
+
+### Add Comments to an Article
 
 `POST /api/articles/:slug/comments`
 
@@ -381,7 +388,7 @@ Required fields: `body`
 
 
 
-### Get comments from an article
+### Get Comments from an Article
 
 `GET /api/articles/:slug/comments`
 
@@ -389,7 +396,7 @@ Authentication optional, returns [multiple comments](#multiple-comments)
 
 
 
-### Delete a comment
+### Delete Comment
 
 `DELETE /api/articles/:slug/comments/:id`
 
@@ -397,7 +404,7 @@ Authentication required
 
 
 
-### Favorite an article
+### Favorite Article
 
 `POST /api/articles/:slug/favorite`
 
@@ -407,7 +414,7 @@ No additional parameters required
 
 
 
-### Unfavorite an article
+### Unfavorite Article
 
 `DELETE /api/articles/:slug/favorite`
 
@@ -417,7 +424,7 @@ No additional parameters required
 
 
 
-### Get tags
+### Get Tags
 
 `GET /api/tags`
 
