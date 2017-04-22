@@ -29,7 +29,7 @@
 - Follow other users
 
 
-# Frontends
+# Frontend Specs
 
 ### Using the hosted API
 
@@ -60,7 +60,7 @@ We created a custom Bootstrap 4 style & templates to ensure all frontends had co
     - List of articles populated from author's created articles or author's favorited articles
 
 
-# Backends
+# Backend Specs
 
 All backend implementations need to adhere to our [API spec](https://github.com/gothinkster/realworld/tree/master/api).
 
@@ -70,7 +70,7 @@ Our [starter kit](https://github.com/gothinkster/realworld-starter-kit) includes
 
 
 
-# Mobile apps
+# Mobile Specs
 
 ### [Icons for (iOS/Android)](https://github.com/gothinkster/realworld/tree/master/spec/mobile_icons)
 
