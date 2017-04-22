@@ -74,6 +74,7 @@ Forks, tutorials, workshops, and other resources based on the RealWorld project:
 
 - [**React+Redux / Node testing workshop**](https://github.com/kentcdodds/testing-workshop) by [**Kent C. Dodds**](https://github.com/kentcdodds)
   - Example repo showing the React+Redux and Node stacks working together w/ TDD
+  - Live recording of [**his workshop is available on YouTube**](https://www.youtube.com/watch?v=DdqiXcYDv-8)
 
 <br />
 
