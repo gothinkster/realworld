@@ -29,7 +29,7 @@
 - Follow other users
 
 
-## Frontend Overview 
+# Frontends
 
 ### Using the hosted API
 
@@ -60,7 +60,7 @@ We created a custom Bootstrap 4 style & templates to ensure all frontends had co
     - List of articles populated from author's created articles or author's favorited articles
 
 
-## Backend Specifications
+# Backends
 
 All backend implementations need to adhere to our [API spec](https://github.com/gothinkster/realworld/tree/master/api).
 
@@ -68,3 +68,18 @@ For your convenience, we have a [Postman collection](https://github.com/gothinks
 
 Our [starter kit](https://github.com/gothinkster/realworld-starter-kit) includes [references to the API specs & testing](https://github.com/gothinkster/realworld-starter-kit/blob/master/BACKEND_INSTRUCTIONS.md) required for creating a new backend.
 
+
+
+# Mobile apps
+
+### [Icons for (iOS/Android)](https://github.com/gothinkster/realworld/tree/master/spec/mobile_icons)
+
+### Using the hosted API
+
+Simply point your [API requests](../api/) to `https://conduit.productionready.io/api` and you're good to go!
+
+### Styles/Templates
+
+Unfortunately, there isn't a common way for us to reuse & share styles/templates for cross-platform mobile apps.
+
+Instead, we recommend using the Medium.com [iOS](https://itunes.apple.com/us/app/medium/id828256236?mt=8) and [Android](https://play.google.com/store/apps/details?id=com.medium.reader&hl=en) apps as a "north star" regarding general UI functionality/layout, but try not to go too overboard otherwise it will unnecessarily complicate your codebase (in other words, [KISS](https://en.wikipedia.org/wiki/KISS_principle) :)
