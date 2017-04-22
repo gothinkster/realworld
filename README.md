@@ -2,7 +2,7 @@
 
 > A Collection & Specification for Exemplary Frontend and Backend Codebases 🏅
 
-[![Travis](https://img.shields.io/travis/gothinkster/realworld.svg)]() [![npm](https://img.shields.io/npm/v/realworld.svg)]() [![license](https://img.shields.io/github/license/gothinkster/realworld.svg)]() [![Twitter](https://img.shields.io/twitter/follow/gothinkster.svg?style=social&label=Follow)](https://twitter.com/gothinkster)
+[![Travis](https://img.shields.io/travis/gothinkster/realworld.svg)]() [![Gitter](https://img.shields.io/gitter/room/realworld-dev/main.svg)](https://gitter.im/realworld-dev/main) [![npm](https://img.shields.io/npm/v/realworld.svg)]() [![license](https://img.shields.io/github/license/gothinkster/realworld.svg)]() [![Twitter](https://img.shields.io/twitter/follow/gothinkster.svg?style=social&label=Follow)](https://twitter.com/gothinkster)
 
 
 
