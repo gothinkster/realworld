@@ -1,4 +1,4 @@
-# ![RealWorld Example Applications](media/realworld-logo.png)
+# ![RealWorld Example Applications](media/realworld.png)
 
 > A Collection & Specification for Exemplary Frontend and Backend Codebases 🏅
 
@@ -117,7 +117,7 @@ Albert is a Software Engineer, DevOps ninja, and author of many technical books 
 
 <img align="left" width="40" height="40" src="https://avatars1.githubusercontent.com/u/4095660?v=3&s=100">
 
-James is a Software Engineer at Square and a core contributor to Django documentation. He created & maintains the RW Django codebase and continually provides guidance for the RealWorld project itself.
+James is a Software Engineer at Square and a contributor to the Django project. He created & maintains the RW Django codebase and continually provides guidance for the RealWorld project itself.
 
 #### [Val Karpov](https://twitter.com/code_barbarian) - Creator of RealWorld React & Redux
 <img align="left" width="40" height="40" src="https://avatars2.githubusercontent.com/u/1620265?v=3&s=100">
@@ -143,4 +143,4 @@ All of the codebases are **MIT licensed** unless otherwise specified.
 
 <br />
 
-[![Brought to you by Thinkster](media/end.png)](https://thinkster.io/about)
+[![Brought to you by Thinkster](media/end.png)](https://thinkster.io)
