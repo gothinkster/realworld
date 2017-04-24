@@ -6,7 +6,7 @@
 
 
 
-<a href="https://react-redux.realworld.io/"><img src="media/conduit_l.png" align="right" width="300px" /></a>
+<a href="https://demo.realworld.io/"><img src="media/conduit_l.png" align="right" width="300px" /></a>
 
 Read the [**full blog post announcing RealWorld on Medium.**](https://medium.com/@ericsimons/introducing-realworld-6016654d36b5)
 
@@ -19,7 +19,7 @@ While most demos/tutorials provide an excellent cursory glance at a framework's 
 
 ### How does it work?
 
-You can choose any frontend (React, Angular 2, etc) and any backend (Node, Django, etc) and see how they power a real world, beautifully designed fullstack app called "Conduit" [(demo)](https://react-redux.realworld.io).
+You can choose any frontend (React, Angular 2, etc) and any backend (Node, Django, etc) and see how they power a real world, beautifully designed fullstack app called "Conduit" [(demo)](https://demo.realworld.io/).
 
 ### Wait, I can use _any_ frontend with _any_ backend?
 
