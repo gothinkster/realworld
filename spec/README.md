@@ -14,6 +14,14 @@
 
 # Creating New Framework Implementations
 
+## Remember: Keep your codebases _simple_, yet _robust_.
+
+If a newbie dev for your framework comes along and can't grok the high level architecture within 10 minutes, it probably means that you went a little overboard in the engineering department.
+
+Alternatively, you should _never_ forgo following fundamental best practices for the sake of simplicity, lest we teach that same newbie dev the _wrong_ way of doing things.
+
+The quality & architecture of Conduit implementations should reflect something similar to an early stage startup's MVP: functionally complete & stable, but not over-engineered in anticipation for (potential) future user growth.
+
 ## Project Overview
 
 "Conduit" is a social blogging site (i.e. a Medium.com clone). It uses a custom API for all requests, including authentication. You can view a live demo over at https://react-redux.realworld.io
