@@ -16,7 +16,7 @@
 
 ## Remember: Keep your codebases _simple_, yet _robust_.
 
-If a newbie dev for your framework comes along and can't grok the high level architecture within 10 minutes, it probably means that you went a little overboard in the engineering department.
+If a newbie dev to your framework comes along and can't grok the high level architecture within 10 minutes, it probably means that you went a little overboard in the engineering department.
 
 Alternatively, you should _never_ forgo following fundamental best practices for the sake of simplicity, lest we teach that same newbie dev the _wrong_ way of doing things.
 
