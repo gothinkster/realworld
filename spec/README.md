@@ -20,7 +20,7 @@ If a newbie dev to your framework comes along and can't grok the high level arch
 
 Alternatively, you should _never_ forgo following fundamental best practices for the sake of simplicity, lest we teach that same newbie dev the _wrong_ way of doing things.
 
-The quality & architecture of Conduit implementations should reflect something similar to an early stage startup's MVP: functionally complete & stable, but not over-engineered in anticipation for (potential) future user growth.
+The quality & architecture of Conduit implementations should reflect something similar to an early stage startup's MVP: functionally complete & stable, but not unnecessarily over-engineered.
 
 ## Project Overview
 
