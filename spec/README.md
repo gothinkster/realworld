@@ -6,7 +6,7 @@
 
 3. Otherwise, feel free to **[fork our starter kit](https://github.com/gothinkster/realworld-starter-kit) and get started**
 
-4. **Create a new issue** for your framework tagged `stack wip` & link to your repo
+4. **Create a new issue** for your framework tagged `wip` & link to your repo
 
 
 ### [Fork our starter kit >>>](https://github.com/gothinkster/realworld-starter-kit)

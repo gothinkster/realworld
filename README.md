@@ -6,7 +6,7 @@
 
 
 
-<a href="https://react-redux.realworld.io/"><img src="media/conduit_l.png" align="right" width="300px" /></a>
+<a href="https://demo.realworld.io/"><img src="media/conduit_l.png" align="right" width="300px" /></a>
 
 Read the [**full blog post announcing RealWorld on Medium.**](https://medium.com/@ericsimons/introducing-realworld-6016654d36b5)
 
@@ -19,7 +19,7 @@ While most demos/tutorials provide an excellent cursory glance at a framework's 
 
 ### How does it work?
 
-You can choose any frontend (React, Angular 2, etc) and any backend (Node, Django, etc) and see how they power a real world, beautifully designed fullstack app called "Conduit" [(demo)](https://react-redux.realworld.io).
+You can choose any frontend (React, Angular 2, etc) and any backend (Node, Django, etc) and see how they power a real world, beautifully designed fullstack app called "Conduit" [(demo)](https://demo.realworld.io/).
 
 ### Wait, I can use _any_ frontend with _any_ backend?
 
@@ -32,9 +32,9 @@ All of our stacks are built & reviewed by the OSS community. We're always workin
 
 ### Frontends
 
-| [Angular 2+](https://github.com/GoThinkster/angular2-realworld-example-app) | [React / Redux](https://github.com/GoThinkster/react-redux-realworld-example-app) | [Angular 1.5+](https://github.com/gothinkster/angularjs-realworld-example-app) |
+| [Angular 2+](https://github.com/gothinkster/angular2-realworld-example-app) | [React / Redux](https://github.com/gothinkster/react-redux-realworld-example-app) | [Angular 1.5+](https://github.com/gothinkster/angularjs-realworld-example-app) |
 | :---:         |     :---:      |          :---: |
-| [![Angular 2](https://raw.githubusercontent.com/gothinkster/angular2-realworld-example-app/master/logo.png) ![Star](https://img.shields.io/github/stars/gothinkster/angular2-realworld-example-app.svg?style=social&label=Star) ![Fork](https://img.shields.io/github/forks/gothinkster/angular2-realworld-example-app.svg?style=social&label=Fork)](https://github.com/GoThinkster/angular2-realworld-example-app) | [![React / Redux](https://raw.githubusercontent.com/gothinkster/react-redux-realworld-example-app/master/project-logo.png) ![Star](https://img.shields.io/github/stars/gothinkster/react-redux-realworld-example-app.svg?style=social&label=Star) ![Fork](https://img.shields.io/github/forks/gothinkster/react-redux-realworld-example-app.svg?style=social&label=Fork)](https://github.com/GoThinkster/react-redux-realworld-example-app) | [![Angular 1.5+](https://raw.githubusercontent.com/gothinkster/angularjs-realworld-example-app/master/project-logo.png) ![Star](https://img.shields.io/github/stars/gothinkster/angularjs-realworld-example-app.svg?style=social&label=Star) ![Fork](https://img.shields.io/github/forks/gothinkster/angularjs-realworld-example-app.svg?style=social&label=Fork)](https://github.com/gothinkster/angularjs-realworld-example-app) |
+| [![Angular 2](https://raw.githubusercontent.com/gothinkster/angular2-realworld-example-app/master/logo.png) ![Star](https://img.shields.io/github/stars/gothinkster/angular2-realworld-example-app.svg?style=social&label=Star) ![Fork](https://img.shields.io/github/forks/gothinkster/angular2-realworld-example-app.svg?style=social&label=Fork)](https://github.com/gothinkster/angular2-realworld-example-app) | [![React / Redux](https://raw.githubusercontent.com/gothinkster/react-redux-realworld-example-app/master/project-logo.png) ![Star](https://img.shields.io/github/stars/gothinkster/react-redux-realworld-example-app.svg?style=social&label=Star) ![Fork](https://img.shields.io/github/forks/gothinkster/react-redux-realworld-example-app.svg?style=social&label=Fork)](https://github.com/gothinkster/react-redux-realworld-example-app) | [![Angular 1.5+](https://raw.githubusercontent.com/gothinkster/angularjs-realworld-example-app/master/project-logo.png) ![Star](https://img.shields.io/github/stars/gothinkster/angularjs-realworld-example-app.svg?style=social&label=Star) ![Fork](https://img.shields.io/github/forks/gothinkster/angularjs-realworld-example-app.svg?style=social&label=Fork)](https://github.com/gothinkster/angularjs-realworld-example-app) |
 
 
 
