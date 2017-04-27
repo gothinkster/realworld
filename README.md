@@ -6,22 +6,12 @@
 
 ### See how *the exact same* real world blogging platform is built using [React/Angular](#frontends) on top of [Node/Rails/Django](#backends) (and even more stacks coming soon). Yes, you can mix and match them, because **they all adhere to the same [API spec](spec/)** 😮😎
 
-*Read the [full blog post announcing RealWorld on Medium.](https://medium.com/@ericsimons/introducing-realworld-6016654d36b5)*
+*Read the [full blog post announcing RealWorld on Medium.](https://medium.com/@ericsimons/introducing-realworld-6016654d36b5)* <a href="https://demo.realworld.io/"><img src="media/stacks_hr.gif" align="right" width="300px"  /></a>
+
+<br />
 
 
 <a href="https://demo.realworld.io/"><img src="media/conduit_l.png" align="right" width="300px" /></a>
-
-### Why?
-
-While most demos/tutorials provide an excellent cursory glance at a framework's capabilities, they typically don't convey the knowledge & perspective required to actually build "real" applications with it.
-
-### How does it work?
-
-You can choose any frontend (React, Angular 2, etc) and any backend (Node, Django, etc) and see how they power a real world, beautifully designed fullstack app called "Conduit" [(demo)](https://demo.realworld.io/).
-
-### Wait, I can use _any_ frontend with _any_ backend?
-
-Yup! The frontends & backends adhere to the same [API spec](api/), so you can mix & match any desired frontend/backend combo.
 
 
 # What frontends and backends do you currently support?
