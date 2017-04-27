@@ -6,7 +6,7 @@
 
 3. Otherwise, feel free to **[fork our starter kit](https://github.com/gothinkster/realworld-starter-kit) and get started**
 
-4. **Create a new issue** for your framework tagged `wip` & link to your repo
+4. **Create a new issue** for your framework & link to your repo
 
 
 ### [Fork our starter kit >>>](https://github.com/gothinkster/realworld-starter-kit)
@@ -21,6 +21,20 @@ If a newbie dev to your framework comes along and can't grok the high level arch
 Alternatively, you should _never_ forgo following fundamental best practices for the sake of simplicity, lest we teach that same newbie dev the _wrong_ way of doing things.
 
 The quality & architecture of Conduit implementations should reflect something similar to an early stage startup's MVP: functionally complete & stable, but not unnecessarily over-engineered.
+
+## To TDD, or not to TDD?
+
+We think tests are a good idea, and we're huge fans of TDD in general. However, building Conduit implementations without tests are a meaningful time investment as is, so we originally didn’t include testing in the spec because we figured that if people wanted it, then it would be a great “extra credit” objective for the repo. For example, our Angular 2 repo had a request for unit tests and some awesome community members are now working on a PR for it.
+
+Another reason we didn’t include them in the spec is from the "Golden Rule" above:
+
+> The quality & architecture of Conduit implementations should reflect something similar to an early stage startup's MVP: functionally complete & stable, but not unnecessarily over-engineered.
+
+Most startups we know that work in consumer facing apps (like Conduit) don’t apply TDD until they have solid product-market fit, which is smart because they then spend most of their time iterating on product & UI and thus are far more likely to find PMF.
+
+This doesn’t mean that TDD === over-engineering, but in certain circumstances that statement does evaluate true (ex: consumer product finding PMF, sideprojects, robust prototypes, etc).
+
+So TL;DR — we chose to not have a strict requirement for TDD in RealWorld repos, but we'd definitely prefer all of them to include excellent tests if the maintainers are willing to add it (or if someone in the community is kind enough to make a pull request :)
 
 ## Project Overview
 
