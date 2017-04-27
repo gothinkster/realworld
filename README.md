@@ -39,8 +39,6 @@ Work In Progress: **[Flask](https://github.com/gothinkster/realworld/issues/51) 
 
 Work In Progress: **[React Native](https://github.com/gothinkster/realworld/issues/10) | [Ionic 2+](https://github.com/gothinkster/realworld/issues/16)**
 
-<br />
-
 ### [View all upcoming stacks (WIPs)](https://github.com/gothinkster/realworld/issues?q=is%3Aopen+is%3Aissue+label%3Awip)
 
 Note: All stacks that are a WIP are experimental and incomplete.
