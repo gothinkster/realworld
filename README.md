@@ -17,7 +17,7 @@
 
 # What frontends and backends do you currently support?
 
-All of our stacks are built & reviewed by the OSS community. We're always working to [add more stacks to this list](#upcoming).
+All of our stacks are built & reviewed by the OSS community and we're always looking to [add more stacks to this list](#upcoming)!
 
 ### Frontends
 
