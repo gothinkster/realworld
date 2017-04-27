@@ -8,7 +8,7 @@
 
 <a href="https://demo.realworld.io/"><img src="media/conduit_l.png" align="right" width="300px" /></a>
 
-### See how *the exact same* real world blogging platform is built using [React/Angular](#frontends) on top of [Node/Rails/Django](#backends) (and even more stacks coming soon). Yes, you can mix and match them, because **they all adhere to the same [API spec](spec/)** 😮😎
+### See how *the exact same* real world blogging platform is built using any of our supported [frontends](#frontends) and  [backends](#backends). Yes, you can mix and match them, because **they all adhere to the same [API spec](spec/)** 😮😎
 
 *Read the [full blog post announcing RealWorld on Medium.](https://medium.com/@ericsimons/introducing-realworld-6016654d36b5)* 
 
