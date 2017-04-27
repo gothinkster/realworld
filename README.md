@@ -1,6 +1,6 @@
 # ![RealWorld Example Applications](media/realworld.png)
 
-> Choose your next stack! Exemplary fullstack blog app powered by interchangeable frontends & backends 🏅
+> Choose your next stack! Exemplary fullstack blog apps powered by React, Angular, Node, Django, and many more 🏅
 
 [![Travis](https://img.shields.io/travis/gothinkster/realworld.svg)]() [![Gitter](https://img.shields.io/gitter/room/realworld-dev/main.svg)](https://gitter.im/realworld-dev/main) [![Twitter](https://img.shields.io/twitter/follow/gothinkster.svg?style=social&label=Follow)](https://twitter.com/gothinkster)
 
