@@ -4,15 +4,15 @@
 
 [![Travis](https://img.shields.io/travis/gothinkster/realworld.svg)]() [![Gitter](https://img.shields.io/gitter/room/realworld-dev/main.svg)](https://gitter.im/realworld-dev/main) [![Twitter](https://img.shields.io/twitter/follow/gothinkster.svg?style=social&label=Follow)](https://twitter.com/gothinkster)
 
+### See how *the exact same* real world blogging platform is built using [React/Angular](#frontends) on top of [Node/Rails/Django](#backends) (and even more stacks coming soon). Yes, you can mix and match them, because **they all adhere to the same [API spec](spec/)** 😮😎
+
+*Read the [**full blog post announcing RealWorld on Medium >>>**](https://medium.com/@ericsimons/introducing-realworld-6016654d36b5)*
 
 <a href="https://demo.realworld.io/"><img src="media/conduit_l.png" align="right" width="300px" /></a>
 
 
 <a href="https://demo.realworld.io/"><img src="media/stacks_hr.gif" width="400px"  /></a>
 
-### See how *the exact same* real world blogging platform is built using [React/Angular](#frontends) on top of [Node/Rails/Django](#backends) (and even more stacks coming soon). Yes, you can mix and match them, because **they all adhere to the same [API spec](spec/)** 😮😎
-
-*Read the [**full blog post announcing RealWorld on Medium >>>**](https://medium.com/@ericsimons/introducing-realworld-6016654d36b5)*
 
 
 ### Why?
