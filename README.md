@@ -6,7 +6,7 @@
 
 <a href="https://demo.realworld.io/"><img src="media/stacks_hr.gif" align="right" width="300px"  /></a>
 
-<br /><br />
+<br />
 
 
 <a href="https://demo.realworld.io/"><img src="media/conduit_l.png" align="right" width="300px" /></a>
