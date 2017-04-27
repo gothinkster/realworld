@@ -19,11 +19,9 @@ RealWorld solves this by allowing you to choose any frontend (React, Angular 2, 
 *Read the [full blog post announcing RealWorld on Medium.](https://medium.com/@ericsimons/introducing-realworld-6016654d36b5)* 
 
 
-# What frontends and backends do you currently support?
 
-All of our stacks are built & reviewed by the OSS community. Help us [add more stacks to this list](https://github.com/gothinkster/realworld/tree/master/spec)!
 
-### Frontends
+# Frontends
 
 | [Angular 2+](https://github.com/gothinkster/angular2-realworld-example-app) | [React / Redux](https://github.com/gothinkster/react-redux-realworld-example-app) | [Angular 1.5+](https://github.com/gothinkster/angularjs-realworld-example-app) |
 | :---:         |     :---:      |          :---: |
@@ -31,7 +29,7 @@ All of our stacks are built & reviewed by the OSS community. Help us [add more s
 
 Work In Progress: **[Ember](https://github.com/gothinkster/realworld/issues/22) | [Vue](https://github.com/gothinkster/realworld/issues/7) | [React+MobX](https://github.com/gothinkster/realworld/issues/33), [React+Relay](https://github.com/gothinkster/realworld/issues/48) | [Svelte](https://github.com/gothinkster/realworld/issues/19) | [Elm](https://github.com/gothinkster/realworld/issues/13) | [Aurelia](https://github.com/gothinkster/realworld/issues/27) | [ClojureScript](https://github.com/gothinkster/realworld/issues/61)**
 
-### Backends
+# Backends
 
 | [Node / Express](https://github.com/gothinkster/node-express-realworld-example-app) | [Django](https://github.com/gothinkster/django-realworld-example-app) | [Rails](https://github.com/gothinkster/rails-realworld-example-app) |
 | :---:         |     :---:      |          :---: |
@@ -39,21 +37,22 @@ Work In Progress: **[Ember](https://github.com/gothinkster/realworld/issues/22) 
 
 Work In Progress: **[Flask](https://github.com/gothinkster/realworld/issues/51) | [Go](https://github.com/gothinkster/realworld/issues/45) | [Elixir + Phoenix](https://github.com/gothinkster/realworld/issues/17) | [GraphQL / Apollo](https://github.com/gothinkster/realworld/issues/46) | [Node.js Lambda + DynamoDB](https://github.com/gothinkster/realworld/issues/37) | [Go + Gin](https://github.com/gothinkster/realworld/issues/9) | [Rust](https://github.com/gothinkster/realworld/issues/24) | [Firebase + GCP Cloud Functions](https://github.com/gothinkster/realworld/issues/21) | [Laravel](https://github.com/gothinkster/realworld/issues/20) | [.NET Core](https://github.com/gothinkster/realworld/issues/31) | [HapiJS](https://github.com/gothinkster/realworld/issues/40) | [Falcon + GAE](https://github.com/gothinkster/realworld/issues/59) | [Nim](https://github.com/gothinkster/realworld/issues/60) | [Scala + Play](https://github.com/gothinkster/realworld/issues/63) | [Koa.js(Node.js) + knex(SQL)](https://github.com/gothinkster/realworld/issues/49) | [Slim](https://github.com/gothinkster/realworld/issues/50) | [Clojure](https://github.com/gothinkster/realworld/issues/57) | [Spring (w/ Spring Boot)](https://github.com/gothinkster/realworld/issues/55) | [F#](https://github.com/gothinkster/realworld/issues/58)**
 
-### Mobile
+# Mobile
 
 Work In Progress: **[React Native](https://github.com/gothinkster/realworld/issues/10) | [Ionic 2+](https://github.com/gothinkster/realworld/issues/16)**
 
-### [View all upcoming stacks (WIPs)](https://github.com/gothinkster/realworld/issues?q=is%3Aopen+is%3Aissue+label%3Awip)
+
+# Create a new stack
+
+[![Create a new stack](media/upcoming_stacks.png)](/spec)
+
+### Know any of these frameworks (or one that isn't listed)?<br />[**Create a new framework implementation >>>**](/spec)
+
+Or you can [view upcoming stacks (WIPs)](https://github.com/gothinkster/realworld/issues?q=is%3Aopen+is%3Aissue+label%3Awip)
 
 Note: All stacks that are a WIP are experimental and incomplete.
 
 Don't expect everything to work perfectly out of the box!
-
-### Create a new stack
-
-[![Create a new stack](media/upcoming_stacks.png)](/spec)
-
-Know any of these frameworks (or one that isn't listed)? [**Create a new framework implementation >>>**](/spec)
 
 <br />
 
