@@ -36,7 +36,7 @@ Most startups we know that work in consumer facing apps (like Conduit) don’t a
 
 This doesn’t mean that TDD === over-engineering, but in certain circumstances that statement does evaluate true (ex: consumer product finding PMF, sideprojects, robust prototypes, etc).
 
-That said, we do prefer that every repo includes excellent tests that are exemplary of TDD with that framework 👍
+That said, we do _prefer_ that every repo includes excellent tests that are exemplary of TDD with that framework 👍
 
 
 
