@@ -6,7 +6,7 @@
 <img src="media/stacks_hr.gif"  />
 </p>
 
-<a href="https://demo.realworld.io/"><img src="media/conduit_l.png" align="right" width="300px" /></a>
+<a href="https://demo.realworld.io/"><img src="media/conduit_l.png" align="right" width="250px" /></a>
 
 ### See how *the exact same* real world blogging platform ([Conduit](https://demo.realworld.io)) is built using any of our supported [frontends](#frontends) and  [backends](#backends). Yes, you can mix and match them, because **they all adhere to the same [API spec](spec/)** 😮😎
 
