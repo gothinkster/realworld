@@ -39,7 +39,7 @@ Work In Progress: **[Flask](https://github.com/gothinkster/realworld/issues/51) 
 
 # Mobile
 
-Work In Progress: **[React Native](https://github.com/gothinkster/realworld/issues/10) | [Ionic 2+](https://github.com/gothinkster/realworld/issues/16)**
+Work In Progress: **[React Native](https://github.com/gothinkster/realworld/issues/10) | [Ionic 2+](https://github.com/gothinkster/realworld/issues/16) | [Xamarin](https://github.com/gothinkster/realworld/issues/70)**
 
 
 # Create a new stack
