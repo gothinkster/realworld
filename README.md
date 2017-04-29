@@ -1,60 +1,58 @@
 # ![RealWorld Example Applications](media/realworld.png)
 
-> A Collection & Specification for Exemplary Frontend and Backend Codebases 🏅
+> TodoMVC for the RealWorld™ — Fullstack Medium.com clone powered by React, Angular, Node, Django, and many more 🏅
 
-[![Travis](https://img.shields.io/travis/gothinkster/realworld.svg)]() [![Gitter](https://img.shields.io/gitter/room/realworld-dev/main.svg)](https://gitter.im/realworld-dev/main) [![npm](https://img.shields.io/npm/v/realworld.svg)]() [![license](https://img.shields.io/github/license/gothinkster/realworld.svg)]() [![Twitter](https://img.shields.io/twitter/follow/gothinkster.svg?style=social&label=Follow)](https://twitter.com/gothinkster)
+[![Travis](https://img.shields.io/travis/gothinkster/realworld.svg)]() [![Gitter](https://img.shields.io/gitter/room/realworld-dev/main.svg)](https://gitter.im/realworld-dev/main) [![Twitter](https://img.shields.io/twitter/follow/gothinkster.svg?style=social&label=Follow)](https://twitter.com/gothinkster)
 
+<p align="center">
+<img src="media/stacks_hr.gif"  />
+</p>
 
+<a href="https://demo.realworld.io/"><img src="media/conduit_l.png" align="right" width="250px" /></a>
 
-<a href="https://react-redux.realworld.io/"><img src="media/conduit_l.png" align="right" width="300px" /></a>
+### See how *the exact same* Medium.com clone (called [Conduit](https://demo.realworld.io)) is built using any of our supported [frontends](#frontends) and  [backends](#backends). Yes, you can mix and match them, because **they all adhere to the same [API spec](spec/)** 😮😎
 
-Read the [**full blog post announcing RealWorld on Medium.**](https://medium.com/@ericsimons/introducing-realworld-6016654d36b5)
+While most "todo" demos provide an excellent cursory glance at a framework's capabilities, they typically don't convey the knowledge & perspective required to actually build _real_ applications with it.
 
-**TL;DR** — See how *the exact same* real world blogging platform is built using [React/Angular](#frontends) on top of [Node/Rails/Django](#backends) (and even more stacks coming soon). Yes, you can mix and match them, because **they all adhere to the same [API spec](spec/)** 😮😎
+RealWorld solves this by allowing you to choose any frontend (React, Angular 2, & more) and any backend (Node, Django, & more) and see how they power a real world, beautifully designed fullstack app called "[Conduit](https://demo.realworld.io)".
 
-
-### Why?
-
-While most demos/tutorials provide an excellent cursory glance at a framework's capabilities, they typically don't convey the knowledge & perspective required to actually build "real" applications with it.
-
-### How does it work?
-
-You can choose any frontend (React, Angular 2, etc) and any backend (Node, Django, etc) and see how they power a real world, beautifully designed fullstack app called "Conduit" [(demo)](https://react-redux.realworld.io).
-
-### Wait, I can use _any_ frontend with _any_ backend?
-
-Yup! The frontends & backends adhere to the same [API spec](api/), so you can mix & match any desired frontend/backend combo.
+*Read the [full blog post announcing RealWorld on Medium.](https://medium.com/@ericsimons/introducing-realworld-6016654d36b5)* 
 
 
-# What frontends and backends do you currently support?
 
-All of our stacks are built & reviewed by the OSS community. We're always working to [add more stacks to this list](#upcoming).
 
-### Frontends
+# Frontends
 
-| [Angular 2+](https://github.com/GoThinkster/angular2-realworld-example-app) | [React / Redux](https://github.com/GoThinkster/react-redux-realworld-example-app) | [Angular 1.5+](https://github.com/gothinkster/angularjs-realworld-example-app) |
+| [Angular 2+](https://github.com/gothinkster/angular2-realworld-example-app) | [React / Redux](https://github.com/gothinkster/react-redux-realworld-example-app) | [Angular 1.5+](https://github.com/gothinkster/angularjs-realworld-example-app) |
 | :---:         |     :---:      |          :---: |
-| [![Angular 2](https://raw.githubusercontent.com/gothinkster/angular2-realworld-example-app/master/logo.png) ![Star](https://img.shields.io/github/stars/gothinkster/angular2-realworld-example-app.svg?style=social&label=Star) ![Fork](https://img.shields.io/github/forks/gothinkster/angular2-realworld-example-app.svg?style=social&label=Fork)](https://github.com/GoThinkster/angular2-realworld-example-app) | [![React / Redux](https://raw.githubusercontent.com/gothinkster/react-redux-realworld-example-app/master/project-logo.png) ![Star](https://img.shields.io/github/stars/gothinkster/react-redux-realworld-example-app.svg?style=social&label=Star) ![Fork](https://img.shields.io/github/forks/gothinkster/react-redux-realworld-example-app.svg?style=social&label=Fork)](https://github.com/GoThinkster/react-redux-realworld-example-app) | [![Angular 1.5+](https://raw.githubusercontent.com/gothinkster/angularjs-realworld-example-app/master/project-logo.png) ![Star](https://img.shields.io/github/stars/gothinkster/angularjs-realworld-example-app.svg?style=social&label=Star) ![Fork](https://img.shields.io/github/forks/gothinkster/angularjs-realworld-example-app.svg?style=social&label=Fork)](https://github.com/gothinkster/angularjs-realworld-example-app) |
+| [![Angular 2](https://raw.githubusercontent.com/gothinkster/angular2-realworld-example-app/master/logo.png) ![Star](https://img.shields.io/github/stars/gothinkster/angular2-realworld-example-app.svg?style=social&label=Star) ![Fork](https://img.shields.io/github/forks/gothinkster/angular2-realworld-example-app.svg?style=social&label=Fork)](https://github.com/gothinkster/angular2-realworld-example-app) | [![React / Redux](https://raw.githubusercontent.com/gothinkster/react-redux-realworld-example-app/master/project-logo.png) ![Star](https://img.shields.io/github/stars/gothinkster/react-redux-realworld-example-app.svg?style=social&label=Star) ![Fork](https://img.shields.io/github/forks/gothinkster/react-redux-realworld-example-app.svg?style=social&label=Fork)](https://github.com/gothinkster/react-redux-realworld-example-app) | [![Angular 1.5+](https://raw.githubusercontent.com/gothinkster/angularjs-realworld-example-app/master/project-logo.png) ![Star](https://img.shields.io/github/stars/gothinkster/angularjs-realworld-example-app.svg?style=social&label=Star) ![Fork](https://img.shields.io/github/forks/gothinkster/angularjs-realworld-example-app.svg?style=social&label=Fork)](https://github.com/gothinkster/angularjs-realworld-example-app) |
 
+Work In Progress: **[Ember](https://github.com/gothinkster/realworld/issues/22) | [Vue](https://github.com/gothinkster/realworld/issues/7) | [React+MobX](https://github.com/gothinkster/realworld/issues/33) | [React+Relay](https://github.com/gothinkster/realworld/issues/48) | [Svelte](https://github.com/gothinkster/realworld/issues/19) | [Elm](https://github.com/gothinkster/realworld/issues/13) | [Aurelia](https://github.com/gothinkster/realworld/issues/27) | [ClojureScript](https://github.com/gothinkster/realworld/issues/61) | [Mithril](https://github.com/gothinkster/realworld/issues/69)**
 
-
-### Backends
+# Backends
 
 | [Node / Express](https://github.com/gothinkster/node-express-realworld-example-app) | [Django](https://github.com/gothinkster/django-realworld-example-app) | [Rails](https://github.com/gothinkster/rails-realworld-example-app) |
 | :---:         |     :---:      |          :---: |
 | [![Node/Express](https://raw.githubusercontent.com/gothinkster/node-express-realworld-example-app/master/project-logo.png)![Star](https://img.shields.io/github/stars/gothinkster/node-express-realworld-example-app.svg?style=social&label=Star) ![Fork](https://img.shields.io/github/forks/gothinkster/node-express-realworld-example-app.svg?style=social&label=Fork)](https://github.com/gothinkster/node-express-realworld-example-app) | [![Django](https://raw.githubusercontent.com/gothinkster/django-realworld-example-app/master/project-logo.png) ![Star](https://img.shields.io/github/stars/gothinkster/django-realworld-example-app.svg?style=social&label=Star) ![Fork](https://img.shields.io/github/forks/gothinkster/django-realworld-example-app.svg?style=social&label=Fork)](https://github.com/gothinkster/django-realworld-example-app) | [![Rails](https://raw.githubusercontent.com/gothinkster/rails-realworld-example-app/master/project-logo.png) ![Star](https://img.shields.io/github/stars/gothinkster/rails-realworld-example-app.svg?style=social&label=Star) ![Fork](https://img.shields.io/github/forks/gothinkster/rails-realworld-example-app.svg?style=social&label=Fork)](https://github.com/gothinkster/rails-realworld-example-app) |
 
-### [View upcoming stacks (WIPs)](https://github.com/gothinkster/realworld/issues?q=is%3Aopen+is%3Aissue+label%3Awip)
+Work In Progress: **[Flask](https://github.com/gothinkster/realworld/issues/51) | [Go](https://github.com/gothinkster/realworld/issues/45) | [Elixir + Phoenix](https://github.com/gothinkster/realworld/issues/17) | [GraphQL / Apollo](https://github.com/gothinkster/realworld/issues/46) | [Node.js Lambda + DynamoDB](https://github.com/gothinkster/realworld/issues/37) | [Go + Gin](https://github.com/gothinkster/realworld/issues/9) | [Rust](https://github.com/gothinkster/realworld/issues/24) | [Firebase + GCP Cloud Functions](https://github.com/gothinkster/realworld/issues/21) | [Laravel](https://github.com/gothinkster/realworld/issues/20) | [.NET Core](https://github.com/gothinkster/realworld/issues/31) | [HapiJS](https://github.com/gothinkster/realworld/issues/40) | [Falcon + GAE](https://github.com/gothinkster/realworld/issues/59) | [Nim](https://github.com/gothinkster/realworld/issues/60) | [Scala + Play](https://github.com/gothinkster/realworld/issues/63) | [Koa.js(Node.js) + knex(SQL)](https://github.com/gothinkster/realworld/issues/49) | [Slim](https://github.com/gothinkster/realworld/issues/50) | [Clojure](https://github.com/gothinkster/realworld/issues/57) | [Spring (w/ Spring Boot)](https://github.com/gothinkster/realworld/issues/55) | [F#](https://github.com/gothinkster/realworld/issues/58), [Symphony](https://github.com/gothinkster/realworld/issues/66)**
+
+# Mobile
+
+Work In Progress: **[React Native](https://github.com/gothinkster/realworld/issues/10) | [Ionic 2+](https://github.com/gothinkster/realworld/issues/16) | [Xamarin](https://github.com/gothinkster/realworld/issues/70)**
+
+
+# Create a new stack
+
+[![Create a new stack](media/upcoming_stacks.png)](/spec)
+
+### Know any of these frameworks (or one that isn't listed)?<br />[**Create a new framework implementation >>>**](/spec)
+
+Or you can [view upcoming stacks (WIPs)](https://github.com/gothinkster/realworld/issues?q=is%3Aopen+is%3Aissue+label%3Awip)
 
 Note: All stacks that are a WIP are experimental and incomplete.
 
 Don't expect everything to work perfectly out of the box!
-
-### Create a new stack
-
-[![Create a new stack](media/upcoming_stacks.png)](/spec)
-
-Know any of these frameworks (or one that isn't listed)? [**Create a new framework implementation >>>**](/spec)
 
 <br />
 
