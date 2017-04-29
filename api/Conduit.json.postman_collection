@@ -1132,7 +1132,8 @@
 							{
 								"key": "Authorization",
 								"value": "Token {{token}}",
-								"description": ""
+								"description": "",
+								"disabled": true
 							}
 						],
 						"body": {},
