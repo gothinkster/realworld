@@ -22,7 +22,7 @@ Alternatively, you should _never_ forgo following fundamental best practices for
 
 The quality & architecture of Conduit implementations should reflect something similar to an early stage startup's MVP: functionally complete & stable, but not unnecessarily over-engineered.
 
-## To TDD, or not to TDD?
+## To write tests, or to not write tests?
 
 **TL;DR** — there's no requirement for tests in RealWorld repos, but we'd definitely prefer all of them to include excellent tests if the maintainers are willing to add it (or if someone in the community is kind enough to make a pull request :)
 
