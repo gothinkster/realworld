@@ -24,7 +24,7 @@ The quality & architecture of Conduit implementations should reflect something s
 
 ## To TDD, or not to TDD?
 
-**TL;DR** — there's no requirement for TDD in RealWorld repos, but we'd definitely prefer all of them to include excellent tests if the maintainers are willing to add it (or if someone in the community is kind enough to make a pull request :)
+**TL;DR** — there's no requirement for tests in RealWorld repos, but we'd definitely prefer all of them to include excellent tests if the maintainers are willing to add it (or if someone in the community is kind enough to make a pull request :)
 
 We think tests are a good idea, and we're huge fans of TDD in general. However, building Conduit implementations without tests are a meaningful time investment as is, so we originally didn’t include testing in the spec because we figured that if people wanted it, then it would be a great “extra credit” objective for the repo. For example, our Angular 2 repo had a request for unit tests and some awesome community members are now working on a PR for it.
 
@@ -32,11 +32,11 @@ Another reason we didn’t include them in the spec is from the "Golden Rule" ab
 
 > The quality & architecture of Conduit implementations should reflect something similar to an early stage startup's MVP: functionally complete & stable, but not unnecessarily over-engineered.
 
-Most startups we know that work in consumer facing apps (like Conduit) don’t apply TDD until they have solid product-market fit, which is smart because they then spend most of their time iterating on product & UI and thus are far more likely to find PMF.
+Most startups we know that work in consumer facing apps (like Conduit) don’t apply TDD/testing until they have solid product-market fit, which is smart because they then spend most of their time iterating on product & UI and thus are far more likely to find PMF.
 
-This doesn’t mean that TDD === over-engineering, but in certain circumstances that statement does evaluate true (ex: consumer product finding PMF, sideprojects, robust prototypes, etc).
+This doesn’t mean that TDD/testing === over-engineering, but in certain circumstances that statement does evaluate true (ex: consumer product finding PMF, sideprojects, robust prototypes, etc).
 
-That said, we do _prefer_ that every repo includes excellent tests that are exemplary of TDD with that framework 👍
+That said, we do _prefer_ that every repo includes excellent tests that are exemplary of TDD/testing with that framework 👍
 
 
 
