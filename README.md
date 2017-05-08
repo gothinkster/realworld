@@ -27,7 +27,7 @@ RealWorld solves this by allowing you to choose any frontend (React, Angular 2, 
 
 
 
-Work In Progress: **[Ember](https://github.com/gothinkster/realworld/issues/22) | [Vue](https://github.com/gothinkster/realworld/issues/7) | [React+MobX](https://github.com/gothinkster/realworld/issues/33) | [React+Relay](https://github.com/gothinkster/realworld/issues/48) | [Svelte](https://github.com/gothinkster/realworld/issues/19) | [Elm](https://github.com/gothinkster/realworld/issues/13) | [Aurelia](https://github.com/gothinkster/realworld/issues/27) | [ClojureScript](https://github.com/gothinkster/realworld/issues/61) | [Mithril](https://github.com/gothinkster/realworld/issues/69)**
+Work In Progress: **[Ember](https://github.com/gothinkster/realworld/issues/22) | [Vue](https://github.com/gothinkster/realworld/issues/7) | [React+MobX](https://github.com/gothinkster/realworld/issues/33) | [React+Relay](https://github.com/gothinkster/realworld/issues/48) | [Svelte](https://github.com/gothinkster/realworld/issues/19) | [Aurelia](https://github.com/gothinkster/realworld/issues/27) | [ClojureScript](https://github.com/gothinkster/realworld/issues/61) | [Mithril](https://github.com/gothinkster/realworld/issues/69)**
 
 
 # Backends
