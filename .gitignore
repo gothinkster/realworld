@@ -1,18 +1,3 @@
-# Compiled source #
-###################
-*.com
-*.class
-*.dll
-*.exe
-*.o
-*.so
-
-# Logs and databases #
-######################
-*.log
-*.sql
-*.sqlite
-
 # OS generated files #
 ######################
 .DS_Store
@@ -22,3 +7,25 @@
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+# IDE files #
+.idea/
+
+### Node template
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Dependency directories
+node_modules/
+
+
