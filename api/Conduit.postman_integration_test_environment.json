@@ -1,0 +1,24 @@
+{
+  "name": "Conduit - Integration Test",
+  "values": [
+    {
+      "enabled": true,
+      "key": "apiUrl",
+      "value": "https://conduit.productionready.io/api",
+      "type": "text"
+    },
+    {
+      "enabled": true,
+      "key": "token",
+      "value": "",
+      "type": "text"
+    },
+    {
+      "enabled": true,
+      "key": "isIntegrationTest",
+      "value": true,
+      "type": "boolean"
+    }
+  ],
+  "_postman_variable_scope": "environment"
+}
