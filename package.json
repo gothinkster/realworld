@@ -4,7 +4,7 @@
   "description": "Fullstack example codebases for React, Angular, Node, Django, Rails & more",
   "main": "index.js",
   "scripts": {
-    "test": "true"
+    "test": "newman run api/Conduit.postman_collection.json -e api/Conduit.postman_integration_test_environment.json"
   },
   "repository": {
     "type": "git",
@@ -22,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/gothinkster/realworld/issues"
   },
-  "homepage": "https://github.com/gothinkster/realworld#readme"
+  "homepage": "https://github.com/gothinkster/realworld#readme",
+  "devDependencies": {
+    "newman": "^3.5.2"
+  }
 }
