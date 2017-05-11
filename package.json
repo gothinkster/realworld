@@ -4,7 +4,7 @@
   "description": "Fullstack example codebases for React, Angular, Node, Django, Rails & more",
   "main": "index.js",
   "scripts": {
-    "test": "newman run api/Conduit.postman_collection.json -e api/Conduit.postman_integration_test_environment.json"
+    "test": "true"
   },
   "repository": {
     "type": "git",
