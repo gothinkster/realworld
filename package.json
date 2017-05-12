@@ -22,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/gothinkster/realworld/issues"
   },
-  "homepage": "https://github.com/gothinkster/realworld#readme"
+  "homepage": "https://github.com/gothinkster/realworld#readme",
+  "devDependencies": {
+    "newman": "^3.5.2"
+  }
 }
