@@ -113,16 +113,32 @@ Albert is a Software Engineer, DevOps ninja, and author of many technical books 
 [Thinkster](https://thinkster.io) creates high quality resources that help Javascript developers succeed. The RealWorld project wouldn't exist without their funding, so please consider investing in [a Pro subscription](https://thinkster.io/pro) to help support us!
 
 
-#### [James Brewer](https://twitter.com/brwr_) - Advisor, Creator of RealWorld Django
+#### [James Brewer](https://twitter.com/brwr_) - Admin
 
 <img align="left" width="40" height="40" src="https://avatars1.githubusercontent.com/u/4095660?v=3&s=100">
 
 James is a Software Engineer at Square and a contributor to the Django project. He created & maintains the RW Django codebase and continually provides guidance for the RealWorld project itself.
 
-#### [Val Karpov](https://twitter.com/code_barbarian) - Creator of RealWorld React & Redux
-<img align="left" width="40" height="40" src="https://avatars2.githubusercontent.com/u/1620265?v=3&s=100">
+#### [Anish Karandikar](https://github.com/anishkny) - Admin
 
-Val Karpov is a Software Engineer at Booster Fuels and is a core contributor to Mongoose. He created & maintains the RealWorld React/Redux codebase.
+<img align="left" width="40" height="40" src="https://avatars1.githubusercontent.com/u/357499?v=3&s=100">
+
+MathWorker, ex-Google, ex-Computational Fluid Dynamicist, forever lover of tech & humanities ❤️
+
+
+#### [Sandeesh S.](https://github.com/SandeeshS) - Admin
+
+<img align="left" width="40" height="40" src="https://avatars1.githubusercontent.com/u/16877877?v=3&s=100">
+
+Full stack developer, Laravel enthusiast, Digital marketing specialist and an avid gamer.
+
+
+#### [Cameron Chapman](https://github.com/Cameron-C-Chapman) - Admin
+
+<img align="left" width="40" height="40" src="https://avatars1.githubusercontent.com/u/1323581?v=3&s=100">
+
+Cameron Chapman is a Software Engineer at Argus Health. He's an open source enthusiast and is helping to teach a local web development boot camp at Kansas University.
+
 
 
 ## Special thanks to...
