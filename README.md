@@ -28,8 +28,6 @@ RealWorld solves this by allowing you to choose any frontend (React, Angular 2, 
 
 Work In Progress: **[Ember](https://github.com/gothinkster/realworld/issues/22) | [Vue](https://github.com/gothinkster/realworld/issues/7) | [React+Relay](https://github.com/gothinkster/realworld/issues/48) | [Svelte](https://github.com/gothinkster/realworld/issues/19) | [Aurelia](https://github.com/gothinkster/realworld/issues/27) | [ClojureScript](https://github.com/gothinkster/realworld/issues/61) | [Mithril](https://github.com/gothinkster/realworld/issues/69) | [Vanilla JS (Web Components)](https://github.com/gothinkster/realworld/issues/111)**
 
-# Backends
->_Sorted by popularity every 24 hours._ 
 
 # Backends
 >_Sorted by popularity every 24 hours._ 
