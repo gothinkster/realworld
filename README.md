@@ -1,6 +1,6 @@
 # ![RealWorld Example Applications](media/realworld.png)
 
-### Stay on the bleeding edge — [join our Gitter room!](https://gitter.im/realworld-dev/main) 🎉
+### [Join our Gitter room!](https://gitter.im/realworld-dev/main) 🎉
 
 [![Travis](https://img.shields.io/travis/gothinkster/realworld.svg)](https://travis-ci.org/gothinkster/realworld) [![Gitter](https://img.shields.io/gitter/room/realworld-dev/main.svg)](https://gitter.im/realworld-dev/main) [![Twitter](https://img.shields.io/twitter/follow/gothinkster.svg?style=social&label=Follow)](https://twitter.com/gothinkster)
 
