@@ -24,7 +24,7 @@ The quality & architecture of Conduit implementations should reflect something s
 
 ## To write tests, or to not write tests?
 
-**TL;DR** — we only require _at least_ one unit test with every repo, but we'd definitely prefer all of them to include excellent testing coverage if the maintainers are willing to add it (or if someone in the community is kind enough to make a pull request :)
+**TL;DR** — we only require _at least_ **one** unit test with every repo, but we'd definitely prefer all of them to include excellent testing coverage if the maintainers are willing to add it (or if someone in the community is kind enough to make a pull request :)
 
 We think tests are a good idea, and we're huge fans of TDD in general. However, building Conduit implementations without full testing coverage is a meaningful time investment as is, so we originally didn’t include full testing coverage in the spec because we figured that if people wanted it, then it would be a great “extra credit” objective for the repo. For example, our Angular 2 repo had a request for unit tests and some awesome community members are now working on a PR for it.
 
