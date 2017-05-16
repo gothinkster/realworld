@@ -24,9 +24,9 @@ The quality & architecture of Conduit implementations should reflect something s
 
 ## To write tests, or to not write tests?
 
-**TL;DR** — there's no requirement for tests in RealWorld repos, but we'd definitely prefer all of them to include excellent tests if the maintainers are willing to add it (or if someone in the community is kind enough to make a pull request :)
+**TL;DR** — we only require _at least_ one unit test with every repo, but we'd definitely prefer all of them to include excellent testing coverage if the maintainers are willing to add it (or if someone in the community is kind enough to make a pull request :)
 
-We think tests are a good idea, and we're huge fans of TDD in general. However, building Conduit implementations without tests are a meaningful time investment as is, so we originally didn’t include testing in the spec because we figured that if people wanted it, then it would be a great “extra credit” objective for the repo. For example, our Angular 2 repo had a request for unit tests and some awesome community members are now working on a PR for it.
+We think tests are a good idea, and we're huge fans of TDD in general. However, building Conduit implementations without full testing coverage is a meaningful time investment as is, so we originally didn’t include full testing coverage in the spec because we figured that if people wanted it, then it would be a great “extra credit” objective for the repo. For example, our Angular 2 repo had a request for unit tests and some awesome community members are now working on a PR for it.
 
 Another reason we didn’t include them in the spec is from the "Golden Rule" above:
 
@@ -61,6 +61,10 @@ That said, we do _prefer_ that every repo includes excellent tests that are exem
 
 Simply point your [API requests](../api/) to `https://conduit.productionready.io/api` and you're good to go!
 
+### Unit test(s)
+
+Include _at least_ **one** unit test in your repo to demonstrate how testing works (full testing coverage is _not_ required!)
+
 ### Styles/Templates
 
 We created a custom Bootstrap 4 style & templates to ensure all frontends had consistent UI functionality. Our [starter kit](https://github.com/gothinkster/realworld-starter-kit) includes all the [templates & info required to get up and running](https://github.com/gothinkster/realworld-starter-kit/blob/master/FRONTEND_INSTRUCTIONS.md). 
@@ -93,6 +97,11 @@ All backend implementations need to adhere to our [API spec](https://github.com/
 For your convenience, we have a [Postman collection](https://github.com/gothinkster/realworld/blob/master/api/Conduit.json.postman_collection) that you can use to test your API endpoints as you build your app.
 
 Our [starter kit](https://github.com/gothinkster/realworld-starter-kit) includes [references to the API specs & testing](https://github.com/gothinkster/realworld-starter-kit/blob/master/BACKEND_INSTRUCTIONS.md) required for creating a new backend.
+
+### Unit test(s)
+
+Include _at least_ **one** unit test in your repo to demonstrate how testing works (full testing coverage is _not_ required!)
+
 
 
 
