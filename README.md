@@ -140,7 +140,7 @@ Full stack developer, Laravel enthusiast, Digital marketing specialist and an av
 
 <img align="left" width="40" height="40" src="https://avatars1.githubusercontent.com/u/1323581?v=3&s=100">
 
-Cameron Chapman is a Software Engineer at Argus Health. He's an open source enthusiast and is helping to teach a local web development boot camp at Kansas University.
+Cameron Chapman is a Software Engineer at FanThreeSixty. He's an open source enthusiast and is helping to teach a local web development boot camp at Kansas University.
 
 
 
