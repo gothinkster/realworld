@@ -376,7 +376,7 @@ Authentication required
 
 `POST /api/articles/:slug/comments`
 
-Example request body:
+Example comment body:
 
 ```JSON
 {
