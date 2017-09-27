@@ -388,7 +388,7 @@ Example request body:
 
 Authentication required, returns the created [Comment](#single-comment)
 
-Required fields: `body`
+Required field: `body`
 
 
 
