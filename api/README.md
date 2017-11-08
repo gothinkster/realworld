@@ -279,7 +279,7 @@ No additional parameters required
 
 `GET /api/articles`
 
-Returns most recent articles globally be default, provide `tag`, `author` or `favorited` query parameter to filter results
+Returns most recent articles globally by default, provide `tag`, `author` or `favorited` query parameter to filter results
 
 Query Parameters:
 
