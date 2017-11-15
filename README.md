@@ -49,6 +49,11 @@ Work In Progress: **[Clojure](https://github.com/gothinkster/realworld/issues/57
 
 Work In Progress: **[React Native](https://github.com/gothinkster/realworld/issues/10) | [Ionic 2+](https://github.com/gothinkster/realworld/issues/16) | [Xamarin](https://github.com/gothinkster/realworld/issues/70)**
 
+# Fullstack
+
+_Since these implementations are reponsible for the entire stack, they obviously cannot be mixed and matched but they still adhere to the same functionality & UX specs._
+
+Work In Progress: **[Meteor]() | [Ruby Hyperloop]() | [Firebase]()**
 
 # Create a new stack
 
