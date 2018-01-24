@@ -90,6 +90,12 @@ Forks, tutorials, workshops, and other resources based on the RealWorld project:
 - [**React+Redux / Node testing workshop**](https://github.com/kentcdodds/testing-workshop) by [**Kent C. Dodds**](https://github.com/kentcdodds)
   - Example repo showing the React+Redux and Node stacks working together w/ TDD
   - Live recording of his workshop is [**available on YouTube**](https://www.youtube.com/watch?v=DdqiXcYDv-8)
+- [**A Real-World Comparison of Front-End Frameworks with Benchmarks**](https://medium.freecodecamp.org/a-real-world-comparison-of-front-end-frameworks-with-benchmarks-e1cb62fd526c) by [**Jacek Schae**](https://medium.freecodecamp.org/@jacekschae)
+  - Medium post comparing performance of various [RealWorld](https://realworld.io/) frontends
+- [**RealWorld React/NodeJS E2E Tests**](https://github.com/anishkny/realworld-e2e-test) by [**Anish Karandikar**](https://github.com/anishkny)
+  - A repo showing how to wire [React](https://github.com/gothinkster/react-redux-realworld-example-app) frontend with [NodeJS](https://github.com/gothinkster/node-express-realworld-example-app) backend for a RealWorld fullstack
+  - Includes E2E integration tests that use [Chrome Puppeteer](https://github.com/GoogleChrome/puppeteer) and [Mocha](https://mochajs.org) and work with CI systems like [Travis CI](https://travis-ci.org/anishkny/realworld-e2e-test) and [CircleCI](https://circleci.com/gh/anishkny/realworld-e2e-test)
+  - Also demonstrates usage of [Greenkeeper](https://greenkeeper.io) for automatic dependency updates and [Snyk](https://snyk.io/) for vulnerability monitoring
 
 <br />
 
