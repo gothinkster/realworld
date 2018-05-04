@@ -97,6 +97,9 @@ Forks, tutorials, workshops, and other resources based on the RealWorld project:
   - A repo showing how to wire [React](https://github.com/gothinkster/react-redux-realworld-example-app) frontend with [NodeJS](https://github.com/gothinkster/node-express-realworld-example-app) backend for a RealWorld fullstack
   - Includes E2E integration tests that use [Chrome Puppeteer](https://github.com/GoogleChrome/puppeteer) and [Mocha](https://mochajs.org) and work with CI systems like [Travis CI](https://travis-ci.org/anishkny/realworld-e2e-test) and [CircleCI](https://circleci.com/gh/anishkny/realworld-e2e-test)
   - Also demonstrates usage of [Greenkeeper](https://greenkeeper.io) for automatic dependency updates and [Snyk](https://snyk.io/) for vulnerability monitoring
+- Performance comparisons:
+  - [A Real-World Comparison of Front-End Frameworks with Benchmarks](https://medium.freecodecamp.org/a-real-world-comparison-of-front-end-frameworks-with-benchmarks-e1cb62fd526c)
+  - [A Real-World Comparison of Front-End Frameworks with Benchmarks (2018 update)](https://medium.freecodecamp.org/a-real-world-comparison-of-front-end-frameworks-with-benchmarks-2018-update-e5760fb4a962)
 
 <br />
 
