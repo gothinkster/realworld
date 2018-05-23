@@ -12,7 +12,7 @@ git --version
 git config --global user.email "travis@travis-ci.org"
 git config --global user.name "Travis CI"
 git checkout -b next
-git add README.md
+git add ../README.md
 git commit --message "Travis build: $TRAVIS_BUILD_NUMBER"
 git remote add origin-next https://${GH_TOKEN}@github.com/anishkny/realworld.git
 git push --quiet --set-upstream origin-next next
