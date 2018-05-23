@@ -11,6 +11,6 @@ git config --global user.name "RealWord Bot"
 git branch -d $BRANCH_NAME || true
 git checkout -b $BRANCH_NAME
 git add ../README.md
-git commit --message "Auto-update README"
+git commit --message "Auto-update README" || exit 0
 git remote add origin-$BRANCH_NAME https://${GH_TOKEN}@github.com/${GH_REPO}.git
 git push --quiet --set-upstream origin-$BRANCH_NAME $BRANCH_NAME
