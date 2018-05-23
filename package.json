@@ -24,6 +24,8 @@
   },
   "homepage": "https://github.com/gothinkster/realworld#readme",
   "devDependencies": {
+    "axios": "^0.18.0",
+    "js-yaml": "^3.11.0",
     "newman": "^3.5.2"
   }
 }

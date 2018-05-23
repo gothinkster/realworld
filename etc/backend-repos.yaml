@@ -1,0 +1,60 @@
+- title: Node / Express
+  repo:  gothinkster/node-express-realworld-example-app
+  logo:  https://raw.githubusercontent.com/gothinkster/node-express-realworld-example-app/master/project-logo.png
+- title: Laravel
+  repo:  gothinkster/laravel-realworld-example-app
+  logo:  https://github.com/gothinkster/laravel-realworld-example-app/blob/master/logo.png
+- title: Django
+  repo:  gothinkster/django-realworld-example-app
+  logo:  https://raw.githubusercontent.com/gothinkster/django-realworld-example-app/master/project-logo.png
+- title: ASP.NET Core
+  repo:  gothinkster/aspnetcore-realworld-example-app
+  logo:  https://raw.githubusercontent.com/gothinkster/aspnetcore-realworld-example-app/master/logo.png
+- title: Elixir + Phoenix
+  repo:  gothinkster/elixir-phoenix-realworld-example-app
+  logo:  https://github.com/gothinkster/elixir-phoenix-realworld-example-app/blob/master/logo.png
+- title: Rails
+  repo:  gothinkster/rails-realworld-example-app
+  logo:  https://raw.githubusercontent.com/gothinkster/rails-realworld-example-app/master/project-logo.png
+- title: Kotlin / Spring
+  repo:  gothinkster/kotlin-spring-realworld-example-app
+  logo:  https://raw.githubusercontent.com/gothinkster/kotlin-spring-realworld-example-app/master/kotlin-spring.png
+- title: Flask
+  repo:  gothinkster/flask-realworld-example-app
+  logo:  https://raw.githubusercontent.com/gothinkster/flask-realworld-example-app/master/image.png
+- title: Slim
+  repo:  gothinkster/slim-php-realworld-example-app
+  logo:  https://github.com/gothinkster/slim-php-realworld-example-app/blob/master/logo.png
+- title: Spring
+  repo:  gothinkster/spring-boot-realworld-example-app
+  logo:  https://github.com/gothinkster/spring-boot-realworld-example-app/raw/master/example-logo.png
+- title: CakePHP
+  repo:  gothinkster/cakephp-realworld-example-app
+  logo:  https://github.com/gothinkster/cakephp-realworld-example-app/raw/master/logo.png
+- title: Koa / Knex
+  repo:  gothinkster/koa-knex-realworld-example
+  logo:  https://github.com/gothinkster/koa-knex-realworld-example/raw/master/logo.png
+- title: Go + Gin
+  repo:  gothinkster/golang-gin-realworld-example-app
+  logo:  https://github.com/gothinkster/golang-gin-realworld-example-app/blob/master/logo.png
+- title: Rust
+  repo:  gothinkster/rust-realworld-example-app
+  logo:  https://github.com/gothinkster/rust-realworld-example-app/raw/master/logo.png
+- title: GCP Cloud Functions + Datastore
+  repo:  gothinkster/gcp-datastore-cloud-functions-realworld-example-app
+  logo:  https://github.com/gothinkster/gcp-datastore-cloud-functions-realworld-example-app/raw/master/logo.png
+- title: Hapi.js
+  repo:  gothinkster/hapijs-realworld-example-app
+  logo:  https://github.com/gothinkster/hapijs-realworld-example-app/blob/master/.github/project-logo.png
+- title: QEWD.js
+  repo:  gothinkster/QEWD-realworld-example-app
+  logo:  https://cloud.githubusercontent.com/assets/556934/25587724/182f95fc-2e5a-11e7-83db-1541c1bee128.png
+- title: Moleculer
+  repo:  gothinkster/moleculer-node-realworld-example-app
+  logo:  https://github.com/gothinkster/moleculer-node-realworld-example-app/blob/master/rw-logo.png
+- title: F#
+  repo:  gothinkster/fsharp-realworld-example-app
+  logo:  https://github.com/gothinkster/fsharp-realworld-example-app/blob/master/logo.png
+- title: Scala & Play Framework
+  repo:  gothinkster/scala-play-realworld-example-app
+  logo:  https://github.com/gothinkster/scala-play-realworld-example-app/blob/master/logo.png
