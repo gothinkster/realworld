@@ -1,6 +1,10 @@
 language: node_js
+
 node_js:
   - "10"
+
+git:
+  depth: false
+
 script:
   - cd etc && ./push.sh
-
