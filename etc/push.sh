@@ -2,17 +2,15 @@
 set -x
 set -e
 
-## Change into this script's folder
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-cd $DIR
-
 node ./update-readme.js
 
+export BRANCH_NAME=updated-readme
 git --version
-git config --global user.email "travis@travis-ci.org"
-git config --global user.name "Travis CI"
-git checkout -b next
+git config --global user.email "no-reply@realworld.io"
+git config --global user.name "RealWord Bot"
+git branch -d $BRANCH_NAME || true
+git checkout -b $BRANCH_NAME
 git add ../README.md
-git commit --message "Travis build: $TRAVIS_BUILD_NUMBER"
-git remote add origin-next https://${GH_TOKEN}@github.com/anishkny/realworld.git
-git push --quiet --set-upstream origin-next next
+git commit --message "Auto-update README"
+git remote add origin-$BRANCH_NAME https://${GH_TOKEN}@github.com/${GH_REPO}.git
+git push --quiet --set-upstream origin-$BRANCH_NAME $BRANCH_NAME
