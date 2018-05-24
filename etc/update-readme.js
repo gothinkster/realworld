@@ -4,7 +4,7 @@ const axios = require('axios');
 const fs = require('fs');
 const jsYaml = require('js-yaml');
 
-const README_TEMPLATE_FILE = 'README.tmpl.md';
+const README_TEMPLATE_FILE = '../README.template.md';
 const README_TARGET_FILE = '../README.md';
 const FRONTEND_PLACEHOLDER = 'INSERT_FRONTEND_REPOS';
 const BACKEND_PLACEHOLDER = 'INSERT_BACKEND_REPOS';
@@ -65,8 +65,10 @@ async function getSortedTable(repos) {
   }
   output.push(string);
   return output;
+
 }
 
 process.on('unhandledRejection', (reason, p) => {
   console.log('Unhandled Rejection at:', p, 'reason:', reason);
+  throw new Error(reason);
 });
