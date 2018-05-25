@@ -52,7 +52,7 @@ Work In Progress: **[Clojure](https://github.com/gothinkster/realworld/issues/57
 
 # Mobile
 
-Work In Progress: **[React Native](https://github.com/gothinkster/realworld/issues/10) | [Ionic 2+](https://github.com/gothinkster/realworld/issues/16) | [Xamarin](https://github.com/gothinkster/realworld/issues/70)**
+Work In Progress: **[React Native](https://github.com/gothinkster/realworld/issues/10) | [Ionic 2+](https://github.com/gothinkster/realworld/issues/16) | [Xamarin](https://github.com/gothinkster/realworld/issues/70) | [NativeScript](https://github.com/gothinkster/realworld/issues/221)**
 
 # Fullstack
 
