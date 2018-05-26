@@ -21,28 +21,22 @@ RealWorld solves this by allowing you to choose any frontend (React, Angular 2, 
 
 # Frontends
 >_Sorted by popularity every 24 hours._
-
 <!-- INSERT_FRONTEND_REPOS -->
 
 Work In Progress:
 <!--INSERT_FRONTEND_WIP -->
 
-Work In Progress: **[Ember](https://github.com/gothinkster/realworld/issues/22) | [React+Relay](https://github.com/gothinkster/realworld/issues/48) | [ClojureScript](https://github.com/gothinkster/realworld/issues/61) | [Mithril](https://github.com/gothinkster/realworld/issues/69) | [Vanilla JS (Web Components)](https://github.com/gothinkster/realworld/issues/111) | [Angular+NgRx+nx](https://github.com/gothinkster/realworld/issues/178) | [Blazor (ASP.NET Core + Web Assembly)](https://github.com/torhovland/blazor-realworld-example-app)**
-
 # Backends
 >_Sorted by popularity every 24 hours._
-
 <!-- INSERT_BACKEND_REPOS -->
 
 Work In Progress:
 <!-- INSERT_BACKEND_WIP -->
 
-Work In Progress: **[Clojure](https://github.com/gothinkster/realworld/issues/57) | [Crystal + Kemal](https://github.com/gothinkster/realworld/issues/112) | [Dotnet Core (C#)](https://github.com/gothinkster/realworld/issues/31) | [Dropwizard](https://github.com/gothinkster/realworld/issues/95) | [Falcon + GAE](https://github.com/gothinkster/realworld/issues/59) | [Firebase + GCP Cloud](https://github.com/gothinkster/realworld/issues/21) | [Go + Gorilla mux](https://github.com/gothinkster/realworld/issues/99) | [Go + net/http](https://github.com/gothinkster/realworld/issues/45) | [Haskell / Servant](https://github.com/gothinkster/realworld/issues/73) | [Loopback 3.0](https://github.com/gothinkster/realworld/issues/105) | [Nim](https://github.com/gothinkster/realworld/issues/60) | [Node + GraphQL](https://github.com/gothinkster/realworld/issues/46) | [Node (Lambda + DynamoDB)](https://github.com/gothinkster/realworld/issues/37) | [Phalcon](https://github.com/gothinkster/realworld/issues/88) | [Spring (w/ Spring Boot)](https://github.com/gothinkster/realworld/issues/55) | [Symfony](https://github.com/gothinkster/realworld/issues/66)**
-
-
 # Mobile
 
-Work In Progress: **[React Native](https://github.com/gothinkster/realworld/issues/10) | [Ionic 2+](https://github.com/gothinkster/realworld/issues/16) | [Xamarin](https://github.com/gothinkster/realworld/issues/70)**
+Work In Progress:
+<!-- INSERT_MOBILE_WIP -->
 
 # Fullstack
 

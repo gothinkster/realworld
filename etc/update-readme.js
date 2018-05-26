@@ -6,10 +6,14 @@ const jsYaml = require('js-yaml');
 
 const README_TEMPLATE_FILE = '../README.template.md';
 const README_TARGET_FILE = '../README.md';
+
 const FRONTEND_PLACEHOLDER = 'INSERT_FRONTEND_REPOS';
-const FRONTEND_WIP_PLACEHOLDER = 'INSERT_FRONTEND_WIP';
 const BACKEND_PLACEHOLDER = 'INSERT_BACKEND_REPOS';
+
+const FRONTEND_WIP_PLACEHOLDER = 'INSERT_FRONTEND_WIP';
 const BACKEND_WIP_PLACEHOLDER = 'INSERT_BACKEND_WIP';
+const MOBILE_WIP_PLACEHOLDER = 'INSERT_MOBILE_WIP';
+
 const FRONTEND_REPOS = jsYaml.safeLoad(fs.readFileSync('frontend-repos.yaml', 'utf8'));
 const BACKEND_REPOS = jsYaml.safeLoad(fs.readFileSync('backend-repos.yaml', 'utf8'));
 
@@ -39,6 +43,8 @@ async function main() {
       output.push(await getWIPProjects('frontend'));
     } else if (input[i].includes(BACKEND_WIP_PLACEHOLDER)) {
       output.push(await getWIPProjects('backend'));
+    } else if (input[i].includes(MOBILE_WIP_PLACEHOLDER)) {
+      output.push(await getWIPProjects('mobile'));
     } else {
       output.push(input[i]);
     }
