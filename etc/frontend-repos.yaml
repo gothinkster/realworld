@@ -1,0 +1,39 @@
+- title: React / Redux
+  repo:  gothinkster/react-redux-realworld-example-app
+  logo:  https://raw.githubusercontent.com/gothinkster/react-redux-realworld-example-app/master/project-logo.png
+- title: Elm
+  repo:  rtfeldman/elm-spa-example
+  logo:  https://cloud.githubusercontent.com/assets/556934/25448178/3e7dc5c0-2a7d-11e7-8069-06da5169dae6.png
+- title: Angular
+  repo:  gothinkster/angular-realworld-example-app
+  logo:  https://raw.githubusercontent.com/gothinkster/angular2-realworld-example-app/master/logo.png
+- title: React / MobX
+  repo:  gothinkster/react-mobx-realworld-example-app
+  logo:  https://raw.githubusercontent.com/gothinkster/react-mobx-realworld-example-app/master/project-logo.png
+- title: AngularJS
+  repo:  gothinkster/angularjs-realworld-example-app
+  logo:  https://raw.githubusercontent.com/gothinkster/angularjs-realworld-example-app/master/project-logo.png
+- title: Vue
+  repo:  gothinkster/vue-realworld-example-app
+  logo:  https://github.com/gothinkster/vue-realworld-example-app/blob/master/static/rwv-logo.png
+- title: Svelte / Sapper
+  repo:  sveltejs/realworld
+  logo:  https://github.com/sveltejs/realworld/blob/master/logo.png
+- title: ClojureScript + Keechma
+  repo:  gothinkster/clojurescript-keechma-realworld-example-app
+  logo:  https://raw.githubusercontent.com/gothinkster/clojurescript-keechma-realworld-example-app/master/logo.png
+- title: ClojureScript + re-frame
+  repo:  gothinkster/clojurescript-reframe-realworld-example-app
+  logo:  https://cloud.githubusercontent.com/assets/556934/25448267/85369fdc-2a7d-11e7-9613-ab5ce5e1800f.png
+- title: AppRun
+  repo:  gothinkster/apprun-realworld-example-app
+  logo:  https://github.com/gothinkster/apprun-realworld-example-app/blob/master/logo.png
+- title: Crizmas MVC
+  repo:  gothinkster/crizmas-mvc-realworld-example-app
+  logo:  https://raw.githubusercontent.com/gothinkster/crizmas-mvc-realworld-example-app/master/crizmas.png
+- title: Aurelia
+  repo:  gothinkster/aurelia-realworld-example-app
+  logo:  https://raw.githubusercontent.com/gothinkster/aurelia-realworld-example-app/master/logo.png
+- title: Dojo 2
+  repo:  gothinkster/dojo2-realworld-example-app
+  logo:  https://raw.githubusercontent.com/gothinkster/dojo2-realworld-example-app/master/logo.png

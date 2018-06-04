@@ -1,5 +1,10 @@
 language: node_js
+
 node_js:
-  - "7"
+  - "10"
+
+git:
+  depth: false
+
 script:
-  - newman run api/Conduit.postman_collection.json -e api/Conduit.postman_integration_test_environment.json --global-var "EMAIL=$CONDUIT_EMAIL" --global-var "PASSWORD=$CONDUIT_PASSWORD"
+  - cd etc && ./push.sh
