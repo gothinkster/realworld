@@ -57,7 +57,7 @@ Work In Progress:
 # Mobile
 
 Work In Progress:
-**[📱🔧 React Native](https://github.com/gothinkster/realworld/issues/10) | [📱🔧 Ionic 2+](https://github.com/gothinkster/realworld/issues/16) | [📱🔧 Jasonette](https://github.com/gothinkster/realworld/issues/39) | [📱🔧 Swift](https://github.com/gothinkster/realworld/issues/43) | [📱🔧 C# on Xamarin](https://github.com/gothinkster/realworld/issues/70) | [📱 🔧 Kotlin/Android](https://github.com/gothinkster/realworld/issues/84) | [📱🔧 Onymos](https://github.com/gothinkster/realworld/issues/91) | [Quasar framework](https://github.com/gothinkster/realworld/issues/171) | [Swift Vapor](https://github.com/gothinkster/realworld/issues/175) | [Swift Perfect](https://github.com/gothinkster/realworld/issues/181)**
+**[📱🔧 Jasonette](https://github.com/gothinkster/realworld/issues/39) | [📱🔧 Swift](https://github.com/gothinkster/realworld/issues/43) | [📱🔧 C# on Xamarin](https://github.com/gothinkster/realworld/issues/70) | [📱 🔧 Kotlin/Android](https://github.com/gothinkster/realworld/issues/84) | [📱🔧 Onymos](https://github.com/gothinkster/realworld/issues/91) | [Quasar framework](https://github.com/gothinkster/realworld/issues/171) | [Swift Vapor](https://github.com/gothinkster/realworld/issues/175) | [Swift Perfect](https://github.com/gothinkster/realworld/issues/181)**
 
 # Fullstack
 
