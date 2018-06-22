@@ -36,7 +36,24 @@ RealWorld solves this by allowing you to choose any frontend (React, Angular 2, 
 | [**Crizmas MVC**<br/> ![Crizmas MVC](https://raw.githubusercontent.com/gothinkster/crizmas-mvc-realworld-example-app/master/crizmas.png) ![Star](https://img.shields.io/github/stars/gothinkster/crizmas-mvc-realworld-example-app.svg?style=social&label=Star) ![Fork](https://img.shields.io/github/forks/gothinkster/crizmas-mvc-realworld-example-app.svg?style=social&label=Fork)](https://github.com/gothinkster/crizmas-mvc-realworld-example-app)
 
 Work In Progress:
-**[🖥 🔧 Ember](https://github.com/gothinkster/realworld/issues/22) | [🖥 🔧  ClojureScript](https://github.com/gothinkster/realworld/issues/61) | [🖥 🔧 Mithril](https://github.com/gothinkster/realworld/issues/69) | [🖥 🔧 Clojurescript + re-frame](https://github.com/gothinkster/realworld/issues/74) | [🖥 🔧 Vanilla JS (Web Components)](https://github.com/gothinkster/realworld/issues/111) | [Angular 4+ / MobX](https://github.com/gothinkster/realworld/issues/143) | [AngularJS 1.2 ](https://github.com/gothinkster/realworld/issues/147) | [Vanilla Backbone.js](https://github.com/gothinkster/realworld/issues/152) | [Ractive](https://github.com/gothinkster/realworld/issues/162) | [Preact](https://github.com/gothinkster/realworld/issues/169) | [Quasar framework](https://github.com/gothinkster/realworld/issues/171) | [Hydrating VanillaJS (vaguely based on web components)](https://github.com/gothinkster/realworld/issues/177) | [Blazor](https://github.com/gothinkster/realworld/issues/191) | [Bridge.Spaf](https://github.com/gothinkster/realworld/issues/193) | [$mol](https://github.com/gothinkster/realworld/issues/198) | [Surplus wip](https://github.com/gothinkster/realworld/issues/204) | [new implementation: slim.js (front-end)](https://github.com/gothinkster/realworld/issues/215) | [Nuxt.js](https://github.com/gothinkster/realworld/issues/218)**
+**[🖥 🔧 Ember](https://github.com/gothinkster/realworld/issues/22) | 
+[🖥 🔧  ClojureScript](https://github.com/gothinkster/realworld/issues/61) | 
+[🖥 🔧 Mithril](https://github.com/gothinkster/realworld/issues/69) | 
+[🖥 🔧 Clojurescript + re-frame](https://github.com/gothinkster/realworld/issues/74) | 
+[🖥 🔧 Vanilla JS (Web Components)](https://github.com/gothinkster/realworld/issues/111) | 
+[Angular 4+ / MobX](https://github.com/gothinkster/realworld/issues/143) | 
+[AngularJS 1.2 ](https://github.com/gothinkster/realworld/issues/147) | 
+[Vanilla Backbone.js](https://github.com/gothinkster/realworld/issues/152) | 
+[Ractive](https://github.com/gothinkster/realworld/issues/162) | 
+[Preact](https://github.com/gothinkster/realworld/issues/169) | 
+[Quasar framework](https://github.com/gothinkster/realworld/issues/171) | 
+[Hydrating VanillaJS (vaguely based on web components)](https://github.com/gothinkster/realworld/issues/177) | 
+[Blazor](https://github.com/gothinkster/realworld/issues/191) | 
+[Bridge.Spaf](https://github.com/gothinkster/realworld/issues/193) | 
+[$mol](https://github.com/gothinkster/realworld/issues/198) | 
+[Surplus wip](https://github.com/gothinkster/realworld/issues/204) | 
+[new implementation: slim.js (front-end)](https://github.com/gothinkster/realworld/issues/215) | 
+[Nuxt.js](https://github.com/gothinkster/realworld/issues/218)**
 
 # Backends
 >_Sorted by popularity every 24 hours._
@@ -52,12 +69,55 @@ Work In Progress:
 | [**Scala & Play Framework**<br/> ![Scala & Play Framework](https://github.com/gothinkster/scala-play-realworld-example-app/blob/master/logo.png) ![Star](https://img.shields.io/github/stars/gothinkster/scala-play-realworld-example-app.svg?style=social&label=Star) ![Fork](https://img.shields.io/github/forks/gothinkster/scala-play-realworld-example-app.svg?style=social&label=Fork)](https://github.com/gothinkster/scala-play-realworld-example-app)| [**QEWD.js**<br/> ![QEWD.js](https://cloud.githubusercontent.com/assets/556934/25587724/182f95fc-2e5a-11e7-83db-1541c1bee128.png) ![Star](https://img.shields.io/github/stars/gothinkster/QEWD-realworld-example-app.svg?style=social&label=Star) ![Fork](https://img.shields.io/github/forks/gothinkster/QEWD-realworld-example-app.svg?style=social&label=Fork)](https://github.com/gothinkster/QEWD-realworld-example-app)
 
 Work In Progress:
-**[🗄🔧 Symfony](https://github.com/gothinkster/realworld/issues/66) | [🗄🔧 Haskell / Servant](https://github.com/gothinkster/realworld/issues/73) | [🗄🔧 Phalcon](https://github.com/gothinkster/realworld/issues/88) | [🗄🔧 Dropwizard](https://github.com/gothinkster/realworld/issues/95) | [🗄🔧 Go + Gorilla mux](https://github.com/gothinkster/realworld/issues/99) | [🗄🔧 Loopback 3.0](https://github.com/gothinkster/realworld/issues/105) | [🗄 🔧 Crystal + Kemal](https://github.com/gothinkster/realworld/issues/112) | [🗄 🔧 Yii2](https://github.com/gothinkster/realworld/issues/118) | [🗄 🔧 Erlang + Cowboy](https://github.com/gothinkster/realworld/issues/119) | [🗄 🔧 Nancy](https://github.com/gothinkster/realworld/issues/123) | [🗄🔧 Sanic](https://github.com/gothinkster/realworld/issues/126) | [🗄 🔧 Kotlin + Ktor](https://github.com/gothinkster/realworld/issues/138) | [Haskell / Scotty](https://github.com/gothinkster/realworld/issues/140) | [Typescript + node + express](https://github.com/gothinkster/realworld/issues/141) | [typescript + node.js(koa)](https://github.com/gothinkster/realworld/issues/142) | [Vanilla PHP](https://github.com/gothinkster/realworld/issues/148) | [Vert.x (Java)](https://github.com/gothinkster/realworld/issues/163) | [Lumen + MongoDB ](https://github.com/gothinkster/realworld/issues/166) | [Go + net/http Package ](https://github.com/gothinkster/realworld/issues/168) | [Egg.js](https://github.com/gothinkster/realworld/issues/200) | [Serverless python (AWS Lambda)](https://github.com/gothinkster/realworld/issues/201) | [Haskell / Yesod](https://github.com/gothinkster/realworld/issues/202) | [Serverless Typescript + Mongodb (implementation done)](https://github.com/gothinkster/realworld/issues/206) | [Scala akka-http implementation of realworld](https://github.com/gothinkster/realworld/issues/207) | [Azure Functions + CosmosDb](https://github.com/gothinkster/realworld/issues/209) | [Express w/ Bookshelf.js](https://github.com/gothinkster/realworld/issues/212) | [Golang + Echo](https://github.com/gothinkster/realworld/issues/216) | [Serverless+Typescript with AWS as the provider (Lambda, SSM, DynamoDB)](https://github.com/gothinkster/realworld/issues/219) | [Golang + Slowpoke](https://github.com/gothinkster/realworld/issues/226) | [Vertx + Reactive + MongoDB](https://github.com/gothinkster/realworld/issues/228)**
+**[🗄🔧 Dotnet Core (C#)](https://github.com/gothinkster/realworld/issues/31) | 
+[🗄🔧 Node.js Lambda + DynamoDB](https://github.com/gothinkster/realworld/issues/37) | 
+[🗄🔧  Go + net/http](https://github.com/gothinkster/realworld/issues/45) | 
+[🗄🔧 Node + GraphQL](https://github.com/gothinkster/realworld/issues/46) | 
+[🗄🔧 Clojure](https://github.com/gothinkster/realworld/issues/57) | 
+[🗄🔧 Falcon and GAE](https://github.com/gothinkster/realworld/issues/59) | 
+[🗄🔧 Nim](https://github.com/gothinkster/realworld/issues/60) | 
+[🗄🔧 Symfony](https://github.com/gothinkster/realworld/issues/66) | 
+[🗄🔧 Haskell / Servant](https://github.com/gothinkster/realworld/issues/73) | 
+[🗄🔧 Phalcon](https://github.com/gothinkster/realworld/issues/88) | 
+[🗄🔧 Dropwizard](https://github.com/gothinkster/realworld/issues/95) | 
+[🗄🔧 Go + Gorilla mux](https://github.com/gothinkster/realworld/issues/99) | 
+[🗄🔧 Loopback 3.0](https://github.com/gothinkster/realworld/issues/105) | 
+[🗄 🔧 Crystal + Kemal](https://github.com/gothinkster/realworld/issues/112) | 
+[🗄 🔧 Yii2](https://github.com/gothinkster/realworld/issues/118) | 
+[🗄 🔧 Erlang + Cowboy](https://github.com/gothinkster/realworld/issues/119) | 
+[🗄 🔧 Nancy](https://github.com/gothinkster/realworld/issues/123) | 
+[🗄🔧 Sanic](https://github.com/gothinkster/realworld/issues/126) | 
+[🗄 🔧 Kotlin + Ktor](https://github.com/gothinkster/realworld/issues/138) | 
+[Haskell / Scotty](https://github.com/gothinkster/realworld/issues/140) | 
+[Typescript + node + express](https://github.com/gothinkster/realworld/issues/141) | 
+[typescript + node.js(koa)](https://github.com/gothinkster/realworld/issues/142) | 
+[Vanilla PHP](https://github.com/gothinkster/realworld/issues/148) | 
+[Vert.x (Java)](https://github.com/gothinkster/realworld/issues/163) | 
+[Lumen + MongoDB ](https://github.com/gothinkster/realworld/issues/166) | 
+[Go + net/http Package ](https://github.com/gothinkster/realworld/issues/168) | 
+[Egg.js](https://github.com/gothinkster/realworld/issues/200) | 
+[Serverless python (AWS Lambda)](https://github.com/gothinkster/realworld/issues/201) | 
+[Haskell / Yesod](https://github.com/gothinkster/realworld/issues/202) | 
+[Serverless Typescript + Mongodb (implementation done)](https://github.com/gothinkster/realworld/issues/206) | 
+[Scala akka-http implementation of realworld](https://github.com/gothinkster/realworld/issues/207) | 
+[Azure Functions + CosmosDb](https://github.com/gothinkster/realworld/issues/209) | 
+[Express w/ Bookshelf.js](https://github.com/gothinkster/realworld/issues/212) | 
+[Golang + Echo](https://github.com/gothinkster/realworld/issues/216) | 
+[Serverless+Typescript with AWS as the provider (Lambda, SSM, DynamoDB)](https://github.com/gothinkster/realworld/issues/219) | 
+[Golang + Slowpoke](https://github.com/gothinkster/realworld/issues/226) | 
+[Vertx + Reactive + MongoDB](https://github.com/gothinkster/realworld/issues/228)**
 
 # Mobile
 
 Work In Progress:
-**[📱🔧 Jasonette](https://github.com/gothinkster/realworld/issues/39) | [📱🔧 Swift](https://github.com/gothinkster/realworld/issues/43) | [📱🔧 C# on Xamarin](https://github.com/gothinkster/realworld/issues/70) | [📱 🔧 Kotlin/Android](https://github.com/gothinkster/realworld/issues/84) | [📱🔧 Onymos](https://github.com/gothinkster/realworld/issues/91) | [Quasar framework](https://github.com/gothinkster/realworld/issues/171) | [Swift Vapor](https://github.com/gothinkster/realworld/issues/175) | [Swift Perfect](https://github.com/gothinkster/realworld/issues/181)**
+**[📱🔧 Jasonette](https://github.com/gothinkster/realworld/issues/39) | 
+[📱🔧 Swift](https://github.com/gothinkster/realworld/issues/43) | 
+[📱🔧 C# on Xamarin](https://github.com/gothinkster/realworld/issues/70) | 
+[📱 🔧 Kotlin/Android](https://github.com/gothinkster/realworld/issues/84) | 
+[📱🔧 Onymos](https://github.com/gothinkster/realworld/issues/91) | 
+[Quasar framework](https://github.com/gothinkster/realworld/issues/171) | 
+[Swift Vapor](https://github.com/gothinkster/realworld/issues/175) | 
+[Swift Perfect](https://github.com/gothinkster/realworld/issues/181)**
 
 # Fullstack
 
