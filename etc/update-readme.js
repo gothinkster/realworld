@@ -64,6 +64,7 @@ async function getSortedTable(repos) {
     repos[i].stargazers_count = stargazers_count;
   }
   repos = repos.sort((a, b) => b.stargazers_count - a.stargazers_count);
+  console.log('\n\nSorted repos: \n\n' + repos.map(e => `  ${e.repo} (${e.stargazers_count})`).join('\n') + '\n\n');
 
   // Output sorted table
   const output = [
@@ -88,12 +89,13 @@ async function getSortedTable(repos) {
 }
 
 async function getWIPProjects(label) {
-  const data = (await axios.get(`/repos/gothinkster/realworld/issues?labels=wip,${label}`)).data;
+  const data = (await axios.get(`/repos/gothinkster/realworld/issues?state=open&per_page=100&labels=wip,${label}`)).data;
+  console.log(`Number of ${label} WIP issues found: ${data.length}`);
   const wips = [];
   for (let i = data.length - 1; i >= 0; --i) {
     wips.push(`[${data[i].title}](${data[i].html_url})`);
   }
-  return `**${wips.join(' | ')}**`;
+  return `**${wips.join(' | \n')}**`;
 }
 
 process.on('unhandledRejection', (reason, p) => {
