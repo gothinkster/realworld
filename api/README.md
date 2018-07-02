@@ -1,5 +1,33 @@
 # RealWorld API Spec
 
+## How to use the supplied Postman configuration
+
+First ensure you have `newman` installed, by running `newman -v`. If
+that fails, ensure you have a recent NodeJS installed, then:
+
+```
+npm install -g newman
+```
+
+Then, to run the supplied Postman configuration against the
+globally-available server, at `conduit.productionready.io/api`:
+
+```
+newman run api/Conduit.postman_collection.json \
+  -e api/Conduit.postman_integration_test_environment.json \
+  --global-var "EMAIL=joe@what.com" \
+  --global-var "PASSWORD=password"
+```
+
+The email and password values function at the time of writing. If not,
+use the REST API to create your own user, and substitute in the email
+and password you used.
+
+Once you have this working, you can point it at your own backend, by
+modifying `api/Conduit.postman_environment.json`.
+
+## Considerations for your backend with [CORS](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing)
+
 If the backend is about to run on a different host/port than the frontend, make sure to handle `OPTIONS` too and return correct `Access-Control-Allow-Origin` and `Access-Control-Allow-Headers` (e.g. `Content-Type`).
 
 ### Authentication Header:
