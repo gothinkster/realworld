@@ -36,6 +36,9 @@ Work In Progress:
 <!-- INSERT_BACKEND_WIP -->
 
 # Mobile
+>_Sorted by popularity every 24 hours._
+
+<!-- INSERT_MOBILE_REPOS -->
 
 Work In Progress:
 <!-- INSERT_MOBILE_WIP -->

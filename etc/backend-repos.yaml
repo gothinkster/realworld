@@ -58,3 +58,6 @@
 - title: Scala & Play Framework
   repo:  gothinkster/scala-play-realworld-example-app
   logo:  https://github.com/gothinkster/scala-play-realworld-example-app/blob/master/logo.png
+- title: Express w/ Bookshelf.js
+  repo:  tanem/express-bookshelf-realworld-example-app
+  logo:  http://bookshelfjs.org/docs/images/bookshelf-icon.svg

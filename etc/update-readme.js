@@ -9,6 +9,7 @@ const README_TARGET_FILE = '../README.md';
 
 const FRONTEND_PLACEHOLDER = 'INSERT_FRONTEND_REPOS';
 const BACKEND_PLACEHOLDER = 'INSERT_BACKEND_REPOS';
+const MOBILE_PLACEHOLDER = 'INSERT_MOBILE_REPOS';
 
 const FRONTEND_WIP_PLACEHOLDER = 'INSERT_FRONTEND_WIP';
 const BACKEND_WIP_PLACEHOLDER = 'INSERT_BACKEND_WIP';
@@ -16,6 +17,7 @@ const MOBILE_WIP_PLACEHOLDER = 'INSERT_MOBILE_WIP';
 
 const FRONTEND_REPOS = jsYaml.safeLoad(fs.readFileSync('frontend-repos.yaml', 'utf8'));
 const BACKEND_REPOS = jsYaml.safeLoad(fs.readFileSync('backend-repos.yaml', 'utf8'));
+const MOBILE_REPOS = jsYaml.safeLoad(fs.readFileSync('mobile-repos.yaml', 'utf8'));
 
 axios.defaults.baseURL = 'https://api.github.com';
 axios.defaults.headers.common['Authorization'] = `token ${process.env.GH_TOKEN}`;
@@ -39,6 +41,8 @@ async function main() {
       output.push(...(await getSortedTable(FRONTEND_REPOS)));
     } else if (input[i].includes(BACKEND_PLACEHOLDER)) {
       output.push(...(await getSortedTable(BACKEND_REPOS)));
+    } else if (input[i].includes(MOBILE_PLACEHOLDER)) {
+      output.push(...(await getSortedTable(MOBILE_REPOS)));
     } else if (input[i].includes(FRONTEND_WIP_PLACEHOLDER)) {
       output.push(await getWIPProjects('frontend'));
     } else if (input[i].includes(BACKEND_WIP_PLACEHOLDER)) {
