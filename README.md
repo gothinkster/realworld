@@ -126,7 +126,7 @@ Work In Progress:
 
 # Fullstack
 
-_Since these implementations are reponsible for the entire stack, they obviously cannot be mixed and matched but they still adhere to the same functionality & UX specs._
+_Since these implementations are responsible for the entire stack, they obviously cannot be mixed and matched but they still adhere to the same functionality & UX specs._
 
 Work In Progress: **[Meteor]() | [Ruby Hyperloop]() | [Firebase](https://github.com/gothinkster/realworld/issues/199)**
 
@@ -138,7 +138,7 @@ Work In Progress: **[Meteor]() | [Ruby Hyperloop]() | [Firebase](https://github.
 
 Or you can [view upcoming stacks (WIPs)](https://github.com/gothinkster/realworld/issues?q=is%3Aopen+is%3Aissue+label%3Awip)
 
-Note: All stacks that are a WIP are experimental and incomplete.
+Note: All WIP stacks are experimental and incomplete.
 
 Don't expect everything to work perfectly out of the box!
 
@@ -186,7 +186,7 @@ Forks, tutorials, workshops, and other resources based on the RealWorld project:
 
 # Who made this?
 
-RealWorld would not be possible without the [open source community](#special-thanks-to) continuously helping push the project forward. In addition, we have a core project team composed of:
+RealWorld would not be possible without the [open source community](#special-thanks-to) who are continuously helping push the project forward. In addition, we have a core project team composed of:
 
 #### [Eric Simons](https://twitter.com/ericsimons40) - Founder/Lead
 
@@ -238,7 +238,7 @@ Cameron Chapman is a Software Engineer at FanThreeSixty. He's an open source ent
 
 ## Special thanks to...
 
-RealWorld wouldn't be possible without the help of the open source community reviewing codebases, creating new app implementations, and many other tasks that help push this project forward. We especially appreciate the OSS leaders who have helped contribute to RealWorld:
+RealWorld wouldn't be possible without the help of the open source community reviewing codebases, creating new app implementations, and many other tasks that help push this project forward. We especially appreciate the OSS leaders who have contributed to RealWorld:
 
 - **Dan Abramov** (creator of Redux) for  helping [spark the initial idea](https://twitter.com/dan_abramov/status/692009757775896577), [getting the Redux community involved](https://github.com/reactjs/redux/issues/1353), as well as graciously taking the time to provide feedback on the Redux codebase
 - **Max Lynch** (creator of Ionic) for taking the time to provide guidance in the early days of this project
