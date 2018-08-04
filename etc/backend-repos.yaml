@@ -61,6 +61,6 @@
 - title: Express w/ Bookshelf.js
   repo:  tanem/express-bookshelf-realworld-example-app
   logo:  https://github.com/gothinkster/realworld-starter-kit/blob/master/logo.png
-- title: Node / AWS DynamoDB + Lambda
+- title: Serverless AWS Lambda DynamoDB
   repo:  anishkny/realworld-dynamodb-lambda
   logo:  https://github.com/anishkny/realworld-dynamodb-lambda/blob/master/lambda-node-logo.png
