@@ -60,4 +60,7 @@
   logo:  https://github.com/gothinkster/scala-play-realworld-example-app/blob/master/logo.png
 - title: Express w/ Bookshelf.js
   repo:  tanem/express-bookshelf-realworld-example-app
-  logo:  http://bookshelfjs.org/docs/images/bookshelf-icon.svg
+  logo:  https://github.com/gothinkster/realworld-starter-kit/blob/master/logo.png
+- title: Serverless AWS Lambda DynamoDB
+  repo:  anishkny/realworld-dynamodb-lambda
+  logo:  https://github.com/anishkny/realworld-dynamodb-lambda/blob/master/lambda-node-logo.png
