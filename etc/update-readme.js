@@ -4,6 +4,12 @@ const axios = require('axios');
 const fs = require('fs');
 const jsYaml = require('js-yaml');
 
+if (!process.env.GH_TOKEN) {
+  throw new Error('GH_TOKEN environment variable needs to be specified.');
+}
+axios.defaults.baseURL = 'https://api.github.com';
+axios.defaults.headers.common['Authorization'] = `token ${process.env.GH_TOKEN}`;
+
 const README_TEMPLATE_FILE = '../README.template.md';
 const README_TARGET_FILE = '../README.md';
 
@@ -18,9 +24,6 @@ const MOBILE_WIP_PLACEHOLDER = 'INSERT_MOBILE_WIP';
 const FRONTEND_REPOS = jsYaml.safeLoad(fs.readFileSync('frontend-repos.yaml', 'utf8'));
 const BACKEND_REPOS = jsYaml.safeLoad(fs.readFileSync('backend-repos.yaml', 'utf8'));
 const MOBILE_REPOS = jsYaml.safeLoad(fs.readFileSync('mobile-repos.yaml', 'utf8'));
-
-axios.defaults.baseURL = 'https://api.github.com';
-axios.defaults.headers.common['Authorization'] = `token ${process.env.GH_TOKEN}`;
 
 (async () => {
   await main();
@@ -72,6 +75,8 @@ async function getSortedTable(repos) {
 
   // Output sorted table
   const output = [
+    `> _Sorted by popularity on ${(new Date()).toDateString()}_`,
+    '',
     '| 🥇 | 🥈 | 🥉 |',
     '| :---:         |     :---:      |          :---: |',
   ];
