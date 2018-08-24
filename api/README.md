@@ -94,7 +94,6 @@ Make sure the right content type like `Content-Type: application/json; charset=u
       "following": false
     }
   }, {
-
     "slug": "how-to-train-your-dragon-2",
     "title": "How to train your dragon 2",
     "description": "So toothless",
