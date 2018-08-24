@@ -4,11 +4,18 @@ const axios = require('axios');
 const fs = require('fs');
 const jsYaml = require('js-yaml');
 
+if (!process.env.GH_TOKEN) {
+  throw new Error('GH_TOKEN environment variable needs to be specified.');
+}
+axios.defaults.baseURL = 'https://api.github.com';
+axios.defaults.headers.common['Authorization'] = `token ${process.env.GH_TOKEN}`;
+
 const README_TEMPLATE_FILE = '../README.template.md';
 const README_TARGET_FILE = '../README.md';
 
 const FRONTEND_PLACEHOLDER = 'INSERT_FRONTEND_REPOS';
 const BACKEND_PLACEHOLDER = 'INSERT_BACKEND_REPOS';
+const MOBILE_PLACEHOLDER = 'INSERT_MOBILE_REPOS';
 
 const FRONTEND_WIP_PLACEHOLDER = 'INSERT_FRONTEND_WIP';
 const BACKEND_WIP_PLACEHOLDER = 'INSERT_BACKEND_WIP';
@@ -16,9 +23,7 @@ const MOBILE_WIP_PLACEHOLDER = 'INSERT_MOBILE_WIP';
 
 const FRONTEND_REPOS = jsYaml.safeLoad(fs.readFileSync('frontend-repos.yaml', 'utf8'));
 const BACKEND_REPOS = jsYaml.safeLoad(fs.readFileSync('backend-repos.yaml', 'utf8'));
-
-axios.defaults.baseURL = 'https://api.github.com';
-axios.defaults.headers.common['Authorization'] = `token ${process.env.GH_TOKEN}`;
+const MOBILE_REPOS = jsYaml.safeLoad(fs.readFileSync('mobile-repos.yaml', 'utf8'));
 
 (async () => {
   await main();
@@ -39,6 +44,8 @@ async function main() {
       output.push(...(await getSortedTable(FRONTEND_REPOS)));
     } else if (input[i].includes(BACKEND_PLACEHOLDER)) {
       output.push(...(await getSortedTable(BACKEND_REPOS)));
+    } else if (input[i].includes(MOBILE_PLACEHOLDER)) {
+      output.push(...(await getSortedTable(MOBILE_REPOS)));
     } else if (input[i].includes(FRONTEND_WIP_PLACEHOLDER)) {
       output.push(await getWIPProjects('frontend'));
     } else if (input[i].includes(BACKEND_WIP_PLACEHOLDER)) {
@@ -64,9 +71,12 @@ async function getSortedTable(repos) {
     repos[i].stargazers_count = stargazers_count;
   }
   repos = repos.sort((a, b) => b.stargazers_count - a.stargazers_count);
+  console.log('\n\nSorted repos: \n\n' + repos.map(e => `  ${e.repo} (${e.stargazers_count})`).join('\n') + '\n\n');
 
   // Output sorted table
   const output = [
+    `> _Sorted by popularity on ${(new Date()).toDateString()}_`,
+    '',
     '| 🥇 | 🥈 | 🥉 |',
     '| :---:         |     :---:      |          :---: |',
   ];
@@ -88,12 +98,13 @@ async function getSortedTable(repos) {
 }
 
 async function getWIPProjects(label) {
-  const data = (await axios.get(`/repos/gothinkster/realworld/issues?labels=wip,${label}`)).data;
+  const data = (await axios.get(`/repos/gothinkster/realworld/issues?state=open&per_page=100&labels=wip,${label}`)).data;
+  console.log(`Number of ${label} WIP issues found: ${data.length}`);
   const wips = [];
   for (let i = data.length - 1; i >= 0; --i) {
     wips.push(`[${data[i].title}](${data[i].html_url})`);
   }
-  return `**${wips.join(' | ')}**`;
+  return `**${wips.join(' | \n')}**`;
 }
 
 process.on('unhandledRejection', (reason, p) => {

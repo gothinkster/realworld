@@ -20,22 +20,19 @@ RealWorld solves this by allowing you to choose any frontend (React, Angular 2, 
 
 
 # Frontends
->_Sorted by popularity every 24 hours._
-
 <!-- INSERT_FRONTEND_REPOS -->
 
 Work In Progress:
 <!--INSERT_FRONTEND_WIP -->
 
 # Backends
->_Sorted by popularity every 24 hours._
-
 <!-- INSERT_BACKEND_REPOS -->
 
 Work In Progress:
 <!-- INSERT_BACKEND_WIP -->
 
 # Mobile
+<!-- INSERT_MOBILE_REPOS -->
 
 Work In Progress:
 <!-- INSERT_MOBILE_WIP -->
