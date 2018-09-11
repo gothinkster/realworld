@@ -64,3 +64,6 @@
 - title: Serverless AWS Lambda DynamoDB
   repo:  anishkny/realworld-dynamodb-lambda
   logo:  https://github.com/anishkny/realworld-dynamodb-lambda/blob/master/lambda-node-logo.png
+- title: Haskell / Yesod
+  repo:  tzemanovic/haskell-yesod-realworld-example-app
+  logo:  https://github.com/tzemanovic/haskell-yesod-realworld-example-app/blob/master/logo.png
