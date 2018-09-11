@@ -67,3 +67,6 @@
 - title: Haskell / Yesod
   repo:  tzemanovic/haskell-yesod-realworld-example-app
   logo:  https://github.com/tzemanovic/haskell-yesod-realworld-example-app/blob/master/logo.png
+- title: NestJS + TypeORM
+  repo:  lujakob/nestjs-realworld-example-app
+  logo:  https://github.com/lujakob/nestjs-realworld-example-app/blob/master/project-logo.png
