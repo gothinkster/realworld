@@ -1,30 +1,14 @@
 # RealWorld API Spec
 
-## How to use the supplied Postman configuration
+## Running API tests locally
 
-First ensure you have `newman` installed, by running `newman -v`. If
-that fails, ensure you have a recent NodeJS installed, then:
-
-```
-npm install -g newman
-```
-
-Then, to run the supplied Postman configuration against the
-globally-available server, at `conduit.productionready.io/api`:
+To locally run the provided Postman collection against your backend, execute:
 
 ```
-newman run api/Conduit.postman_collection.json \
-  -e api/Conduit.postman_integration_test_environment.json \
-  --global-var "EMAIL=joe@what.com" \
-  --global-var "PASSWORD=password"
+APIURL=http://localhost:3000/api ./run-api-tests.sh
 ```
 
-The email and password values function at the time of writing. If not,
-use the REST API to create your own user, and substitute in the email
-and password you used.
-
-Once you have this working, you can point it at your own backend, by
-modifying `api/Conduit.postman_environment.json`.
+For more details, see [`run-api-tests.sh`](run-api-tests.sh).
 
 ## Considerations for your backend with [CORS](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing)
 
@@ -110,7 +94,6 @@ Make sure the right content type like `Content-Type: application/json; charset=u
       "following": false
     }
   }, {
-    
     "slug": "how-to-train-your-dragon-2",
     "title": "How to train your dragon 2",
     "description": "So toothless",
