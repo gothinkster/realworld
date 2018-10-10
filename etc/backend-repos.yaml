@@ -70,6 +70,6 @@
 - title: NestJS + TypeORM
   repo:  lujakob/nestjs-realworld-example-app
   logo:  https://github.com/lujakob/nestjs-realworld-example-app/blob/master/project-logo.png
-- title: Clojure + Polylith + Ring
+- title: Clojure / Polylith
   repo:  furkan3ayraktar/clojure-polylith-realworld-example-app
   logo:  https://github.com/furkan3ayraktar/clojure-polylith-realworld-example-app/blob/master/logo.png
