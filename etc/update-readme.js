@@ -74,12 +74,25 @@ async function getSortedTable(repos) {
   console.log('\n\nSorted repos: \n\n' + repos.map(e => `  ${e.repo} (${e.stargazers_count})`).join('\n') + '\n\n');
 
   // Output sorted table
-  const output = [
+  const output = [];
+
+  // Add comment showing ranking to ease merges
+  output.push('<!--');
+  output.push('  Ranking:');
+  const repoRankings = repos.map((e, i) => 
+    `    ${(i+1).toString().padStart(2)}: ${e.title} (★ ${e.stargazers_count})`);
+  output.push(...repoRankings);
+  output.push('-->');
+
+  // Add header
+  output.push(...[
     `> _Sorted by popularity on ${(new Date()).toDateString()}_`,
     '',
     '| 🥇 | 🥈 | 🥉 |',
     '| :---:         |     :---:      |          :---: |',
-  ];
+  ]);
+
+  // Add sorted table
   let string = '';
   for (let i = 0; i < repos.length; ++i) {
     string += `| [**${repos[i].title}**<br/> ` +
