@@ -80,7 +80,7 @@ async function getSortedTable(repos) {
   output.push('<!--');
   output.push('  Ranking:');
   const repoRankings = repos.map((e, i) => 
-    `    ${(i+1).toString().padStart(2)}: ${e.title} (★ ${e.stargazers_count})`);
+    `    ${(i+1).toString().padStart(2)}: ${e.title}`);
   output.push(...repoRankings);
   output.push('-->');
 
