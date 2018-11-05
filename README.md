@@ -27,21 +27,21 @@ RealWorld solves this by allowing you to choose any frontend (React, Angular 2, 
 # Frontends
 <!--
   Ranking:
-     1: React / Redux (★ 2492)
-     2: Angular (★ 2379)
-     3: Elm (★ 2027)
-     4: Vue (★ 829)
-     5: React / MobX (★ 643)
-     6: AngularJS (★ 271)
-     7: Aurelia (★ 141)
-     8: ClojureScript + re-frame (★ 76)
-     9: Svelte / Sapper (★ 75)
-    10: Angular + ngrx + nx (★ 63)
-    11: AppRun (★ 41)
-    12: ClojureScript + Keechma (★ 34)
-    13: Dojo 2 (★ 20)
-    14: Hyperapp 1 (★ 13)
-    15: Crizmas MVC (★ 5)
+     1: React / Redux
+     2: Angular
+     3: Elm
+     4: Vue
+     5: React / MobX
+     6: AngularJS
+     7: Aurelia
+     8: ClojureScript + re-frame
+     9: Svelte / Sapper
+    10: Angular + ngrx + nx
+    11: AppRun
+    12: ClojureScript + Keechma
+    13: Dojo 2
+    14: Hyperapp 1
+    15: Crizmas MVC
 -->
 > _Sorted by popularity on Mon Nov 05 2018_
 
@@ -78,32 +78,32 @@ Work In Progress:
 # Backends
 <!--
   Ranking:
-     1: Node / Express (★ 1350)
-     2: Laravel (★ 548)
-     3: ASP.NET Core (★ 484)
-     4: Django (★ 469)
-     5: Go + Gin (★ 358)
-     6: Elixir + Phoenix (★ 343)
-     7: Flask (★ 210)
-     8: Spring (★ 205)
-     9: Rails (★ 204)
-    10: Slim (★ 188)
-    11: Kotlin / Spring (★ 186)
-    12: Koa / Knex (★ 107)
-    13: Rust (★ 101)
-    14: CakePHP (★ 58)
-    15: Clojure / Polylith (★ 48)
-    16: NestJS + TypeORM (★ 48)
-    17: Moleculer (★ 45)
-    18: GCP Cloud Functions + Datastore (★ 43)
-    19: Hapi.js (★ 38)
-    20: Serverless AWS Lambda DynamoDB (★ 37)
-    21: Scala & Play Framework (★ 35)
-    22: F# (★ 28)
-    23: Haskell / Yesod (★ 15)
-    24: QEWD.js (★ 15)
-    25: Go / Echo (★ 10)
-    26: Express w/ Bookshelf.js (★ 3)
+     1: Node / Express
+     2: Laravel
+     3: ASP.NET Core
+     4: Django
+     5: Go + Gin
+     6: Elixir + Phoenix
+     7: Flask
+     8: Spring
+     9: Rails
+    10: Slim
+    11: Kotlin / Spring
+    12: Koa / Knex
+    13: Rust
+    14: CakePHP
+    15: Clojure / Polylith
+    16: NestJS + TypeORM
+    17: Moleculer
+    18: GCP Cloud Functions + Datastore
+    19: Hapi.js
+    20: Serverless AWS Lambda DynamoDB
+    21: Scala & Play Framework
+    22: F#
+    23: Haskell / Yesod
+    24: QEWD.js
+    25: Go / Echo
+    26: Express w/ Bookshelf.js
 -->
 > _Sorted by popularity on Mon Nov 05 2018_
 
@@ -161,7 +161,7 @@ Work In Progress:
 # Mobile
 <!--
   Ranking:
-     1: NativeScript (Angular) (★ 18)
+     1: NativeScript (Angular)
 -->
 > _Sorted by popularity on Mon Nov 05 2018_
 
