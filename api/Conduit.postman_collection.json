@@ -1554,7 +1554,7 @@
 									"tests['Article has \"favorited\" property'] = article.hasOwnProperty('favorited');",
 									"tests['Article has \"favoritesCount\" property'] = article.hasOwnProperty('favoritesCount');",
 									"tests['favoritesCount is an integer'] = Number.isInteger(article.favoritesCount);",
-									"tests[\"Article's \\\"favorited\\\" property is true\"] = article.favorited === false;",
+									"tests[\"Article's \\\"favorited\\\" property is false\"] = article.favorited === false;",
 									""
 								]
 							}
