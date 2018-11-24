@@ -40,3 +40,6 @@
 - title: Angular + ngrx + nx
   repo:  stefanoslig/angular-ngrx-nx-realworld-example-app
   logo:  https://raw.githubusercontent.com/stefanoslig/angular-ngrx-nx-realworld-example-app/master/logo.png
+- title: Hyperapp 1
+  repo:  kwasniew/hyperapp-realworld-example-app
+  logo:  https://raw.githubusercontent.com/kwasniew/hyperapp-realworld-example-app/master/logo.png

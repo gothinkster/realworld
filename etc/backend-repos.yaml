@@ -73,3 +73,6 @@
 - title: Clojure / Polylith
   repo:  furkan3ayraktar/clojure-polylith-realworld-example-app
   logo:  https://github.com/furkan3ayraktar/clojure-polylith-realworld-example-app/blob/master/logo.png
+- title: Go / Echo
+  repo:  xesina/golang-echo-realworld-example-app
+  logo:  https://github.com/xesina/golang-echo-realworld-example-app/blob/master/logo.png
