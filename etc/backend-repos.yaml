@@ -76,3 +76,6 @@
 - title: Go / Echo
   repo:  xesina/golang-echo-realworld-example-app
   logo:  https://github.com/xesina/golang-echo-realworld-example-app/blob/master/logo.png
+- title: Node / hapi pal
+  repo:  devinivy/hapipal-realworld-example-app
+  logo:  https://github.com/devinivy/hapipal-realworld-example-app/blob/master/.github/logo.png
