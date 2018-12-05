@@ -76,3 +76,6 @@
 - title: Go / Echo
   repo:  xesina/golang-echo-realworld-example-app
   logo:  https://github.com/xesina/golang-echo-realworld-example-app/blob/master/logo.png
+- title: Ruby & Colmena
+  repo:  schoolhouse-io/colmena-realworld-example-app
+  logo:  https://github.com/schoolhouse-io/colmena-realworld-example-app/raw/master/media/logo.png
