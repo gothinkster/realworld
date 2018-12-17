@@ -1614,7 +1614,7 @@
 									"",
 									"tests['Comment has \"body\" property'] = comment.hasOwnProperty('body');",
 									"tests['Comment has \"createdAt\" property'] = comment.hasOwnProperty('createdAt');",
-									"tests['\"createdAt\" property is an ISO 8601 timestamp'] = /^\\d{4,}-[01]\\d-[0-3]\\dT[0-2]\\d:[0-5]\\d:[0-5]\\d.\\d+(?:[+-][0-2]\\d:[0-5]\\d|Z)$/.test(article.createdAt);",
+									"tests['\"createdAt\" property is an ISO 8601 timestamp'] = /^\\d{4,}-[01]\\d-[0-3]\\dT[0-2]\\d:[0-5]\\d:[0-5]\\d.\\d+(?:[+-][0-2]\\d:[0-5]\\d|Z)$/.test(comment.createdAt);",
 									"tests['Comment has \"updatedAt\" property'] = comment.hasOwnProperty('updatedAt');",
 									"tests['\"updatedAt\" property is an ISO 8601 timestamp'] = /^\\d{4,}-[01]\\d-[0-3]\\dT[0-2]\\d:[0-5]\\d:[0-5]\\d.\\d+(?:[+-][0-2]\\d:[0-5]\\d|Z)$/.test(comment.updatedAt);",
 									"tests['Comment has \"author\" property'] = comment.hasOwnProperty('author');",
