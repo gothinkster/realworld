@@ -82,3 +82,6 @@
 - title: Node / hapi pal
   repo:  devinivy/hapipal-realworld-example-app
   logo:  https://github.com/devinivy/hapipal-realworld-example-app/blob/master/.github/logo.png
+- title: Rust / Rocket
+  repo: TatriX/realworld-rust-rocket
+  logo: https://raw.githubusercontent.com/TatriX/realworld-rust-rocket/master/logo.png
