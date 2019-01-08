@@ -43,3 +43,6 @@
 - title: Hyperapp 1
   repo:  kwasniew/hyperapp-realworld-example-app
   logo:  https://raw.githubusercontent.com/kwasniew/hyperapp-realworld-example-app/master/logo.png
+- title: PureScript + Halogen
+  repo:  thomashoneyman/purescript-halogen-realworld
+  logo:  https://raw.githubusercontent.com/thomashoneyman/purescript-halogen-realworld/master/assets/logo.png
