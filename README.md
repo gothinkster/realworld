@@ -181,7 +181,7 @@ Work In Progress:
 [📱🔧 Onymos](https://github.com/gothinkster/realworld/issues/91) | 
 [Quasar framework](https://github.com/gothinkster/realworld/issues/171) | 
 [Swift Perfect](https://github.com/gothinkster/realworld/issues/181) | 
-[Flutter Framework](https://github.com/gothinkster/realworld/issues/250)**
+[Flutter Framework](https://github.com/gothinkster/realworld/issues/312)**
 
 # Fullstack
 
