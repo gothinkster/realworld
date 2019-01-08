@@ -85,3 +85,6 @@
 - title: Rust / Rocket
   repo: TatriX/realworld-rust-rocket
   logo: https://raw.githubusercontent.com/TatriX/realworld-rust-rocket/master/logo.png
+- title: Functional ASP.NET Core
+  repo:  dnikolovv/dev-adventures-realworld
+  logo:  https://github.com/dnikolovv/dev-adventures-realworld/raw/master/logo.png
