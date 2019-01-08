@@ -88,3 +88,6 @@
 - title: Functional ASP.NET Core
   repo:  dnikolovv/dev-adventures-realworld
   logo:  https://github.com/dnikolovv/dev-adventures-realworld/raw/master/logo.png
+- title: Go Clean Architecture
+  repo:  err0r500/go-realworld-clean
+  logo:  https://raw.githubusercontent.com/gothinkster/realworld-starter-kit/master/logo.png
