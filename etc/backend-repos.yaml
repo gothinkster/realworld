@@ -79,3 +79,6 @@
 - title: Ruby & Colmena
   repo:  schoolhouse-io/colmena-realworld-example-app
   logo:  https://github.com/schoolhouse-io/colmena-realworld-example-app/raw/master/media/logo.png
+- title: Node / hapi pal
+  repo:  devinivy/hapipal-realworld-example-app
+  logo:  https://github.com/devinivy/hapipal-realworld-example-app/blob/master/.github/logo.png
