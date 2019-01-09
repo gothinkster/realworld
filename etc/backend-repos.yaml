@@ -79,3 +79,15 @@
 - title: Ruby & Colmena
   repo:  schoolhouse-io/colmena-realworld-example-app
   logo:  https://github.com/schoolhouse-io/colmena-realworld-example-app/raw/master/media/logo.png
+- title: Node / hapi pal
+  repo:  devinivy/hapipal-realworld-example-app
+  logo:  https://github.com/devinivy/hapipal-realworld-example-app/blob/master/.github/logo.png
+- title: Rust / Rocket
+  repo: TatriX/realworld-rust-rocket
+  logo: https://raw.githubusercontent.com/TatriX/realworld-rust-rocket/master/logo.png
+- title: Functional ASP.NET Core
+  repo:  dnikolovv/dev-adventures-realworld
+  logo:  https://github.com/dnikolovv/dev-adventures-realworld/raw/master/logo.png
+- title: Go Clean Architecture
+  repo:  err0r500/go-realworld-clean
+  logo:  https://raw.githubusercontent.com/gothinkster/realworld-starter-kit/master/logo.png
