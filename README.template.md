@@ -101,14 +101,25 @@ Forks, tutorials, workshops, and other resources based on the RealWorld project:
 
 RealWorld would not be possible without the [open source community](#special-thanks-to) continuously helping push the project forward. In addition, we have a core project team composed of:
 
-#### [Eric Simons](https://twitter.com/ericsimons40) - Founder/Lead
+#### [Anish Karandikar](https://github.com/anishkny) - Core Maintainer
+
+<img align="left" width="40" height="40" src="https://avatars1.githubusercontent.com/u/357499?v=3&s=100">
+
+MathWorker, ex-Google, ex-Computational Fluid Dynamicist, forever lover of tech & humanities ❤️
+
+#### [Cameron Chapman](https://github.com/Cameron-C-Chapman) - Core Maintainer
+
+<img align="left" width="40" height="40" src="https://avatars1.githubusercontent.com/u/1323581?v=3&s=100">
+
+Cameron Chapman is a Software Engineer at FanThreeSixty. He's an open source enthusiast and is helping to teach a local web development boot camp at Kansas University.
+
+#### [Eric Simons](https://twitter.com/ericsimons40) - Founder/Maintainer
 
 <img align="left" width="40" height="40" src="https://avatars1.githubusercontent.com/u/556934?v=3&s=100">
 
 Eric is a Software Engineer, UI Designer, and author of many technical books & tutorials. He oversees the project direction, maintenance and organizes the planning and development efforts of the team.
 
-
-#### [Albert Pai](https://twitter.com/iamalbertpai) - Founder/Lead
+#### [Albert Pai](https://twitter.com/iamalbertpai) - Founder/Maintainer
 
 <img align="left" width="40" height="40" src="https://avatars0.githubusercontent.com/u/1776432?v=3&s=100">
 
@@ -127,25 +138,12 @@ Albert is a Software Engineer, DevOps ninja, and author of many technical books 
 
 James is a Software Engineer at Square and a contributor to the Django project. He created & maintains the RW Django codebase and continually provides guidance for the RealWorld project itself.
 
-#### [Anish Karandikar](https://github.com/anishkny) - Admin
-
-<img align="left" width="40" height="40" src="https://avatars1.githubusercontent.com/u/357499?v=3&s=100">
-
-MathWorker, ex-Google, ex-Computational Fluid Dynamicist, forever lover of tech & humanities ❤️
-
-
 #### [Sandeesh S.](https://github.com/SandeeshS) - Admin
 
 <img align="left" width="40" height="40" src="https://avatars1.githubusercontent.com/u/16877877?v=3&s=100">
 
 Full stack developer, Laravel enthusiast, Digital marketing specialist and an avid gamer.
 
-
-#### [Cameron Chapman](https://github.com/Cameron-C-Chapman) - Admin
-
-<img align="left" width="40" height="40" src="https://avatars1.githubusercontent.com/u/1323581?v=3&s=100">
-
-Cameron Chapman is a Software Engineer at FanThreeSixty. He's an open source enthusiast and is helping to teach a local web development boot camp at Kansas University.
 
 
 
