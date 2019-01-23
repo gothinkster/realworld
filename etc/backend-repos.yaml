@@ -91,3 +91,6 @@
 - title: Go Clean Architecture
   repo:  err0r500/go-realworld-clean
   logo:  https://raw.githubusercontent.com/gothinkster/realworld-starter-kit/master/logo.png
+- title: Kotlin + Javalin + Exposed
+  repo:  Rudge/kotlin-javalin-realworld-example-app
+  logo:  https://raw.githubusercontent.com/Rudge/kotlin-javalin-realworld-example-app/master/logo.png
