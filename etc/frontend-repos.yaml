@@ -23,7 +23,7 @@
   repo:  gothinkster/clojurescript-keechma-realworld-example-app
   logo:  https://raw.githubusercontent.com/gothinkster/clojurescript-keechma-realworld-example-app/master/logo.png
 - title: ClojureScript + re-frame
-  repo:  gothinkster/clojurescript-reframe-realworld-example-app
+  repo:  jacekschae/conduit
   logo:  https://cloud.githubusercontent.com/assets/556934/25448267/85369fdc-2a7d-11e7-9613-ab5ce5e1800f.png
 - title: AppRun
   repo:  gothinkster/apprun-realworld-example-app
