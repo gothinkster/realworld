@@ -94,3 +94,9 @@
 - title: Kotlin + Javalin + Exposed
   repo:  Rudge/kotlin-javalin-realworld-example-app
   logo:  https://raw.githubusercontent.com/Rudge/kotlin-javalin-realworld-example-app/master/logo.png
+- title: Feathers
+  repo:  randyscotsmithey/feathers-realworld-example-app
+  logo:  https://raw.githubusercontent.com/randyscotsmithey/feathers-realworld-example-app/master/logo.png
+- title: Spincast
+  repo:  spincast/spincast-realworld
+  logo:  https://raw.githubusercontent.com/spincast/spincast-realworld/master/logo.png
