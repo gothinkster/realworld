@@ -100,3 +100,6 @@
 - title: Spincast
   repo:  spincast/spincast-realworld
   logo:  https://raw.githubusercontent.com/spincast/spincast-realworld/master/logo.png
+- title: Crystal (Onyx)
+  repo:  vladfaust/crystalworld
+  logo:  https://raw.githubusercontent.com/vladfaust/crystalworld/master/media/logo.png
