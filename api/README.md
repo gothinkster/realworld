@@ -1,5 +1,17 @@
 # RealWorld API Spec
 
+## Running API tests locally
+
+To locally run the provided Postman collection against your backend, execute:
+
+```
+APIURL=http://localhost:3000/api ./run-api-tests.sh
+```
+
+For more details, see [`run-api-tests.sh`](run-api-tests.sh).
+
+## Considerations for your backend with [CORS](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing)
+
 If the backend is about to run on a different host/port than the frontend, make sure to handle `OPTIONS` too and return correct `Access-Control-Allow-Origin` and `Access-Control-Allow-Headers` (e.g. `Content-Type`).
 
 ### Authentication Header:
@@ -82,7 +94,6 @@ Make sure the right content type like `Content-Type: application/json; charset=u
       "following": false
     }
   }, {
-    
     "slug": "how-to-train-your-dragon-2",
     "title": "How to train your dragon 2",
     "description": "So toothless",
@@ -279,7 +290,7 @@ No additional parameters required
 
 `GET /api/articles`
 
-Returns most recent articles globally be default, provide `tag`, `author` or `favorited` query parameter to filter results
+Returns most recent articles globally by default, provide `tag`, `author` or `favorited` query parameter to filter results
 
 Query Parameters:
 
