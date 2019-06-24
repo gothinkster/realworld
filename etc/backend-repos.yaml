@@ -103,3 +103,6 @@
 - title: Crystal (Onyx)
   repo:  vladfaust/crystalworld
   logo:  https://raw.githubusercontent.com/vladfaust/crystalworld/master/media/logo.png
+- title: Masonite
+  repo:  vaibhavmule/masonite-realworld-example-app
+  logo:  https://raw.githubusercontent.com/vaibhavmule/masonite-realworld-example-app/master/logo.png
