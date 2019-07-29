@@ -104,7 +104,9 @@
             }
           }
         }
-      },
+      }
+    },
+    "/user": {
       "get": {
         "summary": "Get current user",
         "description": "Gets the currently logged-in user",
@@ -900,13 +902,10 @@
         "email": {
           "type": "string"
         },
-        "token": {
-          "type": "string"
-        },
-        "username": {
-          "type": "string"
-        },
         "bio": {
+          "type": "string"
+        },
+        "password": {
           "type": "string"
         },
         "image": {

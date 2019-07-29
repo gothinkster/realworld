@@ -254,7 +254,7 @@ Example request body:
 Authentication required, returns the [User](#users-for-authentication)
 
 
-Accepted fields: `email`, `username`, `password`, `image`, `bio`
+Accepted fields: `email`, `password`, `image`, `bio`
 
 
 
