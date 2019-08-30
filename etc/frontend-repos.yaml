@@ -34,9 +34,9 @@
 - title: Aurelia
   repo:  gothinkster/aurelia-realworld-example-app
   logo:  https://raw.githubusercontent.com/gothinkster/aurelia-realworld-example-app/master/logo.png
-- title: Dojo 2
-  repo:  gothinkster/dojo2-realworld-example-app
-  logo:  https://raw.githubusercontent.com/gothinkster/dojo2-realworld-example-app/master/logo.png
+- title: Dojo
+  repo:  gothinkster/dojo-realworld-example-app
+  logo:  https://raw.githubusercontent.com/gothinkster/dojo-realworld-example-app/master/logo.png
 - title: Angular + ngrx + nx
   repo:  stefanoslig/angular-ngrx-nx-realworld-example-app
   logo:  https://raw.githubusercontent.com/stefanoslig/angular-ngrx-nx-realworld-example-app/master/logo.png
