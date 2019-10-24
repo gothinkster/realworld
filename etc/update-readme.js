@@ -88,8 +88,8 @@ async function getSortedTable(repos) {
   output.push(...[
     `> _Sorted by popularity on ${(new Date()).toDateString()}_`,
     '',
-    '| 🥇 | 🥈 | 🥉 |',
-    '| :---:         |     :---:      |          :---: |',
+    ['| 🥇 |', ' 🥈 |', ' 🥉 |'].slice(0, repos.length).join(''),
+    ['| :---:         |', '     :---:      |', '          :---: |'].slice(0, repos.length).join(''),
   ]);
 
   // Add sorted table
