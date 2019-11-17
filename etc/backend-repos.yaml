@@ -109,3 +109,6 @@
 - title: Akka HTTP
   repo:  1984weed/akka-http-realworld-example
   logo:  https://raw.githubusercontent.com/1984weed/akka-http-realworld-example/9824fc701d1476eae2b389d2410881af1577b147/logo.png
+- title: Kotlin + http4k
+  repo:  alisabzevari/kotlin-http4k-realworld-example-app
+  logo:  https://raw.githubusercontent.com/alisabzevari/kotlin-http4k-realworld-example-app/master/logo.png
