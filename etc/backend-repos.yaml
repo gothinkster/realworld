@@ -112,3 +112,6 @@
 - title: Hexagon
   repo:  hexagonkt/real_world
   logo:  https://raw.githubusercontent.com/hexagonkt/real_world/master/logo.png
+- title: Kotlin + http4k
+  repo:  alisabzevari/kotlin-http4k-realworld-example-app
+  logo:  https://raw.githubusercontent.com/alisabzevari/kotlin-http4k-realworld-example-app/master/logo.png
