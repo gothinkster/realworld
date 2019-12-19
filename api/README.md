@@ -137,18 +137,33 @@ Make sure the right content type like `Content-Type: application/json; charset=u
 
 ```JSON
 {
-  "comments": [{
-    "id": 1,
-    "createdAt": "2016-02-18T03:22:56.637Z",
-    "updatedAt": "2016-02-18T03:22:56.637Z",
-    "body": "It takes a Jacobian",
-    "author": {
-      "username": "jake",
-      "bio": "I work at statefarm",
-      "image": "https://i.stack.imgur.com/xHWG8.jpg",
-      "following": false
+  "comments": [
+    {
+      "id": 1,
+      "createdAt": "2016-02-18T03:22:56.637Z",
+      "updatedAt": "2016-02-18T03:22:56.637Z",
+      "body": "It takes a Jacobian",
+      "author": {
+        "username": "jake",
+        "bio": "I work at statefarm",
+        "image": "https://i.stack.imgur.com/xHWG8.jpg",
+        "following": false
+      }
+    },
+    {
+      "id": 2,
+      "createdAt": "2019-12-19T05:58:00.000Z",
+      "updatedAt": "2019-12-19T06:09:00.000Z",
+      "body": "updating specs",
+      "author": {
+        "username": "nevrax",
+        "bio": "I love peaches!",
+        "image": "https://i.imgur.com/DVJZ6sX.jpg",
+        "following": false
+      }
     }
-  }]
+  ],
+  "commentsCount": 2
 }
 ```
 
