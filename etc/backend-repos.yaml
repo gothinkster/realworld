@@ -112,3 +112,9 @@
 - title: Kotlin + http4k
   repo:  alisabzevari/kotlin-http4k-realworld-example-app
   logo:  https://raw.githubusercontent.com/alisabzevari/kotlin-http4k-realworld-example-app/master/logo.png
+- title: AWS Lambda Go + DynamoDB
+  repo:  chrisxue815/realworld-aws-lambda-dynamodb-go
+  logo:  https://raw.githubusercontent.com/gothinkster/realworld-starter-kit/master/logo.png
+- title: Java Quarkus
+  repo:  diegocamara/realworld-api-quarkus
+  logo:  https://raw.githubusercontent.com/diegocamara/realworld-api-quarkus/master/quarkus-logo.png
