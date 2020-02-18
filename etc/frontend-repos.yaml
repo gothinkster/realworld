@@ -70,3 +70,6 @@
 - title: Riot.js + Universal + Effector
   repo:  apapacy/realworld-riotjs-effector-universal-hot
   logo:  https://raw.githubusercontent.com/gothinkster/realworld-starter-kit/master/logo.png
+- title: Next.js
+  repo:  reck1ess/next-realworld-example-app
+  logo:  https://raw.githubusercontent.com/reck1ess/next-realworld-example-app/56df505c58d2aaf2787b12998b441529254020ef/logo.png
