@@ -70,3 +70,12 @@
 - title: Riot.js + Universal + Effector
   repo:  apapacy/realworld-riotjs-effector-universal-hot
   logo:  https://raw.githubusercontent.com/gothinkster/realworld-starter-kit/master/logo.png
+- title: Vanilla JS Web Components
+  repo:  gothinkster/web-components-realworld-example-app
+  logo:  https://cloud.githubusercontent.com/assets/556934/26126314/021150f8-3a3a-11e7-87bd-7bfc7616f6f8.png
+- title: Next.js
+  repo:  reck1ess/next-realworld-example-app
+  logo:  https://raw.githubusercontent.com/reck1ess/next-realworld-example-app/master/project-logo.png
+- title: Ember Octane
+  repo:  patocallaghan/ember-octane-realworld
+  logo:  https://raw.githubusercontent.com/patocallaghan/ember-octane-realworld/master/logo.png
