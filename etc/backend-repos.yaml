@@ -118,3 +118,6 @@
 - title: Java Quarkus
   repo:  diegocamara/realworld-api-quarkus
   logo:  https://raw.githubusercontent.com/diegocamara/realworld-api-quarkus/master/quarkus-logo.png
+- title: Eclipse Vert.x
+  repo:  diegocamara/vertx-springboot-realworld-example-app
+  logo:  https://raw.githubusercontent.com/diegocamara/vertx-springboot-realworld-example-app/master/vertx-logo.png
