@@ -103,3 +103,21 @@
 - title: Crystal (Onyx)
   repo:  vladfaust/crystalworld
   logo:  https://raw.githubusercontent.com/vladfaust/crystalworld/master/media/logo.png
+- title: Kotlin + Ktor
+  repo:  dragneelfps/realworld-kotlin-ktor
+  logo:  https://raw.githubusercontent.com/dragneelfps/realworld-kotlin-ktor/master/logo.png
+- title: Akka HTTP
+  repo:  1984weed/akka-http-realworld-example
+  logo:  https://raw.githubusercontent.com/1984weed/akka-http-realworld-example/9824fc701d1476eae2b389d2410881af1577b147/logo.png
+- title: Kotlin + http4k
+  repo:  alisabzevari/kotlin-http4k-realworld-example-app
+  logo:  https://raw.githubusercontent.com/alisabzevari/kotlin-http4k-realworld-example-app/master/logo.png
+- title: AWS Lambda Go + DynamoDB
+  repo:  chrisxue815/realworld-aws-lambda-dynamodb-go
+  logo:  https://raw.githubusercontent.com/gothinkster/realworld-starter-kit/master/logo.png
+- title: Java Quarkus
+  repo:  diegocamara/realworld-api-quarkus
+  logo:  https://raw.githubusercontent.com/diegocamara/realworld-api-quarkus/master/quarkus-logo.png
+- title: Eclipse Vert.x
+  repo:  diegocamara/vertx-springboot-realworld-example-app
+  logo:  https://raw.githubusercontent.com/diegocamara/vertx-springboot-realworld-example-app/master/vertx-logo.png
