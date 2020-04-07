@@ -82,3 +82,6 @@
 - title: Ember Octane
   repo:  patocallaghan/ember-octane-realworld
   logo:  https://raw.githubusercontent.com/patocallaghan/ember-octane-realworld/master/logo.png
+- title: neo.mjs
+  repo:  neomjs/neomjs-realworld-example-app
+  logo:  https://raw.githubusercontent.com/gothinkster/realworld-starter-kit/master/logo.png
