@@ -121,3 +121,6 @@
 - title: Eclipse Vert.x
   repo:  diegocamara/vertx-springboot-realworld-example-app
   logo:  https://raw.githubusercontent.com/diegocamara/vertx-springboot-realworld-example-app/master/vertx-logo.png
+- title: Java Micronaut
+  repo:  alexey-lapin/realworld-backend-micronaut
+  logo:  https://raw.githubusercontent.com/alexey-lapin/realworld-backend-micronaut/master/example-logo.png
