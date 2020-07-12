@@ -121,3 +121,6 @@
 - title: Eclipse Vert.x
   repo:  diegocamara/vertx-springboot-realworld-example-app
   logo:  https://raw.githubusercontent.com/diegocamara/vertx-springboot-realworld-example-app/master/vertx-logo.png
+- title: Pure Go
+  repo:  nasermirzaei89/realworld-go
+  logo:  https://raw.githubusercontent.com/nasermirzaei89/realworld-go/master/logo.png
