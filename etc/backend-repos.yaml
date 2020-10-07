@@ -121,3 +121,6 @@
 - title: Eclipse Vert.x
   repo:  diegocamara/vertx-springboot-realworld-example-app
   logo:  https://raw.githubusercontent.com/diegocamara/vertx-springboot-realworld-example-app/master/vertx-logo.png
+- title: InterSystems IRIS
+  repo:  daimor/realworld-intersystems-iris
+  logo:  https://raw.githubusercontent.com/daimor/realworld-intersystems-iris/master/logo.png
