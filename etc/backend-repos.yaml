@@ -121,3 +121,7 @@
 - title: Eclipse Vert.x
   repo:  diegocamara/vertx-springboot-realworld-example-app
   logo:  https://raw.githubusercontent.com/diegocamara/vertx-springboot-realworld-example-app/master/vertx-logo.png
+- title: Hanami
+  repo:  blrB/hanami-realworld-example-app
+  logo:  https://raw.githubusercontent.com/blrB/hanami-realworld-example-app/master/logo.png
+  
