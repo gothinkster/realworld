@@ -16,6 +16,9 @@
 - title: Vue
   repo:  gothinkster/vue-realworld-example-app
   logo:  https://github.com/gothinkster/vue-realworld-example-app/blob/master/static/rwv-logo.png
+- title: Vue3 + Vite
+  repo:  mutoe/vue3-realworld-example-app
+  logo:  https://raw.githubusercontent.com/mutoe/vue3-realworld-example-app/master/logo.png
 - title: Svelte / Sapper
   repo:  sveltejs/realworld
   logo:  https://github.com/sveltejs/realworld/blob/master/logo.png
