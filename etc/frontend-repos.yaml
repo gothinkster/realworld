@@ -85,3 +85,7 @@
 - title: neo.mjs
   repo:  neomjs/neomjs-realworld-example-app
   logo:  https://raw.githubusercontent.com/gothinkster/realworld-starter-kit/master/logo.png
+  logo:  https://raw.githubusercontent.com/patocallaghan/ember-octane-realworld/master/logo.png
+- title: Nuxt.js
+  repo:  devJang/nuxt-realworld
+  logo:  https://raw.githubusercontent.com/devJang/nuxt-realworld/master/logo.png
