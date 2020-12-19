@@ -200,19 +200,19 @@ Work In Progress:
 <!--
   Ranking:
      1: NativeScript (Angular)
+     2: Android (Kotlin)
 -->
 > _Sorted by popularity on Sun Sep 06 2020_
 
 | 🥇 | 🥈 | 🥉 |
 | :---:         |     :---:      |          :---: |
-| [**NativeScript (Angular)**<br/> ![NativeScript (Angular)](https://github.com/nea/nativescript-realworld-example-app/blob/master/logo.png) ![Star](https://img.shields.io/github/stars/nea/nativescript-realworld-example-app.svg?style=social&label=Star) ![Fork](https://img.shields.io/github/forks/nea/nativescript-realworld-example-app.svg?style=social&label=Fork)](https://github.com/nea/nativescript-realworld-example-app)
+| [**NativeScript (Angular)**<br/> ![NativeScript (Angular)](https://github.com/nea/nativescript-realworld-example-app/blob/master/logo.png) ![Star](https://img.shields.io/github/stars/nea/nativescript-realworld-example-app.svg?style=social&label=Star) ![Fork](https://img.shields.io/github/forks/nea/nativescript-realworld-example-app.svg?style=social&label=Fork)](https://github.com/nea/nativescript-realworld-example-app) | [**Android(Kotlin)**<br/> ![Android(Kotlin)](https://cloud.githubusercontent.com/assets/556934/25672246/9a20e960-2fe7-11e7-99d3-23652878a2c2.png) ![Star](https://img.shields.io/github/stars/coding-blocks-archives/Conduit_Android_Kotlin.svg?style=social&label=Star) ![Fork](https://img.shields.io/github/forks/coding-blocks-archives/Conduit_Android_Kotlin.svg?style=social&label=Fork)](https://github.com/coding-blocks-archives/Conduit_Android_Kotlin)
 
 Work In Progress:
 **[📱🔧 React Native](https://github.com/gothinkster/realworld/issues/10) | 
 [📱🔧 Jasonette](https://github.com/gothinkster/realworld/issues/39) | 
 [📱🔧 Swift](https://github.com/gothinkster/realworld/issues/43) | 
 [📱🔧 C# on Xamarin](https://github.com/gothinkster/realworld/issues/70) | 
-[📱 🔧 Kotlin/Android](https://github.com/gothinkster/realworld/issues/84) | 
 [📱🔧 Onymos](https://github.com/gothinkster/realworld/issues/91) | 
 [Quasar framework](https://github.com/gothinkster/realworld/issues/171) | 
 [Swift Perfect](https://github.com/gothinkster/realworld/issues/181) | 
