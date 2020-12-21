@@ -65,10 +65,15 @@ async function getSortedTable(repos) {
 
   // Get sorted repos by stargazers_count
   for (let i = 0; i < repos.length; ++i) {
-    const stargazers_count =
-      (await axios.get(`/repos/${repos[i].repo}`))
-      .data.stargazers_count;
-    repos[i].stargazers_count = stargazers_count;
+    let repoData = null;
+    try {
+      repoData = await axios.get(`/repos/${repos[i].repo}`);
+    } catch(err) {
+      console.warn(`Error fetching data for: ${repos[i].repo}`);
+      repos[i].stargazers_count = -1;
+      continue;
+    }
+    repos[i].stargazers_count = repoData.data.stargazers_count;
   }
   repos = repos.sort((a, b) => b.stargazers_count - a.stargazers_count);
   console.log('\n\nSorted repos: \n\n' + repos.map(e => `  ${e.repo} (${e.stargazers_count})`).join('\n') + '\n\n');
