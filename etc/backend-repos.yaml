@@ -37,9 +37,6 @@
 - title: Go + Gin
   repo:  gothinkster/golang-gin-realworld-example-app
   logo:  https://github.com/gothinkster/golang-gin-realworld-example-app/blob/master/logo.png
-- title: Rust
-  repo:  gothinkster/rust-realworld-example-app
-  logo:  https://github.com/gothinkster/rust-realworld-example-app/raw/master/logo.png
 - title: GCP Cloud Functions + Datastore
   repo:  gothinkster/gcp-datastore-cloud-functions-realworld-example-app
   logo:  https://github.com/gothinkster/gcp-datastore-cloud-functions-realworld-example-app/raw/master/logo.png
