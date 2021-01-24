@@ -37,9 +37,6 @@
 - title: Go + Gin
   repo:  gothinkster/golang-gin-realworld-example-app
   logo:  https://github.com/gothinkster/golang-gin-realworld-example-app/blob/master/logo.png
-- title: Rust
-  repo:  gothinkster/rust-realworld-example-app
-  logo:  https://github.com/gothinkster/rust-realworld-example-app/raw/master/logo.png
 - title: GCP Cloud Functions + Datastore
   repo:  gothinkster/gcp-datastore-cloud-functions-realworld-example-app
   logo:  https://github.com/gothinkster/gcp-datastore-cloud-functions-realworld-example-app/raw/master/logo.png
@@ -67,7 +64,7 @@
 - title: Haskell / Yesod
   repo:  tzemanovic/haskell-yesod-realworld-example-app
   logo:  https://github.com/tzemanovic/haskell-yesod-realworld-example-app/blob/master/logo.png
-- title: NestJS + TypeORM
+- title: NestJS + TypeORM/Prisma
   repo:  lujakob/nestjs-realworld-example-app
   logo:  https://github.com/lujakob/nestjs-realworld-example-app/blob/master/project-logo.png
 - title: Clojure / Polylith
@@ -106,3 +103,24 @@
 - title: Masonite
   repo:  vaibhavmule/masonite-realworld-example-app
   logo:  https://raw.githubusercontent.com/vaibhavmule/masonite-realworld-example-app/master/logo.png
+- title: Kotlin + Ktor
+  repo:  dragneelfps/realworld-kotlin-ktor
+  logo:  https://raw.githubusercontent.com/dragneelfps/realworld-kotlin-ktor/master/logo.png
+- title: Akka HTTP
+  repo:  1984weed/akka-http-realworld-example
+  logo:  https://raw.githubusercontent.com/1984weed/akka-http-realworld-example/9824fc701d1476eae2b389d2410881af1577b147/logo.png
+- title: Kotlin + http4k
+  repo:  alisabzevari/kotlin-http4k-realworld-example-app
+  logo:  https://raw.githubusercontent.com/alisabzevari/kotlin-http4k-realworld-example-app/master/logo.png
+- title: AWS Lambda Go + DynamoDB
+  repo:  chrisxue815/realworld-aws-lambda-dynamodb-go
+  logo:  https://raw.githubusercontent.com/gothinkster/realworld-starter-kit/master/logo.png
+- title: Java Quarkus
+  repo:  diegocamara/realworld-api-quarkus
+  logo:  https://raw.githubusercontent.com/diegocamara/realworld-api-quarkus/master/quarkus-logo.png
+- title: Eclipse Vert.x
+  repo:  diegocamara/vertx-springboot-realworld-example-app
+  logo:  https://raw.githubusercontent.com/diegocamara/vertx-springboot-realworld-example-app/master/vertx-logo.png
+- title: Pyramid
+  repo:  niteoweb/pyramid-realworld-example-app
+  logo:  https://raw.githubusercontent.com/niteoweb/pyramid-realworld-example-app/master/logo.png
