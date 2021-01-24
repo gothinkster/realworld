@@ -121,6 +121,9 @@
 - title: Eclipse Vert.x
   repo:  diegocamara/vertx-springboot-realworld-example-app
   logo:  https://raw.githubusercontent.com/diegocamara/vertx-springboot-realworld-example-app/master/vertx-logo.png
+- title: Scala + http4s
+  repo:  alex-k1/scala-http4s-realworld-example-app
+  logo:  https://raw.githubusercontent.com/alex-k1/scala-http4s-realworld-example-app/master/logo.png
 - title: Pyramid
   repo:  niteoweb/pyramid-realworld-example-app
   logo:  https://raw.githubusercontent.com/niteoweb/pyramid-realworld-example-app/master/logo.png
