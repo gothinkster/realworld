@@ -34,9 +34,9 @@
 - title: Aurelia
   repo:  gothinkster/aurelia-realworld-example-app
   logo:  https://raw.githubusercontent.com/gothinkster/aurelia-realworld-example-app/master/logo.png
-- title: Dojo 2
-  repo:  gothinkster/dojo2-realworld-example-app
-  logo:  https://raw.githubusercontent.com/gothinkster/dojo2-realworld-example-app/master/logo.png
+- title: Dojo
+  repo:  gothinkster/dojo-realworld-example-app
+  logo:  https://raw.githubusercontent.com/gothinkster/dojo-realworld-example-app/master/logo.png
 - title: Angular + ngrx + nx
   repo:  stefanoslig/angular-ngrx-nx-realworld-example-app
   logo:  https://raw.githubusercontent.com/stefanoslig/angular-ngrx-nx-realworld-example-app/master/logo.png
@@ -45,13 +45,16 @@
   logo:  https://raw.githubusercontent.com/kwasniew/hyperapp-realworld-example-app/master/logo.png
 - title: PureScript + Halogen
   repo:  thomashoneyman/purescript-halogen-realworld
-  logo:  https://raw.githubusercontent.com/thomashoneyman/purescript-halogen-realworld/master/assets/logo.png
+  logo:  https://raw.githubusercontent.com/thomashoneyman/purescript-halogen-realworld/main/assets/logo.png
 - title: Imba
   repo:  cartonalexandre/imba-realworld-example-app
   logo:  https://raw.githubusercontent.com/cartonalexandre/imba-realworld-example-app/master/logo.png
 - title: Stencil.js
   repo:  hcavalieri/stencil-realworld-app
   logo:  https://github.com/hcavalieri/stencil-realworld-app/blob/master/logo.png
+- title: San
+  repo:  ecomfe/san-realworld-app
+  logo:  https://raw.githubusercontent.com/ecomfe/san-realworld-app/master/logo.png
 - title: Bridge.Spaf
   repo:  markjackmilian/bridge.spaf-realworld-app
   logo:  https://raw.githubusercontent.com/markjackmilian/bridge.spaf-realworld-app/master/logo.png
@@ -64,6 +67,9 @@
 - title: Ember.js
   repo:  gothinkster/ember-realworld
   logo:  https://raw.githubusercontent.com/gothinkster/ember-realworld/master/logo.png
+- title: Seed
+  repo:  seed-rs/seed-rs-realworld
+  logo:  https://raw.githubusercontent.com/seed-rs/seed-rs-realworld/master/logo.png
 - title: Rust + Yew + WebAssembly
   repo:  jetli/rust-yew-realworld-example-app
   logo:  https://raw.githubusercontent.com/jetli/rust-yew-realworld-example-app/master/logo.png
@@ -79,3 +85,6 @@
 - title: Ember Octane
   repo:  patocallaghan/ember-octane-realworld
   logo:  https://raw.githubusercontent.com/patocallaghan/ember-octane-realworld/master/logo.png
+- title: neo.mjs
+  repo:  neomjs/neomjs-realworld-example-app
+  logo:  https://raw.githubusercontent.com/gothinkster/realworld-starter-kit/master/logo.png
