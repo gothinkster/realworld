@@ -88,6 +88,9 @@
 - title: neo.mjs
   repo:  neomjs/neomjs-realworld-example-app
   logo:  https://raw.githubusercontent.com/gothinkster/realworld-starter-kit/master/logo.png
+- title: PureScript + React
+  repo:  jonasbuntinx/purescript-react-realworld
+  logo:  https://raw.githubusercontent.com/jonasbuntinx/purescript-react-realworld/master/assets/logo.png
 - title: Blazor WebAssembly
   repo:  JoeyMckenzie/BlazorConduit
   logo:  https://raw.githubusercontent.com/JoeyMckenzie/BlazorConduit/master/realworld-logo.png
