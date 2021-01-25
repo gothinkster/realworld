@@ -88,3 +88,6 @@
 - title: neo.mjs
   repo:  neomjs/neomjs-realworld-example-app
   logo:  https://raw.githubusercontent.com/gothinkster/realworld-starter-kit/master/logo.png
+- title: Blazor WebAssembly
+  repo:  JoeyMckenzie/BlazorConduit
+  logo:  https://raw.githubusercontent.com/JoeyMckenzie/BlazorConduit/master/realworld-logo.png
