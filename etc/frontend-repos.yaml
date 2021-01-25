@@ -67,6 +67,9 @@
 - title: Ember.js
   repo:  gothinkster/ember-realworld
   logo:  https://raw.githubusercontent.com/gothinkster/ember-realworld/master/logo.png
+- title: Preact
+  repo:  mutoe/preact-realworld-example-app
+  logo:  https://raw.githubusercontent.com/mutoe/preact-realworld-example-app/master/logo.png
 - title: Seed
   repo:  seed-rs/seed-rs-realworld
   logo:  https://raw.githubusercontent.com/seed-rs/seed-rs-realworld/master/logo.png
