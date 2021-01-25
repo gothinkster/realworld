@@ -136,3 +136,6 @@
 - title: Pyramid
   repo:  niteoweb/pyramid-realworld-example-app
   logo:  https://raw.githubusercontent.com/niteoweb/pyramid-realworld-example-app/master/logo.png
+- title: InterSystems IRIS
+  repo:  daimor/realworld-intersystems-iris
+  logo:  https://raw.githubusercontent.com/daimor/realworld-intersystems-iris/master/logo.png
