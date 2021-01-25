@@ -16,14 +16,17 @@ const README_TARGET_FILE = '../README.md';
 const FRONTEND_PLACEHOLDER = 'INSERT_FRONTEND_REPOS';
 const BACKEND_PLACEHOLDER = 'INSERT_BACKEND_REPOS';
 const MOBILE_PLACEHOLDER = 'INSERT_MOBILE_REPOS';
+const FULLSTACK_PLACEHOLDER = 'INSERT_FULLSTACK_REPOS';
 
 const FRONTEND_WIP_PLACEHOLDER = 'INSERT_FRONTEND_WIP';
 const BACKEND_WIP_PLACEHOLDER = 'INSERT_BACKEND_WIP';
 const MOBILE_WIP_PLACEHOLDER = 'INSERT_MOBILE_WIP';
+const FULLSTACK_WIP_PLACEHOLDER = 'INSERT_FULLSTACK_WIP';
 
 const FRONTEND_REPOS = jsYaml.safeLoad(fs.readFileSync('frontend-repos.yaml', 'utf8'));
 const BACKEND_REPOS = jsYaml.safeLoad(fs.readFileSync('backend-repos.yaml', 'utf8'));
 const MOBILE_REPOS = jsYaml.safeLoad(fs.readFileSync('mobile-repos.yaml', 'utf8'));
+const FULLSTACK_REPOS = jsYaml.safeLoad(fs.readFileSync('fullstack-repos.yaml', 'utf8'));
 
 (async () => {
   await main();
@@ -46,12 +49,16 @@ async function main() {
       output.push(...(await getSortedTable(BACKEND_REPOS)));
     } else if (input[i].includes(MOBILE_PLACEHOLDER)) {
       output.push(...(await getSortedTable(MOBILE_REPOS)));
+    } else if (input[i].includes(FULLSTACK_PLACEHOLDER)) {
+      output.push(...(await getSortedTable(FULLSTACK_REPOS)));
     } else if (input[i].includes(FRONTEND_WIP_PLACEHOLDER)) {
       output.push(await getWIPProjects('frontend'));
     } else if (input[i].includes(BACKEND_WIP_PLACEHOLDER)) {
       output.push(await getWIPProjects('backend'));
     } else if (input[i].includes(MOBILE_WIP_PLACEHOLDER)) {
       output.push(await getWIPProjects('mobile'));
+    } else if (input[i].includes(FULLSTACK_WIP_PLACEHOLDER)) {
+      output.push(await getWIPProjects('fullstack'));
     } else {
       output.push(input[i]);
     }
