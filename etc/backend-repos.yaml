@@ -37,9 +37,6 @@
 - title: Go + Gin
   repo:  gothinkster/golang-gin-realworld-example-app
   logo:  https://github.com/gothinkster/golang-gin-realworld-example-app/blob/master/logo.png
-- title: Rust
-  repo:  gothinkster/rust-realworld-example-app
-  logo:  https://github.com/gothinkster/rust-realworld-example-app/raw/master/logo.png
 - title: GCP Cloud Functions + Datastore
   repo:  gothinkster/gcp-datastore-cloud-functions-realworld-example-app
   logo:  https://github.com/gothinkster/gcp-datastore-cloud-functions-realworld-example-app/raw/master/logo.png
@@ -67,7 +64,7 @@
 - title: Haskell / Yesod
   repo:  tzemanovic/haskell-yesod-realworld-example-app
   logo:  https://github.com/tzemanovic/haskell-yesod-realworld-example-app/blob/master/logo.png
-- title: NestJS + TypeORM
+- title: NestJS + TypeORM/Prisma
   repo:  lujakob/nestjs-realworld-example-app
   logo:  https://github.com/lujakob/nestjs-realworld-example-app/blob/master/project-logo.png
 - title: Clojure / Polylith
@@ -103,6 +100,9 @@
 - title: Crystal (Onyx)
   repo:  vladfaust/crystalworld
   logo:  https://raw.githubusercontent.com/vladfaust/crystalworld/master/media/logo.png
+- title: Masonite
+  repo:  vaibhavmule/masonite-realworld-example-app
+  logo:  https://raw.githubusercontent.com/vaibhavmule/masonite-realworld-example-app/master/logo.png
 - title: Kotlin + Ktor
   repo:  dragneelfps/realworld-kotlin-ktor
   logo:  https://raw.githubusercontent.com/dragneelfps/realworld-kotlin-ktor/master/logo.png
@@ -124,3 +124,9 @@
 - title: Java Micronaut
   repo:  alexey-lapin/realworld-backend-micronaut
   logo:  https://raw.githubusercontent.com/alexey-lapin/realworld-backend-micronaut/master/example-logo.png
+- title: Scala + http4s
+  repo:  alex-k1/scala-http4s-realworld-example-app
+  logo:  https://raw.githubusercontent.com/alex-k1/scala-http4s-realworld-example-app/master/logo.png
+- title: Pyramid
+  repo:  niteoweb/pyramid-realworld-example-app
+  logo:  https://raw.githubusercontent.com/niteoweb/pyramid-realworld-example-app/master/logo.png
