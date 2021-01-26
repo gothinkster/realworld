@@ -103,3 +103,6 @@
 - title: Solid.js
   repo:  ryansolid/solid-realworld
   logo:  https://raw.githubusercontent.com/ryansolid/solid-realworld/master/logo.png
+- title: Hoplon + shadow-cljs
+  repo:  rlander/conduit
+  logo:  https://raw.githubusercontent.com/rlander/conduit/master/logo.png
