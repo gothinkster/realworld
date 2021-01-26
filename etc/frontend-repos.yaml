@@ -97,3 +97,6 @@
 - title: Blazor WebAssembly
   repo:  JoeyMckenzie/BlazorConduit
   logo:  https://raw.githubusercontent.com/JoeyMckenzie/BlazorConduit/master/realworld-logo.png
+- title: Nuxt.js
+  repo:  devJang/nuxt-realworld
+  logo:  https://raw.githubusercontent.com/devJang/nuxt-realworld/master/logo.png
