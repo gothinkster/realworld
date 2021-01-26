@@ -106,12 +106,17 @@ async function getSortedTable(repos) {
 
   // Add sorted table
   let string = '';
-  for (let i = 0; i < repos.length; ++i) {
-    string += `| [**${repos[i].title}**<br/> ` +
+  for (let i = 0; i < Math.max(repos.length, 3); ++i) {
+    if (i <= repos.length - 1) {
+      string += `| [**${repos[i].title}**<br/> ` +
       `![${repos[i].title}](${repos[i].logo}) ` +
       `![Star](https://img.shields.io/github/stars/${repos[i].repo}.svg?style=social&label=Star) ` +
       `![Fork](https://img.shields.io/github/forks/${repos[i].repo}.svg?style=social&label=Fork)]` +
       `(https://github.com/${repos[i].repo})`;
+    } else {
+      // Insert a blank column when the number of repos is lower than 3
+      string += `| ![empty](https://raw.githubusercontent.com/gothinkster/realworld/master/media/spacer-1669x257.gif)`;
+    }
     if (!((i + 1) % 3)) {
       output.push(string);
       string = '';
