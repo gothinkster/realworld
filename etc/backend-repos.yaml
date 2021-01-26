@@ -121,6 +121,9 @@
 - title: Eclipse Vert.x
   repo:  diegocamara/vertx-springboot-realworld-example-app
   logo:  https://raw.githubusercontent.com/diegocamara/vertx-springboot-realworld-example-app/master/vertx-logo.png
+- title: Hanami
+  repo:  blrB/hanami-realworld-example-app
+  logo:  https://raw.githubusercontent.com/blrB/hanami-realworld-example-app/master/logo.png
 - title: Neo4j + Nest.js
   repo:  neo4j-examples/nestjs-neo4j-realworld-example
   logo:  https://github.com/neo4j-examples/nestjs-neo4j-realworld-example/raw/master/project-logo.png
