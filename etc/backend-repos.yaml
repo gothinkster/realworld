@@ -142,3 +142,6 @@
 - title: InterSystems IRIS
   repo:  daimor/realworld-intersystems-iris
   logo:  https://raw.githubusercontent.com/daimor/realworld-intersystems-iris/master/logo.png
+- title: Koa + TypeScript + TypeORM
+  repo:  eflem00/koa-boilerplate
+  logo:  https://raw.githubusercontent.com/eflem00/koa-boilerplate/master/logo.png
