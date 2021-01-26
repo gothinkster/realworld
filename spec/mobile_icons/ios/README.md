@@ -7,7 +7,7 @@ the '.png' extension is actually required for iTunesConnect submission.
 
 This is done for you so you don't have to.
 
-However, for Ad_hoc or Enterprise distirbution, the extension should be removed
+However, for Ad_hoc or Enterprise distribution, the extension should be removed
 from the files before adding to XCode to avoid error.
 
 refs: https://developer.apple.com/library/ios/qa/qa1686/_index.html

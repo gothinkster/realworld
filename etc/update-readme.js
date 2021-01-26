@@ -16,14 +16,17 @@ const README_TARGET_FILE = '../README.md';
 const FRONTEND_PLACEHOLDER = 'INSERT_FRONTEND_REPOS';
 const BACKEND_PLACEHOLDER = 'INSERT_BACKEND_REPOS';
 const MOBILE_PLACEHOLDER = 'INSERT_MOBILE_REPOS';
+const FULLSTACK_PLACEHOLDER = 'INSERT_FULLSTACK_REPOS';
 
 const FRONTEND_WIP_PLACEHOLDER = 'INSERT_FRONTEND_WIP';
 const BACKEND_WIP_PLACEHOLDER = 'INSERT_BACKEND_WIP';
 const MOBILE_WIP_PLACEHOLDER = 'INSERT_MOBILE_WIP';
+const FULLSTACK_WIP_PLACEHOLDER = 'INSERT_FULLSTACK_WIP';
 
 const FRONTEND_REPOS = jsYaml.safeLoad(fs.readFileSync('frontend-repos.yaml', 'utf8'));
 const BACKEND_REPOS = jsYaml.safeLoad(fs.readFileSync('backend-repos.yaml', 'utf8'));
 const MOBILE_REPOS = jsYaml.safeLoad(fs.readFileSync('mobile-repos.yaml', 'utf8'));
+const FULLSTACK_REPOS = jsYaml.safeLoad(fs.readFileSync('fullstack-repos.yaml', 'utf8'));
 
 (async () => {
   await main();
@@ -46,12 +49,16 @@ async function main() {
       output.push(...(await getSortedTable(BACKEND_REPOS)));
     } else if (input[i].includes(MOBILE_PLACEHOLDER)) {
       output.push(...(await getSortedTable(MOBILE_REPOS)));
+    } else if (input[i].includes(FULLSTACK_PLACEHOLDER)) {
+      output.push(...(await getSortedTable(FULLSTACK_REPOS)));
     } else if (input[i].includes(FRONTEND_WIP_PLACEHOLDER)) {
       output.push(await getWIPProjects('frontend'));
     } else if (input[i].includes(BACKEND_WIP_PLACEHOLDER)) {
       output.push(await getWIPProjects('backend'));
     } else if (input[i].includes(MOBILE_WIP_PLACEHOLDER)) {
       output.push(await getWIPProjects('mobile'));
+    } else if (input[i].includes(FULLSTACK_WIP_PLACEHOLDER)) {
+      output.push(await getWIPProjects('fullstack'));
     } else {
       output.push(input[i]);
     }
@@ -65,10 +72,15 @@ async function getSortedTable(repos) {
 
   // Get sorted repos by stargazers_count
   for (let i = 0; i < repos.length; ++i) {
-    const stargazers_count =
-      (await axios.get(`/repos/${repos[i].repo}`))
-      .data.stargazers_count;
-    repos[i].stargazers_count = stargazers_count;
+    let repoData = null;
+    try {
+      repoData = await axios.get(`/repos/${repos[i].repo}`);
+    } catch(err) {
+      console.warn(`Error fetching data for: ${repos[i].repo}`);
+      repos[i].stargazers_count = -1;
+      continue;
+    }
+    repos[i].stargazers_count = repoData.data.stargazers_count;
   }
   repos = repos.sort((a, b) => b.stargazers_count - a.stargazers_count);
   console.log('\n\nSorted repos: \n\n' + repos.map(e => `  ${e.repo} (${e.stargazers_count})`).join('\n') + '\n\n');
@@ -94,12 +106,17 @@ async function getSortedTable(repos) {
 
   // Add sorted table
   let string = '';
-  for (let i = 0; i < repos.length; ++i) {
-    string += `| [**${repos[i].title}**<br/> ` +
+  for (let i = 0; i < Math.max(repos.length, 3); ++i) {
+    if (i <= repos.length - 1) {
+      string += `| [**${repos[i].title}**<br/> ` +
       `![${repos[i].title}](${repos[i].logo}) ` +
       `![Star](https://img.shields.io/github/stars/${repos[i].repo}.svg?style=social&label=Star) ` +
       `![Fork](https://img.shields.io/github/forks/${repos[i].repo}.svg?style=social&label=Fork)]` +
       `(https://github.com/${repos[i].repo})`;
+    } else {
+      // Insert a blank column when the number of repos is lower than 3
+      string += `| ![empty](https://raw.githubusercontent.com/gothinkster/realworld/master/media/spacer-1669x257.gif)`;
+    }
     if (!((i + 1) % 3)) {
       output.push(string);
       string = '';
