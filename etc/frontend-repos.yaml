@@ -100,3 +100,6 @@
 - title: Nuxt.js
   repo:  devJang/nuxt-realworld
   logo:  https://raw.githubusercontent.com/devJang/nuxt-realworld/master/logo.png
+- title: Solid.js
+  repo:  ryansolid/solid-realworld
+  logo:  https://raw.githubusercontent.com/ryansolid/solid-realworld/master/logo.png
