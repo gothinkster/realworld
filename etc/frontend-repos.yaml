@@ -16,6 +16,9 @@
 - title: Vue
   repo:  gothinkster/vue-realworld-example-app
   logo:  https://github.com/gothinkster/vue-realworld-example-app/blob/master/static/rwv-logo.png
+- title: Vue3 + Vite
+  repo:  mutoe/vue3-realworld-example-app
+  logo:  https://raw.githubusercontent.com/mutoe/vue3-realworld-example-app/master/logo.png
 - title: Svelte / Sapper
   repo:  sveltejs/realworld
   logo:  https://github.com/sveltejs/realworld/blob/master/logo.png
@@ -67,6 +70,9 @@
 - title: Ember.js
   repo:  gothinkster/ember-realworld
   logo:  https://raw.githubusercontent.com/gothinkster/ember-realworld/master/logo.png
+- title: Preact
+  repo:  mutoe/preact-realworld-example-app
+  logo:  https://raw.githubusercontent.com/mutoe/preact-realworld-example-app/master/logo.png
 - title: Seed
   repo:  seed-rs/seed-rs-realworld
   logo:  https://raw.githubusercontent.com/seed-rs/seed-rs-realworld/master/logo.png
@@ -82,9 +88,21 @@
 - title: Next.js
   repo:  reck1ess/next-realworld-example-app
   logo:  https://raw.githubusercontent.com/reck1ess/next-realworld-example-app/master/project-logo.png
-- title: Ember Octane
-  repo:  patocallaghan/ember-octane-realworld
-  logo:  https://raw.githubusercontent.com/patocallaghan/ember-octane-realworld/master/logo.png
 - title: neo.mjs
   repo:  neomjs/neomjs-realworld-example-app
   logo:  https://raw.githubusercontent.com/gothinkster/realworld-starter-kit/master/logo.png
+- title: PureScript + React
+  repo:  jonasbuntinx/purescript-react-realworld
+  logo:  https://raw.githubusercontent.com/jonasbuntinx/purescript-react-realworld/master/assets/logo.png
+- title: Blazor WebAssembly
+  repo:  JoeyMckenzie/BlazorConduit
+  logo:  https://raw.githubusercontent.com/JoeyMckenzie/BlazorConduit/master/realworld-logo.png
+- title: Nuxt.js
+  repo:  devJang/nuxt-realworld
+  logo:  https://raw.githubusercontent.com/devJang/nuxt-realworld/master/logo.png
+- title: Solid.js
+  repo:  ryansolid/solid-realworld
+  logo:  https://raw.githubusercontent.com/ryansolid/solid-realworld/master/logo.png
+- title: Hoplon + shadow-cljs
+  repo:  rlander/conduit
+  logo:  https://raw.githubusercontent.com/rlander/conduit/master/logo.png
