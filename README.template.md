@@ -41,7 +41,10 @@ Work In Progress:
 
 _Since these implementations are responsible for the entire stack, they obviously cannot be mixed and matched but they still adhere to the same functionality & UX specs._
 
-Work In Progress: **[Meteor]() | [Ruby Hyperloop]() | [Firebase](https://github.com/gothinkster/realworld/issues/199)**
+<!-- INSERT_FULLSTACK_REPOS -->
+
+Work In Progress:
+<!-- INSERT_FULLSTACK_WIP -->
 
 # Create a new stack
 

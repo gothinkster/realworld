@@ -121,9 +121,27 @@
 - title: Eclipse Vert.x
   repo:  diegocamara/vertx-springboot-realworld-example-app
   logo:  https://raw.githubusercontent.com/diegocamara/vertx-springboot-realworld-example-app/master/vertx-logo.png
+- title: Hanami
+  repo:  blrB/hanami-realworld-example-app
+  logo:  https://raw.githubusercontent.com/blrB/hanami-realworld-example-app/master/logo.png
+- title: Neo4j + Nest.js
+  repo:  neo4j-examples/nestjs-neo4j-realworld-example
+  logo:  https://github.com/neo4j-examples/nestjs-neo4j-realworld-example/raw/master/project-logo.png
+- title: Neo4j + Express.js
+  repo:  neo4j-examples/nodejs-neo4j-realworld-example
+  logo:  https://github.com/neo4j-examples/nestjs-neo4j-realworld-example/raw/master/project-logo.png
+- title: Java Micronaut
+  repo:  alexey-lapin/realworld-backend-micronaut
+  logo:  https://raw.githubusercontent.com/alexey-lapin/realworld-backend-micronaut/master/example-logo.png
 - title: Scala + http4s
   repo:  alex-k1/scala-http4s-realworld-example-app
   logo:  https://raw.githubusercontent.com/alex-k1/scala-http4s-realworld-example-app/master/logo.png
 - title: Pyramid
   repo:  niteoweb/pyramid-realworld-example-app
   logo:  https://raw.githubusercontent.com/niteoweb/pyramid-realworld-example-app/master/logo.png
+- title: InterSystems IRIS
+  repo:  daimor/realworld-intersystems-iris
+  logo:  https://raw.githubusercontent.com/daimor/realworld-intersystems-iris/master/logo.png
+- title: Koa + TypeScript + TypeORM
+  repo:  eflem00/koa-boilerplate
+  logo:  https://raw.githubusercontent.com/eflem00/koa-boilerplate/master/logo.png
