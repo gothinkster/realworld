@@ -61,12 +61,9 @@
 - title: Bridge.Spaf
   repo:  markjackmilian/bridge.spaf-realworld-app
   logo:  https://raw.githubusercontent.com/markjackmilian/bridge.spaf-realworld-app/master/logo.png
-- title: Riot.js v3
+- title: Riot
   repo:  iq3addLi/riot_realworld_example_app
   logo:  https://raw.githubusercontent.com/iq3addLi/riot_realworld_example_app/master/logo.png
-- title: Riot.js v4
-  repo:  iq3addLi/riot_v4_realworld_example_app
-  logo:  https://raw.githubusercontent.com/iq3addLi/riot_v4_realworld_example_app/master/logo.png
 - title: Ember.js
   repo:  gothinkster/ember-realworld
   logo:  https://raw.githubusercontent.com/gothinkster/ember-realworld/master/logo.png
