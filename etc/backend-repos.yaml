@@ -145,3 +145,6 @@
 - title: Koa + TypeScript + TypeORM
   repo:  eflem00/koa-boilerplate
   logo:  https://raw.githubusercontent.com/eflem00/koa-boilerplate/master/logo.png
+- title: FastAPI
+  repo:  nsidnev/fastapi-realworld-example-app
+  logo:  https://raw.githubusercontent.com/nsidnev/fastapi-realworld-example-app/master/.github/assets/logo.png
