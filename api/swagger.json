@@ -71,7 +71,7 @@
         }
       }
     },
-    "/users": {
+    "/user": {
       "post": {
         "summary": "Register a new user",
         "description": "Register a new user",
