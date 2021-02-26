@@ -103,3 +103,6 @@
 - title: Hoplon + shadow-cljs
   repo:  rlander/conduit
   logo:  https://raw.githubusercontent.com/rlander/conduit/master/logo.png
+- title: Mithril
+  repo:  boazblake/realworld-mithril
+  logo:  https://github.com/boazblake/realworld-mithril/blob/master/logo.png
