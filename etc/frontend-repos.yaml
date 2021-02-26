@@ -86,5 +86,5 @@
   repo:  neomjs/neomjs-realworld-example-app
   logo:  https://raw.githubusercontent.com/gothinkster/realworld-starter-kit/master/logo.png
 - title: mithrilJs
-  repo:  https://github.com/boazblake/realworld-mithril
-  logo:  https://github.com/boazblake/realworld-mithril/blob/master/logo.png
+  repo:  http://github.com/boazblake/realworld-mithril
+  logo:  http://github.com/boazblake/realworld-mithril/blob/master/logo.png
