@@ -106,3 +106,6 @@
 - title: Mithril
   repo:  boazblake/realworld-mithril
   logo:  https://github.com/boazblake/realworld-mithril/blob/master/logo.png
+- title: Event Driven Vanilla JS Web Components
+  repo:  mits-gossau/event-driven-web-components-realworld-example-app
+  logo:  https://raw.githubusercontent.com/mits-gossau/event-driven-web-components-realworld-example-app/master/logo.png
