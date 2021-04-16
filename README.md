@@ -16,23 +16,17 @@ RealWorld solves this by allowing you to choose any frontend (React, Angular 2, 
 
 *Read the [full blog post announcing RealWorld on Medium.](https://medium.com/@ericsimons/introducing-realworld-6016654d36b5)*
 
-<br />
-
 # Implementations
 
 Over 100 implementations have been created using various languages, libraries, and frameworks.
 
 [**See the list of implementations on the CodebaseShow website >>>**](https://codebase.show/projects/realworld)
 
-<br />
-
 # Create a new implementation
 
 [**Create a new implementation >>>**](/spec)
 
 Or you can [view upcoming implementations (WIPs)](https://github.com/gothinkster/realworld/discussions/categories/wip-implementations)
-
-<br />
 
 # How do I get up & running?
 
@@ -41,8 +35,6 @@ Follow the instructions in the README of whatever frontend and/or backend repo's
 ### Can you teach me how to build each stack from scratch?
 
 Yup! We've built step-by-step tutorials for all of our stacks that teach you how to go from `git init` all the way to the production ready application. [**Start learning now >>>**](https://thinkster.io/tutorials/fullstack)
-
-<br />
 
 # Community created resources
 
@@ -60,8 +52,6 @@ Forks, tutorials, workshops, and other resources based on the RealWorld project:
   - [A Real-World Comparison of Front-End Frameworks with Benchmarks 2018](https://medium.freecodecamp.org/a-real-world-comparison-of-front-end-frameworks-with-benchmarks-2018-update-e5760fb4a962)
   - [A Real-World Comparison of Front-End Frameworks with Benchmarks 2017](https://medium.freecodecamp.org/a-real-world-comparison-of-front-end-frameworks-with-benchmarks-e1cb62fd526c)
 
-<br />
-
 # Learn more
 
 - ["Introducing RealWorld 🙌"](https://medium.com/@ericsimons/introducing-realworld-6016654d36b5) by Eric Simons
@@ -69,8 +59,6 @@ Forks, tutorials, workshops, and other resources based on the RealWorld project:
 - Every frontend utilizes the same hand crafted [Bootstrap 4 theme](https://github.com/gothinkster/conduit-bootstrap-template) for identical UI/UX
 - There is a hosted version of the backend API available for public usage, no API keys required
 - Interested in creating a new RealWorld stack? View our [starter guide & spec](/spec)
-
-<br />
 
 # Active Maintainers
 
@@ -85,8 +73,6 @@ Gérôme is a Software Engineer at Sfeir. He's an open source enthusiast.<br /><
 <img align="left" width="40" height="40" src="https://avatars.githubusercontent.com/u/381671?v=40">
 
 Manuel is an independent Software Engineer, creator of the [Layr framework](https://layrjs.com) and the [CodebaseShow website](https://codebase.show/).<br /><br />
-
-<br/>
 
 # Who made this?
 
@@ -122,7 +108,6 @@ Albert is a Software Engineer, DevOps ninja, and author of many technical books 
 
 [Thinkster](https://thinkster.io) creates high quality resources that help Javascript developers succeed. The RealWorld project wouldn't exist without their funding, so please consider investing in [a Pro subscription](https://thinkster.io/pro) to help support us!
 
-
 #### [James Brewer](https://twitter.com/brwr_) - Admin
 
 <img align="left" width="40" height="40" src="https://avatars1.githubusercontent.com/u/4095660?v=3&s=100">
@@ -135,8 +120,6 @@ James is a Software Engineer at Square and a contributor to the Django project. 
 
 Full stack developer, Laravel enthusiast, Digital marketing specialist and an avid gamer.<br /><br />
 
-<br/>
-
 # Special thanks to...
 
 RealWorld wouldn't be possible without the help of the open source community reviewing codebases, creating new app implementations, and many other tasks that help push this project forward. We especially appreciate the OSS leaders who have helped contribute to RealWorld:
@@ -147,9 +130,8 @@ RealWorld wouldn't be possible without the help of the open source community rev
 - **TodoMVC** ([team & contributors](https://github.com/tastejs/todomvc#team)) for their exemplary & successful work; their project & org has been an invaluable analogy for us as we've built out RealWorld
 - **James Brewer** (docs contributor to Django) for countless brainstorming sessions, helping name this project, and creating the Django codebase + tutorial
 
-<br />
-
 # License
+
 All of the codebases are **MIT licensed** unless otherwise specified.
 
 <br />
