@@ -369,7 +369,7 @@ Albert is a Software Engineer, DevOps ninja, and author of many technical books 
 
 James is a Software Engineer at Square and a contributor to the Django project. He created & maintains the RW Django codebase and continually provides guidance for the RealWorld project itself.
 
-#### [Sandeesh S.](https://github.com/SandeeshS) - Admin
+#### [Sandeesh S.](https://github.com/sandeesh) - Admin
 
 <img align="left" width="40" height="40" src="https://avatars1.githubusercontent.com/u/16877877?v=3&s=100">
 
