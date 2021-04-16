@@ -1,12 +1,12 @@
 # Ready to implement Conduit in a new framework?
 
-1. **Check and see if there any [github issues](https://github.com/gothinkster/realworld/issues) for the framework** you want to implement.
+1. **Check and see if there any [work in progress](https://github.com/gothinkster/realworld/discussions/categories/wip-implementations) for the framework** you want to implement.
 
 2. If someone else has started working on an implementation, **consider jumping in and helping them!**
 
 3. Otherwise, feel free to **[fork our starter kit](https://github.com/gothinkster/realworld-starter-kit) and get started**
 
-4. **Create a new issue** for your framework & link to your repo
+4. Submit the implementation [here](https://codebase.show/projects/realworld)
 
 
 ### [Fork our starter kit >>>](https://github.com/gothinkster/realworld-starter-kit)
@@ -59,7 +59,7 @@ That said, we do _prefer_ that every repo includes excellent tests that are exem
 
 ### Using the hosted API
 
-Simply point your [API requests](../api/) to `https://conduit.productionready.io/api` and you're good to go!
+Point your [API requests](../api/) to `https://conduit.productionready.io/api` and you're good to go!
 
 ### Unit test(s)
 
@@ -111,7 +111,7 @@ Include _at least_ **one** unit test in your repo to demonstrate how testing wor
 
 ### Using the hosted API
 
-Simply point your [API requests](../api/) to `https://conduit.productionready.io/api` and you're good to go!
+Point your [API requests](../api/) to `https://conduit.productionready.io/api` and you're good to go!
 
 ### Styles/Templates
 
