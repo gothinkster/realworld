@@ -16,15 +16,21 @@ RealWorld solves this by allowing you to choose any frontend (React, Angular 2, 
 
 *Read the [full blog post announcing RealWorld on Medium.](https://medium.com/@ericsimons/introducing-realworld-6016654d36b5)*
 
-### See an updated list of RealWorld implementations on the [CodebaseShow website](https://codebase.show/projects/realworld).
+<br />
 
+# Implementations
 
-# Create a new stack
+Over 100 implementations have been created using various languages, libraries, and frameworks.
 
-[**Create a new framework implementation >>>**](/spec)
+[**See the list of implementations on the CodebaseShow website >>>**](https://codebase.show/projects/realworld)
 
-Or you can [view upcoming stacks (WIPs)](https://github.com/gothinkster/realworld/discussions/categories/wip-implementations)
+<br />
 
+# Create a new implementation
+
+[**Create a new implementation >>>**](/spec)
+
+Or you can [view upcoming implementations (WIPs)](https://github.com/gothinkster/realworld/discussions/categories/wip-implementations)
 
 <br />
 
@@ -66,19 +72,19 @@ Forks, tutorials, workshops, and other resources based on the RealWorld project:
 
 <br />
 
-
 # Active Maintainers
 
 #### [Gérôme Grignon](https://github.com/geromegrignon) - Maintainer
 
 <img align="left" width="40" height="40" src="https://avatars.githubusercontent.com/u/32737308?v=4">
 
-Gérôme is a Software Engineer at Sfeir. He's an open source enthusiast
+Gérôme is a Software Engineer at Sfeir. He's an open source enthusiast.<br /><br />
 
 #### [Manuel Vila](https://github.com/mvila) - Maintainer
 
 <img align="left" width="40" height="40" src="https://avatars.githubusercontent.com/u/381671?v=40">
 
+Manuel is an independent Software Engineer, creator of the [Layr framework](https://layrjs.com) and the [CodebaseShow website](https://codebase.show/).<br /><br />
 
 <br/>
 
@@ -90,7 +96,7 @@ RealWorld would not be possible without the [open source community](#special-tha
 
 <img align="left" width="40" height="40" src="https://avatars1.githubusercontent.com/u/357499?v=3&s=100">
 
-MathWorker, ex-Google, ex-Computational Fluid Dynamicist, forever lover of tech & humanities ❤️
+MathWorker, ex-Google, ex-Computational Fluid Dynamicist, forever lover of tech & humanities ❤️<br /><br />
 
 #### [Cameron Chapman](https://github.com/Cameron-C-Chapman) - Core Maintainer
 
@@ -127,12 +133,11 @@ James is a Software Engineer at Square and a contributor to the Django project. 
 
 <img align="left" width="40" height="40" src="https://avatars1.githubusercontent.com/u/16877877?v=3&s=100">
 
-Full stack developer, Laravel enthusiast, Digital marketing specialist and an avid gamer.
+Full stack developer, Laravel enthusiast, Digital marketing specialist and an avid gamer.<br /><br />
 
+<br/>
 
-
-
-## Special thanks to...
+# Special thanks to...
 
 RealWorld wouldn't be possible without the help of the open source community reviewing codebases, creating new app implementations, and many other tasks that help push this project forward. We especially appreciate the OSS leaders who have helped contribute to RealWorld:
 
@@ -142,8 +147,7 @@ RealWorld wouldn't be possible without the help of the open source community rev
 - **TodoMVC** ([team & contributors](https://github.com/tastejs/todomvc#team)) for their exemplary & successful work; their project & org has been an invaluable analogy for us as we've built out RealWorld
 - **James Brewer** (docs contributor to Django) for countless brainstorming sessions, helping name this project, and creating the Django codebase + tutorial
 
-
-
+<br />
 
 # License
 All of the codebases are **MIT licensed** unless otherwise specified.
