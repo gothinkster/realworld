@@ -1,8 +1,8 @@
-# ![RealWorld Example Applications](media/realworld.png)
+# ![RealWorld Example Applications](media/realworld-dual-mode.png)
 
 ### Stay on the bleeding edge — [join our Github Discussions!](https://github.com/gothinkster/realworld/discussions) 🎉
 
-<p align="center">
+<p align="center" style="margin-top: 30px;">
 <img src="media/stacks_hr.gif"  />
 </p>
 
@@ -26,7 +26,7 @@ Over 100 implementations have been created using various languages, libraries, a
 
 [**Create a new implementation >>>**](/spec)
 
-Or you can [view upcoming implementations (WIPs)](https://github.com/gothinkster/realworld/discussions/categories/wip-implementations)
+Or you can [view upcoming implementations (WIPs)](https://github.com/gothinkster/realworld/discussions/categories/wip-implementations).
 
 # How do I get up & running?
 
