@@ -71,7 +71,7 @@
         }
       }
     },
-    "/user": {
+    "/users": {
       "post": {
         "summary": "Register a new user",
         "description": "Register a new user",
@@ -104,7 +104,9 @@
             }
           }
         }
-      },
+      }
+    },
+    "/user": {
       "get": {
         "summary": "Get current user",
         "description": "Gets the currently logged-in user",
