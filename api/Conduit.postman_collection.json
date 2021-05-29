@@ -1726,6 +1726,70 @@
 					"response": []
 				},
 				{
+					"name": "All Comments for Article without login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var is200Response = responseCode.code === 200",
+									"",
+									"tests['Response code is 200 OK'] = is200Response;",
+									"",
+									"if(is200Response){",
+									"    var responseJSON = JSON.parse(responseBody);",
+									"",
+									"    tests['Response contains \"comments\" property'] = responseJSON.hasOwnProperty('comments');",
+									"",
+									"    if(responseJSON.comments.length){",
+									"        var comment = responseJSON.comments[0];",
+									"",
+									"        tests['Comment has \"id\" property'] = comment.hasOwnProperty('id');",
+									"        tests['Comment has \"body\" property'] = comment.hasOwnProperty('body');",
+									"        tests['Comment has \"createdAt\" property'] = comment.hasOwnProperty('createdAt');",
+									"        tests['\"createdAt\" property is an ISO 8601 timestamp'] = /^\\d{4,}-[01]\\d-[0-3]\\dT[0-2]\\d:[0-5]\\d:[0-5]\\d.\\d+(?:[+-][0-2]\\d:[0-5]\\d|Z)$/.test(comment.createdAt);",
+									"        tests['Comment has \"updatedAt\" property'] = comment.hasOwnProperty('updatedAt');",
+									"        tests['\"updatedAt\" property is an ISO 8601 timestamp'] = /^\\d{4,}-[01]\\d-[0-3]\\dT[0-2]\\d:[0-5]\\d:[0-5]\\d.\\d+(?:[+-][0-2]\\d:[0-5]\\d|Z)$/.test(comment.updatedAt);",
+									"        tests['Comment has \"author\" property'] = comment.hasOwnProperty('author');",
+									"    }",
+									"}",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Requested-With",
+								"value": "XMLHttpRequest"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{APIURL}}/articles/{{slug}}/comments",
+							"host": [
+								"{{APIURL}}"
+							],
+							"path": [
+								"articles",
+								"{{slug}}",
+								"comments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Delete Comment for Article",
 					"request": {
 						"method": "DELETE",
