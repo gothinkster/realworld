@@ -1169,6 +1169,8 @@
 									"    tests['Article has \"description\" property'] = article.hasOwnProperty('description');",
 									"    tests['Article has \"tagList\" property'] = article.hasOwnProperty('tagList');",
 									"    tests['Article\\'s \"tagList\" property is an Array'] = Array.isArray(article.tagList);",
+									"    tests['The first tag is dragons'] = article.tagList[0] === 'dragons';",
+									"    tests['The second tag is training'] = article.tagList[1] === 'training';",
 									"    tests['Article has \"author\" property'] = article.hasOwnProperty('author');",
 									"    tests['Article has \"favorited\" property'] = article.hasOwnProperty('favorited');",
 									"    tests['Article has \"favoritesCount\" property'] = article.hasOwnProperty('favoritesCount');",
