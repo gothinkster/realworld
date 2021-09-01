@@ -65,6 +65,15 @@ That said, we do _prefer_ that every repo includes excellent tests that are exem
 API URL : https://realworld-temp-api.herokuapp.com/api    
 SWAGGER : https://realworld-temp-api.herokuapp.com/api-docs
 
+#### Limitations
+
+The usage of the hosted API is free and unlimited.
+However, the visibility of the created content is limited :
+- logged out users see only content created by demo accounts
+- logged in users see only their content and the content created by demo accounts
+
+Articles, Tags, and Comments are deleted on Sundays to avoid additional costs
+
 ### Unit test(s)
 
 Include _at least_ **one** unit test in your repo to demonstrate how testing works (full testing coverage is _not_ required!)
