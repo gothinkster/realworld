@@ -1,0 +1,41 @@
+name: \U0001F680 Feature request
+description: Suggest a feature for RealWorld project
+title: '[Feature Request]:'
+assignees:
+  - geromegrignon
+body:
+  - type: markdown
+    attributes:
+      value: '# Feature Request'
+  - type: dropdown
+    attributes:
+      label: Relevant Scope
+      description: What is the scope of this request?
+      options:
+        - Frontend specs
+        - Backend spcs
+        - 'Other: describe below'
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Description
+      description: ' <!-- ✍️--> '
+      render: markup
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Describe the solution you'd like
+      description: If you have a solution in mind, please describe it.
+      render: markup
+  - type: textarea
+    attributes:
+      label: Describe alternatives you've considered
+      description: Have you considered any alternative solutions or workarounds?
+      render: markup
+  - type: markdown
+    attributes:
+      value: >-
+        This template was generated with [Issue Forms
+        Creator](https://www.issue-forms-creator.app/)
