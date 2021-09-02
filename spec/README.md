@@ -67,6 +67,9 @@ SWAGGER : https://realworld-temp-api.herokuapp.com/api-docs
 
 #### Limitations
 
+the hosted API receives no traffic in a 30-minute period, it will sleep.
+In such a situation, there will be a additional delay on the first request.
+
 The usage of the hosted API is free and unlimited.
 However, the visibility of the created content is limited :
 - logged out users see only content created by demo accounts
