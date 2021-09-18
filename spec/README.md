@@ -62,8 +62,7 @@ That said, we do _prefer_ that every repo includes excellent tests that are exem
 > To fix performance issues and the presence of NSFW content on the current API, we encourage you to use the new temporary API : `https://realworld-temp-api.herokuapp.com/api`
 > Please keep in mind we'll soon move back to `https://conduit.productionready.io/api`
 
-API URL : https://realworld-temp-api.herokuapp.com/api    
-SWAGGER : https://realworld-temp-api.herokuapp.com/api-docs
+API URL : https://realworld-temp-api.herokuapp.com/api (this url exposes a swagger documentation too)
 
 #### Limitations
 
