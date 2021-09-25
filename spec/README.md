@@ -129,9 +129,7 @@ Include _at least_ **one** unit test in your repo to demonstrate how testing wor
 > To fix performance issues and the presence of NSFW content on the current API, we encourage you to use the new temporary API : https://realworld-temp-api.herokuapp.com/api`
 > Please keep in mind we'll soon move back to `https://conduit.productionready.io/api`
 
-API URL : https://realworld-temp-api.herokuapp.com/api    
-SWAGGER : https://realworld-temp-api.herokuapp.com/api-docs
-
+API URL : https://realworld-temp-api.herokuapp.com/api
 
 ### Styles/Templates
 
