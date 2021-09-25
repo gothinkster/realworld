@@ -2,10 +2,7 @@
   "name": "realworld",
   "version": "1.0.0",
   "description": "Fullstack example codebases for React, Angular, Node, Django, Rails & more",
-  "main": "index.js",
-  "scripts": {
-    "test": "true"
-  },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/gothinkster/realworld.git"
@@ -24,8 +21,6 @@
   },
   "homepage": "https://github.com/gothinkster/realworld#readme",
   "devDependencies": {
-    "axios": "^0.18.0",
-    "js-yaml": "^3.11.0",
-    "newman": "^5.2.3"
+    "newman": "^5.3.0"
   }
 }
