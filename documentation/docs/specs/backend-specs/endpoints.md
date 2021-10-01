@@ -25,7 +25,7 @@ Example request body:
 }
 ```
 
-No authentication required, returns a [User](#users-for-authentication)
+No authentication required, returns a [User](/specs/backend-specs/api-response-format.md#users-for-authentication)
 
 Required fields: `email`, `password`
 
@@ -45,7 +45,7 @@ Example request body:
 }
 ```
 
-No authentication required, returns a [User](#users-for-authentication)
+No authentication required, returns a [User](/specs/backend-specs/api-response-format.md#users-for-authentication)
 
 Required fields: `email`, `username`, `password`
 
@@ -55,7 +55,7 @@ Required fields: `email`, `username`, `password`
 
 `GET /api/user`
 
-Authentication required, returns a [User](#users-for-authentication) that's the current user
+Authentication required, returns a [User](/specs/backend-specs/api-response-format.md#users-for-authentication) that's the current user
 
 
 
@@ -74,7 +74,7 @@ Example request body:
 }
 ```
 
-Authentication required, returns the [User](#users-for-authentication)
+Authentication required, returns the [User](/specs/backend-specs/api-response-format.md#users-for-authentication)
 
 
 Accepted fields: `email`, `username`, `password`, `image`, `bio`
@@ -85,7 +85,7 @@ Accepted fields: `email`, `username`, `password`, `image`, `bio`
 
 `GET /api/profiles/:username`
 
-Authentication optional, returns a [Profile](#profile)
+Authentication optional, returns a [Profile](/specs/backend-specs/api-response-format.md#profile)
 
 
 
@@ -93,7 +93,7 @@ Authentication optional, returns a [Profile](#profile)
 
 `POST /api/profiles/:username/follow`
 
-Authentication required, returns a [Profile](#profile)
+Authentication required, returns a [Profile](/specs/backend-specs/api-response-format.md#profile)
 
 No additional parameters required
 
@@ -103,7 +103,7 @@ No additional parameters required
 
 `DELETE /api/profiles/:username/follow`
 
-Authentication required, returns a [Profile](#profile)
+Authentication required, returns a [Profile](/specs/backend-specs/api-response-format.md#profile)
 
 No additional parameters required
 
@@ -137,7 +137,7 @@ Offset/skip number of articles (default is 0):
 
 `?offset=0`
 
-Authentication optional, will return [multiple articles](#multiple-articles), ordered by most recent first
+Authentication optional, will return [multiple articles](/specs/backend-specs/api-response-format.md#multiple-articles), ordered by most recent first
 
 
 
@@ -145,16 +145,16 @@ Authentication optional, will return [multiple articles](#multiple-articles), or
 
 `GET /api/articles/feed`
 
-Can also take `limit` and `offset` query parameters like [List Articles](#list-articles)
+Can also take `limit` and `offset` query parameters like [List Articles](/specs/backend-specs/api-response-format.md#list-articles)
 
-Authentication required, will return [multiple articles](#multiple-articles) created by followed users, ordered by most recent first.
+Authentication required, will return [multiple articles](/specs/backend-specs/api-response-format.md#multiple-articles) created by followed users, ordered by most recent first.
 
 
 ### Get Article
 
 `GET /api/articles/:slug`
 
-No authentication required, will return [single article](#single-article)
+No authentication required, will return [single article](/specs/backend-specs/api-response-format.md#single-article)
 
 ### Create Article
 
@@ -173,7 +173,7 @@ Example request body:
 }
 ```
 
-Authentication required, will return an [Article](#single-article)
+Authentication required, will return an [Article](/specs/backend-specs/api-response-format.md#single-article)
 
 Required fields: `title`, `description`, `body`
 
@@ -195,7 +195,7 @@ Example request body:
 }
 ```
 
-Authentication required, returns the updated [Article](#single-article)
+Authentication required, returns the updated [Article](/specs/backend-specs/api-response-format.md#single-article)
 
 Optional fields: `title`, `description`, `body`
 
@@ -224,7 +224,7 @@ Example request body:
 }
 ```
 
-Authentication required, returns the created [Comment](#single-comment)
+Authentication required, returns the created [Comment](/specs/backend-specs/api-response-format.md#single-comment)
 
 Required field: `body`
 
@@ -234,7 +234,7 @@ Required field: `body`
 
 `GET /api/articles/:slug/comments`
 
-Authentication optional, returns [multiple comments](#multiple-comments)
+Authentication optional, returns [multiple comments](/specs/backend-specs/api-response-format.md#multiple-comments)
 
 
 
@@ -250,7 +250,7 @@ Authentication required
 
 `POST /api/articles/:slug/favorite`
 
-Authentication required, returns the [Article](#single-article)
+Authentication required, returns the [Article](/specs/backend-specs/api-response-format.md#single-article)
 
 No additional parameters required
 
@@ -260,7 +260,7 @@ No additional parameters required
 
 `DELETE /api/articles/:slug/favorite`
 
-Authentication required, returns the [Article](#single-article)
+Authentication required, returns the [Article](/specs/backend-specs/api-response-format.md#single-article)
 
 No additional parameters required
 
@@ -270,4 +270,4 @@ No additional parameters required
 
 `GET /api/tags`
 
-No authentication required, returns a [List of Tags](#list-of-tags)
+No authentication required, returns a [List of Tags](/specs/backend-specs/api-response-format.md#list-of-tags)
