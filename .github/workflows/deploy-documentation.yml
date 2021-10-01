@@ -1,0 +1,23 @@
+name: deploy-documentation
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  gh-release:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: documentation
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+      - run: npm ci
+      - run: npm run build
+      - uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./documentation/build
