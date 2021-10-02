@@ -1,4 +1,6 @@
 # ![RealWorld Example Applications](media/realworld-dual-mode.png)
+![GitHub branch checks state](https://img.shields.io/github/checks-status/gothinkster/realworld/gh-pages?logo=github&style=for-the-badge) ![GitHub repo size](https://img.shields.io/github/repo-size/gothinkster/realworld?color=%23ff000&logo=github&style=for-the-badge) ![GitHub branch checks state](https://img.shields.io/github/checks-status/gothinkster/realworld/gh-pages?logo=github&style=for-the-badge) ![GitHub forks](https://img.shields.io/github/forks/gothinkster/realworld?color=%23ff&logo=github&style=for-the-badge)
+======
 
 
 <p align="center" style="margin-top: 30px;">
