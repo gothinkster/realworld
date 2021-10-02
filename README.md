@@ -21,7 +21,7 @@ Join us on [GitHub Discussions!](https://github.com/gothinkster/realworld/discus
 
 Over 100 implementations have been created using various languages, libraries, and frameworks.
 
-Explore them on [**CodebaseShow**](https://codebase.show/projects/realworld)
+Explore them on [**CodebaseShow**](https://codebase.show/projects/realworld).
 
 # Create a new implementation
 
