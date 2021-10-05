@@ -22,7 +22,7 @@ Join us on [GitHub Discussions!](https://github.com/gothinkster/realworld/discus
 Over 100 implementations have been created using various languages, libraries, and frameworks.
 
 Explore them on [**CodebaseShow**](https://codebase.show/projects/realworld).
-
+## Steps to create a new implementation
 # Create a new implementation
 
 [**Create a new implementation >>>**](/spec)
@@ -38,7 +38,7 @@ Or you can [view upcoming implementations (WIPs)](https://github.com/gothinkster
 - Interested in creating a new RealWorld stack? View our [starter guide & spec](/spec)
 
 # Active Maintainers
-
+## List of maintainers
 #### [Gérôme Grignon](https://github.com/geromegrignon) - Maintainer
 
 <img align="left" width="40" height="40" src="https://avatars.githubusercontent.com/u/32737308?v=4">
