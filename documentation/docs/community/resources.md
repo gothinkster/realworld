@@ -21,5 +21,5 @@ Forks, tutorials, workshops, and other resources based on the RealWorld project:
 
 
 :::tip
-Hello fellow writer, get in touch with us in [**GitHub Discussions**](https://github.com/gothinkster/realworld/discussions/categories/community) so we can add your rRealWorld related content here.
+Hello fellow writer, get in touch with us in [**GitHub Discussions**](https://github.com/gothinkster/realworld/discussions/categories/community) so we can add your RealWorld related content here.
 :::
