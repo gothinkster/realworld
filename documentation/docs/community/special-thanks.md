@@ -4,7 +4,7 @@ sidebar_position: 3
 
 # Special Thanks
 
-RealWorld wouldn't be possible without the help of the open source community reviewing codebases, creating new app implementations, and many other tasks that help push this project forward. We especially appreciate the OSS leaders who have helped contribute to RealWorld:
+RealWorld would not be possible without the open source community's assistance in reviewing codebases, developing new app implementations, and a variety of other duties that help the project progress. We'd like to thank the following OSS leaders for their contributions to RealWorld:
 
 - **Dan Abramov** (creator of Redux) for  helping [spark the initial idea](https://twitter.com/dan_abramov/status/692009757775896577), [getting the Redux community involved](https://github.com/reactjs/redux/issues/1353), as well as graciously taking the time to provide feedback on the Redux codebase
 - **Max Lynch** (creator of Ionic) for taking the time to provide guidance in the early days of this project
