@@ -6,7 +6,7 @@ sidebar_position: 2
 
 ## Remember: Keep your codebases _simple_, yet _robust_.
 
-If a newbie dev to your framework comes along and can't grok the high level architecture within 10 minutes, it probably means that you went a little overboard in the engineering department.
+If a new developer to your framework comes along and takes longer than 10 minutes to grasp the high-level architecture, it's likely that you went a little overboard in the engineering department.
 
 Alternatively, you should _never_ forgo following fundamental best practices for the sake of simplicity, lest we teach that same newbie dev the _wrong_ way of doing things.
 
@@ -16,7 +16,7 @@ The quality & architecture of Conduit implementations should reflect something s
 
 **TL;DR** — we require a minimum of **one** unit test with every repo, but we'd definitely prefer all of them to include excellent testing coverage if the maintainers are willing to add it (or if someone in the community is kind enough to make a pull request :)
 
-We think tests are a good idea, and we're huge fans of TDD in general. However, building Conduit implementations without full testing coverage is a meaningful time investment as is, so we originally didn’t include full testing coverage in the spec because we figured that if people wanted it, then it would be a great “extra credit” objective for the repo. For example, our Angular 2 repo had a request for unit tests and some awesome community members are now working on a PR for it.
+We believe that tests are a good concept, and we are big supporters of TDD in general. Building Conduit implementations without complete testing coverage, on the other hand, is a significant time commitment in and of itself, therefore we didn't include it in the spec at first since we believed that if people wanted it, it would be a fantastic "extra credit" aim for the repo. For example, a request for unit tests was made in our Angular 2 repo, and several fantastic community members are presently working on a PR to address it.
 
 Another reason we didn’t include them in the spec is from the "Golden Rule" above:
 
