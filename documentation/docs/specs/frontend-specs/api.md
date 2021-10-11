@@ -4,7 +4,7 @@ sidebar_position: 5
 
 # API
 
-> This project provides you a public hosted API to test your frontend implementations.
+> This project provides you with a public hosted API to test your frontend implementations.
 
 Point your API requests to `https://conduit.productionready.io/api` and you're good to go!
 
@@ -16,7 +16,7 @@ The usage of the API is free and non-limited by any kind of key.
 ## API Limitations
 
 The public APi is currently hosted on a free plan project on Heroku.  
-If the hosted API receives no traffic in a 30-minute period, it will sleep. In such a situation, there will be a additional delay on the first request.
+If the hosted API receives no traffic in 30 minutes, it will sleep. In such a situation, there will be an additional delay on the first request.
 
 :::info
 To provide everyone a **safe** and **healthy** experience, the following limitations have been introduced in 2021
@@ -26,7 +26,7 @@ The visibility of user content is limited :
 - logged out users see only content created by demo accounts
 - logged in users see only their content and the content created by demo accounts
 
-Non demo Articles, Tags, and Comments are deleted on Sundays to avoid additional costs.
+Non-demo Articles, Tags, and Comments are deleted on Sundays to avoid additional costs.
 
 ## Swagger documentation
 

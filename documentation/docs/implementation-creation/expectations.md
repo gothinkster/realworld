@@ -10,7 +10,7 @@ If a new developer to your framework comes along and takes longer than 10 minute
 
 Alternatively, you should _never_ forgo following fundamental best practices for the sake of simplicity, lest we teach that same newbie dev the _wrong_ way of doing things.
 
-The quality & architecture of Conduit implementations should reflect something similar to an early stage startup's MVP: functionally complete & stable, but not unnecessarily over-engineered.
+The quality & architecture of Conduit implementations should reflect something similar to an early-stage startup's MVP: functionally complete & stable, but not unnecessarily over-engineered.
 
 ## To write tests, or to not write tests?
 
@@ -20,11 +20,11 @@ We believe that tests are a good concept, and we are big supporters of TDD in ge
 
 Another reason we didn’t include them in the spec is from the "Golden Rule" above:
 
-> The quality & architecture of Conduit implementations should reflect something similar to an early stage startup's MVP: functionally complete & stable, but not unnecessarily over-engineered.
+> The quality & architecture of Conduit implementations should reflect something similar to an early-stage startup's MVP: functionally complete & stable, but not unnecessarily over-engineered.
 
-Most startups we know that work in consumer facing apps (like Conduit) don’t apply TDD/testing until they have solid product-market fit, which is smart because they then spend most of their time iterating on product & UI and thus are far more likely to find PMF.
+Most startups we know that work in consumer-facing apps (like Conduit) don’t apply TDD/testing until they have a solid product-market fit, which is smart because they then spend most of their time iterating on product & UI and thus are far more likely to find PMF.
 
-This doesn’t mean that TDD/testing === over-engineering, but in certain circumstances that statement does evaluate true (ex: consumer product finding PMF, sideprojects, robust prototypes, etc).
+This doesn’t mean that TDD/testing === over-engineering, but in certain circumstances that statement does evaluate true (ex: consumer product finding PMF, side-projects, robust prototypes, etc).
 
 That said, we do _prefer_ that every repo includes excellent tests that are exemplary of TDD/testing with that framework 👍
 
