@@ -26,7 +26,7 @@ The visibility of user content is limited :
 - logged out users see only content created by demo accounts
 - logged in users see only their content and the content created by demo accounts
 
-Non-demo Articles, Tags, and Comments are deleted on Sundays to avoid additional costs.
+Non-demo Articles, Tags, and Comments are deleted on a daily basis to avoid additional costs.
 
 ## Swagger documentation
 
