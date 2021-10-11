@@ -13,7 +13,7 @@ body:
       description: What is the scope of this request?
       options:
         - Frontend specs
-        - Backend spcs
+        - Backend specs
         - 'Other: describe below'
     validations:
       required: true
