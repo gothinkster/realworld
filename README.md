@@ -34,7 +34,7 @@ Or you can [view upcoming implementations (WIPs)](https://github.com/gothinkster
 - ["Introducing RealWorld 🙌"](https://medium.com/@ericsimons/introducing-realworld-6016654d36b5) by Eric Simons
 - Every tutorial is built against the same [API spec](api/) to ensure modularity of every frontend & backend
 - Every frontend utilizes the same hand crafted [Bootstrap 4 theme](https://github.com/gothinkster/conduit-bootstrap-template) for identical UI/UX
-- There is a hosted version of the backend API available for public usage, no API keys required
+- There is a hosted version of the backend API available for public usage, no API keys are required
 - Interested in creating a new RealWorld stack? View our [starter guide & spec](https://gothinkster.github.io/realworld/docs/implementation-creation/introduction)
 
 # Active Maintainers
