@@ -1,4 +1,4 @@
-# ![RealWorld Example Applications](media/realworld-dual-mode.png)
+![RealWorld Example Applications](media/realworld-dual-mode.png)
 
 
 <p align="center" style="margin-top: 30px;">
