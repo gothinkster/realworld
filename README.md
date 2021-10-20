@@ -11,7 +11,7 @@
 
 While most "todo" demos provide an excellent cursory glance at a framework's capabilities, they typically don't convey the knowledge & perspective required to actually build _real_ applications with it.
 
-**RealWorld** solves this by allowing you to choose any frontend (React, Angular, & more) and any backend (Node, Django, & more) and see how they power a real world, beautifully designed fullstack app called [**Conduit**](https://demo.realworld.io).
+**RealWorld** solves this by allowing you to choose any frontend (React, Angular, & more) and any backend (Node, Django, & more) and see how they power a real-world, beautifully designed full-stack app called [**Conduit**](https://demo.realworld.io).
 
 *Read the [full blog post announcing RealWorld on Medium.](https://medium.com/@ericsimons/introducing-realworld-6016654d36b5)*
 
@@ -33,7 +33,7 @@ Or you can [view upcoming implementations (WIPs)](https://github.com/gothinkster
 
 - ["Introducing RealWorld 🙌"](https://medium.com/@ericsimons/introducing-realworld-6016654d36b5) by Eric Simons
 - Every tutorial is built against the same [API spec](api/) to ensure modularity of every frontend & backend
-- Every frontend utilizes the same hand crafted [Bootstrap 4 theme](https://github.com/gothinkster/conduit-bootstrap-template) for identical UI/UX
+- Every frontend utilizes the same handcrafted [Bootstrap 4 theme](https://github.com/gothinkster/conduit-bootstrap-template) for identical UI/UX
 - There is a hosted version of the backend API available for public usage, no API keys are required
 - Interested in creating a new RealWorld stack? View our [starter guide & spec](https://gothinkster.github.io/realworld/docs/implementation-creation/introduction)
 
@@ -43,7 +43,7 @@ Or you can [view upcoming implementations (WIPs)](https://github.com/gothinkster
 
 <img align="left" width="40" height="40" src="https://avatars.githubusercontent.com/u/32737308?v=4">
 
-Gérôme is a Software Engineer at Sfeir. He's an open source enthusiast.<br /><br />
+Gérôme is a Software Engineer at Sfeir. He's an open-source enthusiast.<br /><br />
 
 #### [Manuel Vila](https://github.com/mvila) - Maintainer
 
