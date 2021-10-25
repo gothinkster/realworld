@@ -77,6 +77,10 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
             title: 'Community',
             items: [
               {
+                label: 'CodebaseShow',
+                href: 'https://codebase.show/projects/realworld'
+              },
+              {
                 label: 'Github Discussions',
                 href: 'https://github.com/gothinkster/realworld/discussions',
               },
