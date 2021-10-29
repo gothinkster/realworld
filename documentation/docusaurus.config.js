@@ -61,18 +61,6 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
       footer: {
         style: 'dark',
         links: [
-            /*
-          {
-            title: 'Docs',
-            items: [
-              {
-                label: 'Tutorial',
-                to: '/docs/intro',
-              },
-            ],
-          },
-
-             */
           {
             title: 'Community',
             items: [
@@ -81,7 +69,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
                 href: 'https://codebase.show/projects/realworld'
               },
               {
-                label: 'Github Discussions',
+                label: 'GitHub Discussions',
                 href: 'https://github.com/gothinkster/realworld/discussions',
               },
                 /*
