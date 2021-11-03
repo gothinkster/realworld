@@ -232,13 +232,13 @@ paths:
       parameters:
         - name: limit
           in: query
-          description: Limit number of articles returned (default is 20)
+          description: Limit number of articles returned
           schema:
             type: integer
             default: 20
         - name: offset
           in: query
-          description: Offset/skip number of articles (default is 0)
+          description: Offset/skip number of articles
           schema:
             type: integer
             default: 0
@@ -286,13 +286,13 @@ paths:
             type: string
         - name: limit
           in: query
-          description: Limit number of articles returned (default is 20)
+          description: Limit number of articles returned
           schema:
             type: integer
             default: 20
         - name: offset
           in: query
-          description: Offset/skip number of articles (default is 0)
+          description: Offset/skip number of articles
           schema:
             type: integer
             default: 0
