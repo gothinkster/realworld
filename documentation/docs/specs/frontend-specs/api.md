@@ -37,7 +37,7 @@ The **limited** branch will be more suitable if you plan to host your implementa
 ## Demo API
 
 This project provides you with a public hosted API to test your frontend implementations.  
-Point your API requests to `https://conduit.productionready.io/api` and you're good to go!
+Point your API requests to `https://api.realworld.io/api` and you're good to go!
 
 
 ### API Usage
@@ -51,7 +51,7 @@ Non-demo Articles, Tags, and Comments are deleted on a daily basis to avoid addi
 
 ### Swagger documentation
 
-The API exposes a **Swagger** documentation on `https://conduit.productionready.io/api-docs`.
+The API exposes a **Swagger** documentation on `https://api.realworld.io/api-docs`.
 
 Most of the requests require a valid token.
 
@@ -59,8 +59,8 @@ Most of the requests require a valid token.
 
 You can retrieve a token by logging in or by registering.
 
-Log in : https://conduit.productionready.io/api-docs/#/User%20and%20Authentication/Login  
-Register: https://conduit.productionready.io/api-docs/#/User%20and%20Authentication/CreateUser  
+Log in : https://api.realworld.io/api-docs/#/User%20and%20Authentication/Login  
+Register: https://api.realworld.io/api-docs/#/User%20and%20Authentication/CreateUser  
 
 * Click the `Try it out` button
 * populate the body input with the related credentials
