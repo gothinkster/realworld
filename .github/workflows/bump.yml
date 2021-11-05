@@ -29,6 +29,6 @@ jobs:
           doc: ${{secrets.BUMP_SLUG}}
           token: ${{secrets.BUMP_TOKEN}}
           file: api/openapi.yml
-          command: diff
+          command: preview
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
