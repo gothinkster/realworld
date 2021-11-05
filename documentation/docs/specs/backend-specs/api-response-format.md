@@ -29,7 +29,7 @@ Make sure the right content type like `Content-Type: application/json; charset=u
   "profile": {
     "username": "jake",
     "bio": "I work at statefarm",
-    "image": "https://static.productionready.io/images/smiley-cyrus.jpg",
+    "image": "https://api.realworld.io/images/smiley-cyrus.jpg",
     "following": false
   }
 }
