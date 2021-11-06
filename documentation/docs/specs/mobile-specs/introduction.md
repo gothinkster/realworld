@@ -9,7 +9,7 @@ sidebar_position: 1
 ### Using the hosted API
 
 API URL : https://api.realworld.io/api    
-SWAGGER : https://api.realworld.io/api-docs
+OpenAPI : https://bump.sh/doc/realworld
 
 
 ### Styles/Templates
