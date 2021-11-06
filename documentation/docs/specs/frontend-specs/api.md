@@ -49,9 +49,9 @@ If the hosted API receives no traffic in 30 minutes, it will sleep. In such a si
 
 Non-demo Articles, Tags, and Comments are deleted on a daily basis to avoid additional costs.
 
-### Swagger documentation
+### OpenAPI documentation
 
-The API exposes a **Swagger** documentation on `https://api.realworld.io/api-docs`.
+The API exposes a **OpenAPI** documentation on `hhttps://bump.sh/doc/realworld`.
 
 Most of the requests require a valid token.
 
