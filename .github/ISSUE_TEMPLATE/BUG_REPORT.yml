@@ -1,0 +1,31 @@
+name: 🐞 Bug report
+description: Report a bug in the RealWorld project
+title: '[Bug]: '
+labels:
+  - bug
+assignees:
+  - geromegrignon
+body:
+  - type: dropdown
+    attributes:
+      label: Relevant scope
+      description: What is the scope of this request?
+      options:
+        - Frontend specs
+        - Backend specs
+        - Deployed demo
+        - 'Other: describe below'
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Description
+      description: A clear and concise description of the problem
+      render: markup
+    validations:
+      required: true
+  - type: markdown
+    attributes:
+      value: >-
+        This template was generated with [Issue Forms
+        Creator](https://www.issue-forms-creator.app/)
