@@ -4,7 +4,7 @@ sidebar_position: 2
 
 # Who made this?
 
-RealWorld would not be possible without the [open source community](https://gothinkster.github.io/realworld/docs/community/special-thanks) continuously helping push the project forward. In addition, the former team was composed of:
+RealWorld would not be possible without the [open source community](https://realworld-docs.netlify.app/docs/community/special-thanks) continuously helping push the project forward. In addition, the former team was composed of:
 
 #### [Anish Karandikar](https://github.com/anishkny) - Core Maintainer
 
