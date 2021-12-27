@@ -6,8 +6,8 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 (module.exports = {
   title: 'RealWorld',
   tagline: 'The mother of all demo apps',
-  url: 'http://gothinkster.github.io/realworld/',
-  baseUrl: '/realworld/',
+  url: 'https://realworld-docs.netlify.app/',
+  baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
