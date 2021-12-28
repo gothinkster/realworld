@@ -682,6 +682,12 @@ components:
           type: string
         image:
           type: string
+      example:
+        email: jake@jake.jake
+        token: jwt.token.here
+        username: jake
+        bio: I work at State Farm.
+        image: null
     UserResponse:
       required:
         - user
@@ -732,6 +738,11 @@ components:
           type: string
         following:
           type: boolean
+      example:
+        username: jake
+        bio: I work at State Farm.
+        image: https://api.realworld.io/images/smiley-cyrus.jpg
+        following: false
     Article:
       required:
         - author
@@ -748,16 +759,21 @@ components:
       properties:
         slug:
           type: string
+          example: how-to-train-your-dragon
         title:
           type: string
+          example: How to train your dragon
         description:
           type: string
+          example: Ever wonder how?
         body:
           type: string
+          example: It takes a Jacobian
         tagList:
           type: array
           items:
             type: string
+          example: ["dragons", "training"]
         createdAt:
           type: string
           format: date-time
@@ -766,6 +782,7 @@ components:
           format: date-time
         favorited:
           type: boolean
+          example: false
         favoritesCount:
           type: integer
         author:
@@ -787,8 +804,11 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Article'
+          example:
+            [{"slug": "how-to-train-your-dragon", "title": "How to train your dragon", "description": "Ever wonder how?", "body": "It takes a Jacobian", "tagList": ["dragons", "training"], "createdAt": "2021-02-18T03:22:56.637Z", "updatedAt": "2021-02-18T03:48:35.824Z", "favorited": false, "favoritesCount": 0, "author": {"username": "jake", "bio": "I work at State Farm.", "image": "https://i.stack.imgur.com/xHWG8.jpg", "following": false}}, {"slug": "how-to-train-your-dragon-2", "title": "How to train your dragon 2", "description": "So toothless", "body": "It is a dragon", "tagList": ["dragons", "training"],    "createdAt": "2021-02-18T03:22:56.637Z", "updatedAt": "2021-02-18T03:48:35.824Z", "favorited": false, "favoritesCount": 0, "author": {"username": "jake", "bio": "I work at State Farm.", "image": "https://i.stack.imgur.com/xHWG8.jpg", "following": false}}]
         articlesCount:
           type: integer
+          example: 2
     NewArticle:
       required:
         - body
@@ -850,6 +870,8 @@ components:
           type: string
         author:
           $ref: '#/components/schemas/Profile'
+      example: 
+        {"comment": { "id": 1, "createdAt": "2021-02-18T03:22:56.637Z", "updatedAt": "2021-02-18T03:22:56.637Z", "body": "It takes a Jacobian", "author": {"username": "jake", "bio": "I work at State Farm.", "image": "https://i.stack.imgur.com/xHWG8.jpg", "following": false}}}
     SingleCommentResponse:
       required:
         - comment
@@ -889,6 +911,8 @@ components:
           type: array
           items:
             type: string
+      example: 
+        tags: ["reactjs", "angularjs"]
     GenericErrorModel:
       required:
         - errors
