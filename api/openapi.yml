@@ -708,13 +708,30 @@ components:
           type: string
         image:
           type: string
+      example:
+        email: jake@jake.jake
+        token: jwt.token.here
+        username: jake
+        bio: I work at State Farm.
+        image: null
     UpdateUserRequest:
       required:
         - user
       type: object
       properties:
-        user:
-          $ref: '#/components/schemas/UpdateUser'
+        email:
+          type: string
+        username:
+          type: string
+        bio:
+          type: string
+        image:
+          type: string
+      example:
+        email: jake@jake.jake
+        username: jake
+        bio: I work at State Farm.
+        image: null
     ProfileResponse:
       required:
         - profile
@@ -870,8 +887,16 @@ components:
           type: string
         author:
           $ref: '#/components/schemas/Profile'
-      example: 
-        {"comment": { "id": 1, "createdAt": "2021-02-18T03:22:56.637Z", "updatedAt": "2021-02-18T03:22:56.637Z", "body": "It takes a Jacobian", "author": {"username": "jake", "bio": "I work at State Farm.", "image": "https://i.stack.imgur.com/xHWG8.jpg", "following": false}}}
+      example:
+        id: 1
+        createdAt: "2021-02-18T03:22:56.637Z"
+        updatedAt: "2021-02-18T03:22:56.637Z"
+        body: "It takes a Jacobian"
+        author:
+          username: "jake"
+          bio: "I work at State Farm."
+          image: "https://i.stack.imgur.com/xHWG8.jpg"
+          following: false
     SingleCommentResponse:
       required:
         - comment
