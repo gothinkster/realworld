@@ -24,7 +24,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2.3.5
-      - uses: bump-sh/github-action@v1.0.6
+      - uses: bump-sh/github-action@v1
         with:
           doc: ${{secrets.BUMP_SLUG}}
           token: ${{secrets.BUMP_TOKEN}}
