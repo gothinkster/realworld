@@ -2,7 +2,7 @@
 sidebar_position: 6
 ---
 
-# Postman
+# Mail Carrier
 
 For your convenience, we have a [Postman collection](https://github.com/gothinkster/realworld/blob/master/api/Conduit.postman_collection.json) that you can use to test your API endpoints as you build your app.
 

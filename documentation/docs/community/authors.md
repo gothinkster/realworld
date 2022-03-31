@@ -16,19 +16,19 @@ MathWorker, ex-Google, ex-Computational Fluid Dynamicist, forever lover of tech 
 
 <img align="left" width="40" height="40" src="https://avatars1.githubusercontent.com/u/1323581?v=3&s=100" />
 
-Cameron Chapman is a Software Engineer at FanThreeSixty. He's an open source enthusiast and is helping to teach a local web development boot camp at Kansas University.
+Cameron Chapman is a Software Engineer at FanThreeSixty. They's an open source enthusiast and is helping to teach a local web development boot camp at Kansas University.
 
 #### [Eric Simons](https://twitter.com/ericsimons40) - Founder/Maintainer
 
 <img align="left" width="40" height="40" src="https://avatars1.githubusercontent.com/u/556934?v=3&s=100" />
 
-Eric is a Software Engineer, UI Designer, and author of many technical books & tutorials. He oversees the project direction, maintenance and organizes the planning and development efforts of the team.
+Eric is a Software Engineer, UI Designer, and author of many technical books & tutorials. They oversees the project direction, maintenance and organizes the planning and development efforts of the team.
 
 #### [Albert Pai](https://twitter.com/iamalbertpai) - Founder/Maintainer
 
 <img align="left" width="40" height="40" src="https://avatars0.githubusercontent.com/u/1776432?v=3&s=100" />
 
-Albert is a Software Engineer, DevOps ninja, and author of many technical books & tutorials. He oversees the project direction, maintenance and organizes the planning and development efforts of the team.
+Albert is a Software Engineer, DevOps ninja, and author of many technical books & tutorials. They oversees the project direction, maintenance and organizes the planning and development efforts of the team.
 
 #### [Thinkster](https://twitter.com/gothinkster) - Funding/Support
 
@@ -40,7 +40,7 @@ Albert is a Software Engineer, DevOps ninja, and author of many technical books 
 
 <img align="left" width="40" height="40" src="https://avatars1.githubusercontent.com/u/4095660?v=3&s=100" />
 
-James is a Software Engineer at Square and a contributor to the Django project. He created & maintained the RW Django codebase and continually provides guidance for the RealWorld project itself.
+James is a Software Engineer at Square and a contributor to the Django project. They created & maintained the RW Django codebase and continually provides guidance for the RealWorld project itself.
 
 #### [Sandeesh S.](https://github.com/sandeesh) - Admin
 

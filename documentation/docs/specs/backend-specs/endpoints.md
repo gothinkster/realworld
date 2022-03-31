@@ -219,7 +219,7 @@ Example request body:
 ```JSON
 {
   "comment": {
-    "body": "His name was my name too."
+    "body": "Their name was my name too."
   }
 }
 ```
