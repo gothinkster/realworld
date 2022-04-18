@@ -11,7 +11,7 @@ jobs:
       run:
         working-directory: documentation
     steps:
-      - uses: actions/checkout@v2.4.0
+      - uses: actions/checkout@v3.0.1
       - uses: actions/setup-node@v2
         with:
           node-version: '14'
