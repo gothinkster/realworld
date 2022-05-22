@@ -1844,7 +1844,7 @@
               "raw":""
             },
             "url":{
-              "raw":"{{APIURL}}/articles/{{slug}}/comments/{{commentId}}",
+              "raw":"{{APIURL}}/articles/comments/{{commentId}}",
               "host":[
                 "{{APIURL}}"
               ],
