@@ -168,7 +168,7 @@ Example request body:
     "title": "How to train your dragon",
     "description": "Ever wonder how?",
     "body": "You have to believe",
-    "tagList": ["reactjs", "angularjs", "dragons"]
+    "tags": ["reactjs", "angularjs", "dragons"]
   }
 }
 ```
@@ -177,7 +177,7 @@ Authentication required, will return an [Article](/specs/backend-specs/api-respo
 
 Required fields: `title`, `description`, `body`
 
-Optional fields: `tagList` as an array of Strings
+Optional fields: `tags` as an array of Strings
 
 
 
