@@ -159,7 +159,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/GenericErrorModel'
   /profiles/{username}/follow:
-    post:
+    put:
       tags:
         - Profile
       summary: Follow a user

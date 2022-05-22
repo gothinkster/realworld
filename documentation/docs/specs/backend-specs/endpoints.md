@@ -91,7 +91,7 @@ Authentication optional, returns a [Profile](/specs/backend-specs/api-response-f
 
 ### Follow user
 
-`POST /api/profiles/:username/follow`
+`PUT /api/profiles/:username/follow`
 
 Authentication required, returns a [Profile](/specs/backend-specs/api-response-format.md#profile)
 
