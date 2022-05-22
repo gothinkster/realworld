@@ -240,7 +240,7 @@ Authentication optional, returns [multiple comments](/specs/backend-specs/api-re
 
 ### Delete Comment
 
-`DELETE /api/articles/:slug/comments/:id`
+`DELETE /api/articles/comments/:id`
 
 Authentication required
 

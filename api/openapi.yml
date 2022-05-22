@@ -507,7 +507,7 @@ paths:
       security:
         - Token: []
       x-codegen-request-body-name: comment
-  /articles/{slug}/comments/{id}:
+  /articles/comments/{id}:
     delete:
       tags:
         - Comments
