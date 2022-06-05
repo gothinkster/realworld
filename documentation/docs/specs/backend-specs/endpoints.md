@@ -143,7 +143,7 @@ Authentication optional, will return [multiple articles](/specs/backend-specs/ap
 
 ### Feed Articles
 
-`GET /api/articles/feed`
+`GET /api/feed`
 
 Can also take `limit` and `offset` query parameters like [List Articles](/specs/backend-specs/api-response-format.md#list-articles)
 

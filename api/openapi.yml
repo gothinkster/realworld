@@ -221,7 +221,7 @@ paths:
                 $ref: '#/components/schemas/GenericErrorModel'
       security:
         - Token: []
-  /articles/feed:
+  /feed:
     get:
       tags:
         - Articles

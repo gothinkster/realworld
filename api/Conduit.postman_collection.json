@@ -762,12 +762,11 @@
               "raw":""
             },
             "url":{
-              "raw":"{{APIURL}}/articles/feed",
+              "raw":"{{APIURL}}/feed",
               "host":[
                 "{{APIURL}}"
               ],
               "path":[
-                "articles",
                 "feed"
               ]
             }
