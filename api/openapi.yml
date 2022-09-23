@@ -668,13 +668,13 @@ components:
         - bio
         - email
         - image
-        - token
+        - password
         - username
       type: object
       properties:
         email:
           type: string
-        token:
+        password:
           type: string
         username:
           type: string
@@ -694,7 +694,7 @@ components:
       properties:
         email:
           type: string
-        token:
+        password:
           type: string
         username:
           type: string
