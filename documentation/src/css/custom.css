@@ -6,14 +6,17 @@
 
 /* You can override the default Infima variables here. */
 :root {
-  --ifm-color-primary: #25c2a0;
-  --ifm-color-primary-dark: rgb(33, 175, 144);
+  --ifm-color-primary: #6e2c6e;
+  --ifm-color-primary-dark: #d4d5d8;
   --ifm-color-primary-darker: rgb(31, 165, 136);
   --ifm-color-primary-darkest: rgb(26, 136, 112);
-  --ifm-color-primary-light: rgb(70, 203, 174);
-  --ifm-color-primary-lighter: rgb(102, 212, 189);
-  --ifm-color-primary-lightest: rgb(146, 224, 208);
+  --ifm-color-primary-light: red;
+  --ifm-color-primary-lighter: red;
+  --ifm-color-primary-lightest: red;
   --ifm-code-font-size: 95%;
+
+  --ifm-color-secondary-dark: #8ab903;
+  --ifm-footer-link-color: var(--ifm-color-primary-darkest);
 }
 
 .docusaurus-highlight-code-line {
@@ -25,4 +28,137 @@
 
 html[data-theme='dark'] .docusaurus-highlight-code-line {
   background-color: rgba(0, 0, 0, 0.3);
+}
+
+.footer__link-item {
+  color: lightgray;
+}
+
+.footer__link-item:hover {
+  color: #FFF;
+}
+
+.button:hover {
+  color: #000;
+}
+
+.button--secondary {
+  background-color: #8ab903;
+  border-color: #8ab903;
+}
+
+.button--secondary:hover {
+  background-color: #d4d5d8;
+  border-color: #d4d5d8;
+}
+
+.hero__title {
+  margin-block-end: 4rem;
+}
+
+.introduction-container {
+  display: flex;
+  align-items: center;
+}
+
+.main-wrapper:has(.hero--primary) {
+  background: radial-gradient(#cf68ca, #9c479c);
+  color: #FFF !important;
+}
+
+.main-wrapper:has(.hero--primary) .hero--primary {
+  color: #FFF !important;
+}
+
+.hero--primary {
+  background: transparent !important;
+}
+
+.introduction-content {
+  font-size: 1.5rem;
+  font-weight: 200;
+  text-align: start;
+  margin-inline-start: 2rem;
+}
+
+.header-github-link:hover {
+  opacity: 0.6;
+}
+
+.header-github-link:before {
+  background: url("data:image/svg+xml;charset=utf-8,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12'/%3E%3C/svg%3E")
+  no-repeat;
+  content: "";
+  display: flex;
+  height: 30px;
+  width: 30px;
+}
+
+.header-contribute-link a {
+  text-transform: capitalize;
+}
+
+.theme-doc-markdown {
+  --ifm-link-decoration: underline;
+}
+
+@media screen and (max-width: 580px) {
+  .introduction-content {
+    font-size: 1rem;
+  }
+
+  .hero__title {
+    font-size: 2rem;
+    margin-block-end: 2rem;
+  }
+
+  .introduction-logo {
+    width: 60%;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .introduction-container {
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .introduction-content {
+    margin-block-start: 2rem;
+  }
+}
+
+@media screen and (max-width: 910px) {
+  .introduction-container {
+    align-items: start;
+  }
+}
+
+@media screen and (max-width: 996px) {
+  .header-github-link:before {
+    background: none;
+    content: "GitHub";
+    display: flex;
+    height: 30px;
+    width: 30px;
+  }
+
+  .header-github-link:hover {
+    opacity: 1;
+  }
+}
+
+@media screen and (min-width: 997px) {
+  .header-contribute-link a {
+    background-color: #8ab903;
+    color: #000 !important;
+    font-weight: 700;
+    padding: 0.7rem 2rem;
+    border-radius: 6.4px;
+    text-transform: inherit;
+  }
+
+  .header-contribute-link a:hover {
+    background-color: #d4d5d8;
+  }
 }
