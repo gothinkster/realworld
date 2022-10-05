@@ -35,7 +35,3 @@ That said, we do _prefer_ that every repo includes excellent tests that are exem
 * You should provide a README that presents an overview of your implementation and explains how to run it locally.
 * The library/framework you are using should have at least 300 GitHub stars.
 * You should do your best to keep your implementation up to date.
-
-## Project Overview
-
-"Conduit" is a social blogging site (i.e. a Medium.com clone). It uses a custom API for all requests, including authentication. You can view a live demo over at https://demo.realworld.io
