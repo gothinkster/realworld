@@ -35,7 +35,7 @@ const config = {
                     // Please change this to your repo.
                     // Remove this to remove the "edit this page" links.
                     editUrl:
-                        'https://github.com/gothinkster/realworld/tree/main/docs/docs/',
+                        'https://pr.new/github.com/gothinkster/realworld/edit/main/documentation/',
                 },
                 blog: {
                     showReadingTime: true,
