@@ -29,4 +29,11 @@ pids
 # Dependency directories
 node_modules/
 
+# Production
+/build
+
+# Generated files
+.docusaurus
+.cache-loader
+
 
