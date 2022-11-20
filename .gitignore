@@ -10,6 +10,7 @@ Thumbs.db
 
 # IDE files #
 .idea/
+.vscode/
 
 ### Node template
 # Logs
@@ -28,5 +29,3 @@ pids
 
 # Dependency directories
 node_modules/
-
-
