@@ -9,6 +9,13 @@ info:
     name: MIT License
     url: https://opensource.org/licenses/MIT
   version: 1.0.0
+tags:
+  - name: Articles
+  - name: Comments
+  - name: Favorites
+  - name: Profile
+  - name: Tags
+  - name: User and Authentication
 servers:
   - url: /api
 paths:
@@ -98,7 +105,7 @@ paths:
         - Token: []
     put:
       tags:
-        - User and Authentication
+        - user
       summary: Update current user
       description: Updated user information for current user
       operationId: UpdateCurrentUser
@@ -192,7 +199,7 @@ paths:
         - Token: []
     delete:
       tags:
-        - Profile
+        - profile
       summary: Unfollow a user
       description: Unfollow a user by username
       operationId: UnfollowUserByUsername
@@ -314,7 +321,7 @@ paths:
                 $ref: '#/components/schemas/GenericErrorModel'
     post:
       tags:
-        - Articles
+        - articles
       summary: Create an article
       description: Create an article. Auth is required
       operationId: CreateArticle
@@ -373,7 +380,7 @@ paths:
                 $ref: '#/components/schemas/GenericErrorModel'
     put:
       tags:
-        - Articles
+        - articles
       summary: Update an article
       description: Update an article. Auth is required
       operationId: UpdateArticle
@@ -412,7 +419,7 @@ paths:
       x-codegen-request-body-name: article
     delete:
       tags:
-        - Articles
+        - articles
       summary: Delete an article
       description: Delete an article. Auth is required
       operationId: DeleteArticle
@@ -470,7 +477,7 @@ paths:
                 $ref: '#/components/schemas/GenericErrorModel'
     post:
       tags:
-        - Comments
+        - comments
       summary: Create a comment for an article
       description: Create a comment for an article. Auth is required
       operationId: CreateArticleComment
@@ -607,8 +614,11 @@ paths:
         - Token: []
   /tags:
     get:
+      tags:
+        - Tags
       summary: Get tags
       description: Get tags. Auth not required
+      operationId: GetTags
       responses:
         200:
           description: OK
