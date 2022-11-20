@@ -105,7 +105,7 @@ paths:
         - Token: []
     put:
       tags:
-        - user
+        - User and Authentication
       summary: Update current user
       description: Updated user information for current user
       operationId: UpdateCurrentUser
@@ -199,7 +199,7 @@ paths:
         - Token: []
     delete:
       tags:
-        - profile
+        - Profile
       summary: Unfollow a user
       description: Unfollow a user by username
       operationId: UnfollowUserByUsername
@@ -321,7 +321,7 @@ paths:
                 $ref: '#/components/schemas/GenericErrorModel'
     post:
       tags:
-        - articles
+        - Articles
       summary: Create an article
       description: Create an article. Auth is required
       operationId: CreateArticle
@@ -380,7 +380,7 @@ paths:
                 $ref: '#/components/schemas/GenericErrorModel'
     put:
       tags:
-        - articles
+        - Articles
       summary: Update an article
       description: Update an article. Auth is required
       operationId: UpdateArticle
@@ -419,7 +419,7 @@ paths:
       x-codegen-request-body-name: article
     delete:
       tags:
-        - articles
+        - Articles
       summary: Delete an article
       description: Delete an article. Auth is required
       operationId: DeleteArticle
@@ -477,7 +477,7 @@ paths:
                 $ref: '#/components/schemas/GenericErrorModel'
     post:
       tags:
-        - comments
+        - Comments
       summary: Create a comment for an article
       description: Create a comment for an article. Auth is required
       operationId: CreateArticleComment
