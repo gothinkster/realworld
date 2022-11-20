@@ -34,27 +34,17 @@ paths:
               $ref: '#/components/schemas/LoginUserRequest'
         required: true
       responses:
-        200:
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UserResponse'
-        401:
-          description: Unauthorized
-          content: {}
-        422:
-          description: Unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GenericErrorModel'
+        '200':
+          '$ref': '#/components/responses/UserResponse'
+        '401':
+          '$ref': '#/components/responses/Unauthorized'
+        '422':
+          '$ref': '#/components/responses/GenericError'
       x-codegen-request-body-name: body
   /users:
     post:
       tags:
         - User and Authentication
-      summary: Register a new user
       description: Register a new user
       operationId: CreateUser
       requestBody:
@@ -65,18 +55,10 @@ paths:
               $ref: '#/components/schemas/NewUserRequest'
         required: true
       responses:
-        201:
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UserResponse'
-        422:
-          description: Unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GenericErrorModel'
+        '201':
+          '$ref': '#/components/responses/UserResponse'
+        '422':
+          '$ref': '#/components/responses/GenericError'
       x-codegen-request-body-name: body
   /user:
     get:
@@ -86,21 +68,12 @@ paths:
       description: Gets the currently logged-in user
       operationId: GetCurrentUser
       responses:
-        200:
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UserResponse'
-        401:
-          description: Unauthorized
-          content: {}
-        422:
-          description: Unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GenericErrorModel'
+        '200':
+          '$ref': '#/components/responses/UserResponse'
+        '401':
+          '$ref': '#/components/responses/Unauthorized'
+        '422':
+          '$ref': '#/components/responses/GenericError'
       security:
         - Token: []
     put:
@@ -117,21 +90,12 @@ paths:
               $ref: '#/components/schemas/UpdateUserRequest'
         required: true
       responses:
-        200:
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UserResponse'
-        401:
-          description: Unauthorized
-          content: {}
-        422:
-          description: Unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GenericErrorModel'
+        '200':
+          '$ref': '#/components/responses/UserResponse'
+        '401':
+          '$ref': '#/components/responses/Unauthorized'
+        '422':
+          '$ref': '#/components/responses/GenericError'
       security:
         - Token: []
       x-codegen-request-body-name: body
@@ -150,21 +114,12 @@ paths:
           schema:
             type: string
       responses:
-        200:
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProfileResponse'
-        401:
-          description: Unauthorized
-          content: {}
-        422:
-          description: Unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GenericErrorModel'
+        '200':
+          '$ref': '#/components/responses/ProfileResponse'
+        '401':
+          '$ref': '#/components/responses/Unauthorized'
+        '422':
+          '$ref': '#/components/responses/GenericError'
   /profiles/{username}/follow:
     post:
       tags:
@@ -180,21 +135,12 @@ paths:
           schema:
             type: string
       responses:
-        200:
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProfileResponse'
-        401:
-          description: Unauthorized
-          content: {}
-        422:
-          description: Unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GenericErrorModel'
+        '200':
+          '$ref': '#/components/responses/ProfileResponse'
+        '401':
+          '$ref': '#/components/responses/Unauthorized'
+        '422':
+          '$ref': '#/components/responses/GenericError'
       security:
         - Token: []
     delete:
@@ -211,21 +157,12 @@ paths:
           schema:
             type: string
       responses:
-        200:
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProfileResponse'
-        401:
-          description: Unauthorized
-          content: {}
-        422:
-          description: Unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GenericErrorModel'
+        '200':
+          '$ref': '#/components/responses/ProfileResponse'
+        '401':
+          '$ref': '#/components/responses/Unauthorized'
+        '422':
+          '$ref': '#/components/responses/GenericError'
       security:
         - Token: []
   /articles/feed:
@@ -250,21 +187,12 @@ paths:
             type: integer
             default: 0
       responses:
-        200:
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/MultipleArticlesResponse'
-        401:
-          description: Unauthorized
-          content: {}
-        422:
-          description: Unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GenericErrorModel'
+        '200':
+          '$ref': '#/components/schemas/MultipleArticlesResponse'
+        '401':
+          '$ref': '#/components/responses/Unauthorized'
+        '422':
+          '$ref': '#/components/responses/GenericError'
       security:
         - Token: []
   /articles:
@@ -304,21 +232,12 @@ paths:
             type: integer
             default: 0
       responses:
-        200:
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/MultipleArticlesResponse'
-        401:
-          description: Unauthorized
-          content: {}
-        422:
-          description: Unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GenericErrorModel'
+        '200':
+          '$ref': '#/components/schemas/MultipleArticlesResponse'
+        '401':
+          '$ref': '#/components/responses/Unauthorized'
+        '422':
+          '$ref': '#/components/responses/GenericError'
     post:
       tags:
         - Articles
@@ -333,21 +252,12 @@ paths:
               $ref: '#/components/schemas/NewArticleRequest'
         required: true
       responses:
-        201:
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/SingleArticleResponse'
-        401:
-          description: Unauthorized
-          content: {}
-        422:
-          description: Unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GenericErrorModel'
+        '201':
+          '$ref': '#/components/schemas/SingleArticleResponse'
+        '401':
+          '$ref': '#/components/responses/Unauthorized'
+        '422':
+          '$ref': '#/components/responses/GenericError'
       security:
         - Token: []
       x-codegen-request-body-name: article
@@ -366,18 +276,10 @@ paths:
           schema:
             type: string
       responses:
-        200:
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/SingleArticleResponse'
-        422:
-          description: Unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GenericErrorModel'
+        '200':
+          '$ref': '#/components/schemas/SingleArticleResponse'
+        '422':
+          '$ref': '#/components/responses/GenericError'
     put:
       tags:
         - Articles
@@ -399,21 +301,12 @@ paths:
               $ref: '#/components/schemas/UpdateArticleRequest'
         required: true
       responses:
-        200:
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/SingleArticleResponse'
-        401:
-          description: Unauthorized
-          content: {}
-        422:
-          description: Unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GenericErrorModel'
+        '200':
+          '$ref': '#/components/schemas/SingleArticleResponse'
+        '401':
+          '$ref': '#/components/responses/Unauthorized'
+        '422':
+          '$ref': '#/components/responses/GenericError'
       security:
         - Token: []
       x-codegen-request-body-name: article
@@ -431,18 +324,13 @@ paths:
           schema:
             type: string
       responses:
-        200:
+        '200':
           description: OK
           content: {}
-        401:
-          description: Unauthorized
-          content: {}
-        422:
-          description: Unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GenericErrorModel'
+        '401':
+          '$ref': '#/components/responses/Unauthorized'
+        '422':
+          '$ref': '#/components/responses/GenericError'
       security:
         - Token: []
   /articles/{slug}/comments:
@@ -460,21 +348,12 @@ paths:
           schema:
             type: string
       responses:
-        200:
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/MultipleCommentsResponse'
-        401:
-          description: Unauthorized
-          content: {}
-        422:
-          description: Unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GenericErrorModel'
+        '200':
+          '$ref': '#/components/schemas/MultipleCommentsResponse'
+        '401':
+          '$ref': '#/components/responses/Unauthorized'
+        '422':
+          '$ref': '#/components/responses/GenericError'
     post:
       tags:
         - Comments
@@ -496,21 +375,12 @@ paths:
               $ref: '#/components/schemas/NewCommentRequest'
         required: true
       responses:
-        200:
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/SingleCommentResponse'
-        401:
-          description: Unauthorized
-          content: {}
-        422:
-          description: Unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GenericErrorModel'
+        '200':
+          '$ref': '#/components/schemas/SingleCommentResponse'
+        '401':
+          '$ref': '#/components/responses/Unauthorized'
+        '422':
+          '$ref': '#/components/responses/GenericError'
       security:
         - Token: []
       x-codegen-request-body-name: comment
@@ -535,18 +405,12 @@ paths:
           schema:
             type: integer
       responses:
-        200:
-          description: OK
-          content: {}
-        401:
-          description: Unauthorized
-          content: {}
-        422:
-          description: Unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GenericErrorModel'
+        '200':
+          '$ref': '#/components/responses/EmptyOkResponse'
+        '401':
+          '$ref': '#/components/responses/Unauthorized'
+        '422':
+          '$ref': '#/components/responses/GenericError'
       security:
         - Token: []
   /articles/{slug}/favorite:
@@ -564,21 +428,12 @@ paths:
           schema:
             type: string
       responses:
-        200:
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/SingleArticleResponse'
-        401:
-          description: Unauthorized
-          content: {}
-        422:
-          description: Unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GenericErrorModel'
+        '200':
+          '$ref': '#/components/schemas/SingleArticleResponse'
+        '401':
+          '$ref': '#/components/responses/Unauthorized'
+        '422':
+          '$ref': '#/components/responses/GenericError'
       security:
         - Token: []
     delete:
@@ -595,21 +450,12 @@ paths:
           schema:
             type: string
       responses:
-        200:
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/SingleArticleResponse'
-        401:
-          description: Unauthorized
-          content: {}
-        422:
-          description: Unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GenericErrorModel'
+        '200':
+          '$ref': '#/components/schemas/SingleArticleResponse'
+        '401':
+          '$ref': '#/components/responses/Unauthorized'
+        '422':
+          '$ref': '#/components/responses/GenericError'
       security:
         - Token: []
   /tags:
@@ -620,18 +466,10 @@ paths:
       description: Get tags. Auth not required
       operationId: GetTags
       responses:
-        200:
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/TagsResponse'
-        422:
-          description: Unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GenericErrorModel'
+        '200':
+          '$ref': '#/components/schemas/TagsResponse'
+        '422':
+          '$ref': '#/components/responses/GenericError'
 components:
   schemas:
     LoginUser:
@@ -913,6 +751,61 @@ components:
               type: array
               items:
                 type: string
+  responses:
+    TagsResponse:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/TagsResponse'
+    SingleCommentResponse:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/SingleCommentResponse'
+    MultipleCommentsResponse:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/MultipleCommentsResponse'
+    SingleArticleResponse:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/SingleArticleResponse'
+    MultipleArticlesResponse:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/MultipleArticlesResponse'
+    ProfileResponse:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ProfileResponse'
+    UserResponse:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UserResponse'
+    EmptyOkResponse:
+      description: OK
+      content: {}
+    Unauthorized:
+      description: Unauthorized
+      content: {}
+    GenericError:
+      description: Unexpected error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/GenericErrorModel'
   securitySchemes:
     Token:
       type: apiKey
