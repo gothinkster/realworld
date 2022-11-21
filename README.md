@@ -1,3 +1,7 @@
+> **Warning**  
+> realworld.io domain is currently down. We are investigating.
+> The issue is tracked [here](https://github.com/gothinkster/realworld)
+
 ![RealWorld Example Applications](media/realworld-dual-mode.png)
 
 
