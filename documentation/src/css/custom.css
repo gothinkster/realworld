@@ -102,6 +102,22 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
   --ifm-link-decoration: underline;
 }
 
+.alert {
+  padding: 2rem 3rem;
+  background: white;
+  color: darkred;
+  font-weight: bold;
+  margin-block-end: 1rem;
+}
+
+.alert p {
+  margin-block-end: 0;
+}
+
+.alert a {
+margin-inline-start: 0.2rem;
+}
+
 @media screen and (max-width: 580px) {
   .introduction-content {
     font-size: 1rem;

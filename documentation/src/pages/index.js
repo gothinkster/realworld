@@ -11,6 +11,12 @@ function HomepageHeader() {
     return (
         <header className={clsx('hero hero--primary', styles.heroBanner)}>
             <div className="container">
+                <aside className="alert">
+                    <p>
+                        realworld.io domain is currently down, affecting the demo and api. We are investigating and tracking the issue
+                        <a href="https://github.com/gothinkster/realworld/issues/1004" target="_blank">here</a>
+                    </p>
+                </aside>
                 <h2 className="hero__title">
                     It's all about building real world, production ready apps.
                 </h2>
