@@ -451,13 +451,13 @@ components:
         - bio
         - email
         - image
-        - password
+        - token
         - username
       type: object
       properties:
         email:
           type: string
-        password:
+        token:
           type: string
         username:
           type: string
@@ -599,7 +599,7 @@ components:
             body:
               type: array
               items:
-                type: string    
+                type: string
   responses:
     TagsResponse:
       description: Tags
