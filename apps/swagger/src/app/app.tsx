@@ -1,12 +1,11 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import styles from './app.module.css';
-import NxWelcome from './nx-welcome';
+import SwaggerUI from "swagger-ui-react"
+import "swagger-ui-react/swagger-ui.css"
+import swaggerDocument from '../assets/swagger.json';
 
 export function App() {
   return (
     <>
-      <NxWelcome title="swagger" />
-      <div />
+      <SwaggerUI spec={swaggerDocument} />
     </>
   );
 }

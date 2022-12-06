@@ -1,10 +1,10 @@
 openapi: 3.0.1
 info:
   title: Conduit API
-  description: Conduit API
+  description: Conduit API documentation
   contact:
     name: RealWorld
-    url: https://realworld.io
+    url: https://realworld.how
   license:
     name: MIT License
     url: https://opensource.org/licenses/MIT
