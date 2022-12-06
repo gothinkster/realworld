@@ -40,7 +40,6 @@
   "devDependencies": {
     "@docusaurus/module-type-aliases": "2.1.0",
     "@nrwl/cli": "15.2.4",
-    "@nrwl/cypress": "15.2.4",
     "@nrwl/eslint-plugin-nx": "15.2.4",
     "@nrwl/jest": "15.2.4",
     "@nrwl/linter": "15.2.4",
@@ -60,10 +59,8 @@
     "@vitejs/plugin-react": "^2.2.0",
     "@vitest/ui": "^0.9.3",
     "babel-jest": "28.1.1",
-    "cypress": "^11.0.0",
     "eslint": "~8.15.0",
     "eslint-config-prettier": "8.1.0",
-    "eslint-plugin-cypress": "^2.10.3",
     "eslint-plugin-import": "2.26.0",
     "eslint-plugin-jsx-a11y": "6.6.1",
     "eslint-plugin-react": "7.31.8",
