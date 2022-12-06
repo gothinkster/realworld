@@ -150,8 +150,8 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
 
 @media screen and (min-width: 997px) {
   .header-contribute-link a {
-    background-color: #8ab903;
-    color: #000 !important;
+    background-color: #6e2c6e;
+    color: #FFF !important;
     font-weight: 700;
     padding: 0.7rem 2rem;
     border-radius: 6.4px;
@@ -160,5 +160,6 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
 
   .header-contribute-link a:hover {
     background-color: #d4d5d8;
+    color: #000 !important;
   }
 }

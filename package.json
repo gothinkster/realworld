@@ -1,12 +1,17 @@
 {
   "name": "realworld",
-  "version": "1.1.0",
+  "author": "Thinkster",
+  "version": "1.2.0",
+  "license": "MIT",
   "description": "Fullstack example codebases for React, Angular, Node, Django, Rails & more",
-  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/gothinkster/realworld.git"
   },
+  "bugs": {
+    "url": "https://github.com/gothinkster/realworld/issues"
+  },
+  "homepage": "https://github.com/gothinkster/realworld#readme",
   "keywords": [
     "react",
     "angular",
@@ -14,13 +19,61 @@
     "examples",
     "node"
   ],
-  "author": "Thinkster",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/gothinkster/realworld/issues"
+  "scripts": {
+    "start": "nx serve",
+    "build": "nx build",
+    "test": "nx test"
   },
-  "homepage": "https://github.com/gothinkster/realworld#readme",
+  "private": true,
+  "dependencies": {
+    "@docusaurus/core": "2.1.0",
+    "@docusaurus/preset-classic": "2.1.0",
+    "@mdx-js/react": "^1.6.22",
+    "clsx": "^1.2.1",
+    "core-js": "^3.6.5",
+    "prism-react-renderer": "^1.3.5",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "regenerator-runtime": "0.13.7",
+    "tslib": "^2.3.0"
+  },
   "devDependencies": {
-    "newman": "^5.3.0"
-  }
+    "@docusaurus/module-type-aliases": "2.1.0",
+    "@nrwl/cli": "15.2.4",
+    "@nrwl/cypress": "15.2.4",
+    "@nrwl/eslint-plugin-nx": "15.2.4",
+    "@nrwl/jest": "15.2.4",
+    "@nrwl/linter": "15.2.4",
+    "@nrwl/nx-cloud": "latest",
+    "@nrwl/react": "15.2.4",
+    "@nrwl/web": "15.2.4",
+    "@nrwl/workspace": "15.2.4",
+    "@nx-plus/docusaurus": "^15.0.0-rc.0",
+    "@testing-library/react": "13.4.0",
+    "@types/jest": "28.1.1",
+    "@types/node": "18.7.18",
+    "@types/react": "18.0.20",
+    "@types/react-dom": "18.0.6",
+    "@typescript-eslint/eslint-plugin": "^5.36.1",
+    "@typescript-eslint/parser": "^5.36.1",
+    "babel-jest": "28.1.1",
+    "cypress": "^11.0.0",
+    "eslint": "~8.15.0",
+    "eslint-config-prettier": "8.1.0",
+    "eslint-plugin-cypress": "^2.10.3",
+    "eslint-plugin-import": "2.26.0",
+    "eslint-plugin-jsx-a11y": "6.6.1",
+    "eslint-plugin-react": "7.31.8",
+    "eslint-plugin-react-hooks": "4.6.0",
+    "jest": "28.1.1",
+    "jest-environment-jsdom": "28.1.1",
+    "newman": "^5.3.0",
+    "nx": "15.2.4",
+    "prettier": "^2.6.2",
+    "react-test-renderer": "18.2.0",
+    "ts-jest": "28.0.5",
+    "ts-node": "10.9.1",
+    "typescript": "^4.7.4"
+  },
+  "packageManager": "yarn@3.3.0"
 }
