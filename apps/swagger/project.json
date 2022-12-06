@@ -5,21 +5,11 @@
   "projectType": "application",
   "targets": {
     "build": {
-      "executor": "@nrwl/webpack:webpack",
+      "executor": "@nrwl/vite:build",
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
       "options": {
-        "compiler": "babel",
-        "outputPath": "dist/apps/swagger",
-        "index": "apps/swagger/src/index.html",
-        "baseHref": "/",
-        "main": "apps/swagger/src/main.tsx",
-        "polyfills": "apps/swagger/src/polyfills.ts",
-        "tsConfig": "apps/swagger/tsconfig.app.json",
-        "assets": ["apps/swagger/src/favicon.ico", "apps/swagger/src/assets"],
-        "styles": ["apps/swagger/src/styles.css"],
-        "scripts": [],
-        "webpackConfig": "@nrwl/react/plugins/webpack"
+        "outputPath": "dist/apps/swagger"
       },
       "configurations": {
         "development": {
@@ -45,11 +35,10 @@
       }
     },
     "serve": {
-      "executor": "@nrwl/webpack:dev-server",
+      "executor": "@nrwl/vite:dev-server",
       "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "swagger:build",
-        "hmr": true
+        "buildTarget": "swagger:build"
       },
       "configurations": {
         "development": {
