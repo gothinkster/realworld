@@ -46,6 +46,7 @@
     "@nrwl/linter": "15.2.4",
     "@nrwl/nx-cloud": "latest",
     "@nrwl/react": "15.2.4",
+    "@nrwl/vite": "15.3.0",
     "@nrwl/web": "15.2.4",
     "@nrwl/workspace": "15.2.4",
     "@nx-plus/docusaurus": "^15.0.0-rc.0",
@@ -56,6 +57,8 @@
     "@types/react-dom": "18.0.6",
     "@typescript-eslint/eslint-plugin": "^5.36.1",
     "@typescript-eslint/parser": "^5.36.1",
+    "@vitejs/plugin-react": "^2.2.0",
+    "@vitest/ui": "^0.9.3",
     "babel-jest": "28.1.1",
     "cypress": "^11.0.0",
     "eslint": "~8.15.0",
@@ -67,13 +70,18 @@
     "eslint-plugin-react-hooks": "4.6.0",
     "jest": "28.1.1",
     "jest-environment-jsdom": "28.1.1",
+    "jsdom": "~20.0.3",
     "newman": "^5.3.0",
     "nx": "15.2.4",
     "prettier": "^2.6.2",
     "react-test-renderer": "18.2.0",
     "ts-jest": "28.0.5",
     "ts-node": "10.9.1",
-    "typescript": "^4.7.4"
+    "typescript": "^4.7.4",
+    "vite": "^3.0.5",
+    "vite-plugin-eslint": "^1.6.0",
+    "vite-tsconfig-paths": "^3.5.2",
+    "vitest": "^0.25.1"
   },
   "packageManager": "yarn@3.3.0"
 }
