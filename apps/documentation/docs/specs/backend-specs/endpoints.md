@@ -10,12 +10,12 @@ You can read the authentication header from the headers of the request
 
 `Authorization: Token jwt.token.here`
 
-
 ### Authentication:
 
 `POST /api/users/login`
 
 Example request body:
+
 ```JSON
 {
   "user":{
@@ -29,12 +29,12 @@ No authentication required, returns a [User](/specs/backend-specs/api-response-f
 
 Required fields: `email`, `password`
 
-
 ### Registration:
 
 `POST /api/users`
 
 Example request body:
+
 ```JSON
 {
   "user":{
@@ -49,21 +49,18 @@ No authentication required, returns a [User](/specs/backend-specs/api-response-f
 
 Required fields: `email`, `username`, `password`
 
-
-
 ### Get Current User
 
 `GET /api/user`
 
 Authentication required, returns a [User](/specs/backend-specs/api-response-format.md#users-for-authentication) that's the current user
 
-
-
 ### Update User
 
 `PUT /api/user`
 
 Example request body:
+
 ```JSON
 {
   "user":{
@@ -76,18 +73,13 @@ Example request body:
 
 Authentication required, returns the [User](/specs/backend-specs/api-response-format.md#users-for-authentication)
 
-
 Accepted fields: `email`, `username`, `password`, `image`, `bio`
-
-
 
 ### Get Profile
 
 `GET /api/profiles/:username`
 
 Authentication optional, returns a [Profile](/specs/backend-specs/api-response-format.md#profile)
-
-
 
 ### Follow user
 
@@ -97,8 +89,6 @@ Authentication required, returns a [Profile](/specs/backend-specs/api-response-f
 
 No additional parameters required
 
-
-
 ### Unfollow user
 
 `DELETE /api/profiles/:username/follow`
@@ -106,8 +96,6 @@ No additional parameters required
 Authentication required, returns a [Profile](/specs/backend-specs/api-response-format.md#profile)
 
 No additional parameters required
-
-
 
 ### List Articles
 
@@ -139,8 +127,6 @@ Offset/skip number of articles (default is 0):
 
 Authentication optional, will return [multiple articles](/specs/backend-specs/api-response-format.md#multiple-articles), ordered by most recent first
 
-
-
 ### Feed Articles
 
 `GET /api/articles/feed`
@@ -148,7 +134,6 @@ Authentication optional, will return [multiple articles](/specs/backend-specs/ap
 Can also take `limit` and `offset` query parameters like [List Articles](/specs/backend-specs/api-response-format.md#list-articles)
 
 Authentication required, will return [multiple articles](/specs/backend-specs/api-response-format.md#multiple-articles) created by followed users, ordered by most recent first.
-
 
 ### Get Article
 
@@ -179,8 +164,6 @@ Required fields: `title`, `description`, `body`
 
 Optional fields: `tagList` as an array of Strings
 
-
-
 ### Update Article
 
 `PUT /api/articles/:slug`
@@ -201,14 +184,11 @@ Optional fields: `title`, `description`, `body`
 
 The `slug` also gets updated when the `title` is changed
 
-
 ### Delete Article
 
 `DELETE /api/articles/:slug`
 
 Authentication required
-
-
 
 ### Add Comments to an Article
 
@@ -228,23 +208,17 @@ Authentication required, returns the created [Comment](/specs/backend-specs/api-
 
 Required field: `body`
 
-
-
 ### Get Comments from an Article
 
 `GET /api/articles/:slug/comments`
 
 Authentication optional, returns [multiple comments](/specs/backend-specs/api-response-format.md#multiple-comments)
 
-
-
 ### Delete Comment
 
 `DELETE /api/articles/:slug/comments/:id`
 
 Authentication required
-
-
 
 ### Favorite Article
 
@@ -254,8 +228,6 @@ Authentication required, returns the [Article](/specs/backend-specs/api-response
 
 No additional parameters required
 
-
-
 ### Unfavorite Article
 
 `DELETE /api/articles/:slug/favorite`
@@ -263,8 +235,6 @@ No additional parameters required
 Authentication required, returns the [Article](/specs/backend-specs/api-response-format.md#single-article)
 
 No additional parameters required
-
-
 
 ### Get Tags
 

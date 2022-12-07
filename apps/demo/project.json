@@ -38,7 +38,8 @@
       "executor": "@nrwl/vite:dev-server",
       "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "demo:build"
+        "buildTarget": "demo:build",
+        "proxyConfig": "apps/demo/proxy.conf.json"
       },
       "configurations": {
         "development": {

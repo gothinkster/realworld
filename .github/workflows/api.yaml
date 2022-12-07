@@ -1,0 +1,34 @@
+name: CI
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+  pull_request:
+    branches:
+      - '**'
+
+jobs:
+  run_tests:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x]
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+          cache: 'npm'
+      - name: Install dependencies
+        run: npm ci --no-audit --prefer-offline --progress=false
+      - name: Check prettier
+        run: npm run prettier:check
+      - name: Check ESLinter
+        run: npm run lint:check
+      - name: Check unit tests
+        run: npm run test --ci --lastCommit --maxWorkers=50%
+        env:
+          CI: true

@@ -25,14 +25,12 @@ const config = {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
           // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/gothinkster/realworld/tree/main/docs/docs/',
+          editUrl: 'https://github.com/gothinkster/realworld/tree/main/docs/docs/',
         },
         blog: {
           showReadingTime: true,
           // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/gothinkster/realworld/tree/main/docs/blog/',
+          editUrl: 'https://github.com/gothinkster/realworld/tree/main/docs/blog/',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -42,7 +40,7 @@ const config = {
   ],
 
   themeConfig:
-  /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
+    /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
         title: 'RealWorld',
@@ -62,14 +60,14 @@ const config = {
             position: 'right',
             to: 'docs/implementation-creation/introduction',
             html: '<a>contribute</a>',
-            className: "header-contribute-link",
+            className: 'header-contribute-link',
           },
           {
             href: 'https://github.com/gothinkster/realworld',
-            "aria-label": 'GitHub repository',
-            className: "header-github-link",
+            'aria-label': 'GitHub repository',
+            className: 'header-github-link',
             position: 'right',
-          }
+          },
         ],
       },
       footer: {
@@ -80,7 +78,7 @@ const config = {
             items: [
               {
                 label: 'CodebaseShow',
-                href: 'https://codebase.show/projects/realworld'
+                href: 'https://codebase.show/projects/realworld',
               },
               {
                 label: 'GitHub Discussions',
@@ -94,7 +92,7 @@ const config = {
 
                */
             ],
-          }
+          },
           /*
         {
           title: 'More',
@@ -111,13 +109,12 @@ const config = {
         },
 
            */
-        ]
+        ],
       },
       colorMode: {
-        disableSwitch: true
-      }
+        disableSwitch: true,
+      },
     }),
 };
 
 module.exports = config;
-
