@@ -57,7 +57,7 @@
     "react-router-dom": "6.4.1",
     "regenerator-runtime": "0.13.7",
     "slugify": "^1.6.0",
-    "styled-components": "5.3.5",
+    "styled-components": "5.3.6",
     "tslib": "^2.3.0"
   },
   "devDependencies": {
