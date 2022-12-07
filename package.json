@@ -104,7 +104,7 @@
     "husky": "^8.0.2",
     "jest": "28.1.1",
     "jest-environment-jsdom": "28.1.1",
-    "jest-mock-extended": "^2.0.4",
+    "jest-mock-extended": "^3.0.1",
     "jsdom": "~20.0.3",
     "lint-staged": "^11.1.2",
     "newman": "^5.3.0",
