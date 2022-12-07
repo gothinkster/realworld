@@ -13,12 +13,8 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: '16'
-          cache: 'yarn'
-      - name: Run install
-        uses: borales/actions-yarn@v4
-        with:
-            cmd: install
+          cache: 'npm'
+      - name: Install dependencies
+        run: npm ci --no-audit --prefer-offline --progress=false
       - name: Build production bundle
-        uses: borales/actions-yarn@v4
-        with:
-            cmd: nx build documentation
+        run: npx nx build documentation

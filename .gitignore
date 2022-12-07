@@ -4,13 +4,13 @@
 dist
 tmp
 /out-tsc
+_generated_
+
+# Keep environment variables out of version control
+.env
 
 # dependencies
 node_modules
-.yarn/*
-!.yarn/releases
-!.yarn/plugins
-.pnp.*
 
 # IDEs and editors
 /.idea

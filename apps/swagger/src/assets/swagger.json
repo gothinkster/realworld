@@ -41,9 +41,7 @@
   "paths": {
     "/users/login": {
       "post": {
-        "tags": [
-          "User and Authentication"
-        ],
+        "tags": ["User and Authentication"],
         "summary": "Existing user login",
         "description": "Login for existing user",
         "operationId": "Login",
@@ -66,9 +64,7 @@
     },
     "/users": {
       "post": {
-        "tags": [
-          "User and Authentication"
-        ],
+        "tags": ["User and Authentication"],
         "description": "Register a new user",
         "operationId": "CreateUser",
         "requestBody": {
@@ -87,9 +83,7 @@
     },
     "/user": {
       "get": {
-        "tags": [
-          "User and Authentication"
-        ],
+        "tags": ["User and Authentication"],
         "summary": "Get current user",
         "description": "Gets the currently logged-in user",
         "operationId": "GetCurrentUser",
@@ -111,9 +105,7 @@
         ]
       },
       "put": {
-        "tags": [
-          "User and Authentication"
-        ],
+        "tags": ["User and Authentication"],
         "summary": "Update current user",
         "description": "Updated user information for current user",
         "operationId": "UpdateCurrentUser",
@@ -141,9 +133,7 @@
     },
     "/profiles/{username}": {
       "get": {
-        "tags": [
-          "Profile"
-        ],
+        "tags": ["Profile"],
         "summary": "Get a profile",
         "description": "Get a profile of a user of the system. Auth is optional",
         "operationId": "GetProfileByUsername",
@@ -173,9 +163,7 @@
     },
     "/profiles/{username}/follow": {
       "post": {
-        "tags": [
-          "Profile"
-        ],
+        "tags": ["Profile"],
         "summary": "Follow a user",
         "description": "Follow a user by username",
         "operationId": "FollowUserByUsername",
@@ -208,9 +196,7 @@
         ]
       },
       "delete": {
-        "tags": [
-          "Profile"
-        ],
+        "tags": ["Profile"],
         "summary": "Unfollow a user",
         "description": "Unfollow a user by username",
         "operationId": "UnfollowUserByUsername",
@@ -245,9 +231,7 @@
     },
     "/articles/feed": {
       "get": {
-        "tags": [
-          "Articles"
-        ],
+        "tags": ["Articles"],
         "summary": "Get recent articles from users you follow",
         "description": "Get most recent articles from users you follow. Use query parameters to limit. Auth is required",
         "operationId": "GetArticlesFeed",
@@ -279,9 +263,7 @@
     },
     "/articles": {
       "get": {
-        "tags": [
-          "Articles"
-        ],
+        "tags": ["Articles"],
         "summary": "Get recent articles globally",
         "description": "Get most recent articles globally. Use query parameters to filter results. Auth is optional",
         "operationId": "GetArticles",
@@ -330,9 +312,7 @@
         }
       },
       "post": {
-        "tags": [
-          "Articles"
-        ],
+        "tags": ["Articles"],
         "summary": "Create an article",
         "description": "Create an article. Auth is required",
         "operationId": "CreateArticle",
@@ -360,9 +340,7 @@
     },
     "/articles/{slug}": {
       "get": {
-        "tags": [
-          "Articles"
-        ],
+        "tags": ["Articles"],
         "summary": "Get an article",
         "description": "Get an article. Auth not required",
         "operationId": "GetArticle",
@@ -387,9 +365,7 @@
         }
       },
       "put": {
-        "tags": [
-          "Articles"
-        ],
+        "tags": ["Articles"],
         "summary": "Update an article",
         "description": "Update an article. Auth is required",
         "operationId": "UpdateArticle",
@@ -426,9 +402,7 @@
         "x-codegen-request-body-name": "article"
       },
       "delete": {
-        "tags": [
-          "Articles"
-        ],
+        "tags": ["Articles"],
         "summary": "Delete an article",
         "description": "Delete an article. Auth is required",
         "operationId": "DeleteArticle",
@@ -463,9 +437,7 @@
     },
     "/articles/{slug}/comments": {
       "get": {
-        "tags": [
-          "Comments"
-        ],
+        "tags": ["Comments"],
         "summary": "Get comments for an article",
         "description": "Get the comments for an article. Auth is optional",
         "operationId": "GetArticleComments",
@@ -493,9 +465,7 @@
         }
       },
       "post": {
-        "tags": [
-          "Comments"
-        ],
+        "tags": ["Comments"],
         "summary": "Create a comment for an article",
         "description": "Create a comment for an article. Auth is required",
         "operationId": "CreateArticleComment",
@@ -534,9 +504,7 @@
     },
     "/articles/{slug}/comments/{id}": {
       "delete": {
-        "tags": [
-          "Comments"
-        ],
+        "tags": ["Comments"],
         "summary": "Delete a comment for an article",
         "description": "Delete a comment for an article. Auth is required",
         "operationId": "DeleteArticleComment",
@@ -580,9 +548,7 @@
     },
     "/articles/{slug}/favorite": {
       "post": {
-        "tags": [
-          "Favorites"
-        ],
+        "tags": ["Favorites"],
         "summary": "Favorite an article",
         "description": "Favorite an article. Auth is required",
         "operationId": "CreateArticleFavorite",
@@ -615,9 +581,7 @@
         ]
       },
       "delete": {
-        "tags": [
-          "Favorites"
-        ],
+        "tags": ["Favorites"],
         "summary": "Unfavorite an article",
         "description": "Unfavorite an article. Auth is required",
         "operationId": "DeleteArticleFavorite",
@@ -652,9 +616,7 @@
     },
     "/tags": {
       "get": {
-        "tags": [
-          "Tags"
-        ],
+        "tags": ["Tags"],
         "summary": "Get tags",
         "description": "Get tags. Auth not required",
         "operationId": "GetTags",
@@ -672,10 +634,7 @@
   "components": {
     "schemas": {
       "LoginUser": {
-        "required": [
-          "email",
-          "password"
-        ],
+        "required": ["email", "password"],
         "type": "object",
         "properties": {
           "email": {
@@ -688,11 +647,7 @@
         }
       },
       "NewUser": {
-        "required": [
-          "email",
-          "password",
-          "username"
-        ],
+        "required": ["email", "password", "username"],
         "type": "object",
         "properties": {
           "username": {
@@ -708,13 +663,7 @@
         }
       },
       "User": {
-        "required": [
-          "bio",
-          "email",
-          "image",
-          "token",
-          "username"
-        ],
+        "required": ["bio", "email", "image", "token", "username"],
         "type": "object",
         "properties": {
           "email": {
@@ -755,12 +704,7 @@
         }
       },
       "Profile": {
-        "required": [
-          "bio",
-          "following",
-          "image",
-          "username"
-        ],
+        "required": ["bio", "following", "image", "username"],
         "type": "object",
         "properties": {
           "username": {
@@ -830,11 +774,7 @@
         }
       },
       "NewArticle": {
-        "required": [
-          "body",
-          "description",
-          "title"
-        ],
+        "required": ["body", "description", "title"],
         "type": "object",
         "properties": {
           "title": {
@@ -869,13 +809,7 @@
         }
       },
       "Comment": {
-        "required": [
-          "author",
-          "body",
-          "createdAt",
-          "id",
-          "updatedAt"
-        ],
+        "required": ["author", "body", "createdAt", "id", "updatedAt"],
         "type": "object",
         "properties": {
           "id": {
@@ -898,9 +832,7 @@
         }
       },
       "NewComment": {
-        "required": [
-          "body"
-        ],
+        "required": ["body"],
         "type": "object",
         "properties": {
           "body": {
@@ -909,15 +841,11 @@
         }
       },
       "GenericErrorModel": {
-        "required": [
-          "errors"
-        ],
+        "required": ["errors"],
         "type": "object",
         "properties": {
           "errors": {
-            "required": [
-              "body"
-            ],
+            "required": ["body"],
             "type": "object",
             "properties": {
               "body": {
@@ -937,9 +865,7 @@
         "content": {
           "application/json": {
             "schema": {
-              "required": [
-                "tags"
-              ],
+              "required": ["tags"],
               "type": "object",
               "properties": {
                 "tags": {
@@ -958,9 +884,7 @@
         "content": {
           "application/json": {
             "schema": {
-              "required": [
-                "comment"
-              ],
+              "required": ["comment"],
               "type": "object",
               "properties": {
                 "comment": {
@@ -976,9 +900,7 @@
         "content": {
           "application/json": {
             "schema": {
-              "required": [
-                "comments"
-              ],
+              "required": ["comments"],
               "type": "object",
               "properties": {
                 "comments": {
@@ -997,9 +919,7 @@
         "content": {
           "application/json": {
             "schema": {
-              "required": [
-                "article"
-              ],
+              "required": ["article"],
               "type": "object",
               "properties": {
                 "article": {
@@ -1015,10 +935,7 @@
         "content": {
           "application/json": {
             "schema": {
-              "required": [
-                "articles",
-                "articlesCount"
-              ],
+              "required": ["articles", "articlesCount"],
               "type": "object",
               "properties": {
                 "articles": {
@@ -1040,9 +957,7 @@
         "content": {
           "application/json": {
             "schema": {
-              "required": [
-                "profile"
-              ],
+              "required": ["profile"],
               "type": "object",
               "properties": {
                 "profile": {
@@ -1058,9 +973,7 @@
         "content": {
           "application/json": {
             "schema": {
-              "required": [
-                "user"
-              ],
+              "required": ["user"],
               "type": "object",
               "properties": {
                 "user": {
@@ -1097,9 +1010,7 @@
         "content": {
           "application/json": {
             "schema": {
-              "required": [
-                "user"
-              ],
+              "required": ["user"],
               "type": "object",
               "properties": {
                 "user": {
@@ -1116,9 +1027,7 @@
         "content": {
           "application/json": {
             "schema": {
-              "required": [
-                "user"
-              ],
+              "required": ["user"],
               "type": "object",
               "properties": {
                 "user": {
@@ -1135,9 +1044,7 @@
         "content": {
           "application/json": {
             "schema": {
-              "required": [
-                "user"
-              ],
+              "required": ["user"],
               "type": "object",
               "properties": {
                 "user": {
@@ -1154,9 +1061,7 @@
         "content": {
           "application/json": {
             "schema": {
-              "required": [
-                "article"
-              ],
+              "required": ["article"],
               "type": "object",
               "properties": {
                 "article": {
@@ -1173,9 +1078,7 @@
         "content": {
           "application/json": {
             "schema": {
-              "required": [
-                "article"
-              ],
+              "required": ["article"],
               "type": "object",
               "properties": {
                 "article": {
@@ -1192,9 +1095,7 @@
         "content": {
           "application/json": {
             "schema": {
-              "required": [
-                "comment"
-              ],
+              "required": ["comment"],
               "type": "object",
               "properties": {
                 "comment": {

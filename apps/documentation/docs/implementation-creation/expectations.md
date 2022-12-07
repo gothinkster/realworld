@@ -30,8 +30,8 @@ That said, we do _prefer_ that every repo includes excellent tests that are exem
 
 ## Other Expectations
 
-* All the required features (see specs) should be implemented.
-* You should publish your implementation on a dedicated GitHub repository with the "Issues" section open.
-* You should provide a README that presents an overview of your implementation and explains how to run it locally.
-* The library/framework you are using should have at least 300 GitHub stars.
-* You should do your best to keep your implementation up to date.
+- All the required features (see specs) should be implemented.
+- You should publish your implementation on a dedicated GitHub repository with the "Issues" section open.
+- You should provide a README that presents an overview of your implementation and explains how to run it locally.
+- The library/framework you are using should have at least 300 GitHub stars.
+- You should do your best to keep your implementation up to date.

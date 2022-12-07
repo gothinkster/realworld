@@ -1,0 +1,56 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = []
+}
+
+model Article {
+  id          Int       @id @default(autoincrement())
+  slug        String    @unique
+  title       String
+  description String
+  body        String
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @default(now())
+  tagList     Tag[]
+  author      User      @relation("UserArticles", fields: [authorId], onDelete: Cascade, references: [id])
+  authorId    Int
+  favoritedBy User[]    @relation("UserFavorites")
+  comments    Comment[]
+}
+
+model Comment {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+  body      String
+  article   Article  @relation(fields: [articleId], references: [id], onDelete: Cascade)
+  articleId Int
+  author    User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  authorId  Int
+}
+
+model Tag {
+  id       Int       @id @default(autoincrement())
+  name     String    @unique
+  articles Article[]
+}
+
+model User {
+  id         Int       @id @default(autoincrement())
+  email      String    @unique
+  username   String    @unique
+  password   String
+  image      String?   @default("https://api.realworld.io/images/smiley-cyrus.jpeg")
+  bio        String?
+  articles   Article[] @relation("UserArticles")
+  favorites  Article[] @relation("UserFavorites")
+  followedBy User[]    @relation("UserFollows")
+  following  User[]    @relation("UserFollows")
+  comments   Comment[]
+  demo       Boolean   @default(false)
+}
