@@ -1,14 +1,21 @@
 openapi: 3.0.1
 info:
   title: Conduit API
-  description: Conduit API
+  description: Conduit API documentation
   contact:
     name: RealWorld
-    url: https://realworld.io
+    url: https://realworld.how
   license:
     name: MIT License
     url: https://opensource.org/licenses/MIT
   version: 1.0.0
+tags:
+  - name: Articles
+  - name: Comments
+  - name: Favorites
+  - name: Profile
+  - name: Tags
+  - name: User and Authentication
 servers:
   - url: /api
 paths:
@@ -20,56 +27,28 @@ paths:
       description: Login for existing user
       operationId: Login
       requestBody:
-        description: Credentials to use
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/LoginUserRequest'
-        required: true
+        $ref: '#/components/requestBodies/LoginUserRequest'
       responses:
-        200:
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UserResponse'
-        401:
-          description: Unauthorized
-          content: {}
-        422:
-          description: Unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GenericErrorModel'
+        '200':
+          $ref: '#/components/responses/UserResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '422':
+          $ref: '#/components/responses/GenericError'
       x-codegen-request-body-name: body
   /users:
     post:
       tags:
         - User and Authentication
-      summary: Register a new user
       description: Register a new user
       operationId: CreateUser
       requestBody:
-        description: Details of the new user to register
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/NewUserRequest'
-        required: true
+        $ref: '#/components/requestBodies/NewUserRequest'
       responses:
-        201:
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UserResponse'
-        422:
-          description: Unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GenericErrorModel'
+        '201':
+          $ref: '#/components/responses/UserResponse'
+        '422':
+          $ref: '#/components/responses/GenericError'
       x-codegen-request-body-name: body
   /user:
     get:
@@ -79,21 +58,12 @@ paths:
       description: Gets the currently logged-in user
       operationId: GetCurrentUser
       responses:
-        200:
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UserResponse'
-        401:
-          description: Unauthorized
-          content: {}
-        422:
-          description: Unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GenericErrorModel'
+        '200':
+          $ref: '#/components/responses/UserResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '422':
+          $ref: '#/components/responses/GenericError'
       security:
         - Token: []
     put:
@@ -103,28 +73,14 @@ paths:
       description: Updated user information for current user
       operationId: UpdateCurrentUser
       requestBody:
-        description: User details to update. At least **one** field is required.
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/UpdateUserRequest'
-        required: true
+        $ref: '#/components/requestBodies/UpdateUserRequest'
       responses:
-        200:
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UserResponse'
-        401:
-          description: Unauthorized
-          content: {}
-        422:
-          description: Unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GenericErrorModel'
+        '200':
+          $ref: '#/components/responses/UserResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '422':
+          $ref: '#/components/responses/GenericError'
       security:
         - Token: []
       x-codegen-request-body-name: body
@@ -143,21 +99,12 @@ paths:
           schema:
             type: string
       responses:
-        200:
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProfileResponse'
-        401:
-          description: Unauthorized
-          content: {}
-        422:
-          description: Unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GenericErrorModel'
+        '200':
+          $ref: '#/components/responses/ProfileResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '422':
+          $ref: '#/components/responses/GenericError'
   /profiles/{username}/follow:
     post:
       tags:
@@ -173,21 +120,12 @@ paths:
           schema:
             type: string
       responses:
-        200:
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProfileResponse'
-        401:
-          description: Unauthorized
-          content: {}
-        422:
-          description: Unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GenericErrorModel'
+        '200':
+          $ref: '#/components/responses/ProfileResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '422':
+          $ref: '#/components/responses/GenericError'
       security:
         - Token: []
     delete:
@@ -204,21 +142,12 @@ paths:
           schema:
             type: string
       responses:
-        200:
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProfileResponse'
-        401:
-          description: Unauthorized
-          content: {}
-        422:
-          description: Unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GenericErrorModel'
+        '200':
+          $ref: '#/components/responses/ProfileResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '422':
+          $ref: '#/components/responses/GenericError'
       security:
         - Token: []
   /articles/feed:
@@ -230,34 +159,15 @@ paths:
         to limit. Auth is required
       operationId: GetArticlesFeed
       parameters:
-        - name: limit
-          in: query
-          description: Limit number of articles returned (default is 20)
-          schema:
-            type: integer
-            default: 20
-        - name: offset
-          in: query
-          description: Offset/skip number of articles (default is 0)
-          schema:
-            type: integer
-            default: 0
+        - $ref: '#/components/parameters/offsetParam'
+        - $ref: '#/components/parameters/limitParam'
       responses:
-        200:
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/MultipleArticlesResponse'
-        401:
-          description: Unauthorized
-          content: {}
-        422:
-          description: Unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GenericErrorModel'
+        '200':
+          $ref: '#/components/responses/MultipleArticlesResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '422':
+          $ref: '#/components/responses/GenericError'
       security:
         - Token: []
   /articles:
@@ -284,34 +194,15 @@ paths:
           description: Filter by favorites of a user (username)
           schema:
             type: string
-        - name: limit
-          in: query
-          description: Limit number of articles returned (default is 20)
-          schema:
-            type: integer
-            default: 20
-        - name: offset
-          in: query
-          description: Offset/skip number of articles (default is 0)
-          schema:
-            type: integer
-            default: 0
+        - $ref: '#/components/parameters/offsetParam'
+        - $ref: '#/components/parameters/limitParam'
       responses:
-        200:
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/MultipleArticlesResponse'
-        401:
-          description: Unauthorized
-          content: {}
-        422:
-          description: Unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GenericErrorModel'
+        '200':
+          $ref: '#/components/responses/MultipleArticlesResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '422':
+          $ref: '#/components/responses/GenericError'
     post:
       tags:
         - Articles
@@ -319,28 +210,14 @@ paths:
       description: Create an article. Auth is required
       operationId: CreateArticle
       requestBody:
-        description: Article to create
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/NewArticleRequest'
-        required: true
+        $ref: '#/components/requestBodies/NewArticleRequest'
       responses:
-        201:
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/SingleArticleResponse'
-        401:
-          description: Unauthorized
-          content: {}
-        422:
-          description: Unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GenericErrorModel'
+        '201':
+          $ref: '#/components/responses/SingleArticleResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '422':
+          $ref: '#/components/responses/GenericError'
       security:
         - Token: []
       x-codegen-request-body-name: article
@@ -359,18 +236,10 @@ paths:
           schema:
             type: string
       responses:
-        200:
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/SingleArticleResponse'
-        422:
-          description: Unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GenericErrorModel'
+        '200':
+          $ref: '#/components/responses/SingleArticleResponse'
+        '422':
+          $ref: '#/components/responses/GenericError'
     put:
       tags:
         - Articles
@@ -385,28 +254,14 @@ paths:
           schema:
             type: string
       requestBody:
-        description: Article to update
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/UpdateArticleRequest'
-        required: true
+        $ref: '#/components/requestBodies/UpdateArticleRequest'
       responses:
-        200:
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/SingleArticleResponse'
-        401:
-          description: Unauthorized
-          content: {}
-        422:
-          description: Unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GenericErrorModel'
+        '200':
+          $ref: '#/components/responses/SingleArticleResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '422':
+          $ref: '#/components/responses/GenericError'
       security:
         - Token: []
       x-codegen-request-body-name: article
@@ -424,18 +279,12 @@ paths:
           schema:
             type: string
       responses:
-        200:
-          description: OK
-          content: {}
-        401:
-          description: Unauthorized
-          content: {}
-        422:
-          description: Unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GenericErrorModel'
+        '200':
+          $ref: '#/components/responses/EmptyOkResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '422':
+          $ref: '#/components/responses/GenericError'
       security:
         - Token: []
   /articles/{slug}/comments:
@@ -453,21 +302,12 @@ paths:
           schema:
             type: string
       responses:
-        200:
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/MultipleCommentsResponse'
-        401:
-          description: Unauthorized
-          content: {}
-        422:
-          description: Unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GenericErrorModel'
+        '200':
+          $ref: '#/components/responses/MultipleCommentsResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '422':
+          $ref: '#/components/responses/GenericError'
     post:
       tags:
         - Comments
@@ -482,28 +322,14 @@ paths:
           schema:
             type: string
       requestBody:
-        description: Comment you want to create
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/NewCommentRequest'
-        required: true
+        $ref: '#/components/requestBodies/NewCommentRequest'
       responses:
-        200:
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/SingleCommentResponse'
-        401:
-          description: Unauthorized
-          content: {}
-        422:
-          description: Unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GenericErrorModel'
+        '200':
+          $ref: '#/components/responses/SingleCommentResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '422':
+          $ref: '#/components/responses/GenericError'
       security:
         - Token: []
       x-codegen-request-body-name: comment
@@ -528,18 +354,12 @@ paths:
           schema:
             type: integer
       responses:
-        200:
-          description: OK
-          content: {}
-        401:
-          description: Unauthorized
-          content: {}
-        422:
-          description: Unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GenericErrorModel'
+        '200':
+          $ref: '#/components/responses/EmptyOkResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '422':
+          $ref: '#/components/responses/GenericError'
       security:
         - Token: []
   /articles/{slug}/favorite:
@@ -557,21 +377,12 @@ paths:
           schema:
             type: string
       responses:
-        200:
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/SingleArticleResponse'
-        401:
-          description: Unauthorized
-          content: {}
-        422:
-          description: Unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GenericErrorModel'
+        '200':
+          $ref: '#/components/responses/SingleArticleResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '422':
+          $ref: '#/components/responses/GenericError'
       security:
         - Token: []
     delete:
@@ -588,40 +399,26 @@ paths:
           schema:
             type: string
       responses:
-        200:
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/SingleArticleResponse'
-        401:
-          description: Unauthorized
-          content: {}
-        422:
-          description: Unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GenericErrorModel'
+        '200':
+          $ref: '#/components/responses/SingleArticleResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '422':
+          $ref: '#/components/responses/GenericError'
       security:
         - Token: []
   /tags:
     get:
+      tags:
+        - Tags
       summary: Get tags
       description: Get tags. Auth not required
+      operationId: GetTags
       responses:
-        200:
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/TagsResponse'
-        422:
-          description: Unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GenericErrorModel'
+        '200':
+          $ref: '#/components/responses/TagsResponse'
+        '422':
+          $ref: '#/components/responses/GenericError'
 components:
   schemas:
     LoginUser:
@@ -635,13 +432,6 @@ components:
         password:
           type: string
           format: password
-    LoginUserRequest:
-      required:
-        - user
-      type: object
-      properties:
-        user:
-          $ref: '#/components/schemas/LoginUser'
     NewUser:
       required:
         - email
@@ -656,25 +446,18 @@ components:
         password:
           type: string
           format: password
-    NewUserRequest:
-      required:
-        - user
-      type: object
-      properties:
-        user:
-          $ref: '#/components/schemas/NewUser'
     User:
       required:
         - bio
         - email
         - image
-        - password
+        - token
         - username
       type: object
       properties:
         email:
           type: string
-        password:
+        token:
           type: string
         username:
           type: string
@@ -682,13 +465,6 @@ components:
           type: string
         image:
           type: string
-    UserResponse:
-      required:
-        - user
-      type: object
-      properties:
-        user:
-          $ref: '#/components/schemas/User'
     UpdateUser:
       type: object
       properties:
@@ -702,20 +478,6 @@ components:
           type: string
         image:
           type: string
-    UpdateUserRequest:
-      required:
-        - user
-      type: object
-      properties:
-        user:
-          $ref: '#/components/schemas/UpdateUser'
-    ProfileResponse:
-      required:
-        - profile
-      type: object
-      properties:
-        profile:
-          $ref: '#/components/schemas/Profile'
     Profile:
       required:
         - bio
@@ -770,25 +532,6 @@ components:
           type: integer
         author:
           $ref: '#/components/schemas/Profile'
-    SingleArticleResponse:
-      required:
-        - article
-      type: object
-      properties:
-        article:
-          $ref: '#/components/schemas/Article'
-    MultipleArticlesResponse:
-      required:
-        - articles
-        - articlesCount
-      type: object
-      properties:
-        articles:
-          type: array
-          items:
-            $ref: '#/components/schemas/Article'
-        articlesCount:
-          type: integer
     NewArticle:
       required:
         - body
@@ -806,13 +549,6 @@ components:
           type: array
           items:
             type: string
-    NewArticleRequest:
-      required:
-        - article
-      type: object
-      properties:
-        article:
-          $ref: '#/components/schemas/NewArticle'
     UpdateArticle:
       type: object
       properties:
@@ -822,13 +558,6 @@ components:
           type: string
         body:
           type: string
-    UpdateArticleRequest:
-      required:
-        - article
-      type: object
-      properties:
-        article:
-          $ref: '#/components/schemas/UpdateArticle'
     Comment:
       required:
         - author
@@ -850,22 +579,6 @@ components:
           type: string
         author:
           $ref: '#/components/schemas/Profile'
-    SingleCommentResponse:
-      required:
-        - comment
-      type: object
-      properties:
-        comment:
-          $ref: '#/components/schemas/Comment'
-    MultipleCommentsResponse:
-      required:
-        - comments
-      type: object
-      properties:
-        comments:
-          type: array
-          items:
-            $ref: '#/components/schemas/Comment'
     NewComment:
       required:
         - body
@@ -873,22 +586,6 @@ components:
       properties:
         body:
           type: string
-    NewCommentRequest:
-      required:
-        - comment
-      type: object
-      properties:
-        comment:
-          $ref: '#/components/schemas/NewComment'
-    TagsResponse:
-      required:
-        - tags
-      type: object
-      properties:
-        tags:
-          type: array
-          items:
-            type: string
     GenericErrorModel:
       required:
         - errors
@@ -903,6 +600,196 @@ components:
               type: array
               items:
                 type: string
+  responses:
+    TagsResponse:
+      description: Tags
+      content:
+        application/json:
+          schema:
+            required:
+              - tags
+            type: object
+            properties:
+              tags:
+                type: array
+                items:
+                  type: string
+    SingleCommentResponse:
+      description: Single comment
+      content:
+        application/json:
+          schema:
+            required:
+              - comment
+            type: object
+            properties:
+              comment:
+                $ref: '#/components/schemas/Comment'
+    MultipleCommentsResponse:
+      description: Multiple comments
+      content:
+        application/json:
+          schema:
+            required:
+              - comments
+            type: object
+            properties:
+              comments:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Comment'
+    SingleArticleResponse:
+      description: Single article
+      content:
+        application/json:
+          schema:
+            required:
+              - article
+            type: object
+            properties:
+              article:
+                $ref: '#/components/schemas/Article'
+    MultipleArticlesResponse:
+      description: Multiple articles
+      content:
+        application/json:
+          schema:
+            required:
+              - articles
+              - articlesCount
+            type: object
+            properties:
+              articles:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Article'
+              articlesCount:
+                type: integer
+    ProfileResponse:
+      description: Profile
+      content:
+        application/json:
+          schema:
+            required:
+              - profile
+            type: object
+            properties:
+              profile:
+                $ref: '#/components/schemas/Profile'
+    UserResponse:
+      description: User
+      content:
+        application/json:
+          schema:
+            required:
+              - user
+            type: object
+            properties:
+              user:
+                $ref: '#/components/schemas/User'
+    EmptyOkResponse:
+      description: No content
+      content: {}
+    Unauthorized:
+      description: Unauthorized
+      content: {}
+    GenericError:
+      description: Unexpected error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/GenericErrorModel'
+  requestBodies:
+    LoginUserRequest:
+      required: true
+      description: Credentials to use
+      content:
+        application/json:
+          schema:
+            required:
+              - user
+            type: object
+            properties:
+              user:
+                $ref: '#/components/schemas/LoginUser'
+    NewUserRequest:
+      required: true
+      description: Details of the new user to register
+      content:
+        application/json:
+          schema:
+            required:
+              - user
+            type: object
+            properties:
+              user:
+                $ref: '#/components/schemas/NewUser'
+    UpdateUserRequest:
+      required: true
+      description: User details to update. At least **one** field is required.
+      content:
+        application/json:
+          schema:
+            required:
+              - user
+            type: object
+            properties:
+              user:
+                $ref: '#/components/schemas/UpdateUser'
+    NewArticleRequest:
+      required: true
+      description: Article to create
+      content:
+        application/json:
+          schema:
+            required:
+              - article
+            type: object
+            properties:
+              article:
+                $ref: '#/components/schemas/NewArticle'
+    UpdateArticleRequest:
+      required: true
+      description: Article to update
+      content:
+        application/json:
+          schema:
+            required:
+              - article
+            type: object
+            properties:
+              article:
+                $ref: '#/components/schemas/UpdateArticle'
+    NewCommentRequest:
+      required: true
+      description: Comment you want to create
+      content:
+        application/json:
+          schema:
+            required:
+              - comment
+            type: object
+            properties:
+              comment:
+                $ref: '#/components/schemas/NewComment'
+  parameters:
+    offsetParam:
+      in: query
+      name: offset
+      required: false
+      schema:
+        type: integer
+        minimum: 0
+      description: The number of items to skip before starting to collect the result set.
+    limitParam:
+      in: query
+      name: limit
+      required: false
+      schema:
+        type: integer
+        minimum: 1
+        default: 20
+      description: The numbers of items to return.
   securitySchemes:
     Token:
       type: apiKey
