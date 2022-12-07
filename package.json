@@ -61,7 +61,7 @@
     "tslib": "^2.3.0"
   },
   "devDependencies": {
-    "@docusaurus/module-type-aliases": "2.1.0",
+    "@docusaurus/module-type-aliases": "2.2.0",
     "@nrwl/cli": "15.2.4",
     "@nrwl/eslint-plugin-nx": "15.2.4",
     "@nrwl/express": "15.3.0",
