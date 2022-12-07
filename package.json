@@ -113,7 +113,7 @@
     "prisma": "^4.7.1",
     "react-test-renderer": "18.2.0",
     "swagger-ui-react": "^4.15.5",
-    "ts-jest": "28.0.5",
+    "ts-jest": "29.0.3",
     "ts-node": "10.9.1",
     "ts-node-dev": "^1.1.8",
     "typescript": "^4.7.4",
