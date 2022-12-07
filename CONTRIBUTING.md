@@ -85,13 +85,13 @@ Before you submit your Pull Request (PR) consider the following guidelines:
 
 - If we suggest changes then:
 
-    - Make the required updates.
-    - Rebase your branch and force push to your GitHub repository (this will update your Pull Request):
+  - Make the required updates.
+  - Rebase your branch and force push to your GitHub repository (this will update your Pull Request):
 
-      ```bash
-      git rebase master -i
-      git push -f
-      ```
+    ```bash
+    git rebase master -i
+    git push -f
+    ```
 
 That's it! Thank you for your contribution!
 
@@ -127,7 +127,6 @@ from the master (upstream) repository:
 ## <a name="commit"></a> Commit Message Guidelines
 
 > These guidelines have been added to the project starting from <include date>
-> 
 
 We have very precise rules over how our git commit messages can be formatted. This leads to **more
 readable messages** that are easy to follow when looking through the **project history**.
@@ -167,6 +166,7 @@ The version in our package.json gets copied to the one we publish, and users nee
 ### Type
 
 Must be one of the following:
+
 - **docs**: Documentation only changes
 - **feat**: A new feature
 - **fix**: A bug fix
@@ -207,7 +207,7 @@ Close #394
 ```
 
 ```
-BREAKING CHANGE:  
+BREAKING CHANGE:
 change login route to /users/login
 ```
 
