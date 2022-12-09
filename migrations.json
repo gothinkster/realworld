@@ -1,0 +1,20 @@
+{
+  "migrations": [
+    {
+      "cli": "nx",
+      "version": "15.3.0-beta.0",
+      "description": "Update projects using @nrwl/web:rollup to @nrwl/rollup:rollup for build.",
+      "factory": "./src/migrations/update-15-3-0/update-rollup-executor",
+      "package": "@nrwl/react",
+      "name": "update-rollup-executor"
+    },
+    {
+      "cli": "nx",
+      "version": "15.3.0-beta.0",
+      "description": "Install new dependencies for React projects using Webpack or Rollup.",
+      "factory": "./src/migrations/update-15-3-0/install-webpack-rollup-dependencies",
+      "package": "@nrwl/react",
+      "name": "install-webpack-rollup-dependencies"
+    }
+  ]
+}
