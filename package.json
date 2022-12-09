@@ -61,7 +61,7 @@
     "@storybook/builder-vite": "0.2.5",
     "@storybook/core-server": "~6.5.9",
     "@storybook/react": "~6.5.9",
-    "@svgr/webpack": "^5.4.0",
+    "@svgr/webpack": "^6.5.1",
     "@testing-library/react": "13.4.0",
     "@types/bcryptjs": "^2.4.2",
     "@types/cors": "^2.8.12",
