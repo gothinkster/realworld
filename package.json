@@ -89,6 +89,7 @@
     "@types/react-is": "17.0.3",
     "@types/react-router-dom": "5.3.3",
     "@types/styled-components": "5.1.26",
+    "@types/swagger-ui-react": "^4.11.0",
     "@typescript-eslint/eslint-plugin": "^5.36.1",
     "@typescript-eslint/parser": "^5.36.1",
     "@vitejs/plugin-react": "^2.2.0",
