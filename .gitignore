@@ -45,3 +45,8 @@ Thumbs.db
 # Generated Docusaurus files
 .docusaurus/
 .cache-loader/
+
+# Playwright
+**/test-results
+**/playwright-report
+**/playwright/.cache
