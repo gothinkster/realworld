@@ -9,4 +9,5 @@ module.exports = {
     '../src/app/**/*.stories.@(js|jsx|ts|tsx)',
   ],
   addons: [...rootMain.addons],
+  staticDirs: ['../public'],
 };
