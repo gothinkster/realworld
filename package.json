@@ -106,7 +106,7 @@
     "react-refresh": "^0.10.0",
     "react-test-renderer": "18.2.0",
     "style-loader": "^3.3.0",
-    "stylus": "^0.55.0",
+    "stylus": "^0.59.0",
     "stylus-loader": "^7.1.0",
     "swagger-ui-react": "^4.15.5",
     "ts-jest": "29.0.3",
