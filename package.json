@@ -87,7 +87,7 @@
     "babel-plugin-styled-components": "1.10.7",
     "css-loader": "^6.4.0",
     "eslint": "~8.15.0",
-    "eslint-config-prettier": "8.1.0",
+    "eslint-config-prettier": "8.5.0",
     "eslint-plugin-import": "2.26.0",
     "eslint-plugin-jsx-a11y": "6.6.1",
     "eslint-plugin-react": "7.31.11",
