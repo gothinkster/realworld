@@ -2,12 +2,12 @@ export default {
   title: 'Templates/Auth/Login',
 };
 
-export const Login = () => (
+export const Login = ({ action }: { action: string }) => (
   <div className="auth-page">
     <div className="container page">
       <div className="row">
         <div className="col-md-6 offset-md-3 col-xs-12">
-          <h1 className="text-xs-center">Log in</h1>
+          <h1 className="auth-title">Log in</h1>
           <p className="text-xs-center">
             <a href="apps/demo/src/app/stories/templates/auth/login.stories">Need an account?</a>
           </p>
