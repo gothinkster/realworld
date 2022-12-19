@@ -117,7 +117,7 @@
     "vite": "^3.0.5",
     "vite-plugin-eslint": "^1.6.0",
     "vite-tsconfig-paths": "^3.5.2",
-    "vitest": "^0.25.1",
+    "vitest": "^0.26.0",
     "webpack": "^5.75.0",
     "webpack-merge": "^5.8.0"
   },
