@@ -45,7 +45,7 @@
     "@nrwl/cli": "15.3.0",
     "@nrwl/eslint-plugin-nx": "15.3.0",
     "@nrwl/express": "15.3.0",
-    "@nrwl/jest": "15.3.0",
+    "@nrwl/jest": "15.3.3",
     "@nrwl/js": "15.3.0",
     "@nrwl/linter": "15.3.0",
     "@nrwl/node": "15.3.0",
