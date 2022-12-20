@@ -8,50 +8,95 @@ export default {
 };
 
 export const Header = () => (
-  <>
-    <nav className="navbar navbar-light">
-      <div className="container">
-        <a className="navbar-brand" href="">
-          conduit
-        </a>
-        <ul className="nav navbar-nav pull-xs-right">
-          <li className="nav-item">
-            <a className="nav-link" href="">
-              Log in
-            </a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link" href="">
-              Create account
-            </a>
-          </li>
-        </ul>
-      </div>
+  <div style={{ display: 'flex', flexDirection: 'column', gap: '3rem' }}>
+    <nav className="navbar">
+      <a className="navbar-title" href="">
+        conduit
+      </a>
+      <ul className="navbar-links">
+        <li className="nav-item">
+          <a className="nav-link" href="">
+            Log in
+          </a>
+        </li>
+        <li className="nav-item">
+          <a className="rl-btn rl-btn-primary nav-link" href="">
+            Create account
+          </a>
+        </li>
+      </ul>
     </nav>
 
-    <nav className="navbar navbar-light">
-      <div className="container">
-        <a className="navbar-brand" href="">
-          conduit
-        </a>
-        <ul className="nav navbar-nav pull-xs-right">
-          <li className="nav-item">
-            <a className="nav-link" href="">
-              <i className="ion-compose"></i>&nbsp;Create Article
-            </a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link" href="">
-              <i className="ion-gear-a"></i>&nbsp;Settings
-            </a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link" href="">
-              Gerome
-            </a>
-          </li>
-        </ul>
-      </div>
+    <nav className="navbar">
+      <a className="navbar-title" href="">
+        conduit
+      </a>
+      <ul className="navbar-links">
+        <li className="nav-item">
+          <a className="rl-btn rl-btn-primary nav-link" href="">
+            Create article
+          </a>
+        </li>
+        <li className="nav-item">
+          <a className="nav-link" href="">
+            Settings
+          </a>
+        </li>
+        <li className="nav-item">
+          <a className="nav-link" href="">
+            Gerome
+          </a>
+        </li>
+      </ul>
     </nav>
-  </>
+
+    <nav className="navbar">
+      <a className="navbar-title" href="">
+        conduit
+      </a>
+
+      <ul className="navbar-links">
+        <li className="nav-item">
+          <input className="rl-form-control" type="text" placeholder="Search" />
+        </li>
+        <li className="nav-item">
+          <a className="rl-btn rl-btn-primary nav-link" href="">
+            Create article
+          </a>
+        </li>
+        <li className="nav-item">
+          <a className="nav-link" href="">
+            Settings
+          </a>
+        </li>
+        <li className="nav-item">
+          <a className="nav-link" href="">
+            Gerome
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <nav className="navbar">
+      <a className="navbar-title" href="">
+        conduit
+      </a>
+
+      <ul className="navbar-links">
+        <li className="nav-item">
+          <input className="rl-form-control" type="text" placeholder="Search" />
+        </li>
+        <li className="nav-item">
+          <a className="rl-btn rl-btn-primary nav-link" href="">
+            Create article
+          </a>
+        </li>
+        <li className="nav-item">
+          <a className="nav-link" href="">
+            <img className="rl-avatar" src="avatar.png" alt="user avatar image" />
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
 );
