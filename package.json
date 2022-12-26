@@ -1,6 +1,8 @@
 {
   "name": "realworld",
-  "author": "Thinkster",
+  "author": {
+    "name": "Thinkster"
+  },
   "version": "1.2.0",
   "license": "MIT",
   "description": "Fullstack example codebases for React, Angular, Node, Django, Rails & more",
@@ -33,7 +35,10 @@
     "prettier:check": "npx prettier --check .",
     "lint:check": "npx eslint apps/**/*.ts",
     "lint:fix": "npx eslint --fix apps/**/*.ts",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "storybook": "nx run demo:storybook",
+    "build-storybook": "nx run demo:build-storybook",
+    "chromatic": "npx chromatic"
   },
   "private": true,
   "devDependencies": {
@@ -149,5 +154,7 @@
     "slugify": "^1.6.0",
     "styled-components": "5.3.6",
     "tslib": "^2.3.0"
-  }
+  },
+  "readme": "ERROR: No README data found!",
+  "_id": "realworld@1.2.0"
 }
