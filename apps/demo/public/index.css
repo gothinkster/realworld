@@ -5,7 +5,12 @@ body {
   min-width: 320px;
   min-height: 100vh;
 
+  --color-primary: #9d439d;
   --color-primary-dark: #6e2c6e;
+
+  --color-secondary: #5cb85c;
+
+  --color-warn: #ff0000;
 
   --border-radius: 0.3rem;
   --background-violet: radial-gradient(#cf68ca, #9c479c);
@@ -114,7 +119,7 @@ body {
 }
 
 .navbar-title {
-  color: #5cb85c;
+  color: var(--color-secondary);
   font-family: 'Titillium Web', sans-serif;
   font-size: 1.5rem;
   text-decoration: none;
@@ -223,6 +228,7 @@ body {
   padding: 0.5rem 1rem;
   font-size: 1rem;
   border-radius: var(--border-radius);
+  outline: none;
 }
 
 .rl-btn-lg {
@@ -236,16 +242,34 @@ body {
   color: #fff;
 }
 
+.rl-btn-primary:hover,
+.rl-btn-secondary:hover,
+.rl-btn-warn:hover {
+  opacity: 0.7;
+}
+
+.rl-btn-primary:focus {
+  box-shadow: 0 0 0 2px #ffffff, 0 0 3px 5px var(--color-primary);
+}
+
 .rl-btn-secondary {
-  background-color: #5cb85c;
-  border-color: #5cb85c;
+  background-color: var(--color-secondary);
+  border-color: var(--color-secondary);
   color: #fff;
 }
 
+.rl-btn-secondary:focus {
+  box-shadow: 0 0 0 2px #ffffff, 0 0 3px 5px var(--color-secondary);
+}
+
 .rl-btn-warn {
-  background-color: red;
-  border-color: red;
+  background-color: var(--color-warn);
+  border-color: var(--color-warn);
   color: #fff;
+}
+
+.rl-btn-warn:focus {
+  box-shadow: 0 0 0 2px #ffffff, 0 0 3px 5px var(--color-warn);
 }
 
 /* Avatar */
