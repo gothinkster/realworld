@@ -87,7 +87,6 @@ body {
 
 .rl-link {
   color: #fff;
-  // text-decoration: none;
 }
 
 /* Banner messages */
@@ -172,29 +171,38 @@ body {
   width: 100%;
 }
 
-.settings-page ul {
+.rl-navbar {
+  border-right: 2px solid rgba(0, 0, 0, 0.3);
+  margin-inline-end: 2rem;
+}
+
+.rl-navbar ul {
   list-style-type: none;
   padding: 0;
   margin: 0;
   text-decoration: none;
 }
 
-.settings-page aside {
-  border-right: 2px solid rgba(0, 0, 0, 0.3);
-  margin-inline-end: 2rem;
-}
-
-.settings-page ul a {
+.rl-navbar ul a {
   display: block;
   color: rgba(0, 0, 0, 0.7);
   text-decoration: none;
-  padding: 0.5rem 1px 1rem;
+  padding: 1rem 1px 1rem 1rem;
   font-size: 1.25rem;
-  width: 100px;
+  width: 130px;
   margin-right: -3px;
+  outline-color: var(--color-primary-dark);
 }
 
-.settings-page ul a.rl-active {
+.rl-navbar ul a:not(.rl-active):hover {
+  text-decoration: underline;
+}
+
+.rl-navbar ul a:focus-visible {
+  border-right: 4px solid var(--color-primary-dark);
+}
+
+.rl-navbar ul a.rl-active {
   color: var(--color-primary-dark);
   font-weight: bold;
   border-right: 4px solid var(--color-primary-dark);

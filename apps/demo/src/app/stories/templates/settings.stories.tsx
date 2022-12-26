@@ -5,7 +5,7 @@ export default {
 export const Settings = () => (
   <>
     <div className="settings-page">
-      <aside>
+      <aside className="rl-navbar">
         <ul>
           <li>
             <a className="rl-active" href="">
@@ -14,6 +14,9 @@ export const Settings = () => (
           </li>
           <li>
             <a href="">Security</a>
+          </li>
+          <li>
+            <a href="">Preferences</a>
           </li>
         </ul>
       </aside>
@@ -25,17 +28,8 @@ export const Settings = () => (
             <input id="name" className="rl-form-control" type="text" />
           </fieldset>
           <fieldset className="rl-form-group">
-            <label htmlFor="bio"></label>
-            <textarea
-              id="bio"
-              className="rl-form-control"
-              rows={8}
-              placeholder="Short bio about you"
-            ></textarea>
-          </fieldset>
-          <fieldset className="rl-form-group">
-            <label htmlFor="email"></label>
-            <input id="email" className="rl-form-control" type="text" />
+            <label htmlFor="bio">Bio</label>
+            <textarea id="bio" className="rl-form-control" rows={8}></textarea>
           </fieldset>
           <button className="rl-btn rl-btn-secondary">Update</button>
         </form>
