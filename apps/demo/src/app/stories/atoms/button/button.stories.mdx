@@ -1,0 +1,48 @@
+import { Canvas, Meta, Story, Source } from '@storybook/addon-docs';
+import { primaryButtonDocs, secondaryButtonDocs, warnButtonDocs } from './button.utils';
+
+<Meta title="Atoms/Button/Overview" />
+
+## Atoms button overview
+
+<br />
+
+### Default
+
+<Canvas>
+  <Story id="atoms-button--primary"></Story>
+  <Story id="atoms-button--secondary"></Story>
+  <Story id="atoms-button--warn"></Story>
+</Canvas>
+
+### Hover
+
+<Canvas>
+  <Story id="atoms-button--primary-hover"></Story>
+  <Story id="atoms-button--secondary-hover"></Story>
+  <Story id="atoms-button--warn-hover"></Story>
+</Canvas>
+
+### Focus
+
+<Canvas>
+  <Story id="atoms-button--primary-focus"></Story>
+  <Story id="atoms-button--secondary-focus"></Story>
+  <Story id="atoms-button--warn-focus"></Story>
+</Canvas>
+
+## Code
+
+<br />
+
+### Primary
+
+<Source {...primaryButtonDocs.docs.source} />
+
+### Secondary
+
+<Source {...secondaryButtonDocs.docs.source} />
+
+### Warn
+
+<Source {...warnButtonDocs.docs.source} />
