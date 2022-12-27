@@ -1,5 +1,7 @@
+import { within } from '@storybook/testing-library';
+
 export default {
-  title: 'Organisms/Auth/Login',
+  title: 'Templates/Auth/Login',
 };
 
 export const Login = () => (
@@ -30,3 +32,10 @@ export const Login = () => (
     </a>
   </dialog>
 );
+
+Login.play = async ({ canvasElement }: { canvasElement: HTMLElement }) => {
+  const canvas = within(canvasElement);
+
+  const dialog = canvas.getByRole('dialog') as HTMLDialogElement;
+  dialog.showModal();
+};
