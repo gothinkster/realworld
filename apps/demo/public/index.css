@@ -12,7 +12,7 @@ body {
 
   --color-secondary: #5cb85c;
 
-  --color-warn: #ff0000;
+  --color-warn: grey;
 
   --border-radius: 0.3rem;
   --background-violet: radial-gradient(#cf68ca, #9c479c);
@@ -27,7 +27,7 @@ body {
 }
 
 .rl-form-group label,
-.rl-form-group--file label {
+.rl-file-form-group label {
   color: #000;
   display: block;
   font-weight: bold;
@@ -54,22 +54,35 @@ body {
   box-shadow: 0 0 5px 5px rgb(110 44 110 / 50%);
 }
 
-.rl-form-group--file {
+.rl-file-form-group {
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+.rl-file-form-group__input {
   border-radius: var(--border-radius);
-  border: 1px solid rgba(0, 0, 0, 0.15);
+  border: 1px dashed rgba(0, 0, 0, 0.15);
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 1rem;
   margin: 0 0 1rem;
+  gap: 0.5rem;
 }
 
-.rl-form-group--file input {
+.rl-file-form-group input {
   display: none;
 }
 
-.rl-form-group--file label {
-  margin-block-end: 1rem;
+.rl-file-form-group__preview {
+  max-width: 100%;
+}
+
+.rl-file-form-group__button-container {
+  display: flex;
+  gap: 2rem;
+  margin-block-start: 1rem;
 }
 
 .rl-form-group--avatar {

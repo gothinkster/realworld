@@ -8,12 +8,16 @@ export const ArticleForm = () => (
       <label htmlFor="title">Title</label>
       <input id="title" type="text" className="rl-form-control" />
     </fieldset>
-    <fieldset className="rl-form-group--file">
-      <label>Choose a cover image</label>
+    <fieldset className="rl-file-form-group">
+      <label>Cover image</label>
+      <div className="rl-file-form-group__input">
+        <div>Drag and drop the file here</div>
+        <div>- OR -</div>
+        <button type="button" className="rl-btn rl-btn-secondary">
+          Browse files
+        </button>
+      </div>
       <input type="file" className="rl-input-file" />
-      <button type="button" className="rl-btn rl-btn-secondary">
-        Upload
-      </button>
     </fieldset>
     <fieldset className="rl-form-group">
       <label htmlFor="description">Description</label>
