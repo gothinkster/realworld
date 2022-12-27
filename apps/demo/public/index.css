@@ -245,9 +245,9 @@ body {
   cursor: pointer;
   user-select: none;
   border: 1px solid transparent;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 1.5rem;
   font-size: 1rem;
-  border-radius: var(--border-radius);
+  border-radius: 20px;
   outline: none;
   text-decoration: none;
 }
