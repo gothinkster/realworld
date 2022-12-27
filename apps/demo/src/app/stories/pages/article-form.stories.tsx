@@ -34,7 +34,7 @@ export const ArticleForm = () => (
               <input id="tags" type="text" className="rl-form-control" />
               <div className="tag-list"></div>
             </fieldset>
-            <button className="rl-btn rl-btn-lg rl-btn-primary" type="submit">
+            <button className="rl-btn rl-btn-primary" type="submit">
               Publish
             </button>
           </fieldset>
