@@ -25,7 +25,7 @@ export const Login = ({ action }: { action: string }) => (
               <label htmlFor="password">Password</label>
               <input id="password" className="rl-form-control" type="password" />
             </fieldset>
-            <button className="rl-btn rl-btn-lg rl-btn-primary" type="submit">
+            <button className="rl-btn rl-btn-primary" type="submit">
               Login
             </button>
           </form>

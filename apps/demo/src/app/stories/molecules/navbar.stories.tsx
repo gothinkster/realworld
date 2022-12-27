@@ -8,15 +8,19 @@ export const NavBar = () => (
       <aside className="rl-navbar">
         <ul>
           <li>
-            <a className="rl-active" href="">
+            <a className="rl-link rl-active" href="">
               Profile
             </a>
           </li>
           <li>
-            <a href="">Security</a>
+            <a className="rl-link" href="">
+              Security
+            </a>
           </li>
           <li>
-            <a href="">Preferences</a>
+            <a className="rl-link" href="">
+              Preferences
+            </a>
           </li>
         </ul>
       </aside>
@@ -26,15 +30,19 @@ export const NavBar = () => (
       <aside className="rl-navbar">
         <ul>
           <li>
-            <a href="">Profile</a>
+            <a className="rl-link" href="">
+              Profile
+            </a>
           </li>
           <li>
-            <a className="rl-active" href="">
+            <a className="rl-link rl-active" href="">
               Security
             </a>
           </li>
           <li>
-            <a href="">Preferences</a>
+            <a className="rl-link" href="">
+              Preferences
+            </a>
           </li>
         </ul>
       </aside>
