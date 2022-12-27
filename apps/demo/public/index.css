@@ -115,13 +115,15 @@ body {
 
 /* Links */
 
-.rl-link {
+.rl-link,
+.rl-link-underlined {
   color: var(--color-primary-dark);
   font-weight: bold;
   text-decoration: none;
   outline-color: var(--color-primary-dark);
 }
 
+.rl-link-underlined,
 .rl-link:hover {
   text-decoration: underline;
   text-underline-offset: 3px;
@@ -187,6 +189,8 @@ body {
 
 .auth-form {
   margin-block-start: 2rem;
+  width: 20rem;
+  max-width: 100%;
 }
 
 /* Settings Page */
@@ -256,7 +260,6 @@ body {
   white-space: nowrap;
   vertical-align: middle;
   cursor: pointer;
-  user-select: none;
   border: 1px solid transparent;
   padding: 0.5rem 1.5rem;
   font-size: 1rem;
