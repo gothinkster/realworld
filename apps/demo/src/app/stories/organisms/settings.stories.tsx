@@ -1,5 +1,5 @@
 export default {
-  title: 'Templates/Settings',
+  title: 'Organisms/Settings',
 };
 
 export const Settings = () => (
@@ -12,12 +12,12 @@ export const Settings = () => (
           </a>
         </li>
         <li>
-          <a className="rl-link" href="">
+          <a className="rl-link" href="apps/demo/src/app/stories/organisms/settings.stories">
             Security
           </a>
         </li>
         <li>
-          <a className="rl-link" href="">
+          <a className="rl-link" href="apps/demo/src/app/stories/organisms/settings.stories">
             Preferences
           </a>
         </li>

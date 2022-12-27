@@ -1,5 +1,5 @@
 export default {
-  title: 'Templates/Home',
+  title: 'Organisms/Home',
 };
 
 export const Home = () => (
@@ -35,7 +35,7 @@ export const Home = () => (
                 <img src="http://i.imgur.com/Qr71crq.jpg" />
               </a>
               <div className="info">
-                <a href="" className="author">
+                <a href="apps/demo/src/app/stories/organisms/home.stories" className="author">
                   Eric Simons
                 </a>
                 <span className="date">January 20th</span>
@@ -44,7 +44,7 @@ export const Home = () => (
                 <i className="ion-heart"></i> 29
               </button>
             </div>
-            <a href="" className="preview-link">
+            <a href="apps/demo/src/app/stories/organisms/home.stories" className="preview-link">
               <h1>How to build webapps that scale</h1>
               <p>This is the description for the post.</p>
               <span>Read more...</span>
@@ -57,7 +57,7 @@ export const Home = () => (
                 <img src="http://i.imgur.com/N4VcUeJ.jpg" />
               </a>
               <div className="info">
-                <a href="" className="author">
+                <a href="apps/demo/src/app/stories/organisms/home.stories" className="author">
                   Albert Pai
                 </a>
                 <span className="date">January 20th</span>
@@ -66,7 +66,7 @@ export const Home = () => (
                 <i className="ion-heart"></i> 32
               </button>
             </div>
-            <a href="" className="preview-link">
+            <a href="apps/demo/src/app/stories/organisms/home.stories" className="preview-link">
               <h1>The song you won't ever stop singing. No matter how hard you try.</h1>
               <p>This is the description for the post.</p>
               <span>Read more...</span>

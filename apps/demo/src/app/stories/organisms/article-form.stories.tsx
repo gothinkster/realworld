@@ -1,5 +1,5 @@
 export default {
-  title: 'Templates/Article Form',
+  title: 'Organisms/Article Form',
 };
 
 export const ArticleForm = () => (
