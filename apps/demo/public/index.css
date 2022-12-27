@@ -18,6 +18,14 @@ body {
   --background-violet: radial-gradient(#cf68ca, #9c479c);
 }
 
+dialog {
+  border: none !important;
+  border-radius: 20px;
+  box-shadow: 0 0 #0000, 0 0 #0000, 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  padding: 1.6rem;
+  max-width: calc(100% - 3.2rem);
+}
+
 .rl-form-group {
   width: 100%;
   margin: 0 0 1rem;
@@ -178,7 +186,6 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100vh;
 }
 
 .auth-title {
@@ -191,6 +198,7 @@ body {
   margin-block-start: 2rem;
   width: 20rem;
   max-width: 100%;
+  margin-block-end: 2rem;
 }
 
 /* Settings Page */
