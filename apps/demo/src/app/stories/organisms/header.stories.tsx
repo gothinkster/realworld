@@ -20,7 +20,7 @@ export const Header = () => (
           </a>
         </li>
         <li className="nav-item">
-          <a className="rl-btn rl-btn-primary" href="">
+          <a className="rl-btn-primary" href="">
             Create account
           </a>
         </li>
@@ -33,7 +33,7 @@ export const Header = () => (
       </a>
       <ul className="navbar-links">
         <li className="nav-item">
-          <a className="rl-btn rl-btn-primary" href="">
+          <a className="rl-btn-primary" href="">
             Create article
           </a>
         </li>
@@ -60,7 +60,7 @@ export const Header = () => (
           <input className="rl-form-control" type="text" placeholder="Search" />
         </li>
         <li className="nav-item">
-          <a className="rl-btn rl-btn-primary" href="">
+          <a className="rl-btn-primary" href="">
             Create article
           </a>
         </li>
@@ -87,7 +87,7 @@ export const Header = () => (
           <input className="rl-form-control" type="text" placeholder="Search" />
         </li>
         <li className="nav-item">
-          <a className="rl-btn rl-btn-primary" href="">
+          <a className="rl-btn-primary" href="">
             Create article
           </a>
         </li>

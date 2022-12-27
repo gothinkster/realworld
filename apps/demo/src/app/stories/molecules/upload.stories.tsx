@@ -11,7 +11,7 @@ export const InputFile = () => (
       <div className="rl-file-form-group__input">
         <div>Drag and drop the file here</div>
         <div>- OR -</div>
-        <button type="button" className="rl-btn rl-btn-secondary">
+        <button type="button" className="rl-btn-secondary">
           Browse files
         </button>
       </div>
@@ -23,10 +23,10 @@ export const InputFile = () => (
       <div className="rl-file-form-group__input">
         <img className="rl-file-form-group__preview" src={coverImage} alt="" />
         <div className="rl-file-form-group__button-container">
-          <button type="button" className="rl-btn rl-btn-secondary">
+          <button type="button" className="rl-btn-secondary">
             Browse files
           </button>
-          <button type="button" className="rl-btn rl-btn-warn">
+          <button type="button" className="rl-btn-warn">
             Remove
           </button>
         </div>

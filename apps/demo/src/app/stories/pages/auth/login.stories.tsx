@@ -15,7 +15,7 @@ export const Login = () => (
           </a>
         </li>
         <li className="nav-item">
-          <a className="rl-btn rl-btn-primary" href="">
+          <a className="rl-btn-primary" href="">
             Create account
           </a>
         </li>
@@ -44,7 +44,7 @@ export const Login = () => (
                 <label htmlFor="password">Password</label>
                 <input id="password" className="rl-form-control" type="password" />
               </fieldset>
-              <button className="rl-btn rl-btn-primary" type="submit">
+              <button className="rl-btn-primary" type="submit">
                 Login
               </button>
             </form>

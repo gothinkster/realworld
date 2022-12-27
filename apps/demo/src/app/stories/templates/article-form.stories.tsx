@@ -13,7 +13,7 @@ export const ArticleForm = () => (
       <div className="rl-file-form-group__input">
         <div>Drag and drop the file here</div>
         <div>- OR -</div>
-        <button type="button" className="rl-btn rl-btn-secondary">
+        <button type="button" className="rl-btn-secondary">
           Browse files
         </button>
       </div>
@@ -32,7 +32,7 @@ export const ArticleForm = () => (
       <input id="tags" type="text" className="rl-form-control" />
       <div className="tag-list"></div>
     </fieldset>
-    <button className="rl-btn rl-btn-secondary" type="submit">
+    <button className="rl-btn-secondary" type="submit">
       Publish
     </button>
   </form>
