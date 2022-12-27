@@ -17,12 +17,12 @@ export const Home = () => (
           <div className="feed-toggle">
             <ul className="nav nav-pills outline-active">
               <li className="nav-item">
-                <a className="nav-link disabled" href="">
+                <a className="rl-link disabled" href="">
                   Your Feed
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link active" href="">
+                <a className="rl-link active" href="">
                   Global Feed
                 </a>
               </li>

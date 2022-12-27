@@ -61,17 +61,10 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
   align-items: center;
 }
 
-.main-wrapper:has(.hero--primary) {
+.hero--primary {
   background: radial-gradient(#cf68ca, #9c479c);
   color: #fff !important;
-}
-
-.main-wrapper:has(.hero--primary) .hero--primary {
-  color: #fff !important;
-}
-
-.hero--primary {
-  background: transparent !important;
+  height: calc(100vh - 60px);
 }
 
 .introduction-content {

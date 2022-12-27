@@ -50,3 +50,7 @@ Thumbs.db
 **/test-results
 **/playwright-report
 **/playwright/.cache
+
+# Storybook
+build-storybook.log
+static-storybook
