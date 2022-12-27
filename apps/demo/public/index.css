@@ -245,7 +245,10 @@ body {
 
 /* Buttons */
 
-.rl-btn {
+.rl-btn-primary,
+.rl-btn-secondary,
+.rl-btn-warn {
+  color: #fff;
   display: inline-block;
   font-weight: normal;
   line-height: 1.25;
@@ -262,21 +265,15 @@ body {
   text-decoration: none;
 }
 
-.rl-btn-primary,
-.rl-btn-secondary,
-.rl-btn-warn {
-  color: #fff;
+.rl-btn-primary:hover,
+.rl-btn-secondary:hover,
+.rl-btn-warn:hover {
+  opacity: 0.7;
 }
 
 .rl-btn-primary {
   background-color: var(--color-primary-dark);
   border-color: var(--color-primary-dark);
-}
-
-.rl-btn-primary:hover,
-.rl-btn-secondary:hover,
-.rl-btn-warn:hover {
-  opacity: 0.7;
 }
 
 .rl-btn-primary:focus {
@@ -303,10 +300,17 @@ body {
 
 /* Avatar */
 
+.rl-avatar,
+.rl-avatar-sm,
+.rl-avatar-lg,
+.rl-avatar-xl,
+.rl-avatar-xxl {
+  border-radius: 50%;
+}
+
 .rl-avatar {
   height: 3rem;
   width: 3rem;
-  border-radius: 50%;
 }
 
 .rl-avatar-sm {

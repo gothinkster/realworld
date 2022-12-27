@@ -28,9 +28,13 @@ export const Settings = () => (
         <fieldset className="rl-file-form-group">
           <label>Avatar</label>
           <div className="rl-file-form-group__input-avatar">
-            <img className="rl-avatar rl-avatar-xl" src="avatar.png" alt="user avatar" />
-            <button className="rl-btn rl-btn-primary">Change</button>
-            <button className="rl-btn rl-btn-warn">Remove</button>
+            <img className="rl-avatar-xl" src="avatar.png" alt="user avatar" />
+            <button type="button" className="rl-btn-primary">
+              Change
+            </button>
+            <button type="button" className="rl-btn-warn">
+              Remove
+            </button>
           </div>
           <input type="file" className="rl-input-file" />
         </fieldset>
@@ -42,7 +46,9 @@ export const Settings = () => (
           <label htmlFor="bio">Bio</label>
           <textarea id="bio" className="rl-form-control" rows={8}></textarea>
         </fieldset>
-        <button className="rl-btn rl-btn-secondary">Update</button>
+        <button type="submit" className="rl-btn-secondary">
+          Update
+        </button>
       </form>
     </section>
   </div>
