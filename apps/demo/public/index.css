@@ -60,7 +60,8 @@ body {
   padding: 0;
 }
 
-.rl-file-form-group__input {
+.rl-file-form-group__input,
+.rl-file-form-group__input-avatar {
   border-radius: var(--border-radius);
   border: 1px dashed rgba(0, 0, 0, 0.15);
   display: flex;
@@ -69,6 +70,15 @@ body {
   padding: 1rem;
   margin: 0 0 1rem;
   gap: 0.5rem;
+}
+
+.rl-file-form-group__input-avatar {
+  align-items: center;
+  flex-direction: row;
+}
+
+.rl-file-form-group__input-avatar img {
+  margin-inline-end: 2rem;
 }
 
 .rl-file-form-group input {
@@ -317,25 +327,4 @@ body {
 .rl-avatar-xxl {
   height: 10rem;
   width: 10rem;
-}
-
-.foot:hover {
-  opacity: 0.5;
-}
-
-.foo:before {
-  content: 'BUTTOsdfdsfsfdsfsdN';
-  color: #000;
-  position: absolute;
-  white-space: pre;
-  height: fit-content;
-  display: flex;
-  // width: 100%;
-  align-items: center;
-  justify-content: center;
-}
-
-.foo:hover:before {
-  color: #000;
-  font-weight: bold;
 }
