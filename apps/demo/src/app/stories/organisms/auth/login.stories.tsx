@@ -1,5 +1,5 @@
 export default {
-  title: 'Templates/Auth/Login',
+  title: 'Organisms/Auth/Login',
 };
 
 export const Login = ({ action }: { action: string }) => (
@@ -9,7 +9,7 @@ export const Login = ({ action }: { action: string }) => (
         <div className="col-md-6 offset-md-3 col-xs-12">
           <h1 className="auth-title">Log in</h1>
           <p className="text-xs-center">
-            <a href="apps/demo/src/app/stories/templates/auth/login.stories">Need an account?</a>
+            <a href="apps/demo/src/app/stories/organisms/auth/login.stories">Need an account?</a>
           </p>
 
           <ul className="error-messages">

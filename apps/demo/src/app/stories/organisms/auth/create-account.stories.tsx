@@ -1,11 +1,11 @@
 export default {
-  title: 'Templates/Auth/Create Account',
+  title: 'Organisms/Auth/Create Account',
 };
 
 export const CreateAccount = () => (
   <div className="auth-page">
     <h1 className="auth-title">Create account</h1>
-    <a className="rl-link" href="">
+    <a className="rl-link" href="apps/demo/src/app/stories/organisms/auth/create-account.stories">
       Have an account?
     </a>
 
