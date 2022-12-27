@@ -5,6 +5,8 @@ body {
   min-width: 320px;
   min-height: 100vh;
 
+  font-family: 'Source Sans Pro', sans-serif;
+
   --color-primary: #9d439d;
   --color-primary-dark: #6e2c6e;
 
@@ -91,7 +93,15 @@ body {
 /* Links */
 
 .rl-link {
-  color: #fff;
+  color: var(--color-primary-dark);
+  font-weight: bold;
+  text-decoration: none;
+  outline-color: var(--color-primary-dark);
+}
+
+.rl-link:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 /* Banner messages */
@@ -131,12 +141,6 @@ body {
   margin: 0;
   display: flex;
   align-items: center;
-}
-
-.nav-link {
-  font-family: 'Source Sans Pro', sans-serif;
-  text-decoration: none;
-  color: var(--color-primary-dark);
 }
 
 .nav-item + .nav-item {
@@ -191,12 +195,15 @@ body {
 .rl-navbar ul a {
   display: block;
   color: rgba(0, 0, 0, 0.7);
-  text-decoration: none;
   padding: 1rem 1px 1rem 1rem;
   font-size: 1.25rem;
+  font-weight: normal;
   width: 130px;
   margin-right: -3px;
-  outline-color: var(--color-primary-dark);
+}
+
+.rl-navbar ul a:hover {
+  text-decoration: none;
 }
 
 .rl-navbar ul a:not(.rl-active):hover {
@@ -229,17 +236,18 @@ body {
   font-size: 1rem;
   border-radius: var(--border-radius);
   outline: none;
+  text-decoration: none;
 }
 
-.rl-btn-lg {
-  padding: 0.75rem 1.5rem;
-  font-size: 1.25rem;
+.rl-btn-primary,
+.rl-btn-secondary,
+.rl-btn-warn {
+  color: #fff;
 }
 
 .rl-btn-primary {
   background-color: var(--color-primary-dark);
   border-color: var(--color-primary-dark);
-  color: #fff;
 }
 
 .rl-btn-primary:hover,
@@ -255,7 +263,6 @@ body {
 .rl-btn-secondary {
   background-color: var(--color-secondary);
   border-color: var(--color-secondary);
-  color: #fff;
 }
 
 .rl-btn-secondary:focus {
@@ -265,7 +272,6 @@ body {
 .rl-btn-warn {
   background-color: var(--color-warn);
   border-color: var(--color-warn);
-  color: #fff;
 }
 
 .rl-btn-warn:focus {

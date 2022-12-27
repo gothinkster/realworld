@@ -34,7 +34,7 @@ export const Profile = () => (
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="">
+                <a className="rl-link" href="">
                   Favorited Articles
                 </a>
               </li>
