@@ -1,5 +1,5 @@
 export default {
-  title: 'Templates/Article',
+  title: 'Organisms/Article',
 };
 
 export const Article = () => (
@@ -9,11 +9,11 @@ export const Article = () => (
         <h1>How to build webapps that scale</h1>
 
         <div className="article-meta">
-          <a href="">
+          <a href="apps/demo/src/app/stories/organisms/article.stories">
             <img src="http://i.imgur.com/Qr71crq.jpg" />
           </a>
           <div className="info">
-            <a href="" className="author">
+            <a href="apps/demo/src/app/stories/organisms/article.stories" className="author">
               Eric Simons
             </a>
             <span className="date">January 20th</span>
@@ -50,7 +50,7 @@ export const Article = () => (
             <img src="http://i.imgur.com/Qr71crq.jpg" />
           </a>
           <div className="info">
-            <a href="" className="author">
+            <a href="apps/demo/src/app/stories/organisms/article.stories" className="author">
               Eric Simons
             </a>
             <span className="date">January 20th</span>
