@@ -1,7 +1,5 @@
-import { within } from '@storybook/testing-library';
-
 export default {
-  title: 'Templates/Auth/Create Account',
+  title: 'Organisms/Auth/Create Account',
 };
 
 export const CreateAccount = () => (
@@ -11,7 +9,7 @@ export const CreateAccount = () => (
     <form method="dialog" className="auth-form">
       <fieldset className="rl-form-group">
         <label htmlFor="name">Name</label>
-        <input id="name" className="rl-form-control" type="text" autoComplete="off" />
+        <input id="name" className="rl-form-control" type="text" autoComplete="off" autoFocus />
       </fieldset>
       <fieldset className="rl-form-group">
         <label htmlFor="email">Email</label>
@@ -39,10 +37,3 @@ export const CreateAccount = () => (
     </a>
   </dialog>
 );
-
-CreateAccount.play = async ({ canvasElement }: { canvasElement: HTMLElement }) => {
-  const canvas = within(canvasElement);
-
-  const dialog = canvas.getByRole('dialog') as HTMLDialogElement;
-  dialog.showModal();
-};

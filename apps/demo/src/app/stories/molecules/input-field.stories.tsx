@@ -23,10 +23,10 @@ export const InputField = () => (
 
     <fieldset className="rl-form-group">
       <label>Password</label>
+      <input type="password" autoComplete="off" className="rl-form-control" />
       <div className="hint-banner">
         Must include at least one number, one uppercase letter, and one lowercase letter
       </div>
-      <input type="password" autoComplete="off" className="rl-form-control" />
       <div className="error-banner">The password doesn't match the requirements</div>
     </fieldset>
   </>

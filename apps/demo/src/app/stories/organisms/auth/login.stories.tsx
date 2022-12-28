@@ -1,18 +1,15 @@
 export default {
-  title: 'Pages/Auth/Login',
+  title: 'Organisms/Auth/Login',
 };
 
 export const Login = () => (
-  <div className="auth-page">
+  <dialog id="login-dialog" className="auth-page">
     <h1 className="auth-title">Log in</h1>
-    <a className="rl-link-underlined" href="">
-      Need an account?
-    </a>
 
     <form className="auth-form">
       <fieldset className="rl-form-group">
         <label htmlFor="email">Email</label>
-        <input id="email" className="rl-form-control" type="text" autoComplete="email" autoFocus />
+        <input id="email" className="rl-form-control" type="text" autoComplete="email" />
       </fieldset>
       <fieldset className="rl-form-group">
         <label htmlFor="password">Password</label>
@@ -27,5 +24,9 @@ export const Login = () => (
         Log in
       </button>
     </form>
-  </div>
+
+    <a className="rl-link-underlined" href="">
+      Need an account?
+    </a>
+  </dialog>
 );

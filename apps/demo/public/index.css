@@ -12,10 +12,18 @@ body {
 
   --color-secondary: #5cb85c;
 
-  --color-warn: #ff0000;
+  --color-warn: grey;
 
   --border-radius: 0.3rem;
   --background-violet: radial-gradient(#cf68ca, #9c479c);
+}
+
+dialog {
+  border: none !important;
+  border-radius: 20px;
+  box-shadow: 0 0 #0000, 0 0 #0000, 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  padding: 1.6rem;
+  max-width: calc(100% - 3.2rem);
 }
 
 .rl-form-group {
@@ -27,7 +35,7 @@ body {
 }
 
 .rl-form-group label,
-.rl-form-group--file label {
+.rl-file-form-group label {
   color: #000;
   display: block;
   font-weight: bold;
@@ -54,22 +62,45 @@ body {
   box-shadow: 0 0 5px 5px rgb(110 44 110 / 50%);
 }
 
-.rl-form-group--file {
+.rl-file-form-group {
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+.rl-file-form-group__input,
+.rl-file-form-group__input-avatar {
   border-radius: var(--border-radius);
-  border: 1px solid rgba(0, 0, 0, 0.15);
+  border: 1px dashed rgba(0, 0, 0, 0.15);
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 1rem;
   margin: 0 0 1rem;
+  gap: 0.5rem;
 }
 
-.rl-form-group--file input {
+.rl-file-form-group__input-avatar {
+  align-items: center;
+  flex-direction: row;
+}
+
+.rl-file-form-group__input-avatar img {
+  margin-inline-end: 2rem;
+}
+
+.rl-file-form-group input {
   display: none;
 }
 
-.rl-form-group--file label {
-  margin-block-end: 1rem;
+.rl-file-form-group__preview {
+  max-width: 100%;
+}
+
+.rl-file-form-group__button-container {
+  display: flex;
+  gap: 2rem;
+  margin-block-start: 1rem;
 }
 
 .rl-form-group--avatar {
@@ -92,13 +123,15 @@ body {
 
 /* Links */
 
-.rl-link {
+.rl-link,
+.rl-link-underlined {
   color: var(--color-primary-dark);
   font-weight: bold;
   text-decoration: none;
   outline-color: var(--color-primary-dark);
 }
 
+.rl-link-underlined,
 .rl-link:hover {
   text-decoration: underline;
   text-underline-offset: 3px;
@@ -153,7 +186,6 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100vh;
 }
 
 .auth-title {
@@ -164,6 +196,9 @@ body {
 
 .auth-form {
   margin-block-start: 2rem;
+  width: 20rem;
+  max-width: 100%;
+  margin-block-end: 2rem;
 }
 
 /* Settings Page */
@@ -222,7 +257,10 @@ body {
 
 /* Buttons */
 
-.rl-btn {
+.rl-btn-primary,
+.rl-btn-secondary,
+.rl-btn-warn {
+  color: #fff;
   display: inline-block;
   font-weight: normal;
   line-height: 1.25;
@@ -230,30 +268,23 @@ body {
   white-space: nowrap;
   vertical-align: middle;
   cursor: pointer;
-  user-select: none;
   border: 1px solid transparent;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 1.5rem;
   font-size: 1rem;
-  border-radius: var(--border-radius);
+  border-radius: 20px;
   outline: none;
   text-decoration: none;
-}
-
-.rl-btn-primary,
-.rl-btn-secondary,
-.rl-btn-warn {
-  color: #fff;
-}
-
-.rl-btn-primary {
-  background-color: var(--color-primary-dark);
-  border-color: var(--color-primary-dark);
 }
 
 .rl-btn-primary:hover,
 .rl-btn-secondary:hover,
 .rl-btn-warn:hover {
   opacity: 0.7;
+}
+
+.rl-btn-primary {
+  background-color: var(--color-primary-dark);
+  border-color: var(--color-primary-dark);
 }
 
 .rl-btn-primary:focus {
@@ -280,10 +311,17 @@ body {
 
 /* Avatar */
 
+.rl-avatar,
+.rl-avatar-sm,
+.rl-avatar-lg,
+.rl-avatar-xl,
+.rl-avatar-xxl {
+  border-radius: 50%;
+}
+
 .rl-avatar {
   height: 3rem;
   width: 3rem;
-  border-radius: 50%;
 }
 
 .rl-avatar-sm {
@@ -304,25 +342,4 @@ body {
 .rl-avatar-xxl {
   height: 10rem;
   width: 10rem;
-}
-
-.foot:hover {
-  opacity: 0.5;
-}
-
-.foo:before {
-  content: 'BUTTOsdfdsfsfdsfsdN';
-  color: #000;
-  position: absolute;
-  white-space: pre;
-  height: fit-content;
-  display: flex;
-  // width: 100%;
-  align-items: center;
-  justify-content: center;
-}
-
-.foo:hover:before {
-  color: #000;
-  font-weight: bold;
 }
