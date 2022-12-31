@@ -4,7 +4,7 @@ export default {
 
 export const Settings = () => (
   <div className="settings-page">
-    <aside className="rl-navbar">
+    <aside className="rl-navbar-vertical">
       <ul>
         <li>
           <a className="rl-link rl-active" href="">
@@ -12,12 +12,12 @@ export const Settings = () => (
           </a>
         </li>
         <li>
-          <a className="rl-link" href="apps/demo/src/app/stories/organisms/settings.stories">
+          <a className="rl-link" href="">
             Security
           </a>
         </li>
         <li>
-          <a className="rl-link" href="apps/demo/src/app/stories/organisms/settings.stories">
+          <a className="rl-link" href="">
             Preferences
           </a>
         </li>
