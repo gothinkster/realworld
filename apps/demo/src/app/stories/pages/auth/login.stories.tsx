@@ -4,7 +4,7 @@ export default {
 
 export const Login = () => (
   <div className="auth-page">
-    <h1 className="auth-title">Log in</h1>
+    <h1 className="rl-page-title auth-title">Log in</h1>
     <a className="rl-link-underlined" href="">
       Need an account?
     </a>

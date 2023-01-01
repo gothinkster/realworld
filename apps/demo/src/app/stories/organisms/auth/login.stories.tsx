@@ -4,7 +4,7 @@ export default {
 
 export const Login = () => (
   <dialog id="login-dialog" className="auth-page">
-    <h1 className="auth-title">Log in</h1>
+    <h1 className="rl-page-title auth-title">Log in</h1>
 
     <form className="auth-form">
       <fieldset className="rl-form-group">
