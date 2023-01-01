@@ -12,11 +12,11 @@ body {
   --color-default: black;
   --color-default-light: lightgray;
 
-  --color-primary: #9d439d;
-  --color-primary-light: rgba(209, 103, 203, 0.5);
-  --color-primary-dark: #6e2c6e;
+  --color-secondary: #9d439d;
+  --color-secondary-light: rgba(209, 103, 203, 0.5);
+  --color-secondary-dark: #6e2c6e;
 
-  --color-secondary: #5cb85c;
+  --color-primary: #5cb85c;
 
   --color-warn: grey;
 
@@ -24,7 +24,26 @@ body {
   --background-violet: radial-gradient(#cf68ca, #9c479c);
 }
 
+/* Layout */
+
+.rl-main {
+  max-width: 700px;
+  margin-inline-start: auto;
+  margin-inline-end: auto;
+  padding-block-start: 2rem;
+}
+
 /* Generic */
+
+.rl-page-title {
+  text-align: center;
+  background: var(--color-primary);
+  color: white;
+  border-radius: var(--border-radius);
+  padding: 0.5rem 1rem;
+  margin-block-end: 2rem;
+  width: calc(100% - 2rem);
+}
 
 .rl-tag-list-vertical,
 .rl-tag-list-horizontal {
@@ -87,8 +106,8 @@ dialog {
 }
 
 .rl-form-control:focus {
-  outline: 2px solid var(--color-primary-dark);
-  border-color: var(--color-primary-dark);
+  outline: 2px solid var(--color-secondary-dark);
+  border-color: var(--color-secondary-dark);
   box-shadow: 0 0 5px 5px rgb(110 44 110 / 50%);
 }
 
@@ -146,7 +165,7 @@ dialog {
 
 .rl-form-group--avatar:focus,
 .rl-form-group--avatar:hover {
-  border: 2px solid var(--color-primary-dark);
+  border: 2px solid var(--color-secondary-dark);
   box-shadow: 0 0 5px 5px rgb(110 44 110 / 50%);
   border-radius: 50%;
 }
@@ -155,10 +174,10 @@ dialog {
 
 .rl-link,
 .rl-link-underlined {
-  color: var(--color-primary-dark);
+  color: var(--color-secondary-dark);
   font-weight: bold;
   text-decoration: none;
-  outline-color: var(--color-primary-dark);
+  outline-color: var(--color-secondary-dark);
 }
 
 .rl-link-underlined,
@@ -192,7 +211,7 @@ dialog {
 }
 
 .navbar-title {
-  color: var(--color-secondary);
+  color: var(--color-primary);
   font-family: 'Titillium Web', sans-serif;
   font-size: 1.5rem;
   text-decoration: none;
@@ -228,7 +247,7 @@ dialog {
 }
 
 .rl-article-author__content {
-  color: var(--color-primary-dark);
+  color: var(--color-secondary-dark);
   display: flex;
   flex-direction: column;
 }
@@ -284,18 +303,16 @@ dialog {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 20rem;
 }
 
 .auth-title {
-  color: #000;
-  text-align: center;
   margin-block-end: 0.5rem;
 }
 
 .auth-form {
   margin-block-start: 2rem;
-  width: 20rem;
-  max-width: 100%;
+  width: 100%;
   margin-block-end: 2rem;
 }
 
@@ -372,26 +389,26 @@ dialog {
 }
 
 .rl-navbar-horizontal ul a:focus-visible {
-  border-bottom: 4px solid var(--color-primary-dark);
+  border-bottom: 4px solid var(--color-secondary-dark);
 }
 
 .rl-navbar-vertical ul a:focus-visible {
-  border-right: 4px solid var(--color-primary-dark);
+  border-right: 4px solid var(--color-secondary-dark);
 }
 
 .rl-navbar-horizontal ul a:not(.rl-active):hover,
 .rl-navbar-horizontal ul a.rl-active,
 .rl-navbar-vertical ul a.rl-active {
-  color: var(--color-primary-dark);
+  color: var(--color-secondary-dark);
   font-weight: bold;
 }
 
 .rl-navbar-vertical ul a.rl-active {
-  border-right: 4px solid var(--color-primary-dark);
+  border-right: 4px solid var(--color-secondary-dark);
 }
 
 .rl-navbar-horizontal ul a.rl-active {
-  border-bottom: 4px solid var(--color-primary-dark);
+  border-bottom: 4px solid var(--color-secondary-dark);
 }
 
 /* Buttons */
@@ -401,7 +418,7 @@ dialog {
 .rl-btn-warn {
   color: #fff;
   display: inline-block;
-  font-weight: normal;
+  font-weight: bold;
   line-height: 1.25;
   text-align: center;
   white-space: nowrap;
@@ -422,8 +439,8 @@ dialog {
 }
 
 .rl-btn-primary {
-  background-color: var(--color-primary-dark);
-  border-color: var(--color-primary-dark);
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
 }
 
 .rl-btn-primary:focus {
@@ -431,8 +448,8 @@ dialog {
 }
 
 .rl-btn-secondary {
-  background-color: var(--color-secondary);
-  border-color: var(--color-secondary);
+  background-color: var(--color-secondary-dark);
+  border-color: var(--color-secondary-dark);
 }
 
 .rl-btn-secondary:focus {
@@ -495,6 +512,7 @@ dialog {
   border-radius: 0.25rem;
 }
 
+.rl-tag,
 .rl-tag a {
   color: black;
   text-decoration: none;
@@ -530,7 +548,7 @@ dialog {
 }
 
 .rl-favorite-active {
-  fill: var(--color-primary);
+  fill: var(--color-secondary-dark);
 }
 
 .rl-favorite__svg {
@@ -540,11 +558,11 @@ dialog {
 
 .rl-favorite:hover,
 .rl-favorite-active:hover {
-  background: var(--color-primary-light);
+  background: var(--color-secondary-light);
 }
 
 .rl-favorite:hover svg {
-  fill: var(--color-primary);
+  fill: var(--color-secondary);
 }
 
 /* Popular tags */

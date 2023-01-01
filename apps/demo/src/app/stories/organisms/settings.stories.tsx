@@ -46,7 +46,7 @@ export const Settings = () => (
           <label htmlFor="bio">Bio</label>
           <textarea id="bio" className="rl-form-control" rows={8}></textarea>
         </fieldset>
-        <button type="submit" className="rl-btn-secondary">
+        <button type="submit" className="rl-btn-primary">
           Update
         </button>
       </form>
