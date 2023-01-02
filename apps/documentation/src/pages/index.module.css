@@ -16,10 +16,91 @@
   .heroBanner {
     padding: 2rem;
   }
+
+  .wipListImage {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 966px) {
 }
 
 .buttons {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.wipContainer {
+  margin-block-end: 3rem;
+}
+
+.wipListContainer {
+  display: flex;
+  align-items: center;
+  margin: auto;
+  width: 100%;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.wipListImage {
+  height: 200px;
+  width: auto;
+}
+
+.wipList {
+  list-style: none;
+  margin: 0 1rem;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.wipList li {
+  border-radius: 4px;
+  border: 2px solid #6e2c6e;
+  padding: 0.5rem 1rem;
+}
+
+.wipList li a:first-child {
+  font-weight: bold;
+  margin-inline-end: 0.5rem;
+}
+
+.wipList li a:nth-child(2) {
+  text-decoration: underline;
+  white-space: nowrap;
+}
+
+.wipDescription {
+  margin-inline: 1rem;
+}
+
+.codebaseshowContainer {
+  margin-bottom: 10rem;
+}
+
+.wipTitle,
+.codebaseshowTitle {
+  margin-block: 3rem;
+  text-align: center;
+  margin-inline: 1rem;
+  color: #6e2c6e;
+}
+
+.codebaseshowLogo {
+  padding-inline: 3rem;
+  max-width: 100%;
+  display: block;
+  margin: auto;
+}
+
+.codebaseshowLink {
+  color: #6e2c6e;
+  text-decoration: underline;
+  text-align: center;
+  display: block;
+  font-weight: bold;
 }

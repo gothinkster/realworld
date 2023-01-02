@@ -93,22 +93,16 @@ const config = {
                */
             ],
           },
-          /*
-        {
-          title: 'More',
-          items: [
-            {
-              label: 'Blog',
-              to: '/blog',
-            },
-            {
-              label: 'GitHub',
-              href: 'https://github.com/gothinkster/realworld',
-            },
-          ],
-        },
 
-           */
+          {
+            title: 'Credits',
+            items: [
+              {
+                label: 'Icons created by Freepik',
+                href: 'https://www.flaticon.com/fr/icones-gratuites/fusee',
+              },
+            ],
+          },
         ],
       },
       colorMode: {

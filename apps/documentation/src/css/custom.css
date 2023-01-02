@@ -119,6 +119,10 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
   .introduction-content {
     margin-block-start: 2rem;
   }
+
+  .introduction-logo {
+    display: none;
+  }
 }
 
 @media screen and (max-width: 910px) {
