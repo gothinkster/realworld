@@ -63,7 +63,7 @@
     "@nrwl/webpack": "15.4.2",
     "@nrwl/workspace": "15.4.2",
     "@nx-plus/docusaurus": "^15.0.0-rc.0",
-    "@playwright/test": "1.26.0",
+    "@playwright/test": "1.29.1",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.7",
     "@storybook/addon-a11y": "^6.5.15",
     "@storybook/addon-essentials": "~6.5.9",
