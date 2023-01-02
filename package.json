@@ -146,7 +146,7 @@
     "core-js": "^3.6.5",
     "cors": "^2.8.5",
     "express": "^4.18.1",
-    "express-jwt": "^8.2.0",
+    "express-jwt": "^8.2.1",
     "install": "^0.13.0",
     "jsonwebtoken": "^9.0.0",
     "playwright": "^1.28.1",
