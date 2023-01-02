@@ -58,7 +58,7 @@
     "@nrwl/nx-cloud": "15.0.2",
     "@nrwl/react": "15.3.0",
     "@nrwl/storybook": "15.3.0",
-    "@nrwl/vite": "15.3.0",
+    "@nrwl/vite": "15.4.2",
     "@nrwl/web": "15.3.0",
     "@nrwl/webpack": "15.3.0",
     "@nrwl/workspace": "15.3.0",
