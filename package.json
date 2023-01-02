@@ -69,7 +69,7 @@
     "@storybook/addon-essentials": "~6.5.9",
     "@storybook/addon-interactions": "^6.5.15",
     "@storybook/builder-vite": "0.2.5",
-    "@storybook/core-server": "~6.5.9",
+    "@storybook/core-server": "~6.5.15",
     "@storybook/jest": "^0.0.10",
     "@storybook/react": "~6.5.9",
     "@storybook/testing-library": "^0.0.13",
