@@ -18,6 +18,8 @@ body {
 
   --color-primary: #5cb85c;
 
+  --color-error: #8b0000;
+
   --color-warn: grey;
 
   --border-radius: 0.3rem;
