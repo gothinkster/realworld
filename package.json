@@ -53,7 +53,7 @@
     "@nrwl/express": "15.3.0",
     "@nrwl/jest": "15.3.0",
     "@nrwl/js": "15.3.0",
-    "@nrwl/linter": "15.3.0",
+    "@nrwl/linter": "15.4.2",
     "@nrwl/node": "15.3.0",
     "@nrwl/nx-cloud": "15.0.2",
     "@nrwl/react": "15.3.0",
