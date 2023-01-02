@@ -95,7 +95,7 @@
     "babel-jest": "28.1.1",
     "babel-loader": "8.1.0",
     "babel-plugin-styled-components": "1.10.7",
-    "css-loader": "^6.4.0",
+    "css-loader": "^6.7.3",
     "eslint": "~8.30.0",
     "eslint-config-prettier": "8.5.0",
     "eslint-plugin-import": "2.26.0",
