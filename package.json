@@ -91,7 +91,7 @@
     "@types/styled-components": "5.1.26",
     "@types/swagger-ui-react": "^4.11.0",
     "@typescript-eslint/eslint-plugin": "^5.36.1",
-    "@typescript-eslint/parser": "^5.36.1",
+    "@typescript-eslint/parser": "^5.48.0",
     "@vitejs/plugin-react": "3.0.0",
     "@vitest/ui": "0.26.3",
     "babel-jest": "28.1.1",
