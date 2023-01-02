@@ -149,7 +149,7 @@
     "express-jwt": "^8.2.1",
     "install": "^0.13.0",
     "jsonwebtoken": "^9.0.0",
-    "playwright": "^1.28.1",
+    "playwright": "^1.29.1",
     "prism-react-renderer": "^1.3.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
