@@ -99,6 +99,12 @@ function HomepageHeader() {
                 </a>
               </li>
             </ul>
+            <a
+              className={styles.link}
+              href="https://github.com/gothinkster/realworld/discussions/categories/wip-implementations"
+            >
+              and so more...
+            </a>
           </div>
           <img className={styles.wipListImage} src={useBaseUrl('/img/spaceship.png')} alt="" />
         </div>
