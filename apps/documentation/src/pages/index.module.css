@@ -104,3 +104,9 @@
   display: block;
   font-weight: bold;
 }
+
+.link {
+  text-decoration: underline;
+  margin-inline: 1rem;
+  color: #6e2c6e;
+}
