@@ -2,19 +2,19 @@
   "migrations": [
     {
       "cli": "nx",
-      "version": "15.3.0-beta.0",
-      "description": "Update projects using @nrwl/web:rollup to @nrwl/rollup:rollup for build.",
-      "factory": "./src/migrations/update-15-3-0/update-rollup-executor",
-      "package": "@nrwl/react",
-      "name": "update-rollup-executor"
+      "version": "15.3.1-beta.0",
+      "description": "Remove projects property from vite-tsconfig-paths plugin in vite.config.ts files.",
+      "factory": "./src/migrations/update-15-3-1/update-vite-tsconfig-paths",
+      "package": "@nrwl/vite",
+      "name": "update-vite-tsconfig-paths"
     },
     {
       "cli": "nx",
-      "version": "15.3.0-beta.0",
-      "description": "Install new dependencies for React projects using Webpack or Rollup.",
-      "factory": "./src/migrations/update-15-3-0/install-webpack-rollup-dependencies",
-      "package": "@nrwl/react",
-      "name": "install-webpack-rollup-dependencies"
+      "version": "15.3.4-beta.0",
+      "description": "Set the mode in configurations to match the configurationName.",
+      "factory": "./src/migrations/update-15-3-4/set-mode-in-configuration",
+      "package": "@nrwl/vite",
+      "name": "set-mode-in-configurations"
     }
   ]
 }
