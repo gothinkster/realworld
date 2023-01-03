@@ -9,6 +9,9 @@ import {
 
 export default {
   title: 'Atoms/Button',
+  parameters: {
+    layout: 'centered',
+  },
 };
 
 // Primary button stories

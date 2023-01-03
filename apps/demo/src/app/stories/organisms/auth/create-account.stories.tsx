@@ -4,7 +4,7 @@ export default {
 
 export const CreateAccount = () => (
   <dialog id="create-account-dialog" className="auth-page">
-    <h1 className="auth-title">Create account</h1>
+    <h1 className="rl-page-title auth-title">Create account</h1>
 
     <form method="dialog" className="auth-form">
       <fieldset className="rl-form-group">

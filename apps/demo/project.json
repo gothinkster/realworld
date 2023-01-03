@@ -16,7 +16,8 @@
           "extractLicenses": false,
           "optimization": false,
           "sourceMap": true,
-          "vendorChunk": true
+          "vendorChunk": true,
+          "mode": "development"
         },
         "production": {
           "fileReplacements": [
@@ -30,7 +31,8 @@
           "sourceMap": false,
           "namedChunks": false,
           "extractLicenses": true,
-          "vendorChunk": false
+          "vendorChunk": false,
+          "mode": "production"
         }
       }
     },

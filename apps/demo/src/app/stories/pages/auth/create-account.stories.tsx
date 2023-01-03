@@ -1,10 +1,13 @@
 export default {
   title: 'Pages/Auth/Create Account',
+  parameters: {
+    layout: 'centered',
+  },
 };
 
 export const CreateAccount = () => (
   <div className="auth-page">
-    <h1 className="auth-title">Create account</h1>
+    <h1 className="rl-page-title auth-title">Create account</h1>
     <a className="rl-link-underlined" href="">
       Have an account?
     </a>

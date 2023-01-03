@@ -2,6 +2,9 @@ import { codeSample, linkDocs } from './link.utils';
 
 export default {
   title: 'Atoms/Link',
+  parameters: {
+    layout: 'centered',
+  },
 };
 
 export const Link = () => codeSample();

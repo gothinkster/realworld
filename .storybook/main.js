@@ -4,6 +4,7 @@ module.exports = {
     '@storybook/addon-essentials',
     '@storybook/addon-interactions',
     '@hover/storybook-addon-pseudo-states',
+    '@storybook/addon-a11y',
   ],
   features: {
     interactionsDebugger: true,
@@ -15,4 +16,7 @@ module.exports = {
   //   // Return the altered config
   //   return config;
   // },
+  core: {
+    builder: 'webpack5',
+  },
 };
