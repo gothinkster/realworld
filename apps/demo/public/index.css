@@ -575,3 +575,41 @@ dialog {
   padding: 1rem;
   width: 250px;
 }
+
+/* Banner */
+
+.rl-banner__error,
+.rl-banner__info {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1rem;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+}
+
+.rl-banner__info {
+  color: darkblue;
+  background: lightblue;
+}
+
+.rl-banner__info svg {
+  fill: darkblue;
+}
+
+.rl-banner__error {
+  color: var(--color-error);
+  background: lightcoral;
+}
+
+.rl-banner__error svg {
+  fill: var(--color-error);
+}
+
+/* Icons */
+
+.rl-icon-active {
+  /* hex to filter converter https://codepen.io/sosuke/pen/Pjoqqp */
+  filter: invert(15%) sepia(56%) saturate(2909%) hue-rotate(280deg) brightness(88%) contrast(80%);
+}
