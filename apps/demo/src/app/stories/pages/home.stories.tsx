@@ -10,20 +10,17 @@ export const Home = () => (
       <aside className="rl-navbar-horizontal">
         <ul>
           <li>
-            <a
-              className="rl-link rl-active"
-              href="apps/demo/src/app/stories/molecules/navbar/navbar.stories"
-            >
+            <a className="rl-link rl-active" href="">
               Latest
             </a>
           </li>
           <li>
-            <a className="rl-link" href="apps/demo/src/app/stories/molecules/navbar/navbar.stories">
+            <a className="rl-link" href="">
               Following
             </a>
           </li>
           <li>
-            <a className="rl-link" href="apps/demo/src/app/stories/molecules/navbar/navbar.stories">
+            <a className="rl-link" href="">
               #Accessibility
             </a>
           </li>

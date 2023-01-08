@@ -1,10 +1,10 @@
-export const codeSample = () => (
+export const linkCodeSample = () => (
   <a className="rl-link" href="">
     Log in
   </a>
 );
 
-export const linkDocs = () => ({
+export const linkSourceDocs = () => ({
   docs: {
     source: {
       dark: true,

@@ -23,15 +23,15 @@ export const CreateAccount = () => (
       </fieldset>
       <fieldset className="rl-form-group">
         <label htmlFor="password">Password</label>
+        <div className="hint-banner">
+          Must include at least 8 characters, one number, and one uppercase letter.
+        </div>
         <input
           id="password"
           className="rl-form-control"
           type="password"
           autoComplete="new-password"
         />
-        <div className="hint-banner">
-          Must include at least 8 characters, one number, and one uppercase letter.
-        </div>
       </fieldset>
       <button className="rl-btn-primary" type="submit">
         Create
