@@ -1,5 +1,8 @@
 export default {
   title: 'Pages/Auth/Login',
+  parameters: {
+    layout: 'centered',
+  },
 };
 
 export const Login = () => (
