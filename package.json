@@ -50,7 +50,7 @@
     "@mands/nx-playwright": "^0.1.21",
     "@nrwl/cli": "15.4.2",
     "@nrwl/eslint-plugin-nx": "15.4.2",
-    "@nrwl/express": "15.4.2",
+    "@nrwl/express": "15.5.3",
     "@nrwl/jest": "15.4.2",
     "@nrwl/js": "15.4.2",
     "@nrwl/linter": "15.4.2",
