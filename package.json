@@ -59,7 +59,7 @@
     "@nrwl/react": "15.4.2",
     "@nrwl/storybook": "15.4.2",
     "@nrwl/vite": "15.4.2",
-    "@nrwl/web": "15.4.2",
+    "@nrwl/web": "15.6.3",
     "@nrwl/webpack": "15.4.2",
     "@nrwl/workspace": "15.4.2",
     "@nx-plus/docusaurus": "^15.0.0-rc.0",
