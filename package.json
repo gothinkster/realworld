@@ -136,6 +136,8 @@
   "lint-staged": {
     "*.ts": []
   },
+  "readme": "ERROR: No README data found!",
+  "_id": "realworld@1.2.0",
   "dependencies": {
     "@docusaurus/core": "2.2.0",
     "@docusaurus/preset-classic": "2.2.0",
@@ -161,7 +163,5 @@
     "slugify": "^1.6.0",
     "styled-components": "5.3.6",
     "tslib": "^2.3.0"
-  },
-  "readme": "ERROR: No README data found!",
-  "_id": "realworld@1.2.0"
+  }
 }
