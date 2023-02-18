@@ -8,7 +8,7 @@ export default {
 };
 
 export const AvatarDefault = () => <img className="rl-avatar" src="avatar.png" alt="user avatar" />;
-AvatarDefault.storyName = 'avatar';
+AvatarDefault.storyName = 'default';
 AvatarDefault.parameters = {
   ...avatarSourceDocs({ size: undefined }),
 };
@@ -16,7 +16,7 @@ AvatarDefault.parameters = {
 export const AvatarSmall = () => (
   <img className="rl-avatar-sm" src="avatar.png" alt="user avatar" />
 );
-AvatarSmall.storyName = 'avatar (small)';
+AvatarSmall.storyName = 'small';
 AvatarSmall.parameters = {
   ...avatarSourceDocs({ size: 'sm' }),
 };
@@ -24,7 +24,7 @@ AvatarSmall.parameters = {
 export const AvatarLarge = () => (
   <img className="rl-avatar-lg" src="avatar.png" alt="user avatar" />
 );
-AvatarLarge.storyName = 'avatar (large)';
+AvatarLarge.storyName = 'large';
 AvatarLarge.parameters = {
   ...avatarSourceDocs({ size: 'lg' }),
 };
@@ -32,7 +32,7 @@ AvatarLarge.parameters = {
 export const AvatarXLarge = () => (
   <img className="rl-avatar-xl" src="avatar.png" alt="user avatar" />
 );
-AvatarXLarge.storyName = 'avatar (x large)';
+AvatarXLarge.storyName = 'x large';
 AvatarXLarge.parameters = {
   ...avatarSourceDocs({ size: 'xl' }),
 };
@@ -40,7 +40,7 @@ AvatarXLarge.parameters = {
 export const AvatarXXLarge = () => (
   <img className="rl-avatar-xxl" src="avatar.png" alt="user avatar" />
 );
-AvatarXXLarge.storyName = 'avatar (xx large)';
+AvatarXXLarge.storyName = 'xx large';
 AvatarXXLarge.parameters = {
   ...avatarSourceDocs({ size: 'xxl' }),
 };
