@@ -47,7 +47,7 @@
     "@babel/preset-typescript": "7.18.6",
     "@docusaurus/module-type-aliases": "2.2.0",
     "@hover/storybook-addon-pseudo-states": "^1.1.3",
-    "@mands/nx-playwright": "^0.1.21",
+    "@mands/nx-playwright": "^0.2.3",
     "@nrwl/cli": "15.7.2",
     "@nrwl/eslint-plugin-nx": "15.7.2",
     "@nrwl/express": "15.7.2",
