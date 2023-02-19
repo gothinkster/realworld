@@ -109,7 +109,7 @@
     "jest": "29.3.1",
     "jest-environment-jsdom": "29.3.1",
     "jest-mock-extended": "^3.0.1",
-    "jsdom": "~20.0.3",
+    "jsdom": "~21.1.0",
     "lint-staged": "^11.1.2",
     "newman": "^5.3.0",
     "nx": "15.7.2",
