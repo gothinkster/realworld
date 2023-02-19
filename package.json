@@ -69,7 +69,6 @@
     "@storybook/addon-essentials": "6.5.16",
     "@storybook/addon-interactions": "^6.5.15",
     "@storybook/builder-vite": "0.2.7",
-    "@storybook/builder-webpack5": "6.5.16",
     "@storybook/core-server": "6.5.16",
     "@storybook/jest": "^0.0.10",
     "@storybook/manager-webpack5": "6.5.16",
