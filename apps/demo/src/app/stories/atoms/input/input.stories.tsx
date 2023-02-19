@@ -4,11 +4,16 @@ export default {
   title: 'Atoms/Input',
 };
 
-export const InputDefault = () => inputCodeSample();
-InputDefault.storyName = 'input';
+export const InputDefault = {
+  render: () => inputCodeSample(),
+  name: 'input',
+};
 
-export const InputFocus = () => inputCodeSample();
-InputFocus.storyName = 'input (focus)';
-InputFocus.parameters = {
-  pseudo: { focus: true },
+export const InputFocus = {
+  render: () => inputCodeSample(),
+  name: 'input (focus)',
+
+  parameters: {
+    pseudo: { focus: true },
+  },
 };

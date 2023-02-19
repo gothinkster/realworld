@@ -5,19 +5,26 @@ export default {
   },
 };
 
-export const TagDefault = () => (
-  <a href="" className="rl-tag">
-    #web
-  </a>
-);
-TagDefault.storyName = 'tag';
+export const TagDefault = {
+  render: () => (
+    <a href="" className="rl-tag">
+      #web
+    </a>
+  ),
 
-export const TagHover = () => (
-  <a href="" className="rl-tag">
-    #web
-  </a>
-);
-TagHover.storyName = 'tag (hover)';
-TagHover.parameters = {
-  pseudo: { hover: true },
+  name: 'tag',
+};
+
+export const TagHover = {
+  render: () => (
+    <a href="" className="rl-tag">
+      #web
+    </a>
+  ),
+
+  name: 'tag (hover)',
+
+  parameters: {
+    pseudo: { hover: true },
+  },
 };

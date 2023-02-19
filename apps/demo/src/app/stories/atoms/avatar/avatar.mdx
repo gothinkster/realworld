@@ -1,0 +1,67 @@
+import { Canvas, Meta, Story, Source } from '@storybook/blocks';
+import { avatarSourceDocs } from './avatar.utils';
+import * as AvatarStories from './avatar.stories';
+
+<Meta
+  title="Atoms/Avatar/Overview"
+  parameters={{
+    viewMode: 'docs',
+    previewTabs: {
+      canvas: { hidden: true },
+    },
+  }}
+/>
+
+# Atoms avatar overview
+
+## Description
+
+The avatar component is used to display a user's profile picture.
+
+<br />
+
+## Variants
+
+<Canvas>
+  <Story of={AvatarStories.AvatarSmall}></Story>
+  <Story of={AvatarStories.AvatarDefault}></Story>
+  <Story of={AvatarStories.AvatarLarge}></Story>
+  <Story of={AvatarStories.AvatarXLarge}></Story>
+  <Story of={AvatarStories.AvatarXXLarge}></Story>
+</Canvas>
+
+## Code
+
+<br />
+
+### Default
+
+<Source {...avatarSourceDocs({ size: undefined }).docs.source} />
+
+### Small
+
+<Source {...avatarSourceDocs({ size: 'small' }).docs.source} />
+
+### Large
+
+<Source {...avatarSourceDocs({ size: 'large' }).docs.source} />
+
+### X-Large
+
+<Source {...avatarSourceDocs({ size: 'x-large' }).docs.source} />
+
+### XX-Large
+
+<Source {...avatarSourceDocs({ size: 'xx-large' }).docs.source} />
+
+## Use cases
+
+> This component is used in the following stories:
+
+### Molecules
+
+### Organisms
+
+### Templates
+
+### Pages

@@ -7,15 +7,21 @@ export default {
   },
 };
 
-export const Link = () => linkCodeSample();
-Link.storyName = 'link (default)';
-Link.parameters = {
-  ...linkSourceDocs(),
+export const Link = {
+  render: () => linkCodeSample(),
+  name: 'link (default)',
+
+  parameters: {
+    ...linkSourceDocs(),
+  },
 };
 
-export const LinkHover = () => linkCodeSample();
-LinkHover.storyName = 'link (hover)';
-LinkHover.parameters = {
-  pseudo: { hover: true },
-  ...linkSourceDocs(),
+export const LinkHover = {
+  render: () => linkCodeSample(),
+  name: 'link (hover)',
+
+  parameters: {
+    pseudo: { hover: true },
+    ...linkSourceDocs(),
+  },
 };
