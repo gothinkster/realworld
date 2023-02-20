@@ -65,7 +65,7 @@
     "@playwright/test": "1.30.0",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.7",
     "@storybook/addon-essentials": "7.0.0-beta.50",
-    "@storybook/addon-interactions": "^7.0.0-beta.50",
+    "@storybook/addon-interactions": "^7.0.0-beta.51",
     "@storybook/blocks": "^7.0.0-beta.50",
     "@storybook/core-server": "7.0.0-beta.50",
     "@storybook/jest": "^0.0.11-next.0",
