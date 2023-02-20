@@ -1,0 +1,31 @@
+import { ColorItem, ColorPalette, Meta } from '@storybook/blocks';
+
+<Meta title="Styles/Color" />
+
+For inspiration, check out [Material Design's color styles page](https://material.io/guidelines/style/color.html).
+
+### Design tokens
+
+<ColorPalette>
+  <ColorItem title="--color-default" subtitle="titles, buttons" colors={{ Black: '#000000' }} />
+  <ColorItem title="--color-primary" subtitle="titles, buttons" colors={{ Fern: '#5cb85c' }} />
+  <ColorItem
+    title="--color-secondary-light"
+    subtitle="icon hover"
+    colors={{
+      Orchid: '#D167CB',
+      'Orchid Light': '#D167CB7F',
+    }}
+  />
+  <ColorItem title="--color-secondary" subtitle="--" colors={{ Plum: '#9d439d' }} />
+  <ColorItem
+    title="--color-secondary-dark"
+    subtitle="links, input outlines"
+    colors={{ Plum: '#6e2c6e' }}
+  />
+  <ColorItem title="--color-error" subtitle="erro banner" colors={{ 'Red Berry': '#8B0000' }} />
+</ColorPalette>
+
+### Accessibility matrix
+
+// TODO: create accessibility matrix

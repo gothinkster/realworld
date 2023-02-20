@@ -13,7 +13,10 @@
         "outputPath": "dist/apps/api",
         "main": "apps/api/src/app/index.ts",
         "tsConfig": "apps/api/tsconfig.app.json",
-        "assets": ["apps/api/src/assets"]
+        "assets": ["apps/api/src/assets"],
+        "webpackConfig": "apps/api/webpack.config.js",
+        "isolatedConfig": true,
+        "babelUpwardRootMode": true
       },
       "configurations": {
         "production": {

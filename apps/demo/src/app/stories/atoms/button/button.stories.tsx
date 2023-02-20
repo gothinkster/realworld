@@ -14,68 +14,89 @@ export default {
   },
 };
 
-// Primary button stories
+export const Primary = {
+  render: () => primaryButton,
+  name: 'primary (default)',
 
-export const Primary = () => primaryButton;
-Primary.storyName = 'primary (default)';
-Primary.parameters = {
-  ...primaryButtonDocs,
+  parameters: {
+    ...primaryButtonDocs,
+  },
 };
 
-export const PrimaryHover = () => primaryButton;
-PrimaryHover.storyName = 'primary (hover)';
-PrimaryHover.parameters = {
-  pseudo: { hover: true },
-  ...primaryButtonDocs,
+export const PrimaryHover = {
+  render: () => primaryButton,
+  name: 'primary (hover)',
+
+  parameters: {
+    pseudo: { hover: true },
+    ...primaryButtonDocs,
+  },
 };
 
-export const PrimaryFocus = () => primaryButton;
-PrimaryFocus.storyName = 'primary (focus)';
-PrimaryFocus.parameters = {
-  pseudo: { focus: true },
-  ...primaryButtonDocs,
+export const PrimaryFocus = {
+  render: () => primaryButton,
+  name: 'primary (focus)',
+
+  parameters: {
+    pseudo: { focus: true },
+    ...primaryButtonDocs,
+  },
 };
 
-// Secondary button stories
+export const Secondary = {
+  render: () => secondaryButton,
+  name: 'secondary (default)',
 
-export const Secondary = () => secondaryButton;
-Secondary.storyName = 'secondary (default)';
-Secondary.parameters = {
-  ...secondaryButtonDocs,
+  parameters: {
+    ...secondaryButtonDocs,
+  },
 };
 
-export const SecondaryHover = () => secondaryButton;
-SecondaryHover.storyName = 'secondary (hover)';
-SecondaryHover.parameters = {
-  pseudo: { hover: true },
-  ...secondaryButtonDocs,
+export const SecondaryHover = {
+  render: () => secondaryButton,
+  name: 'secondary (hover)',
+
+  parameters: {
+    pseudo: { hover: true },
+    ...secondaryButtonDocs,
+  },
 };
 
-export const SecondaryFocus = () => secondaryButton;
-SecondaryFocus.storyName = 'secondary (focus)';
-SecondaryFocus.parameters = {
-  pseudo: { focus: true },
-  ...secondaryButtonDocs,
+export const SecondaryFocus = {
+  render: () => secondaryButton,
+  name: 'secondary (focus)',
+
+  parameters: {
+    pseudo: { focus: true },
+    ...secondaryButtonDocs,
+  },
 };
 
-// Warn button stories
+export const Warn = {
+  render: () => warnButton,
+  name: 'warn (default)',
 
-export const Warn = () => warnButton;
-Warn.storyName = 'warn (default)';
-Warn.parameters = {
-  ...warnButtonDocs,
+  parameters: {
+    ...warnButtonDocs,
+  },
 };
 
-export const WarnHover = () => warnButton;
-WarnHover.storyName = 'warn (hover)';
-WarnHover.parameters = {
-  pseudo: { hover: true },
-  ...warnButtonDocs,
+export const WarnHover = {
+  render: () => warnButton,
+  name: 'warn (hover)',
+
+  parameters: {
+    pseudo: { hover: true },
+    ...warnButtonDocs,
+  },
 };
 
-export const WarnFocus = () => warnButton;
-WarnFocus.storyName = 'warn (focus)';
-WarnFocus.parameters = {
-  pseudo: { focus: true },
-  ...warnButtonDocs,
+export const WarnFocus = {
+  render: () => warnButton,
+  name: 'warn (focus)',
+
+  parameters: {
+    pseudo: { focus: true },
+    ...warnButtonDocs,
+  },
 };

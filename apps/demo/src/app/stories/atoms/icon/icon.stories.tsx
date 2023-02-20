@@ -9,28 +9,39 @@ export default {
   },
 };
 
-export const IconDefault = () => <img src={favorite} alt="" />;
-IconDefault.storyName = 'icon';
-IconDefault.parameters = {
-  ...iconSourceDocs({ active: false, filled: false }),
+export const IconDefault = {
+  render: () => <img src={favorite} alt="" />,
+  name: 'icon',
+
+  parameters: {
+    ...iconSourceDocs({ active: false, filled: false }),
+  },
 };
 
-export const IconActive = () => <img className="rl-icon-active" src={favorite} alt="" />;
-IconActive.storyName = 'icon (active)';
-IconActive.parameters = {
-  ...iconSourceDocs({ active: true, filled: false }),
+export const IconActive = {
+  render: () => <img className="rl-icon-active" src={favorite} alt="" />,
+  name: 'icon (active)',
+
+  parameters: {
+    ...iconSourceDocs({ active: true, filled: false }),
+  },
 };
 
-export const IconFilled = () => <img src={favoriteFilled} alt="" />;
-IconFilled.storyName = 'icon filled';
-IconFilled.parameters = {
-  ...iconSourceDocs({ active: false, filled: true }),
+export const IconFilled = {
+  render: () => <img src={favoriteFilled} alt="" />,
+  name: 'icon filled',
+
+  parameters: {
+    ...iconSourceDocs({ active: false, filled: true }),
+  },
 };
 
-export const IconFilledActive = () => (
-  <img className="rl-icon-active" src={favoriteFilled} alt="" />
-);
-IconFilledActive.storyName = 'icon filled (active)';
-IconFilledActive.parameters = {
-  ...iconSourceDocs({ active: true, filled: true }),
+export const IconFilledActive = {
+  render: () => <img className="rl-icon-active" src={favoriteFilled} alt="" />,
+
+  name: 'icon filled (active)',
+
+  parameters: {
+    ...iconSourceDocs({ active: true, filled: true }),
+  },
 };
