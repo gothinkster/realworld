@@ -76,7 +76,7 @@
     "@testing-library/react": "13.4.0",
     "@types/bcryptjs": "^2.4.2",
     "@types/cors": "^2.8.12",
-    "@types/express": "4.17.13",
+    "@types/express": "4.17.17",
     "@types/express-rate-limit": "^6.0.0",
     "@types/jest": "29.2.5",
     "@types/jsonwebtoken": "^8.5.5",
