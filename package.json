@@ -121,7 +121,7 @@
     "style-loader": "^3.3.0",
     "stylus": "^0.59.0",
     "stylus-loader": "^7.1.0",
-    "swagger-ui-react": "^4.15.5",
+    "swagger-ui-react": "^4.17.0",
     "ts-jest": "29.0.5",
     "ts-node": "10.9.1",
     "ts-node-dev": "^2.0.0",
