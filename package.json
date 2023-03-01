@@ -67,7 +67,7 @@
     "@storybook/addon-essentials": "7.0.0-beta.50",
     "@storybook/addon-interactions": "^7.0.0-beta.50",
     "@storybook/blocks": "^7.0.0-beta.50",
-    "@storybook/core-server": "7.0.0-beta.50",
+    "@storybook/core-server": "7.0.0-beta.59",
     "@storybook/jest": "^0.0.11-next.0",
     "@storybook/preview-api": "^7.0.0-beta.50",
     "@storybook/react": "7.0.0-beta.50",
