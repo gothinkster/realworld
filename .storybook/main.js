@@ -1,6 +1,6 @@
 module.exports = {
   stories: [],
-  addons: ['@storybook/addon-interactions', 'storybook-addon-pseudo-states'],
+  addons: ['@storybook/addon-interactions'],
   features: {
     interactionsDebugger: true,
   },
