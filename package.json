@@ -70,6 +70,7 @@
     "@storybook/core-server": "7.0.0-beta.59",
     "@storybook/jest": "^0.0.11-next.0",
     "@storybook/preview-api": "^7.0.0-beta.59",
+    "@storybook/manager-api": "^7.0.0-beta.54",
     "@storybook/react": "7.0.0-beta.59",
     "@storybook/react-vite": "^7.0.0-beta.59",
     "@storybook/testing-library": "^0.0.14-next.1",

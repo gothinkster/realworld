@@ -17,4 +17,15 @@ export const parameters = {
       },
     ],
   },
+  previewTabs: {
+    'storybook/story/panel': {
+      hidden: true,
+    },
+    'storybook/canvas/panel': {
+      hidden: true,
+    },
+    'realworld/usage/panel': {
+      hidden: false,
+    },
+  },
 };
