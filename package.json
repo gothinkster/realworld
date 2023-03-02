@@ -93,7 +93,7 @@
     "@vitejs/plugin-react": "3.0.0",
     "@vitest/ui": "0.28.5",
     "babel-jest": "29.4.3",
-    "babel-loader": "8.1.0",
+    "babel-loader": "9.1.2",
     "babel-plugin-styled-components": "1.10.7",
     "css-loader": "^6.7.3",
     "eslint": "~8.31.0",
