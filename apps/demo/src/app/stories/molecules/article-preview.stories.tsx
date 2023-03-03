@@ -8,7 +8,7 @@ export default {
 };
 
 export const ArticlePreview = () => (
-  <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+  <div style={{ display: 'flex', flexDirection: 'column' }}>
     <article className="rl-article-preview">
       <a href="" tabindex="-1">
         <img className="rl-article-preview__cover-image" src={coverImage} alt="" />
@@ -45,6 +45,7 @@ export const ArticlePreview = () => (
         </button>
       </aside>
     </article>
+    <hr className="rw-article__divider" />
     <article className="rl-article-preview">
       <a href="" tabindex="-1">
         <img className="rl-article-preview__cover-image" src={coverImage} alt="" />

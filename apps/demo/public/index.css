@@ -29,9 +29,9 @@ body {
 /* Layout */
 
 .rl-main {
-  max-width: 700px;
-  margin-inline-start: auto;
-  margin-inline-end: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   padding-block-start: 2rem;
 }
 
@@ -209,7 +209,7 @@ dialog {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 2rem;
+  padding: 0.5rem 2rem;
 }
 
 .navbar-title {
@@ -236,8 +236,11 @@ dialog {
 .rl-article-list {
   display: flex;
   flex-direction: column;
-  gap: 0.7rem;
   flex: 1;
+}
+
+.rw-article__divider {
+  width: 100%;
 }
 
 .rl-article-author__container {
@@ -262,17 +265,21 @@ dialog {
 .rl-article-preview {
   border-radius: 8px;
   max-height: 300px;
-  box-shadow: 0 0 #0000, 0 0 #0000, 0 25px 50px -12px rgba(0, 0, 0, 0.25);
   display: flex;
   position: relative;
+  padding: 0.5rem;
+}
+
+.rl-article-preview:hover {
+  box-shadow: 0 0 #0000, 0 0 #0000, 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  transform: scale(1.01);
 }
 
 .rl-article-preview__cover-image {
   height: 100%;
   width: 200px;
   object-fit: cover;
-  border-top-left-radius: 8px;
-  border-bottom-left-radius: 8px;
+  border-radius: 8px;
 }
 
 @media screen and (max-width: 840px) {
@@ -322,6 +329,7 @@ dialog {
 
 .settings-page {
   display: flex;
+  width: 100%;
 }
 
 .settings-page hr {
@@ -386,10 +394,6 @@ dialog {
   text-decoration: none;
 }
 
-.rl-navbar-vertical ul a:not(.rl-active):hover {
-  text-decoration: underline;
-}
-
 .rl-navbar-horizontal ul a:focus-visible {
   border-bottom: 4px solid var(--color-secondary-dark);
 }
@@ -399,6 +403,7 @@ dialog {
 }
 
 .rl-navbar-horizontal ul a:not(.rl-active):hover,
+.rl-navbar-vertical ul a:not(.rl-active):hover,
 .rl-navbar-horizontal ul a.rl-active,
 .rl-navbar-vertical ul a.rl-active {
   color: var(--color-secondary-dark);
@@ -571,9 +576,14 @@ dialog {
 
 .rl-popular-tags {
   border-radius: 8px;
-  box-shadow: 0 0 #0000, 0 0 #0000, 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  // box-shadow: 0 0 #0000, 0 0 #0000, 0 25px 50px -12px rgba(0, 0, 0, 0.25);
   padding: 1rem;
   width: 250px;
+}
+
+.rl-popular-tags__title {
+  margin-block-start: 0;
+  margin-block-end: 0.5rem;
 }
 
 /* Banner */
@@ -612,4 +622,113 @@ dialog {
 .rl-icon-active {
   /* hex to filter converter https://codepen.io/sosuke/pen/Pjoqqp */
   filter: invert(15%) sepia(56%) saturate(2909%) hue-rotate(280deg) brightness(88%) contrast(80%);
+}
+
+/* Article Form */
+
+.rw-article-form {
+  width: 100%;
+  max-width: 700px;
+}
+
+/* Profile */
+
+.rw-profile-header {
+  display: flex;
+  background: #f3f3f3;
+  color: black;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  min-height: 8rem;
+  padding-inline: 2rem;
+}
+
+.rw-profile-header__avatar {
+  position: absolute;
+  bottom: -5rem;
+  border: white solid 0.5rem;
+  right: 2rem;
+}
+
+.rw-profile-header__bio {
+  max-width: calc(100% - 16rem);
+}
+
+.rw-profile-header__stat-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 4rem;
+  margin-block-start: 0.5rem;
+  margin-inline-start: 2rem;
+}
+
+.rw-profile-header__aside {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: calc(100% - 16rem);
+  margin-block-start: 0.5rem;
+}
+
+/* Article header */
+
+.rw-article-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  background: #f3f3f3;
+  position: relative;
+  min-height: 10rem;
+  padding-inline: 2rem;
+}
+
+.rw-article-header__cover {
+  width: 10rem;
+  height: 10rem;
+  object-fit: cover;
+  position: absolute;
+  bottom: -2rem;
+  border: white solid 0.5rem;
+  left: 2rem;
+}
+
+.rw-article-header__title {
+  margin-inline-start: 14rem;
+  margin-block-start: 1rem;
+  max-width: calc(100% - 16rem);
+}
+
+.rw-btn-follow {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+}
+
+/* Home Header */
+
+.rw-home-header {
+  margin-block-start: 3rem;
+  background: #f3f3f3;
+  position: relative;
+  height: 6rem;
+}
+
+.rw-home-header__cover {
+  position: absolute;
+  top: -3rem;
+  border: white solid 0.5rem;
+  left: calc(50% - 5rem);
+}
+
+/* Home Page */
+
+.rw-home-page {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-block: 2rem;
 }

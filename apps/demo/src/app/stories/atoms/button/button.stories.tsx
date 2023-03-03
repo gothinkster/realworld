@@ -6,13 +6,19 @@ import {
   warnButton,
   warnButtonDocs,
 } from './button.utils';
+import { Meta } from '@storybook/react';
 
 export default {
   title: 'Atoms/Button',
   parameters: {
     layout: 'centered',
+    previewTabs: {
+      'realworld/usage/panel': {
+        hidden: true,
+      },
+    },
   },
-};
+} as Meta;
 
 export const Primary = {
   render: () => primaryButton,

@@ -3,7 +3,7 @@ export default {
 };
 
 export const ArticleForm = () => (
-  <form>
+  <form className="rw-article-form">
     <fieldset className="rl-form-group">
       <label htmlFor="title">Title</label>
       <input id="title" type="text" className="rl-form-control" autoFocus />
