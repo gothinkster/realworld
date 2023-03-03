@@ -26,8 +26,8 @@ export const ArticleForm = () => (
       </ul>
     </nav>
     <main className="rl-main">
-      <h1 className="rl-page-title">Create new article</h1>
-      <form>
+      <form className="rw-article-form">
+        <h1 className="rl-page-title">Create new article</h1>
         <fieldset className="rl-form-group">
           <label htmlFor="title">Title</label>
           <input id="title" type="text" className="rl-form-control" autoFocus />

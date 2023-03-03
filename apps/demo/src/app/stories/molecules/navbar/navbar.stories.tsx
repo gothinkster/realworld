@@ -10,20 +10,17 @@ export const Navbar = {
       <aside className="rl-navbar-vertical">
         <ul>
           <li>
-            <a
-              className="rl-link rl-active"
-              href="apps/demo/src/app/stories/molecules/navbar/navbar.stories"
-            >
+            <a className="rl-link rl-active" href="">
               Profile
             </a>
           </li>
           <li>
-            <a className="rl-link" href="apps/demo/src/app/stories/molecules/navbar/navbar.stories">
+            <a className="rl-link" href="">
               Security
             </a>
           </li>
           <li>
-            <a className="rl-link" href="apps/demo/src/app/stories/molecules/navbar/navbar.stories">
+            <a className="rl-link" href="">
               Preferences
             </a>
           </li>
@@ -45,20 +42,17 @@ export const NavbarHorizontal = {
       <aside className="rl-navbar-horizontal">
         <ul>
           <li>
-            <a
-              className="rl-link rl-active"
-              href="apps/demo/src/app/stories/molecules/navbar/navbar.stories"
-            >
+            <a className="rl-link rl-active" href="">
               Latest
             </a>
           </li>
           <li>
-            <a className="rl-link" href="apps/demo/src/app/stories/molecules/navbar/navbar.stories">
+            <a className="rl-link" href="">
               Following
             </a>
           </li>
           <li>
-            <a className="rl-link" href="apps/demo/src/app/stories/molecules/navbar/navbar.stories">
+            <a className="rl-link" href="">
               #Accessibility
             </a>
           </li>
