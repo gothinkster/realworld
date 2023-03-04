@@ -6,7 +6,7 @@ export const ArticleForm = () => (
   <form className="rw-article-form">
     <fieldset className="rl-form-group">
       <label htmlFor="title">Title</label>
-      <input id="title" type="text" className="rl-form-control" autoFocus />
+      <input id="title" type="text" className="rl-form-control" />
     </fieldset>
     <fieldset className="rl-file-form-group">
       <label>Cover image</label>

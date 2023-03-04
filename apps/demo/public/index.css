@@ -29,10 +29,6 @@ body {
 /* Layout */
 
 .rl-main {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding-block-start: 2rem;
 }
 
 /* Generic */
@@ -57,6 +53,7 @@ body {
 
 .rl-tag-list-horizontal {
   align-items: center;
+  gap: 1rem;
 }
 
 .rl-tag-list-vertical {
@@ -257,7 +254,7 @@ dialog {
   flex-direction: column;
 }
 
-.rl-article-author__content-date {
+.rl-date {
   color: dimgrey;
   font-size: var(--font-size-small);
 }
@@ -629,9 +626,10 @@ dialog {
 .rw-article-form {
   width: 100%;
   max-width: 700px;
+  margin: auto;
 }
 
-/* Profile */
+/* Profile header */
 
 .rw-profile-header {
   display: flex;
@@ -642,6 +640,10 @@ dialog {
   position: relative;
   min-height: 8rem;
   padding-inline: 2rem;
+}
+
+.rw-profile-header__title {
+  margin-block-end: 0;
 }
 
 .rw-profile-header__avatar {
@@ -679,11 +681,11 @@ dialog {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 1rem;
   background: #f3f3f3;
   position: relative;
   min-height: 10rem;
   padding-inline: 2rem;
+  padding-block: 1rem;
 }
 
 .rw-article-header__cover {
@@ -691,7 +693,7 @@ dialog {
   height: 10rem;
   object-fit: cover;
   position: absolute;
-  bottom: -2rem;
+  bottom: -3rem;
   border: white solid 0.5rem;
   left: 2rem;
 }
@@ -706,6 +708,17 @@ dialog {
   position: absolute;
   top: 0.5rem;
   right: 0.5rem;
+}
+
+.rw-article-header__tags {
+  margin-block-start: 0.5rem;
+  margin-block-end: 2rem;
+  margin-inline-start: 14rem;
+  max-width: calc(100% - 16rem);
+}
+
+.rw-article-header__tags .rl-tag {
+  border: 1px solid black;
 }
 
 /* Home Header */
@@ -724,6 +737,25 @@ dialog {
   left: calc(50% - 5rem);
 }
 
+/* Article form Header */
+
+.rw-article-form-header__cover {
+  position: absolute;
+  top: -2rem;
+  border: white solid 0.5rem;
+  left: 2rem;
+}
+
+.rw-article-form-header {
+  margin-block: 2rem;
+  padding-inline-start: 16rem;
+  background: #f3f3f3;
+  position: relative;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+}
+
 /* Home Page */
 
 .rw-home-page {
@@ -731,4 +763,12 @@ dialog {
   justify-content: space-between;
   width: 100%;
   margin-block: 2rem;
+}
+
+/* Article page */
+
+.rw-article__content {
+  padding-block-start: 1rem;
+  max-width: 700px;
+  margin: auto;
 }

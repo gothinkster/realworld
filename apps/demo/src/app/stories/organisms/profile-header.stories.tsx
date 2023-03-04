@@ -9,7 +9,8 @@ export const ProfileHeader = () => (
   <>
     <section className="rw-profile-header">
       <hgroup className="rw-profile-header__bio">
-        <h3>Gerome Grignon</h3>
+        <h3 className="rw-profile-header__title">Gerome Grignon</h3>
+        <span className="rl-date">joined on December 9, 2022</span>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam aspernatur blanditiis,
           cumque, debitis dicta error facere, id in ipsum iste maiores minus nesciunt numquam
