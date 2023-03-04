@@ -629,6 +629,12 @@ dialog {
   margin: auto;
 }
 
+.rw-article-form__navbar {
+  margin-block-end: 2rem;
+  width: fit-content;
+  margin-inline: auto;
+}
+
 /* Profile header */
 
 .rw-profile-header {
