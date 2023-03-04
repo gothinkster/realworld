@@ -25,7 +25,7 @@ export const Profile = () => (
         </li>
         <li className="nav-item">
           <a className="rl-link" href="">
-            <img className="rl-avatar" src="avatar.png" alt="user avatar image" />
+            <img className="rl-avatar" src="avatar.png" alt="user avatar" />
           </a>
         </li>
       </ul>
@@ -33,7 +33,8 @@ export const Profile = () => (
     <main className="rl-main">
       <section className="rw-profile-header">
         <hgroup className="rw-profile-header__bio">
-          <h3>Gerome Grignon</h3>
+          <h3 className="rw-profile-header__title">Gerome Grignon</h3>
+          <span className="rl-date">joined on December 9, 2022</span>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam aspernatur blanditiis,
             cumque, debitis dicta error facere, id in ipsum iste maiores minus nesciunt numquam
@@ -74,10 +75,10 @@ export const Profile = () => (
         </a>
         <section className="rl-article-preview__content">
           <a className="rl-article-author__container" href="">
-            <img className="rl-avatar-sm" src="avatar.png" alt="user avatar image" />
+            <img className="rl-avatar-sm" src="avatar.png" alt="user avatar" />
             <div className="rl-article-author__content">
               <span>Gerome Grignon</span>
-              <span className="rl-article-author__content-date">December 9, 2022</span>
+              <span className="rl-date">December 9, 2022</span>
             </div>
           </a>
           <a className="rl-article-preview__content-title" href="">
@@ -114,7 +115,7 @@ export const Profile = () => (
             <img className="rl-avatar-sm" src="avatar.png" alt="user avatar" />
             <div className="rl-article-author__content">
               <span>Gerome Grignon</span>
-              <span className="rl-article-author__content-date">December 9, 2022</span>
+              <span className="rl-date">December 9, 2022</span>
             </div>
           </a>
           <a className="rl-article-preview__content-title" href="">

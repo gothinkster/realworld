@@ -15,7 +15,7 @@ export const Login = () => (
     <form className="auth-form">
       <fieldset className="rl-form-group">
         <label htmlFor="email">Email</label>
-        <input id="email" className="rl-form-control" type="text" autoComplete="email" autoFocus />
+        <input id="email" className="rl-form-control" type="text" autoComplete="email" />
       </fieldset>
       <fieldset className="rl-form-group">
         <label htmlFor="password">Password</label>

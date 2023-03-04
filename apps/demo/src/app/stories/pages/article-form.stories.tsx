@@ -1,5 +1,8 @@
 export default {
   title: 'Pages/Article Form',
+  parameters: {
+    layout: 'fullscreen',
+  },
 };
 
 export const ArticleForm = () => (
@@ -20,17 +23,24 @@ export const ArticleForm = () => (
         </li>
         <li className="nav-item">
           <a className="rl-link" href="">
-            <img className="rl-avatar" src="avatar.png" alt="user avatar image" />
+            <img className="rl-avatar" src="avatar.png" alt="user avatar" />
           </a>
         </li>
       </ul>
     </nav>
     <main className="rl-main">
+      <section className="rw-article-form-header">
+        <h2>Create new article</h2>
+        <img
+          className="rl-avatar-xl rw-article-form-header__cover"
+          src="avatar.png"
+          alt="user avatar"
+        />
+      </section>
       <form className="rw-article-form">
-        <h1 className="rl-page-title">Create new article</h1>
         <fieldset className="rl-form-group">
           <label htmlFor="title">Title</label>
-          <input id="title" type="text" className="rl-form-control" autoFocus />
+          <input id="title" type="text" className="rl-form-control" />
         </fieldset>
         <fieldset className="rl-file-form-group">
           <label>Cover image</label>

@@ -15,7 +15,7 @@ export const CreateAccount = () => (
     <form method="dialog" className="auth-form">
       <fieldset className="rl-form-group">
         <label htmlFor="name">Name</label>
-        <input id="name" className="rl-form-control" type="text" autoComplete="off" autoFocus />
+        <input id="name" className="rl-form-control" type="text" autoComplete="off" />
       </fieldset>
       <fieldset className="rl-form-group">
         <label htmlFor="email">Email</label>
