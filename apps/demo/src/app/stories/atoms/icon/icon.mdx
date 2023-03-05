@@ -1,5 +1,6 @@
 import { Canvas, Meta, Story, Source } from '@storybook/blocks';
 import { iconSourceDocs } from './icon.utils';
+import * as IconStories from './icon.stories';
 
 <Meta title="Atoms/Icon/Overview" />
 
@@ -9,22 +10,22 @@ import { iconSourceDocs } from './icon.utils';
 
 The icon component is used to display an icon.
 
-## States
+## Variants
 
 <br />
 
 ### Default
 
 <Canvas>
-  <Story id="atoms-icon--icon-default"></Story>
-  <Story id="atoms-icon--icon-filled"></Story>
+  <Story of={IconStories.IconDefault}></Story>
+  <Story of={IconStories.IconFilled}></Story>
 </Canvas>
 
 ### Active
 
 <Canvas>
-  <Story id="atoms-icon--icon-active"></Story>
-  <Story id="atoms-icon--icon-filled-active"></Story>
+  <Story of={IconStories.IconActive}></Story>
+  <Story of={IconStories.IconFilledActive}></Story>
 </Canvas>
 
 ## Code
