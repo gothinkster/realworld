@@ -46,7 +46,11 @@ export const Settings = () => (
             </li>
           </ul>
         </aside>
-        <section>
+        <section className="rw-settings__profile">
+          <aside className="rw-banner__info">
+            <span>Discover your public profile</span>
+            <button className="rw-btn-warn">View</button>
+          </aside>
           <form>
             <fieldset className="rw-file-form-group">
               <label>Avatar</label>
