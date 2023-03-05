@@ -14,73 +14,73 @@ export const ArticleForm = () => (
 
       <ul className="navbar-links">
         <li className="nav-item">
-          <input className="rl-form-control" type="text" placeholder="Search" />
+          <input className="rw-form-control" type="text" placeholder="Search" />
         </li>
         <li className="nav-item">
-          <a className="rl-btn-primary" href="">
+          <a className="rw-btn-primary" href="">
             Create article
           </a>
         </li>
         <li className="nav-item">
-          <a className="rl-link" href="">
-            <img className="rl-avatar" src="avatar.png" alt="user avatar" />
+          <a className="rw-link" href="">
+            <img className="rw-avatar" src="avatar.png" alt="user avatar" />
           </a>
         </li>
       </ul>
     </nav>
-    <main className="rl-main">
+    <main className="rw-main">
       <section className="rw-article-form-header">
         <h2>Create new article</h2>
         <img
-          className="rl-avatar-xl rw-article-form-header__cover"
+          className="rw-avatar-xl rw-article-form-header__cover"
           src="avatar.png"
           alt="user avatar"
         />
       </section>
-      <aside className="rl-navbar-horizontal rw-article-form__navbar">
+      <aside className="rw-navbar-horizontal rw-article-form__navbar">
         <ul>
           <li>
-            <a className="rl-link rl-active" href="">
+            <a className="rw-link rw-active" href="">
               Edit
             </a>
           </li>
           <li>
-            <a className="rl-link" href="">
+            <a className="rw-link" href="">
               Preview
             </a>
           </li>
         </ul>
       </aside>
       <form className="rw-article-form">
-        <fieldset className="rl-form-group">
+        <fieldset className="rw-form-group">
           <label htmlFor="title">Title</label>
-          <input id="title" type="text" className="rl-form-control" />
+          <input id="title" type="text" className="rw-form-control" />
         </fieldset>
-        <fieldset className="rl-file-form-group">
+        <fieldset className="rw-file-form-group">
           <label>Cover image</label>
-          <div className="rl-file-form-group__input">
+          <div className="rw-file-form-group__input">
             <div>Drag and drop the file here</div>
             <div>- OR -</div>
-            <button type="button" className="rl-btn-primary">
+            <button type="button" className="rw-btn-primary">
               Browse files
             </button>
           </div>
-          <input type="file" className="rl-input-file" />
+          <input type="file" className="rw-input-file" />
         </fieldset>
-        <fieldset className="rl-form-group">
+        <fieldset className="rw-form-group">
           <label htmlFor="description">Description</label>
-          <input id="description" type="text" className="rl-form-control" />
+          <input id="description" type="text" className="rw-form-control" />
         </fieldset>
-        <fieldset className="rl-form-group">
+        <fieldset className="rw-form-group">
           <label htmlFor="body">Article content</label>
-          <textarea id="body" className="rl-form-control" rows={8}></textarea>
+          <textarea id="body" className="rw-form-control" rows={8}></textarea>
         </fieldset>
-        <fieldset className="rl-form-group">
+        <fieldset className="rw-form-group">
           <label htmlFor="tags">Tags</label>
-          <input id="tags" type="text" className="rl-form-control" />
+          <input id="tags" type="text" className="rw-form-control" />
           <div className="tag-list"></div>
         </fieldset>
-        <button className="rl-btn-primary" type="submit">
+        <button className="rw-btn-primary" type="submit">
           Publish
         </button>
       </form>
@@ -98,38 +98,38 @@ export const ArticleFormPreview = () => (
 
       <ul className="navbar-links">
         <li className="nav-item">
-          <input className="rl-form-control" type="text" placeholder="Search" />
+          <input className="rw-form-control" type="text" placeholder="Search" />
         </li>
         <li className="nav-item">
-          <a className="rl-btn-primary" href="">
+          <a className="rw-btn-primary" href="">
             Create article
           </a>
         </li>
         <li className="nav-item">
-          <a className="rl-link" href="">
-            <img className="rl-avatar" src="avatar.png" alt="user avatar" />
+          <a className="rw-link" href="">
+            <img className="rw-avatar" src="avatar.png" alt="user avatar" />
           </a>
         </li>
       </ul>
     </nav>
-    <main className="rl-main">
+    <main className="rw-main">
       <section className="rw-article-form-header">
         <h2>Create new article</h2>
         <img
-          className="rl-avatar-xl rw-article-form-header__cover"
+          className="rw-avatar-xl rw-article-form-header__cover"
           src="avatar.png"
           alt="user avatar"
         />
       </section>
-      <aside className="rl-navbar-horizontal rw-article-form__navbar">
+      <aside className="rw-navbar-horizontal rw-article-form__navbar">
         <ul>
           <li>
-            <a className="rl-link" href="">
+            <a className="rw-link" href="">
               Edit
             </a>
           </li>
           <li>
-            <a className="rl-link rl-active" href="">
+            <a className="rw-link rw-active" href="">
               Preview
             </a>
           </li>
@@ -138,11 +138,11 @@ export const ArticleFormPreview = () => (
       <form className="rw-article-form">
         <section className="rw-article-header">
           <hgroup className="rw-article-header__title">
-            <a className="rl-article-author__container" href="">
-              <img className="rl-avatar-sm" src="avatar.png" alt="user avatar" />
-              <div className="rl-article-author__content">
+            <a className="rw-article-author__container" href="">
+              <img className="rw-avatar-sm" src="avatar.png" alt="user avatar" />
+              <div className="rw-article-author__content">
                 <span>Gerome Grignon</span>
-                <span className="rl-date">December 9, 2022</span>
+                <span className="rw-date">December 9, 2022</span>
               </div>
             </a>
             <h2>
@@ -155,16 +155,16 @@ export const ArticleFormPreview = () => (
             </p>
           </hgroup>
           <img className="rw-article-header__cover" src="avatar.png" alt="user avatar" />
-          <button className="rl-btn-secondary rw-btn-follow">Like me</button>
+          <button className="rw-btn-secondary rw-btn-follow">Like me</button>
         </section>
-        <ul className="rl-tag-list-horizontal rw-article-header__tags">
-          <li className="rl-tag">
+        <ul className="rw-tag-list-horizontal rw-article-header__tags">
+          <li className="rw-tag">
             <a href="">#web</a>
           </li>
-          <li className="rl-tag">
+          <li className="rw-tag">
             <a href="">#chill</a>
           </li>
-          <li className="rl-tag">
+          <li className="rw-tag">
             <a href="">#batman</a>
           </li>
         </ul>
@@ -199,7 +199,7 @@ export const ArticleFormPreview = () => (
             that extra touch of visual appeal and professionalism?
           </p>
         </section>
-        <button className="rl-btn-primary" type="submit">
+        <button className="rw-btn-primary" type="submit">
           Publish
         </button>
       </form>

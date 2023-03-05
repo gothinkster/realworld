@@ -9,20 +9,20 @@ export const navbarSourceDocs = ({ orientation }: { orientation: 'vertical' | 'h
 });
 
 const code = ({ orientation }: { orientation: 'vertical' | 'horizontal' }) => `
-  <aside class="rl-navbar${orientation === 'horizontal' ? '-horizontal' : '-vertical'}">
+  <aside class="rw-navbar${orientation === 'horizontal' ? '-horizontal' : '-vertical'}">
       <ul>
         <li>
-          <a class="rl-link rl-active" href="">
+          <a class="rw-link rw-active" href="">
             Profile
           </a>
         </li>
         <li>
-          <a class="rl-link" href="">
+          <a class="rw-link" href="">
             Security
           </a>
         </li>
         <li>
-          <a class="rl-link" href="apps/demo/src/app/stories/molecules/navbar/navbar.stories">
+          <a class="rw-link" href="">
             Preferences
           </a>
         </li>

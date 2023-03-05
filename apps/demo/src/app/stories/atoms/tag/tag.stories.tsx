@@ -7,7 +7,7 @@ export default {
 
 export const TagDefault = {
   render: () => (
-    <a href="" className="rl-tag">
+    <a href="" className="rw-tag">
       #web
     </a>
   ),
@@ -17,7 +17,7 @@ export const TagDefault = {
 
 export const TagHover = {
   render: () => (
-    <a href="" className="rl-tag">
+    <a href="" className="rw-tag">
       #web
     </a>
   ),

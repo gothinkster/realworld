@@ -3,28 +3,28 @@ export default {
 };
 
 export const TagListVertical = () => (
-  <ul className="rl-tag-list-vertical">
-    <li className="rl-tag">
+  <ul className="rw-tag-list-vertical">
+    <li className="rw-tag">
       <a href="">#web</a>
     </li>
-    <li className="rl-tag">
+    <li className="rw-tag">
       <a href="">#chill</a>
     </li>
-    <li className="rl-tag">
+    <li className="rw-tag">
       <a href="">#batman</a>
     </li>
   </ul>
 );
 
 export const TagListHorizontal = () => (
-  <ul className="rl-tag-list-horizontal">
-    <li className="rl-tag">
+  <ul className="rw-tag-list-horizontal">
+    <li className="rw-tag">
       <a href="">#web</a>
     </li>
-    <li className="rl-tag">
+    <li className="rw-tag">
       <a href="">#chill</a>
     </li>
-    <li className="rl-tag">
+    <li className="rw-tag">
       <a href="">#batman</a>
     </li>
   </ul>

@@ -1,9 +1,9 @@
 const code = (theme: string) => {
-  const classes = `rl-btn-${theme}`;
+  const classes = `rw-btn-${theme}`;
   return <button className={classes}>Submit</button>;
 };
 
-const showcaseCode = (theme: string) => `<button class="rl-btn-${theme}">Submit</button>`;
+const showcaseCode = (theme: string) => `<button class="rw-btn-${theme}">Submit</button>`;
 
 const docs = (theme: string) => ({
   docs: {

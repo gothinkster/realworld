@@ -11,6 +11,6 @@ export const avatarSourceDocs = ({ size }: { size: Size | undefined }) => ({
 });
 
 const code = ({ size }: { size: Size | undefined }) => {
-  const classes = size ? `rl-avatar-${size}` : 'rl-avatar';
+  const classes = size ? `rw-avatar-${size}` : 'rw-avatar';
   return `<img class="${classes}" src="" alt="user avatar"/>`;
 };

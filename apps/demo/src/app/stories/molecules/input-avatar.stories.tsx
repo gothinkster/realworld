@@ -3,17 +3,17 @@ export default {
 };
 
 export const InputAvatar = () => (
-  <fieldset className="rl-file-form-group">
+  <fieldset className="rw-file-form-group">
     <label>Avatar</label>
-    <div className="rl-file-form-group__input-avatar">
-      <img className="rl-avatar-xl" src="avatar.png" alt="user avatar" />
-      <button type="button" className="rl-btn-primary">
+    <div className="rw-file-form-group__input-avatar">
+      <img className="rw-avatar-xl" src="avatar.png" alt="user avatar" />
+      <button type="button" className="rw-btn-primary">
         Change
       </button>
-      <button type="button" className="rl-btn-warn">
+      <button type="button" className="rw-btn-warn">
         Remove
       </button>
     </div>
-    <input type="file" className="rl-input-file" />
+    <input type="file" className="rw-input-file" />
   </fieldset>
 );

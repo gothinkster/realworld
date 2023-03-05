@@ -3,11 +3,11 @@ export default {
 };
 
 export const ArticleAuthor = () => (
-  <a className="rl-article-author__container" href="">
-    <img className="rl-avatar-sm" src="avatar.png" alt="user avatar" />
-    <div className="rl-article-author__content">
+  <a className="rw-article-author__container" href="">
+    <img className="rw-avatar-sm" src="avatar.png" alt="user avatar" />
+    <div className="rw-article-author__content">
       <span>Gerome Grignon</span>
-      <span className="rl-date">December 9, 2022</span>
+      <span className="rw-date">December 9, 2022</span>
     </div>
   </a>
 );

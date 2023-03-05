@@ -4,9 +4,9 @@ export default {
 
 export const InputFieldDefault = {
   render: () => (
-    <fieldset className="rl-form-group">
+    <fieldset className="rw-form-group">
       <label>Password</label>
-      <input type="password" autoComplete="off" className="rl-form-control" />
+      <input type="password" autoComplete="off" className="rw-form-control" />
     </fieldset>
   ),
 
@@ -15,12 +15,12 @@ export const InputFieldDefault = {
 
 export const InputFieldHint = {
   render: () => (
-    <fieldset className="rl-form-group">
+    <fieldset className="rw-form-group">
       <label>Password</label>
       <div className="hint-banner">
         Must include at least one number, one uppercase letter, and one lowercase letter
       </div>
-      <input type="password" autoComplete="off" className="rl-form-control" />
+      <input type="password" autoComplete="off" className="rw-form-control" />
     </fieldset>
   ),
 
@@ -29,9 +29,9 @@ export const InputFieldHint = {
 
 export const InputFieldError = {
   render: () => (
-    <fieldset className="rl-form-group">
+    <fieldset className="rw-form-group">
       <label>Password</label>
-      <input type="password" autoComplete="off" className="rl-form-control" />
+      <input type="password" autoComplete="off" className="rw-form-control" />
       <div className="error-banner">The password doesn't match the requirements</div>
     </fieldset>
   ),
@@ -41,12 +41,12 @@ export const InputFieldError = {
 
 export const InputFieldHintError = {
   render: () => (
-    <fieldset className="rl-form-group">
+    <fieldset className="rw-form-group">
       <label>Password</label>
       <div className="hint-banner">
         Must include at least one number, one uppercase letter, and one lowercase letter
       </div>
-      <input type="password" autoComplete="off" className="rl-form-control" />
+      <input type="password" autoComplete="off" className="rw-form-control" />
       <div className="error-banner">The password doesn't match the requirements</div>
     </fieldset>
   ),

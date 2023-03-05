@@ -9,6 +9,6 @@ export const iconSourceDocs = ({ active, filled }: { active: boolean; filled: bo
 });
 
 const code = ({ active, filled }: { active: boolean; filled: boolean }) =>
-  `<img ${active ? 'class="rl-icon-active" ' : ''}src="favorite${
+  `<img ${active ? 'class="rw-icon-active" ' : ''}src="favorite${
     filled ? '-filled' : ''
   }.svg" alt=""/>`;

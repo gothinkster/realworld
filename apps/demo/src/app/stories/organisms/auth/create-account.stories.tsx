@@ -4,22 +4,22 @@ export default {
 
 export const CreateAccount = () => (
   <dialog id="create-account-dialog" className="auth-page">
-    <h1 className="rl-page-title auth-title">Create account</h1>
+    <h1 className="rw-page-title auth-title">Create account</h1>
 
     <form method="dialog" className="auth-form">
-      <fieldset className="rl-form-group">
+      <fieldset className="rw-form-group">
         <label htmlFor="name">Name</label>
-        <input id="name" className="rl-form-control" type="text" autoComplete="off" />
+        <input id="name" className="rw-form-control" type="text" autoComplete="off" />
       </fieldset>
-      <fieldset className="rl-form-group">
+      <fieldset className="rw-form-group">
         <label htmlFor="email">Email</label>
-        <input id="email" className="rl-form-control" type="text" autoComplete="off" />
+        <input id="email" className="rw-form-control" type="text" autoComplete="off" />
       </fieldset>
-      <fieldset className="rl-form-group">
+      <fieldset className="rw-form-group">
         <label htmlFor="password">Password</label>
         <input
           id="password"
-          className="rl-form-control"
+          className="rw-form-control"
           type="password"
           autoComplete="new-password"
         />
@@ -27,12 +27,12 @@ export const CreateAccount = () => (
           Must include at least 8 characters, one number, and one uppercase letter.
         </div>
       </fieldset>
-      <button className="rl-btn-primary" type="submit">
+      <button className="rw-btn-primary" type="submit">
         Create
       </button>
     </form>
 
-    <a className="rl-link-underlined" href="">
+    <a className="rw-link-underlined" href="">
       Have an account?
     </a>
   </dialog>

@@ -3,5 +3,5 @@ export default {
 };
 
 export const TitleDefault = {
-  render: () => <h1 className="rl-page-title">Create account</h1>,
+  render: () => <h1 className="rw-page-title">Create account</h1>,
 };

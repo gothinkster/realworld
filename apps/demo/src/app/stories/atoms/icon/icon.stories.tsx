@@ -19,7 +19,7 @@ export const IconDefault = {
 };
 
 export const IconActive = {
-  render: () => <img className="rl-icon-active" src={favorite} alt="" />,
+  render: () => <img className="rw-icon-active" src={favorite} alt="" />,
   name: 'icon (active)',
 
   parameters: {
@@ -37,7 +37,7 @@ export const IconFilled = {
 };
 
 export const IconFilledActive = {
-  render: () => <img className="rl-icon-active" src={favoriteFilled} alt="" />,
+  render: () => <img className="rw-icon-active" src={favoriteFilled} alt="" />,
 
   name: 'icon filled (active)',
 

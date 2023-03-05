@@ -9,9 +9,9 @@ export const sourceDocs = ({ active }: { active: boolean } = { active: false }) 
 });
 
 const code = ({ active }: { active: boolean } = { active: false }) => `
-  <aside class="rl-favorite-btn__container">
+  <aside class="rw-favorite-btn__container">
     <span>355</span>
-    <button class="rl-favorite${active ? '-active' : ''}" aria-label="${
+    <button class="rw-favorite${active ? '-active' : ''}" aria-label="${
   active ? 'un' : ''
 }like the article">
       <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24">

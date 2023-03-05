@@ -15,12 +15,12 @@ export const Header = () => (
       </a>
       <ul className="navbar-links">
         <li className="nav-item">
-          <a className="rl-link" href="">
+          <a className="rw-link" href="">
             Log in
           </a>
         </li>
         <li className="nav-item">
-          <a className="rl-btn-primary" href="">
+          <a className="rw-btn-primary" href="">
             Create account
           </a>
         </li>
@@ -33,17 +33,17 @@ export const Header = () => (
       </a>
       <ul className="navbar-links">
         <li className="nav-item">
-          <a className="rl-btn-primary" href="">
+          <a className="rw-btn-primary" href="">
             Create article
           </a>
         </li>
         <li className="nav-item">
-          <a className="rl-link" href="">
+          <a className="rw-link" href="">
             Settings
           </a>
         </li>
         <li className="nav-item">
-          <a className="rl-link" href="">
+          <a className="rw-link" href="">
             Gerome
           </a>
         </li>
@@ -57,20 +57,20 @@ export const Header = () => (
 
       <ul className="navbar-links">
         <li className="nav-item">
-          <input className="rl-form-control" type="text" placeholder="Search" />
+          <input className="rw-form-control" type="text" placeholder="Search" />
         </li>
         <li className="nav-item">
-          <a className="rl-btn-primary" href="">
+          <a className="rw-btn-primary" href="">
             Create article
           </a>
         </li>
         <li className="nav-item">
-          <a className="rl-link" href="">
+          <a className="rw-link" href="">
             Settings
           </a>
         </li>
         <li className="nav-item">
-          <a className="rl-link" href="">
+          <a className="rw-link" href="">
             Gerome
           </a>
         </li>
@@ -84,16 +84,16 @@ export const Header = () => (
 
       <ul className="navbar-links">
         <li className="nav-item">
-          <input className="rl-form-control" type="text" placeholder="Search" />
+          <input className="rw-form-control" type="text" placeholder="Search" />
         </li>
         <li className="nav-item">
-          <a className="rl-btn-primary" href="">
+          <a className="rw-btn-primary" href="">
             Create article
           </a>
         </li>
         <li className="nav-item">
-          <a className="rl-link" href="">
-            <img className="rl-avatar" src="avatar.png" alt="user avatar image" />
+          <a className="rw-link" href="">
+            <img className="rw-avatar" src="avatar.png" alt="user avatar" />
           </a>
         </li>
       </ul>

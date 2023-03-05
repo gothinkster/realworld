@@ -14,28 +14,28 @@ export const Article = () => (
 
       <ul className="navbar-links">
         <li className="nav-item">
-          <input className="rl-form-control" type="text" placeholder="Search" />
+          <input className="rw-form-control" type="text" placeholder="Search" />
         </li>
         <li className="nav-item">
-          <a className="rl-btn-primary" href="">
+          <a className="rw-btn-primary" href="">
             Create article
           </a>
         </li>
         <li className="nav-item">
-          <a className="rl-link" href="">
-            <img className="rl-avatar" src="avatar.png" alt="user avatar" />
+          <a className="rw-link" href="">
+            <img className="rw-avatar" src="avatar.png" alt="user avatar" />
           </a>
         </li>
       </ul>
     </nav>
-    <main className="rl-main">
+    <main className="rw-main">
       <section className="rw-article-header">
         <hgroup className="rw-article-header__title">
-          <a className="rl-article-author__container" href="">
-            <img className="rl-avatar-sm" src="avatar.png" alt="user avatar" />
-            <div className="rl-article-author__content">
+          <a className="rw-article-author__container" href="">
+            <img className="rw-avatar-sm" src="avatar.png" alt="user avatar" />
+            <div className="rw-article-author__content">
               <span>Gerome Grignon</span>
-              <span className="rl-date">December 9, 2022</span>
+              <span className="rw-date">December 9, 2022</span>
             </div>
           </a>
           <h2>Try to transmit the HTTP card, maybe it will override the multi-byte hard drive!</h2>
@@ -46,16 +46,16 @@ export const Article = () => (
           </p>
         </hgroup>
         <img className="rw-article-header__cover" src="avatar.png" alt="user avatar" />
-        <button className="rl-btn-secondary rw-btn-follow">Like me</button>
+        <button className="rw-btn-secondary rw-btn-follow">Like me</button>
       </section>
-      <ul className="rl-tag-list-horizontal rw-article-header__tags">
-        <li className="rl-tag">
+      <ul className="rw-tag-list-horizontal rw-article-header__tags">
+        <li className="rw-tag">
           <a href="">#web</a>
         </li>
-        <li className="rl-tag">
+        <li className="rw-tag">
           <a href="">#chill</a>
         </li>
-        <li className="rl-tag">
+        <li className="rw-tag">
           <a href="">#batman</a>
         </li>
       </ul>

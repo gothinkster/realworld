@@ -7,20 +7,20 @@ export default {
 export const Navbar = {
   render: () => (
     <div style={{ display: 'flex' }}>
-      <aside className="rl-navbar-vertical">
+      <aside className="rw-navbar-vertical">
         <ul>
           <li>
-            <a className="rl-link rl-active" href="">
+            <a className="rw-link rw-active" href="">
               Profile
             </a>
           </li>
           <li>
-            <a className="rl-link" href="">
+            <a className="rw-link" href="">
               Security
             </a>
           </li>
           <li>
-            <a className="rl-link" href="">
+            <a className="rw-link" href="">
               Preferences
             </a>
           </li>
@@ -39,20 +39,20 @@ export const Navbar = {
 export const NavbarHorizontal = {
   render: () => (
     <div style={{ display: 'flex' }}>
-      <aside className="rl-navbar-horizontal">
+      <aside className="rw-navbar-horizontal">
         <ul>
           <li>
-            <a className="rl-link rl-active" href="">
+            <a className="rw-link rw-active" href="">
               Latest
             </a>
           </li>
           <li>
-            <a className="rl-link" href="">
+            <a className="rw-link" href="">
               Following
             </a>
           </li>
           <li>
-            <a className="rl-link" href="">
+            <a className="rw-link" href="">
               #Accessibility
             </a>
           </li>
