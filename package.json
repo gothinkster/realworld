@@ -144,7 +144,7 @@
     "@ngneat/falso": "^6.1.0",
     "@prisma/client": "^4.7.1",
     "bcryptjs": "^2.4.3",
-    "body-parser": "^1.19.0",
+    "body-parser": "^1.20.2",
     "clsx": "^1.2.1",
     "core-js": "^3.6.5",
     "cors": "^2.8.5",
