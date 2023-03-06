@@ -424,7 +424,9 @@ dialog {
 .rw-btn-secondary,
 .rw-btn-warn {
   color: #fff;
-  display: inline-block;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
   font-weight: bold;
   line-height: 1.25;
   text-align: center;
@@ -437,6 +439,10 @@ dialog {
   border-radius: 20px;
   outline: none;
   text-decoration: none;
+}
+
+.rw-btn-secondary svg {
+  fill: white;
 }
 
 .rw-btn-primary:hover,
