@@ -17,6 +17,8 @@ body {
   --color-secondary-dark: #6e2c6e;
 
   --color-primary: #5cb85c;
+  --color-primary-light: #6dda6d;
+  --color-primary-dark: #2d592d;
 
   --color-error: #8b0000;
 
@@ -441,10 +443,6 @@ dialog {
   text-decoration: none;
 }
 
-.rw-btn-secondary svg {
-  fill: white;
-}
-
 .rw-btn-primary:hover,
 .rw-btn-secondary:hover,
 .rw-btn-warn:hover {
@@ -539,43 +537,97 @@ dialog {
 
 /* Favorites */
 
-.rw-article-preview .rw-favorite-btn__container {
+.rw-counter__container {
   position: absolute;
   top: 0.5rem;
   right: 0.5rem;
 }
 
-.rw-favorite-btn__container {
+.rw-like-counter,
+.rw-comment-counter,
+.rw-follow-counter {
   display: flex;
   align-items: center;
-}
-
-.rw-favorite-active,
-.rw-favorite {
-  background: none;
+  gap: 0.3rem;
+  background: transparent;
   border: none;
-  border-radius: 50%;
-  cursor: pointer;
-  padding: 0.5rem;
-  height: 40px;
 }
 
-.rw-favorite-active {
+.rw-like-counter svg,
+.rw-comment-counter svg,
+.rw-follow-counter svg {
+  border: 2px solid transparent;
+  border-radius: 50%;
+  padding: 0.25rem;
+}
+
+.rw-like-counter:hover,
+.rw-like-counter:focus,
+.rw-like-counter:focus-visible,
+.rw-comment-counter:hover,
+.rw-comment-counter:focus,
+.rw-comment-counter:focus-visible,
+.rw-follow-counter:hover,
+.rw-follow-counter:focus,
+.rw-follow-counter:focus-visible {
+  font-weight: bold;
+}
+
+.rw-like-counter:focus,
+.rw-like-counter:focus-visible,
+.rw-comment-counter:focus,
+.rw-comment-counter:focus-visible,
+.rw-follow-counter:focus,
+.rw-follow-counter:focus-visible {
+  outline: none;
+}
+
+.rw-like-counter:hover svg,
+.rw-like-counter:focus svg,
+.rw-like-counter:focus-visible svg {
+  background: var(--color-secondary-light);
   fill: var(--color-secondary-dark);
 }
 
-.rw-favorite__svg {
-  height: 100px;
-  width: 100px;
+.rw-comment-counter:hover svg,
+.rw-comment-counter:focus svg,
+.rw-comment-counter:focus-visible svg {
+  background: var(--color-default-light);
+  fill: black;
 }
 
-.rw-favorite:hover,
-.rw-favorite-active:hover {
-  background: var(--color-secondary-light);
+.rw-follow-counter:hover svg,
+.rw-follow-counter:focus svg,
+.rw-follow-counter:focus-visible svg {
+  background: var(--color-primary-light);
+  fill: black;
 }
 
-.rw-favorite:hover svg {
-  fill: var(--color-secondary);
+.rw-like-counter:focus svg,
+.rw-like-counter:focus-visible svg {
+  border-color: var(--color-secondary-dark);
+}
+
+.rw-comment-counter:focus svg,
+.rw-comment-counter:focus-visible svg {
+  border-color: black;
+}
+
+.rw-follow-counter:focus svg,
+.rw-follow-counter:focus-visible svg {
+  border-color: black;
+}
+
+.rw-like-counter__active svg {
+  fill: var(--color-secondary-dark);
+}
+
+.rw-comment-counter__active svg {
+  fill: black;
+}
+
+.rw-follow-counter__active svg {
+  fill: var(--color-primary-dark);
 }
 
 /* Popular tags */
@@ -718,20 +770,26 @@ dialog {
   max-width: calc(100% - 16rem);
 }
 
-.rw-btn-follow {
+.rw-article-header__like {
   position: absolute;
   top: 0.5rem;
   right: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
-.rw-article-header__tags {
+.rw-article-header__actions {
   margin-block-start: 0.5rem;
   margin-block-end: 2rem;
   margin-inline-start: 14rem;
   max-width: calc(100% - 16rem);
+  display: flex;
+  align-items: center;
+  gap: 3rem;
 }
 
-.rw-article-header__tags .rw-tag {
+.rw-article-header__actions .rw-tag {
   border: 1px solid black;
 }
 

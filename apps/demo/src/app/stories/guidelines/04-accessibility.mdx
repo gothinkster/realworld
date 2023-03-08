@@ -1,6 +1,6 @@
 import { Meta, Canvas, Story, Source } from '@storybook/blocks';
-import { sourceDocs } from '../molecules/favorite/favorite.utils';
-import * as FavoriteStories from '../molecules/favorite/favorite.stories';
+import { sourceDocs } from '../molecules/counter/counter.utils';
+import * as CounterStories from '../molecules/counter/counter.stories';
 
 <Meta title="Guidelines/Accessibility" />
 
@@ -20,8 +20,8 @@ Actionable icons (ie wrapped in a button), are labelled.
 #### Stories example
 
 <Canvas>
-  <Story of={FavoriteStories.Favorite}></Story>
-  <Story of={FavoriteStories.FavoriteActive}></Story>
+  <Story of={CounterStories.LikeCounter}></Story>
+  <Story of={CounterStories.LikeCounterActive}></Story>
 </Canvas>
 
 #### Code example

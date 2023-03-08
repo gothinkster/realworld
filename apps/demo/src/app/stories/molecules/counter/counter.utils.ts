@@ -9,7 +9,7 @@ export const sourceDocs = ({ active }: { active: boolean } = { active: false }) 
 });
 
 const code = ({ active }: { active: boolean } = { active: false }) => `
-  <aside class="rw-favorite-btn__container">
+  <aside class="rw-counter__container">
     <span>355</span>
     <button class="rw-favorite${active ? '-active' : ''}" aria-label="${
   active ? 'un' : ''
