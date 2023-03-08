@@ -1,7 +1,7 @@
 import { Meta, Canvas, Story } from '@storybook/blocks';
 import * as IconStories from '../atoms/icon/icon.stories';
 import * as BannerStories from '../molecules/banner/banner.stories';
-import * as FavoriteStories from '../molecules/favorite/favorite.stories';
+import * as CounterStories from '../molecules/counter/counter.stories';
 
 <Meta title="Styles/Iconography" />
 
@@ -32,8 +32,8 @@ Icons are a unique beast, so it's important to define how to use and create icon
 // TODO: add a description of 'favorite'
 
 <Canvas>
-  <Story of={FavoriteStories.Favorite}></Story>
-  <Story of={FavoriteStories.FavoriteActive}></Story>
+  <Story of={CounterStories.LikeCounter}></Story>
+  <Story of={CounterStories.LikeCounterActive}></Story>
 </Canvas>
 // TODO: add LinkTo Favorite overview
 
