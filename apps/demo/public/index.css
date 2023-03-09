@@ -806,7 +806,7 @@ dialog {
   position: absolute;
   top: -3rem;
   border: white solid 0.5rem;
-  left: calc(50% - 5rem);
+  left: calc(50% - 5.5rem);
 }
 
 /* Article form Header */
