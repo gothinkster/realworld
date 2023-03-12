@@ -13,7 +13,7 @@ export const ArticleForm = () => (
       <div className="rw-file-form-group__input">
         <div>Drag and drop the file here</div>
         <div>- OR -</div>
-        <button type="button" className="rw-btn-primary">
+        <button type="button" className="rw-btn-default">
           Browse files
         </button>
       </div>

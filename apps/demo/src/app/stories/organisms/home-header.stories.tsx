@@ -7,6 +7,6 @@ export default {
 
 export const HomeHeader = () => (
   <section className="rw-home-header">
-    <img className="rw-avatar-xxl rw-home-header__cover" src="avatar.png" alt="user avatar" />
+    <img className="rw-avatar-xxl rw-home-header__cover" src="energy.png" alt="user avatar" />
   </section>
 );

@@ -16,7 +16,7 @@ body {
   --color-secondary-light: rgba(209, 103, 203, 0.5);
   --color-secondary-dark: #6e2c6e;
 
-  --color-primary: #5cb85c;
+  --color-primary: #52a452;
   --color-primary-light: #6dda6d;
   --color-primary-dark: #2d592d;
 
@@ -31,19 +31,10 @@ body {
 /* Layout */
 
 .rw-main {
+  margin-block-end: 2rem;
 }
 
 /* Generic */
-
-.rw-page-title {
-  text-align: center;
-  background: var(--color-primary);
-  color: white;
-  border-radius: var(--border-radius);
-  padding: 0.5rem 1rem;
-  margin-block-end: 2rem;
-  width: calc(100% - 2rem);
-}
 
 .rw-tag-list-vertical,
 .rw-tag-list-horizontal {
@@ -232,10 +223,11 @@ dialog {
 
 /* Article */
 
-.rw-article-list {
+.rw-tab-container {
   display: flex;
   flex-direction: column;
   flex: 1;
+  margin-inline: 1rem;
 }
 
 .rw-article__divider {
@@ -251,7 +243,7 @@ dialog {
 }
 
 .rw-article-author__content {
-  color: var(--color-secondary-dark);
+  color: var(--color-default);
   display: flex;
   flex-direction: column;
 }
@@ -315,7 +307,11 @@ dialog {
 }
 
 .auth-title {
+  border-bottom: 3px solid var(--color-secondary-dark);
+  text-align: center;
+  color: var(--color-secondary-dark);
   margin-block-end: 0.5rem;
+  width: calc(100% - 2rem);
 }
 
 .auth-form {
@@ -349,6 +345,12 @@ dialog {
 
 .rw-navbar-horizontal {
   border-bottom: 2px solid rgba(0, 0, 0, 0.3);
+  position: sticky;
+  top: 0;
+  align-self: flex-start;
+  z-index: 1;
+  background: white;
+  width: 100%;
 }
 
 .rw-navbar-horizontal ul,
@@ -379,12 +381,12 @@ dialog {
 
 .rw-navbar-vertical ul a {
   padding: 1rem 1px 1rem 1rem;
-  margin-right: -3px;
+  margin-inline-end: -2px;
 }
 
 .rw-navbar-horizontal ul a {
   padding: 1rem 1rem 0.5rem 1rem;
-  margin-bottom: -3px;
+  margin-block-end: -2px;
 }
 
 .rw-navbar-horizontal ul a {
@@ -397,11 +399,11 @@ dialog {
 }
 
 .rw-navbar-horizontal ul a:focus-visible {
-  border-bottom: 4px solid var(--color-secondary-dark);
+  border-bottom: 3px solid var(--color-secondary-dark);
 }
 
 .rw-navbar-vertical ul a:focus-visible {
-  border-right: 4px solid var(--color-secondary-dark);
+  border-right: 3px solid var(--color-secondary-dark);
 }
 
 .rw-navbar-horizontal ul a:not(.rw-active):hover,
@@ -413,22 +415,21 @@ dialog {
 }
 
 .rw-navbar-vertical ul a.rw-active {
-  border-right: 4px solid var(--color-secondary-dark);
+  border-right: 3px solid var(--color-secondary-dark);
 }
 
 .rw-navbar-horizontal ul a.rw-active {
-  border-bottom: 4px solid var(--color-secondary-dark);
+  border-bottom: 3px solid var(--color-secondary-dark);
 }
 
 /* Buttons */
 
+.rw-btn-default,
 .rw-btn-primary,
 .rw-btn-secondary,
 .rw-btn-warn {
   color: #fff;
-  display: flex;
   gap: 0.5rem;
-  align-items: center;
   font-weight: bold;
   line-height: 1.25;
   text-align: center;
@@ -436,17 +437,26 @@ dialog {
   vertical-align: middle;
   cursor: pointer;
   border: 1px solid transparent;
-  padding: 0.5rem 1.5rem;
-  margin: 0.5rem;
+  padding: 0.5rem 1rem;
   border-radius: 20px;
   outline: none;
   text-decoration: none;
 }
 
+.rw-btn-default:hover,
 .rw-btn-primary:hover,
 .rw-btn-secondary:hover,
 .rw-btn-warn:hover {
   opacity: 0.7;
+}
+
+.rw-btn-default {
+  background-color: var(--color-default);
+  border-color: var(--color-default);
+}
+
+.rw-btn-default:focus {
+  box-shadow: 0 0 0 2px #ffffff, 0 0 3px 5px var(--color-default);
 }
 
 .rw-btn-primary {
@@ -561,18 +571,6 @@ dialog {
   padding: 0.25rem;
 }
 
-.rw-like-counter:hover,
-.rw-like-counter:focus,
-.rw-like-counter:focus-visible,
-.rw-comment-counter:hover,
-.rw-comment-counter:focus,
-.rw-comment-counter:focus-visible,
-.rw-follow-counter:hover,
-.rw-follow-counter:focus,
-.rw-follow-counter:focus-visible {
-  font-weight: bold;
-}
-
 .rw-like-counter:focus,
 .rw-like-counter:focus-visible,
 .rw-comment-counter:focus,
@@ -634,9 +632,11 @@ dialog {
 
 .rw-popular-tags {
   border-radius: 8px;
-  // box-shadow: 0 0 #0000, 0 0 #0000, 0 25px 50px -12px rgba(0, 0, 0, 0.25);
   padding: 1rem;
   width: 250px;
+  position: sticky;
+  top: 0;
+  align-self: flex-start;
 }
 
 .rw-popular-tags__title {
@@ -738,7 +738,7 @@ dialog {
   align-items: flex-start;
   justify-content: space-between;
   width: calc(100% - 16rem);
-  margin-block-start: 0.5rem;
+  margin-block: 0.5rem 2rem;
 }
 
 /* Article header */
@@ -807,6 +807,7 @@ dialog {
   top: -3rem;
   border: white solid 0.5rem;
   left: calc(50% - 5.5rem);
+  background: white;
 }
 
 /* Article form Header */
@@ -816,6 +817,7 @@ dialog {
   top: -2rem;
   border: white solid 0.5rem;
   left: 2rem;
+  background: white;
 }
 
 .rw-article-form-header {
@@ -843,4 +845,99 @@ dialog {
   padding-block-start: 1rem;
   max-width: 700px;
   margin: auto;
+}
+
+/* Comment */
+
+.rw-comment {
+  padding: 0.5rem;
+}
+
+.rw-comment__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.rw-comment__body {
+  padding-inline-start: 3rem;
+}
+
+/* loading */
+
+.rw-progress-bar {
+  height: 4px;
+  background-color: var(--color-secondary-light);
+  min-width: 300px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.rw-progress-bar-value {
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-secondary-dark);
+  animation: indeterminateAnimation 1s infinite linear;
+  transform-origin: 0 50%;
+}
+
+@keyframes indeterminateAnimation {
+  0% {
+    transform: translateX(0) scaleX(0);
+  }
+  40% {
+    transform: translateX(0) scaleX(0.4);
+  }
+  100% {
+    transform: translateX(100%) scaleX(0.5);
+  }
+}
+
+/* Pagination */
+
+.rw-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1rem;
+  width: 100%;
+  margin-block: 1rem 2rem;
+}
+
+.rw-pagination__input {
+  width: 1.7rem;
+  height: 1.3rem;
+  padding-inline: 0.5rem;
+  text-align: center;
+  margin-inline-start: 0.5rem;
+}
+
+.rw-pagination__buttons {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+}
+
+.rw-pagination__button {
+  height: 32px;
+  width: 32px;
+  background: white;
+  border-radius: 0.25rem;
+  border: 2px solid transparent;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.rw-pagination__button:hover {
+  background: #f3f3f3;
+}
+
+.rw-pagination__buton:focus,
+.rw-pagination__button:focus-visible {
+  outline: none;
+  border-color: black;
+  background: #f3f3f3;
 }

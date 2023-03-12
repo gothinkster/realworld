@@ -11,7 +11,7 @@ export const InputFile = () => (
       <div className="rw-file-form-group__input">
         <div>Drag and drop the file here</div>
         <div>- OR -</div>
-        <button type="button" className="rw-btn-primary">
+        <button type="button" className="rw-btn-default">
           Browse files
         </button>
       </div>
@@ -23,7 +23,7 @@ export const InputFile = () => (
       <div className="rw-file-form-group__input">
         <img className="rw-file-form-group__preview" src={coverImage} alt="" />
         <div className="rw-file-form-group__button-container">
-          <button type="button" className="rw-btn-primary">
+          <button type="button" className="rw-btn-default">
             Browse files
           </button>
           <button type="button" className="rw-btn-warn">

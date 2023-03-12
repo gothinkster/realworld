@@ -14,13 +14,13 @@ export const Settings = () => (
           <input className="rw-form-control" type="text" placeholder="Search" />
         </li>
         <li className="nav-item">
-          <a className="rw-btn-primary" href="">
+          <a className="rw-btn-default" href="">
             Create article
           </a>
         </li>
         <li className="nav-item">
           <a className="rw-link" href="">
-            <img className="rw-avatar" src="avatar.png" alt="user avatar" />
+            <img className="rw-avatar" src="avatar.jpeg" alt="user avatar" />
           </a>
         </li>
       </ul>
@@ -55,7 +55,7 @@ export const Settings = () => (
             <fieldset className="rw-file-form-group">
               <label>Avatar</label>
               <div className="rw-file-form-group__input-avatar">
-                <img className="rw-avatar-xl" src="avatar.png" alt="user avatar" />
+                <img className="rw-avatar-xl" src="avatar.jpeg" alt="user avatar" />
                 <button type="button" className="rw-btn-primary">
                   Change
                 </button>
