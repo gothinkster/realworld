@@ -10,7 +10,7 @@ export const ArticleFormHeader = () => (
     <h2>Create new article</h2>
     <img
       className="rw-avatar-xl rw-article-form-header__cover"
-      src="avatar.png"
+      src="avatar.jpeg"
       alt="user avatar"
     />
   </section>

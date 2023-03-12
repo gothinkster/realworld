@@ -17,7 +17,11 @@ export const ProfileHeader = () => (
           perspiciatis quo quod ratione reiciendis rerum.
         </p>
       </hgroup>
-      <img className="rw-avatar-xxl rw-profile-header__avatar" src="avatar.png" alt="user avatar" />
+      <img
+        className="rw-avatar-xxl rw-profile-header__avatar"
+        src="avatar.jpeg"
+        alt="user avatar"
+      />
     </section>
     <aside className="rw-profile-header__aside">
       <ul className="rw-profile-header__stat-list">
@@ -25,7 +29,7 @@ export const ProfileHeader = () => (
         <li>15 Followers</li>
         <li>390 likes</li>
       </ul>
-      <button className="rw-btn-secondary">Follow me</button>
+      <button className="rw-btn-primary">Follow me</button>
     </aside>
   </>
 );

@@ -33,7 +33,7 @@ export const Header = () => (
       </a>
       <ul className="navbar-links">
         <li className="nav-item">
-          <a className="rw-btn-primary" href="">
+          <a className="rw-btn-default" href="">
             Create article
           </a>
         </li>
@@ -60,7 +60,7 @@ export const Header = () => (
           <input className="rw-form-control" type="text" placeholder="Search" />
         </li>
         <li className="nav-item">
-          <a className="rw-btn-primary" href="">
+          <a className="rw-btn-default" href="">
             Create article
           </a>
         </li>
@@ -87,13 +87,13 @@ export const Header = () => (
           <input className="rw-form-control" type="text" placeholder="Search" />
         </li>
         <li className="nav-item">
-          <a className="rw-btn-primary" href="">
+          <a className="rw-btn-default" href="">
             Create article
           </a>
         </li>
         <li className="nav-item">
           <a className="rw-link" href="">
-            <img className="rw-avatar" src="avatar.png" alt="user avatar" />
+            <img className="rw-avatar" src="avatar.jpeg" alt="user avatar" />
           </a>
         </li>
       </ul>

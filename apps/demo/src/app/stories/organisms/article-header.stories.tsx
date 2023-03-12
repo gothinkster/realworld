@@ -10,7 +10,7 @@ export const ArticleHeader = () => (
     <section className="rw-article-header">
       <hgroup className="rw-article-header__title">
         <a className="rw-article-author__container" href="">
-          <img className="rw-avatar-sm" src="avatar.png" alt="user avatar" />
+          <img className="rw-avatar-sm" src="avatar.jpeg" alt="user avatar" />
           <div className="rw-article-author__content">
             <span>Gerome Grignon</span>
             <span className="rw-date">December 9, 2022</span>
@@ -23,7 +23,7 @@ export const ArticleHeader = () => (
           perspiciatis quo quod ratione reiciendis rerum.
         </p>
       </hgroup>
-      <img className="rw-article-header__cover" src="avatar.png" alt="user avatar" />
+      <img className="rw-article-header__cover" src="avatar.jpeg" alt="user avatar" />
     </section>
     <aside className="rw-article-header__actions">
       <ul className="rw-tag-list-horizontal ">

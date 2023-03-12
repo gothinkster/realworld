@@ -8,7 +8,7 @@ export default {
 };
 
 export const AvatarDefault = {
-  render: () => <img className="rw-avatar" src="avatar.png" alt="user avatar" />,
+  render: () => <img className="rw-avatar" src="avatar.jpeg" alt="user avatar" />,
   name: 'default',
 
   parameters: {
@@ -17,7 +17,7 @@ export const AvatarDefault = {
 };
 
 export const AvatarSmall = {
-  render: () => <img className="rw-avatar-sm" src="avatar.png" alt="user avatar" />,
+  render: () => <img className="rw-avatar-sm" src="avatar.jpeg" alt="user avatar" />,
 
   name: 'small',
 
@@ -27,7 +27,7 @@ export const AvatarSmall = {
 };
 
 export const AvatarLarge = {
-  render: () => <img className="rw-avatar-lg" src="avatar.png" alt="user avatar" />,
+  render: () => <img className="rw-avatar-lg" src="avatar.jpeg" alt="user avatar" />,
 
   name: 'large',
 
@@ -37,7 +37,7 @@ export const AvatarLarge = {
 };
 
 export const AvatarXLarge = {
-  render: () => <img className="rw-avatar-xl" src="avatar.png" alt="user avatar" />,
+  render: () => <img className="rw-avatar-xl" src="avatar.jpeg" alt="user avatar" />,
 
   name: 'x large',
 
@@ -47,7 +47,7 @@ export const AvatarXLarge = {
 };
 
 export const AvatarXXLarge = {
-  render: () => <img className="rw-avatar-xxl" src="avatar.png" alt="user avatar" />,
+  render: () => <img className="rw-avatar-xxl" src="avatar.jpeg" alt="user avatar" />,
 
   name: 'xx large',
 
