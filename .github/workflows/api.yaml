@@ -19,10 +19,26 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
+        id: setup-node
         with:
           node-version: '16'
-          cache: 'npm'
+
+      - name: Get node version
+        id: node
+        run: |
+          echo "::set-output name=version::$(node -v)"
+
+      - name: Get node_modules cache
+        uses: actions/cache@v3.3.1
+        id: node_modules
+        with:
+          path: |
+            **/node_modules
+          # Adding node version as cache key
+          key: ${{ runner.os }}-node_modules-${{ hashFiles('**/package-lock.json') }}-${{ steps.node.outputs.version }}
+
       - name: Install dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
         run: npm ci --no-audit --prefer-offline --progress=false
       - name: Check prettier
         run: npm run prettier:check
