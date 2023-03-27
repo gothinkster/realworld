@@ -11,13 +11,11 @@ export const Article = () => (
   <>
     <nav className="navbar">
       <a className="navbar-title" href="">
-        conduit
+        <img className="navbar-title__logo" src="energy.png" alt="" aria-hidden={true} />
+        <h1 className="navbar-title__label">conduit</h1>
       </a>
 
       <ul className="navbar-links">
-        <li className="nav-item">
-          <input className="rw-form-control" type="text" placeholder="Search" />
-        </li>
         <li className="nav-item">
           <a className="rw-btn-default" href="">
             Create article
@@ -76,12 +74,24 @@ export const Article = () => (
             </button>
           </li>
         </ul>
-        <ul className="rw-tag-list-horizontal ">
+        <ul className="rw-tag-list-horizontal">
           <li className="rw-tag">
             <a href="">#web</a>
           </li>
           <li className="rw-tag">
             <a href="">#chill</a>
+          </li>
+          <li className="rw-tag">
+            <a href="">#batman</a>
+          </li>
+          <li className="rw-tag">
+            <a href="">#batman</a>
+          </li>
+          <li className="rw-tag">
+            <a href="">#batman</a>
+          </li>
+          <li className="rw-tag">
+            <a href="">#batman</a>
           </li>
           <li className="rw-tag">
             <a href="">#batman</a>
@@ -296,11 +306,13 @@ export const Article = () => (
           </p>
         </article>
         <div className="rw-pagination">
-          <label>
-            Page
-            <input type="text" value={1} className="rw-pagination__input" />
-          </label>
-          <span>1 - 25 of 100</span>
+          <div className="rw-pagination__informations">
+            <label>
+              Page
+              <input type="text" value={1} className="rw-pagination__input" />
+            </label>
+            <span>1 - 25 of 100</span>
+          </div>
           <ul className="rw-pagination__buttons">
             <li>
               <button className="rw-pagination__button">

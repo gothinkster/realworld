@@ -4,11 +4,13 @@ export default {
 
 export const Pagination = () => (
   <div className="rw-pagination">
-    <label>
-      Page
-      <input type="text" value={1} className="rw-pagination__input" />
-    </label>
-    <span>1 - 25 of 100</span>
+    <div className="rw-pagination__informations">
+      <label>
+        Page
+        <input type="text" value={1} className="rw-pagination__input" />
+      </label>
+      <span>1 - 25 of 100</span>
+    </div>
     <ul className="rw-pagination__buttons">
       <li>
         <button className="rw-pagination__button">
