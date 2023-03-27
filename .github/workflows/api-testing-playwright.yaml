@@ -24,8 +24,8 @@ jobs:
           echo "::set-output name=version::$(node -v)"
 
       - name: Get node_modules cache
-        uses: actions/cache@v3.3.1
-        id: node_modules
+        uses: actions/cache@v3
+        id: cache
         with:
           path: |
             **/node_modules
@@ -33,6 +33,7 @@ jobs:
           key: ${{ runner.os }}-node_modules-${{ hashFiles('**/package-lock.json') }}-${{ steps.node.outputs.version }}
 
       - name: Install dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
         run: npm ci --no-audit --prefer-offline --progress=false
       - name: run tests
         run: npx nx e2e api-testing-playwright
