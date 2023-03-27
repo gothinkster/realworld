@@ -7,15 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.actor != 'dependabot[bot]' }}
     steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-      - uses: actions/setup-node@v3
-        with:
-          node-version: '16'
-          cache: 'npm'
-      - name: Install dependencies
-        run: npm ci --no-audit --prefer-offline --progress=false
+      - uses: gothinkster/realworld/.github/workflows/node-setup.yaml@main
       - uses: chromaui/action@v1
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
