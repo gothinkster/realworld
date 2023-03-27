@@ -12,15 +12,176 @@ jobs:
   linting:
     runs-on: ubuntu-latest
     steps:
-      - uses: gothinkster/realworld/.github/workflows/node-setup.yaml@main
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v3
+        id: setup-node
+        with:
+          node-version: '16'
+
+      - name: Get node version
+        id: node
+        run: |
+          echo "::set-output name=version::$(node -v)"
+
+      - name: Get node_modules cache
+        uses: actions/cache@v3
+        id: cache
+        with:
+          path: |
+            **/node_modules
+          # Adding node version as cache key
+          key: ${{ runner.os }}-node_modules-${{ hashFiles('**/package-lock.json') }}-${{ steps.node.outputs.version }}
+
+      - name: Install dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: npm ci --no-audit --prefer-offline --progress=false
       - name: Check prettier
         run: npm run prettier:check
       - name: Check ESLinter
         run: npm run lint:check
-  unit_testing:
+  codeql:
+    name: Analyze
     runs-on: ubuntu-latest
     needs: linting
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+
+    strategy:
+      fail-fast: false
+      matrix:
+        language: ['javascript']
+
     steps:
-      - uses: gothinkster/realworld/.github/workflows/node-setup.yaml@main
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v2
+        with:
+          languages: ${{ matrix.language }}
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v2
+        with:
+          category: '/language:${{matrix.language}}'
+  unit_testing:
+    runs-on: ubuntu-latest
+    needs: [linting, codeql]
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v3
+        id: setup-node
+        with:
+          node-version: '16'
+
+      - name: Get node version
+        id: node
+        run: |
+          echo "::set-output name=version::$(node -v)"
+
+      - name: Get node_modules cache
+        uses: actions/cache@v3
+        id: cache
+        with:
+          path: |
+            **/node_modules
+          # Adding node version as cache key
+          key: ${{ runner.os }}-node_modules-${{ hashFiles('**/package-lock.json') }}-${{ steps.node.outputs.version }}
+
+      - name: Install dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: npm ci --no-audit --prefer-offline --progress=false
       - name: Check unit tests
         run: npm run test --ci --lastCommit --maxWorkers=50%
+  api_testing:
+    runs-on: ubuntu-latest
+    needs: [linting, codeql]
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v3
+        id: setup-node
+        with:
+          node-version: '16'
+
+      - name: Get node version
+        id: node
+        run: |
+          echo "::set-output name=version::$(node -v)"
+
+      - name: Get node_modules cache
+        uses: actions/cache@v3
+        id: cache
+        with:
+          path: |
+            **/node_modules
+          # Adding node version as cache key
+          key: ${{ runner.os }}-node_modules-${{ hashFiles('**/package-lock.json') }}-${{ steps.node.outputs.version }}
+
+      - name: Install dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: npm ci --no-audit --prefer-offline --progress=false
+      - name: Check api tests
+        run: npx nx e2e api-testing-playwright
+  build_documentation:
+    runs-on: ubuntu-latest
+    needs: [linting, codeql]
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v3
+        id: setup-node
+        with:
+          node-version: '16'
+
+      - name: Get node version
+        id: node
+        run: |
+          echo "::set-output name=version::$(node -v)"
+
+      - name: Get node_modules cache
+        uses: actions/cache@v3
+        id: cache
+        with:
+          path: |
+            **/node_modules
+          # Adding node version as cache key
+          key: ${{ runner.os }}-node_modules-${{ hashFiles('**/package-lock.json') }}-${{ steps.node.outputs.version }}
+
+      - name: Install dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: npm ci --no-audit --prefer-offline --progress=false
+      - name: Check api tests
+        run: npx nx build documentation
+  chromatic:
+    runs-on: ubuntu-latest
+    needs: [linting, codeql]
+    if: ${{ github.actor != 'dependabot[bot]' }}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v3
+        id: setup-node
+        with:
+          node-version: '16'
+
+      - name: Get node version
+        id: node
+        run: |
+          echo "::set-output name=version::$(node -v)"
+
+      - name: Get node_modules cache
+        uses: actions/cache@v3
+        id: cache
+        with:
+          path: |
+            **/node_modules
+          # Adding node version as cache key
+          key: ${{ runner.os }}-node_modules-${{ hashFiles('**/package-lock.json') }}-${{ steps.node.outputs.version }}
+
+      - name: Install dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: npm ci --no-audit --prefer-offline --progress=false
+      - uses: chromaui/action@v1
+        with:
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
