@@ -11,13 +11,11 @@ export const ArticleForm = () => (
   <>
     <nav className="navbar">
       <a className="navbar-title" href="">
-        conduit
+        <img className="navbar-title__logo" src="energy.png" alt="" aria-hidden={true} />
+        <h1 className="navbar-title__label">conduit</h1>
       </a>
 
       <ul className="navbar-links">
-        <li className="nav-item">
-          <input className="rw-form-control" type="text" placeholder="Search" />
-        </li>
         <li className="nav-item">
           <a className="rw-btn-default" href="">
             Create article
@@ -95,13 +93,11 @@ export const ArticleFormPreview = () => (
   <>
     <nav className="navbar">
       <a className="navbar-title" href="">
-        conduit
+        <img className="navbar-title__logo" src="energy.png" alt="" aria-hidden={true} />
+        <h1 className="navbar-title__label">conduit</h1>
       </a>
 
       <ul className="navbar-links">
-        <li className="nav-item">
-          <input className="rw-form-control" type="text" placeholder="Search" />
-        </li>
         <li className="nav-item">
           <a className="rw-btn-default" href="">
             Create article
