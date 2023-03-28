@@ -1,0 +1,14 @@
+name: triage
+
+on:
+  pull_request:
+    types: [opened]
+jobs:
+  copilot:
+    runs-on: ubuntu-latest
+    steps:
+      - name: add copilot label
+        uses: kerhub/saved-replies@v1.0.0
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          addedLabels: 'copilot'
