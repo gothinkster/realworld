@@ -1,100 +1,36 @@
 {
   "migrations": [
     {
-      "version": "15.7.0-beta.0",
-      "description": "Split global configuration files into individual project.json files. This migration has been added automatically to the beginning of your migration set to retroactively make them work with the new version of Nx.",
       "cli": "nx",
-      "implementation": "./src/migrations/update-15-7-0/split-configuration-into-project-json-files",
-      "package": "@nrwl/workspace",
-      "name": "15-7-0-split-configuration-into-project-json-files"
+      "version": "15.8.2-beta.0",
+      "description": "Updates the nx wrapper.",
+      "implementation": "./src/migrations/update-15-8-2/update-nxw",
+      "package": "nx",
+      "name": "15.8.2-update-nx-wrapper"
     },
     {
       "cli": "nx",
-      "version": "15.4.5-beta.0",
-      "description": "Removes es2015Polyfills option since legacy browsers are no longer supported.",
-      "factory": "./src/migrations/update-15-4-5/remove-es2015-polyfills-option",
-      "package": "@nrwl/webpack",
-      "name": "remove-es2015-polyfills-option"
+      "version": "15.8.0-beta.0",
+      "description": "Rename .lib.swcrc to .swcrc for better SWC support throughout the workspace",
+      "factory": "./src/migrations/update-15-8-0/rename-swcrc-config",
+      "package": "@nrwl/js",
+      "name": "rename-swcrc-config"
     },
     {
+      "version": "15.8.0-beta.0",
       "cli": "nx",
-      "version": "15.6.3-beta.0",
-      "description": "Creates or updates webpack.config.js file with the new options for webpack.",
-      "factory": "./src/migrations/update-15-6-3/webpack-config-setup",
-      "package": "@nrwl/webpack",
-      "name": "webpack-config-setup"
+      "description": "Update jest configs to support jest 29 changes (https://jestjs.io/docs/upgrading-to-jest29)",
+      "factory": "./src/migrations/update-15-8-0/update-configs-jest-29",
+      "package": "@nrwl/jest",
+      "name": "update-configs-jest-29"
     },
     {
+      "version": "15.8.0-beta.0",
       "cli": "nx",
-      "version": "15.7.2-beta.0",
-      "description": "Add the babelUpwardRootMode option to the build executor options.",
-      "factory": "./src/migrations/update-15-7-2/add-babelUpwardRootMode-flag",
-      "package": "@nrwl/webpack",
-      "name": "add-babelUpwardRootMode-flag"
-    },
-    {
-      "cli": "nx",
-      "version": "15.7.1-beta.0",
-      "description": "Add node_modules to root eslint ignore",
-      "factory": "./src/migrations/update-15-7-1/add-eslint-ignore",
-      "package": "@nrwl/linter",
-      "name": "add-eslint-ignore"
-    },
-    {
-      "cli": "nx",
-      "version": "15.4.3-beta.0",
-      "description": "Update @nrwl/vite:test reportsDirectory and outputs properties to point to correct paths.",
-      "factory": "./src/migrations/update-15-4-3/update-report-directory",
-      "package": "@nrwl/vite",
-      "name": "update-test-path-placeholder-vars"
-    },
-    {
-      "cli": "nx",
-      "version": "15.4.6-beta.0",
-      "description": "Refactor the Storybook target options",
-      "factory": "./src/migrations/update-15-4-6/refactor-executor-options",
-      "package": "@nrwl/storybook",
-      "name": "update-15.4.6"
-    },
-    {
-      "cli": "nx",
-      "version": "15.5.3-beta.0",
-      "description": "Add @nrwl/webpack if it is missing and is used.",
-      "factory": "./src/migrations/update-15-5-3/ensure-webpack-package",
-      "package": "@nrwl/storybook",
-      "name": "update-15-5-3"
-    },
-    {
-      "cli": "nx",
-      "version": "15.7.0-beta.0",
-      "description": "Add @storybook/addon-essentials to all project-level configs and attempt to remove root config.",
-      "factory": "./src/migrations/update-15-7-0/add-addon-essentials-to-all",
-      "package": "@nrwl/storybook",
-      "name": "update-15-7-0"
-    },
-    {
-      "cli": "nx",
-      "version": "15.6.3-beta.0",
-      "description": "Creates or updates webpack.config.js file with the new options for webpack.",
-      "factory": "./src/migrations/update-15-6-3/webpack-config-setup",
-      "package": "@nrwl/react",
-      "name": "react-webpack-config-setup"
-    },
-    {
-      "cli": "nx",
-      "version": "15.5.4-beta.0",
-      "description": "Update `@nrwl/web/babel` preset to `@nrwl/js/babel` for projects that have a .babelrc file.",
-      "factory": "./src/migrations/update-15-5-4/update-babel-preset",
-      "package": "@nrwl/web",
-      "name": "update-babel-preset"
-    },
-    {
-      "version": "15.7.0-beta.0",
-      "description": "Split global configuration files (e.g., workspace.json) into individual project.json files.",
-      "cli": "nx",
-      "implementation": "./src/migrations/update-15-7-0/split-configuration-into-project-json-files",
-      "package": "@nrwl/workspace",
-      "name": "15-7-0-split-configuration-into-project-json-files"
+      "description": "Update jest test files to support jest 29 changes (https://jestjs.io/docs/upgrading-to-jest29)",
+      "factory": "./src/migrations/update-15-8-0/update-tests-jest-29",
+      "package": "@nrwl/jest",
+      "name": "update-tests-jest-29"
     }
   ]
 }
