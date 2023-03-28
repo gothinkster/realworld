@@ -40,7 +40,6 @@ jobs:
       - name: Check ESLinter
         run: npm run lint:check
   codeql:
-    name: Analyze
     runs-on: ubuntu-latest
     needs: linting
     permissions:
@@ -51,7 +50,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        language: ['javascript']
+        language: ['javascript', 'typescript']
 
     steps:
       - name: Checkout repository
