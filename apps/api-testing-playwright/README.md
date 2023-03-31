@@ -20,6 +20,12 @@ npm install
 npx nx e2e api-testing-playwright
 ```
 
+run with ui mode:
+
+```shell
+npx nx e2e api-testing-playwright --uiMode
+```
+
 filter tests by tags included:
 
 ```shell

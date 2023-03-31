@@ -51,7 +51,7 @@
     "@babel/preset-typescript": "7.18.6",
     "@bahmutov/cy-api": "^2.2.4",
     "@docusaurus/module-type-aliases": "2.2.0",
-    "@mands/nx-playwright": "^0.2.3",
+    "@mands/nx-playwright": "^0.3.7",
     "@nrwl/cli": "15.8.9",
     "@nrwl/cypress": "15.8.9",
     "@nrwl/eslint-plugin-nx": "15.8.9",
