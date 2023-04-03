@@ -103,7 +103,7 @@
     "babel-plugin-styled-components": "1.10.7",
     "css-loader": "^6.7.3",
     "cypress": "^12.2.0",
-    "eslint": "~8.31.0",
+    "eslint": "~8.37.0",
     "eslint-config-prettier": "8.6.0",
     "eslint-plugin-cypress": "^2.10.3",
     "eslint-plugin-import": "2.26.0",
