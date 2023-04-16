@@ -105,7 +105,7 @@
     "cypress": "^12.2.0",
     "cypress-plugin-api": "^2.11.0",
     "eslint": "~8.38.0",
-    "eslint-config-prettier": "8.6.0",
+    "eslint-config-prettier": "8.8.0",
     "eslint-plugin-cypress": "^2.10.3",
     "eslint-plugin-import": "2.26.0",
     "eslint-plugin-jsx-a11y": "6.6.1",
