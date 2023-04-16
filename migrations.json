@@ -2,35 +2,11 @@
   "migrations": [
     {
       "cli": "nx",
-      "version": "15.8.2-beta.0",
-      "description": "Updates the nx wrapper.",
-      "implementation": "./src/migrations/update-15-8-2/update-nxw",
-      "package": "nx",
-      "name": "15.8.2-update-nx-wrapper"
-    },
-    {
-      "cli": "nx",
-      "version": "15.8.0-beta.0",
-      "description": "Rename .lib.swcrc to .swcrc for better SWC support throughout the workspace",
-      "factory": "./src/migrations/update-15-8-0/rename-swcrc-config",
-      "package": "@nrwl/js",
-      "name": "rename-swcrc-config"
-    },
-    {
-      "version": "15.8.0-beta.0",
-      "cli": "nx",
-      "description": "Update jest configs to support jest 29 changes (https://jestjs.io/docs/upgrading-to-jest29)",
-      "factory": "./src/migrations/update-15-8-0/update-configs-jest-29",
-      "package": "@nrwl/jest",
-      "name": "update-configs-jest-29"
-    },
-    {
-      "version": "15.8.0-beta.0",
-      "cli": "nx",
-      "description": "Update jest test files to support jest 29 changes (https://jestjs.io/docs/upgrading-to-jest29)",
-      "factory": "./src/migrations/update-15-8-0/update-tests-jest-29",
-      "package": "@nrwl/jest",
-      "name": "update-tests-jest-29"
+      "version": "15.9.1",
+      "description": "Add @nrwl/linter, @nrwl/cypress, @nrwl/jest, @nrwl/rollup if they are used",
+      "factory": "./src/migrations/update-15-9-1/add-dropped-dependencies",
+      "package": "@nrwl/web",
+      "name": "add-dropped-dependencies"
     }
   ]
 }
