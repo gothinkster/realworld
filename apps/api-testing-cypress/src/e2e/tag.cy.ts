@@ -1,10 +1,7 @@
 describe('@GET tags', () => {
   it('OK @200', () => {
     // When
-    cy.api({
-      method: 'GET',
-      url: 'https://api.realworld.io/api/tags',
-    }).then((response: Cypress.Response<any>) => {
+    cy.getRequest('/api/tags').then((response: Cypress.Response<{ tags: string[] }>) => {
       // Then
       expect(response.status).to.equal(200);
       expect(response.body.tags.length).to.be.greaterThan(0);
@@ -12,5 +9,3 @@ describe('@GET tags', () => {
     });
   });
 });
-
-// TODO : other status codes to be considered ?
