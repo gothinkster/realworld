@@ -2,9 +2,15 @@ import { defineConfig } from 'cypress';
 import { nxE2EPreset } from '@nrwl/cypress/plugins/cypress-preset';
 
 export default defineConfig({
-  projectId: "ss7tiw",
-  e2e: nxE2EPreset(__dirname, {
-    // TODO : move to vite once fixed (https://github.com/nrwl/nx/issues/15890)
-    bundler: 'webpack',
-  }),
+  e2e: {
+    ...nxE2EPreset(__dirname, {
+      // TODO : move to vite once fixed (https://github.com/nrwl/nx/issues/15890)
+      bundler: 'webpack',
+    }),
+    experimentalRunAllSpecs: true,
+    env: {
+      baseUrl: 'https://api.realworld.io',
+      prefix: 'schmilblick',
+    },
+  },
 });

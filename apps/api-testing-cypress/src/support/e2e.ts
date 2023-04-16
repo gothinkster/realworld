@@ -12,7 +12,7 @@
 // You can read more here:
 // https://on.cypress.io/configuration
 // ***********************************************************
-import '@bahmutov/cy-api';
+import 'cypress-plugin-api';
 
 // Import commands.js using ES2015 syntax:
 import './commands';
