@@ -1,6 +1,6 @@
 module.exports = {
   stories: [],
-  addons: ['@storybook/addon-interactions'],
+  addons: ['@storybook/addon-interactions', '@storybook/addon-mdx-gfm'],
   features: {
     interactionsDebugger: true,
   },
