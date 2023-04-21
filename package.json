@@ -79,7 +79,7 @@
     "@storybook/react": "7.0.5",
     "@storybook/react-vite": "^7.0.5",
     "@storybook/testing-library": "^0.1.0",
-    "@svgr/webpack": "^6.1.2",
+    "@svgr/webpack": "^7.0.0",
     "@testing-library/cypress": "^9.0.0",
     "@testing-library/react": "13.4.0",
     "@types/bcryptjs": "^2.4.2",
