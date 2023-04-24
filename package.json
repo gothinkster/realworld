@@ -86,7 +86,7 @@
     "@types/cors": "^2.8.12",
     "@types/express": "4.17.17",
     "@types/express-rate-limit": "^6.0.0",
-    "@types/jest": "29.5.0",
+    "@types/jest": "29.5.1",
     "@types/jsonwebtoken": "^9.0.1",
     "@types/node": "18.15.10",
     "@types/react": "18.0.37",
