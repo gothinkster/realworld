@@ -97,7 +97,7 @@
     "@types/swagger-ui-react": "^4.11.0",
     "@typescript-eslint/eslint-plugin": "^5.36.1",
     "@typescript-eslint/parser": "^5.57.0",
-    "@vitejs/plugin-react": "3.0.0",
+    "@vitejs/plugin-react": "4.0.0",
     "@vitest/ui": "0.28.5",
     "babel-jest": "29.4.3",
     "babel-loader": "9.1.2",
