@@ -1,6 +1,6 @@
 openapi: 3.0.1
 info:
-  title: Conduit API
+  title: RealWorld Conduit API
   description: Conduit API documentation
   contact:
     name: RealWorld
