@@ -203,7 +203,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
   api_documentation:
     runs-on: ubuntu-latest
-    needs: [ api_testing_cypress, api_testing_playwright ]
+    needs: [api_testing_cypress, api_testing_playwright]
     steps:
       - uses: actions/checkout@v2
       - name: Deploy API documentation
@@ -212,4 +212,3 @@ jobs:
           doc: realworld
           token: ${{secrets.BUMP_TOKEN}}
           file: api/openapi.yml
-
