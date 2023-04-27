@@ -65,7 +65,8 @@ jobs:
         uses: github/codeql-action/analyze@v2
         with:
           category: '/language:${{matrix.language}}'
-  unit_testing:
+  unit_testing_api:
+    name: Unit Testing (API)
     runs-on: ubuntu-latest
     needs: [linting, codeql]
     steps:
@@ -94,6 +95,36 @@ jobs:
         run: npm ci --no-audit --prefer-offline --progress=false
       - name: Check unit tests
         run: npm run test --ci --lastCommit --maxWorkers=50%
+  unit_testing_demo:
+    name: Unit Testing (Demo)
+    runs-on: ubuntu-latest
+    needs: [linting, codeql]
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v3
+        id: setup-node
+        with:
+          node-version: '16'
+
+      - name: Get node version
+        id: node
+        run: |
+          echo "::set-output name=version::$(node -v)"
+
+      - name: Get node_modules cache
+        uses: actions/cache@v3
+        id: cache
+        with:
+          path: |
+            **/node_modules
+          # Adding node version as cache key
+          key: ${{ runner.os }}-node_modules-${{ hashFiles('**/package-lock.json') }}-${{ steps.node.outputs.version }}
+
+      - name: Install dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: npm ci --no-audit --prefer-offline --progress=false
+      - name: Check unit tests
+        run: echo "No unit tests for demo"
   api_testing_cypress:
     name: API Testing (Cypress)
     runs-on: ubuntu-latest
@@ -138,6 +169,36 @@ jobs:
         run: npm ci --no-audit --prefer-offline --progress=false
       - name: Check api tests
         run: npx nx e2e api-testing-playwright
+  accessibility_demo:
+    name: Accessibility (Demo)
+    runs-on: ubuntu-latest
+    needs: [linting, codeql, unit_testing_demo, deploy_preview_demo]
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v3
+        id: setup-node
+        with:
+          node-version: '16'
+
+      - name: Get node version
+        id: node
+        run: |
+          echo "::set-output name=version::$(node -v)"
+
+      - name: Get node_modules cache
+        uses: actions/cache@v3
+        id: cache
+        with:
+          path: |
+            **/node_modules
+          # Adding node version as cache key
+          key: ${{ runner.os }}-node_modules-${{ hashFiles('**/package-lock.json') }}-${{ steps.node.outputs.version }}
+
+      - name: Install dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: npm ci --no-audit --prefer-offline --progress=false
+      - name: Check unit tests
+        run: echo "No accessibility tests"
   build_documentation:
     runs-on: ubuntu-latest
     needs: [linting, codeql]
@@ -213,3 +274,41 @@ jobs:
           doc: conduit
           token: ${{secrets.BUMP_TOKEN}}
           file: api/openapi.yml
+  deploy_preview_demo:
+    name: Deploy Preview (Demo)
+    runs-on: ubuntu-latest
+    needs: [linting, codeql, unit_testing_demo]
+    if: github.event_name == 'pull_request'
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v3
+        id: setup-node
+        with:
+          node-version: '16'
+
+      - name: Get node version
+        id: node
+        run: |
+          echo "::set-output name=version::$(node -v)"
+
+      - name: Get node_modules cache
+        uses: actions/cache@v3
+        id: cache
+        with:
+          path: |
+            **/node_modules
+          # Adding node version as cache key
+          key: ${{ runner.os }}-node_modules-${{ hashFiles('**/package-lock.json') }}-${{ steps.node.outputs.version }}
+
+      - name: Install dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: npm ci --no-audit --prefer-offline --progress=false
+      - run: npx nx build demo
+      - name: Deploy to Netlify
+        uses: nwtgck/actions-netlify@v2
+        with:
+          publish-dir: './dist/apps/demo'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.DEMO_NETLIFY_ID }}
