@@ -203,6 +203,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
   api_documentation:
     runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     needs: [api_testing_cypress, api_testing_playwright]
     steps:
       - uses: actions/checkout@v2
