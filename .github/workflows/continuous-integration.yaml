@@ -1,9 +1,7 @@
-name: CI
+name: Continuous integration
 
 on:
   workflow_dispatch:
-  push:
-    branches: [main]
   pull_request:
     branches:
       - '**'
@@ -262,18 +260,6 @@ jobs:
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           token: ${{ secrets.GITHUB_TOKEN }}
-  api_documentation:
-    runs-on: ubuntu-latest
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-    needs: [api_testing_cypress, api_testing_playwright]
-    steps:
-      - uses: actions/checkout@v2
-      - name: Deploy API documentation
-        uses: bump-sh/github-action@v1
-        with:
-          doc: conduit
-          token: ${{secrets.BUMP_TOKEN}}
-          file: api/openapi.yml
   deploy_preview_demo:
     name: Deploy Preview (Demo)
     runs-on: ubuntu-latest
