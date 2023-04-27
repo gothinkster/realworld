@@ -1,11 +1,8 @@
 name: Create codebase diagram
 on:
   workflow_dispatch:
-  workflow_run:
-    workflows: ['CI']
+  push:
     branches: [main]
-    types:
-      - completed
 jobs:
   get_data:
     runs-on: ubuntu-latest
