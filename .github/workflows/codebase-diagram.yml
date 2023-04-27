@@ -1,12 +1,15 @@
 name: Create codebase diagram
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - main
+  workflow_run:
+    workflows: ['CI']
+    branches: [main]
+    types:
+      - completed
 jobs:
   get_data:
     runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
