@@ -17,7 +17,7 @@ tags:
   - name: Tags
   - name: User and Authentication
 servers:
-  - url: /api
+  - url: https://api.realworld.io/api
 paths:
   /users/login:
     post:
