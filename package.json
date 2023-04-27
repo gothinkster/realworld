@@ -147,7 +147,8 @@
     "webpack-merge": "^5.8.0"
   },
   "lint-staged": {
-    "*.ts": []
+    "*.{js,ts}": "eslint --cache --fix",
+    "*": "prettier --write"
   },
   "dependencies": {
     "@docusaurus/core": "2.4.0",
