@@ -11,6 +11,7 @@ on:
 jobs:
   spammy-guardian:
     runs-on: ubuntu-latest
+    if: ${{ github.actor != 'dependabot[bot]' || github.actor != 'netlify[bot]' }}
     steps:
       - uses: kerhub/spammy-guardian@fa79bcda24df6dae5b93285e1749e59c77add4bd
         with:
