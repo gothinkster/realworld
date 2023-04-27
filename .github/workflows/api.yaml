@@ -209,6 +209,6 @@ jobs:
       - name: Deploy API documentation
         uses: bump-sh/github-action@v1
         with:
-          doc: realworld
+          doc: conduit
           token: ${{secrets.BUMP_TOKEN}}
           file: api/openapi.yml
