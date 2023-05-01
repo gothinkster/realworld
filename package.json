@@ -69,7 +69,7 @@
     "@nx-plus/docusaurus": "^15.0.0-rc.0",
     "@playwright/test": "1.32.1",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.7",
-    "@storybook/addon-essentials": "7.0.5",
+    "@storybook/addon-essentials": "7.0.7",
     "@storybook/addon-interactions": "^7.0.5",
     "@storybook/addon-mdx-gfm": "^7.0.5",
     "@storybook/blocks": "^7.0.7",
