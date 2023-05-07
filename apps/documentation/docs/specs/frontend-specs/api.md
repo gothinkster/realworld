@@ -49,29 +49,6 @@ If the hosted API receives no traffic in 30 minutes, it will sleep. In such a si
 
 Non-demo Articles, Tags, and Comments are deleted on a daily basis to avoid additional costs.
 
-### Swagger documentation
-
-The API exposes a **Swagger** documentation on `https://api.realworld.io/api-docs`.
-
-Most of the requests require a valid token.
-
-#### Retrieve a token
-
-You can retrieve a token by logging in or by registering.
-
-Log in : https://api.realworld.io/api-docs/#/User%20and%20Authentication/Login  
-Register: https://api.realworld.io/api-docs/#/User%20and%20Authentication/CreateUser
-
-- Click the `Try it out` button
-- populate the body input with the related credentials
-- Click `Execute` button
-- Copy the token from the response body
-
-#### Register the token
-
-- Click `Authorize` button on top of the Swagger documentation page
-- Populate the field with `Token <generated token>`
-
 ## API Limitations
 
 :::info
