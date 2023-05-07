@@ -8,12 +8,12 @@
       "executor": "@mands/nx-playwright:playwright-executor",
       "options": {
         "e2eFolder": "apps/api-testing-playwright",
-        "devServerTarget": "swagger:serve",
+        "devServerTarget": "demo:serve",
         "packageRunner": "yarn"
       },
       "configurations": {
         "production": {
-          "devServerTarget": "swagger:serve:production"
+          "devServerTarget": "demo:serve:production"
         }
       }
     },
@@ -22,7 +22,7 @@
       "options": {
         "commands": [
           {
-            "command": "tsc --build --force --verbose apps/swagger-e2e/tsconfig.json"
+            "command": "tsc --build --force --verbose apps/demo-e2e/tsconfig.json"
           }
         ]
       }
@@ -36,5 +36,5 @@
     }
   },
   "tags": [],
-  "implicitDependencies": ["swagger"]
+  "implicitDependencies": ["demo"]
 }
