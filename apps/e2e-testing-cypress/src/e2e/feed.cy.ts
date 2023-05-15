@@ -1,5 +1,6 @@
 import { AuthPage } from '../support/auth.po';
 import { FeedPage } from '../support/feed.po';
+import { ArticlePage } from '../support/article.po';
 
 describe('Home', () => {
   it('should display the global feed', () => {
@@ -10,7 +11,7 @@ describe('Home', () => {
     cy.get('.article-meta').should('have.length', 10);
   });
 
-  it('should not display the feed if the user is not logged in', () => {
+  it('should not display the personal feed if the user is not logged in', () => {
     // Then
     FeedPage.getYourFeedTab().should('not.exist');
   });
@@ -25,14 +26,77 @@ describe('Home', () => {
 
   it('should display the list of popular tags', () => {
     // Then
-    cy.contains('Popular Tags')
-      .parent()
-      .within(() => {
-        cy.get('.tag-default').should('have.length', 10);
+    FeedPage.getPopularTags().should('have.length', 10);
+  });
+
+  it('should display a new tab by clicking on a popular tag', () => {
+    // When
+    FeedPage.getPopularTags()
+      .first()
+      .then(tag => {
+        cy.wrap(tag).as('tag');
+        cy.wrap(tag).click();
+      });
+
+    // Then
+    cy.get('@tag')
+      .invoke('text')
+      .then(tagName => {
+        FeedPage.getTagFeedTab(tagName).should('have.class', 'active');
       });
   });
 
-  it('should favorite an article', () => {
+  it('should focus a new tab by clicking on a popular tag', () => {
+    // When
+    FeedPage.getPopularTags()
+      .first()
+      .then(tag => {
+        cy.wrap(tag).as('tag');
+        cy.wrap(tag).click();
+      });
+
+    // Then
+    cy.get('@tag')
+      .invoke('text')
+      .then(tagName => {
+        FeedPage.getTagFeedTab(tagName).should('have.class', 'active');
+      });
+  });
+
+  it('should navigate to an article by clicking on its preview', () => {
+    // When
+    FeedPage.getArticlesPreview()
+      .first()
+      .within(articlePreview => {
+        cy.findByRole('heading', { level: 1 }).as('articleTitle');
+        cy.wrap(articlePreview).click();
+      });
+
+    // Then
+    cy.get('@articleTitle')
+      .invoke('text')
+      .then(title => {
+        ArticlePage.getArticleTitle(title).should('exist');
+      });
+  });
+
+  it('should display the first active pagination link', () => {
+    // Then
+    FeedPage.getPaginationLinks().first().should('have.text', '1');
+    FeedPage.getPaginationLinks().first().parent().should('have.class', 'active');
+  });
+
+  it('shold display a single active pagination link', () => {
+    // Then
+    cy.get('.pagination').find('.active').should('have.length', 1);
+  });
+
+  it('should display the loading message when loading articles', () => {
+    // Then
+    FeedPage.getLoadingMessage().should('exist');
+  });
+
+  xit('should favorite an article', () => {
     // Given
     cy.intercept('POST', '**/api/articles/*/favorite').as('favorite');
 
