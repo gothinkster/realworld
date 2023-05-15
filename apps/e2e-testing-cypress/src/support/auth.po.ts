@@ -19,6 +19,10 @@ export class AuthPage {
     return cy.findByRole('button', { name: /sign in/i });
   }
 
+  static getSettingsLink(): Cypress.Chainable<JQuery<HTMLElement>> {
+    return cy.findByRole('link', { name: /settings/i });
+  }
+
   static register(
     user: {
       username?: string;

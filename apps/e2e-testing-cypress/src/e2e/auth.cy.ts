@@ -90,4 +90,16 @@ describe('Register', () => {
     AuthPage.getSignInLink().should('not.exist');
     AuthPage.getSignUpLink().should('not.exist');
   });
+
+  it('should logout a user', () => {
+    // Given
+    AuthPage.register();
+
+    // When
+    AuthPage.getSettingsLink().click();
+    AuthPage.logout();
+
+    // Then
+    AuthPage.getSignInLink().should('exist');
+  });
 });

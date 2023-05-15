@@ -61,6 +61,14 @@ describe('Article', () => {
     cy.findByRole('heading', { name: /my article edited/i }).should('exist');
   });
 
+  it('should redirect to signup when trying to favorite an article while being logged out', () => {
+    // When
+    ArticlePage.getFavoriteButton().first().click();
+
+    // Then
+    cy.findByRole('heading', { name: /sign up/i }).should('exist');
+  });
+
   // TODO add check favorited articles
   xit('should favorite an article', () => {
     // Given

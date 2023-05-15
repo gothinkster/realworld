@@ -1,6 +1,13 @@
 export class ArticlePage {
+  static getArticleTitle(title: string) {
+    return cy.findByRole('heading', { level: 1 }).contains(title);
+  }
   static getDeleteButton() {
     return cy.get('.btn-outline-danger').contains('Delete Article');
+  }
+
+  static getFavoriteButton() {
+    return cy.get('.ion-heart').parent();
   }
 
   static createArticle() {
