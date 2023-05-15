@@ -65,7 +65,7 @@
     "@nrwl/vite": "15.9.2",
     "@nrwl/web": "15.9.2",
     "@nrwl/webpack": "15.9.2",
-    "@nrwl/workspace": "15.9.2",
+    "@nrwl/workspace": "16.1.4",
     "@nx-plus/docusaurus": "^15.0.0-rc.0",
     "@playwright/test": "1.32.1",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.7",
