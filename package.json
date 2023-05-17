@@ -92,7 +92,7 @@
     "cypress": "12.12.0",
     "cypress-plugin-api": "^2.11.0",
     "cypress-wait-until": "^1.7.2",
-    "eslint": "~8.38.0",
+    "eslint": "~8.40.0",
     "eslint-config-prettier": "8.8.0",
     "eslint-plugin-cypress": "^2.10.3",
     "eslint-plugin-import": "2.27.5",
