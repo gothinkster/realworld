@@ -109,7 +109,7 @@
     "lint-staged": "^13.2.1",
     "newman": "^5.3.0",
     "nx": "16.1.4",
-    "prettier": "^2.6.2",
+    "prettier": "^2.8.8",
     "prisma": "^4.7.1",
     "react-refresh": "^0.10.0",
     "react-test-renderer": "18.2.0",
