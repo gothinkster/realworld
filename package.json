@@ -85,7 +85,7 @@
     "@typescript-eslint/parser": "5.59.6",
     "@vitejs/plugin-react": "4.0.0",
     "@vitest/ui": "0.31.0",
-    "babel-jest": "29.4.3",
+    "babel-jest": "29.5.0",
     "babel-loader": "9.1.2",
     "babel-plugin-styled-components": "1.10.7",
     "css-loader": "^6.7.3",
