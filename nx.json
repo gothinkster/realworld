@@ -3,7 +3,7 @@
   "npmScope": "realworld",
   "tasksRunnerOptions": {
     "default": {
-      "runner": "@nrwl/nx-cloud",
+      "runner": "nx-cloud",
       "options": {
         "cacheableOperations": ["build", "lint", "test", "e2e", "build-storybook"],
         "accessToken": "NzJiNGQ0MmItMWQ0Yi00ZGNjLTlmYmItNDBkYzU5ZjY2N2E4fHJlYWQtd3JpdGU="
@@ -42,7 +42,7 @@
     "sharedGlobals": ["{workspaceRoot}/babel.config.json"]
   },
   "generators": {
-    "@nrwl/react": {
+    "@nx/react": {
       "application": {
         "style": "css",
         "unitTestRunner": "jest",
