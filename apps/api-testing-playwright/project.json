@@ -8,23 +8,13 @@
       "executor": "@mands/nx-playwright:playwright-executor",
       "options": {
         "e2eFolder": "apps/api-testing-playwright",
-        "devServerTarget": "demo:serve",
+        "devServerTarget": "storybook:serve",
         "packageRunner": "yarn"
       },
       "configurations": {
         "production": {
-          "devServerTarget": "demo:serve:production"
+          "devServerTarget": "storybook:serve:production"
         }
-      }
-    },
-    "ts-check": {
-      "executor": "nx:run-commands",
-      "options": {
-        "commands": [
-          {
-            "command": "tsc --build --force --verbose apps/demo-e2e/tsconfig.json"
-          }
-        ]
       }
     },
     "lint": {
@@ -36,5 +26,5 @@
     }
   },
   "tags": [],
-  "implicitDependencies": ["demo"]
+  "implicitDependencies": ["storybook"]
 }

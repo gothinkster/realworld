@@ -13,7 +13,7 @@
       },
       "configurations": {
         "production": {
-          "devServerTarget": "demo:serve:production"
+          "devServerTarget": "storybook:serve:production"
         }
       }
     },
@@ -26,5 +26,5 @@
     }
   },
   "tags": [],
-  "implicitDependencies": ["demo"]
+  "implicitDependencies": ["storybook"]
 }

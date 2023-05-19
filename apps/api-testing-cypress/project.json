@@ -8,12 +8,12 @@
       "executor": "@nx/cypress:cypress",
       "options": {
         "cypressConfig": "apps/api-testing-cypress/cypress.config.ts",
-        "devServerTarget": "demo:serve:development",
+        "devServerTarget": "storybook:serve:development",
         "testingType": "e2e"
       },
       "configurations": {
         "production": {
-          "devServerTarget": "demo:serve:production"
+          "devServerTarget": "storybook:serve:production"
         }
       }
     },
@@ -26,5 +26,5 @@
     }
   },
   "tags": [],
-  "implicitDependencies": ["demo"]
+  "implicitDependencies": ["storybook"]
 }
