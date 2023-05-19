@@ -87,7 +87,7 @@
     "@vitest/ui": "0.31.0",
     "babel-jest": "29.5.0",
     "babel-loader": "9.1.2",
-    "babel-plugin-styled-components": "1.10.7",
+    "babel-plugin-styled-components": "2.1.3",
     "css-loader": "^6.7.3",
     "cypress": "12.12.0",
     "cypress-plugin-api": "^2.11.0",
