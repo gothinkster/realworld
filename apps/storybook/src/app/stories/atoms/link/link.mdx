@@ -1,0 +1,45 @@
+import { Canvas, Meta, Story, Source } from '@storybook/blocks';
+import { linkSourceDocs } from './link.utils';
+import * as LinkStories from './link.stories';
+
+<Meta title="Atoms/Link/Overview" />
+
+# Atoms link overview
+
+## Description
+
+The link atom is used to navigate to another page or to another part of the current page.
+
+## States
+
+<br />
+
+### Default
+
+<Canvas>
+  <Story of={LinkStories.Link}></Story>
+</Canvas>
+
+### Hover
+
+<Canvas>
+  <Story of={LinkStories.LinkHover}></Story>
+</Canvas>
+
+## Code
+
+<br />
+
+<Source {...linkSourceDocs().docs.source} />
+
+## Use cases
+
+> This component is used in the following stories:
+
+### Molecules
+
+### Organisms
+
+### Templates
+
+### Pages

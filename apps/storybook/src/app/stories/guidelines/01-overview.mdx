@@ -1,0 +1,65 @@
+import { Meta } from '@storybook/blocks';
+import { OverViewElement } from '../utils/overview-element';
+
+<Meta title="Guidelines/Overview" />
+
+Guidelines
+
+This is the guidelines overview description. It will elaborate on the guidelines and principles that need to be followed to build applications.
+
+Guidelines is where you'll find UX guidance for specific aspects of app/site design (navigation models, data entry, form validation, accessibility, and so on). These will give high-level tours of the relevant components and styles, with links to the specific pages in the components and styles sections for more detailed guidelines on each element. Each guideline is effectively an article on good usage.
+
+<OverViewElement
+  sections={[
+    {
+      name: '',
+      items: [
+        {
+          title: 'Design Principles',
+          description: 'The design system’s guiding values',
+        },
+        {
+          title: 'Code conventions',
+          description: 'Guidelines for the design system’s code base',
+        },
+        {
+          title: 'Accessibility',
+          description: 'Describe the design system’s approach to accessibility',
+        },
+        {
+          title: 'Data display',
+          description: 'Presenting quick, actionable data',
+        },
+        {
+          title: 'Data entry',
+          description: 'High-level form guidelines',
+        },
+        {
+          title: 'Data validation',
+          description: 'Guidelines around validating data',
+        },
+        {
+          title: 'Input modes',
+          description: 'Guidelines around multiple types of input',
+        },
+        {
+          title: 'Navigation',
+          description: 'Guidelines for getting around a UI',
+        },
+        {
+          title: 'Notifications',
+          description: 'Guidelines around how and when to respectfully interrupt users',
+        },
+        {
+          title: 'Writing',
+          description: 'Guidelines for writing best practices',
+        },
+        {
+          title: 'Browser support',
+          description: 'Guidelines that explain which browsers the design system is optimized for',
+        },
+      ],
+    },
+  ]}
+  title="bar"
+></OverViewElement>
