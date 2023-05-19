@@ -1,0 +1,45 @@
+import { Meta, Canvas, Story } from '@storybook/blocks';
+import * as IconStories from '../atoms/icon/icon.stories';
+import * as BannerStories from '../molecules/banner/banner.stories';
+import * as CounterStories from '../molecules/counter/counter.stories';
+
+<Meta title="Styles/Iconography" />
+
+Icons are a unique beast, so it's important to define how to use and create icons for the design system.
+
+## Definition
+
+### Sizes
+
+- height: 24px
+- width: 24px
+
+// TODO: add all Material icons definition specs
+
+## Icon list
+
+// TODO: add info and error banners icons
+
+<Canvas>
+  <Story of={IconStories.IconDefault}></Story>
+  <Story of={IconStories.IconFilled}></Story>
+</Canvas>
+
+## Usage
+
+### Favorite
+
+// TODO: add a description of 'favorite'
+
+<Canvas>
+  <Story of={CounterStories.LikeCounter}></Story>
+  <Story of={CounterStories.LikeCounterActive}></Story>
+</Canvas>
+// TODO: add LinkTo Favorite overview
+
+### Banner
+
+<Canvas>
+  <Story of={BannerStories.BannerInfo}></Story>
+  <Story of={BannerStories.BannerError}></Story>
+</Canvas>

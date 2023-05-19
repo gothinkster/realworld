@@ -1,0 +1,43 @@
+import { Canvas, Meta, Story, Source } from '@storybook/blocks';
+import * as BannerStories from './banner.stories';
+
+<Meta title="Molecules/Banner/Overview" />
+
+# Molecules banner overview
+
+<br />
+
+## States
+
+<br />
+
+// TODO: add info and error icons
+
+<Canvas>
+  <Story of={BannerStories.BannerInfo}></Story>
+  <Story of={BannerStories.BannerError}></Story>
+</Canvas>
+
+## Code
+
+<br />
+
+### info banner
+
+<Source language="html" dark format={false} of={BannerStories.BannerInfo} />
+
+### error banner
+
+<Source language="html" dark format={false} of={BannerStories.BannerInfo} />
+
+## Use cases
+
+> This component is used in the following stories:
+
+### Molecules
+
+### Organisms
+
+### Templates
+
+### Pages

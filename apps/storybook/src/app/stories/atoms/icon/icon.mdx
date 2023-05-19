@@ -1,0 +1,53 @@
+import { Canvas, Meta, Story, Source } from '@storybook/blocks';
+import { iconSourceDocs } from './icon.utils';
+import * as IconStories from './icon.stories';
+
+<Meta title="Atoms/Icon/Overview" />
+
+# Atoms icon overview
+
+## Description
+
+The icon component is used to display an icon.
+
+## Variants
+
+<br />
+
+### Default
+
+<Canvas>
+  <Story of={IconStories.IconDefault}></Story>
+  <Story of={IconStories.IconFilled}></Story>
+</Canvas>
+
+### Active
+
+<Canvas>
+  <Story of={IconStories.IconActive}></Story>
+  <Story of={IconStories.IconFilledActive}></Story>
+</Canvas>
+
+## Code
+
+<br />
+
+### Default
+
+<Source {...iconSourceDocs({ active: false, filled: false }).docs.source} />
+
+### Active
+
+<Source {...iconSourceDocs({ active: true, filled: false }).docs.source} />
+
+## Use cases
+
+> This component is used in the following stories:
+
+### Molecules
+
+### Organisms
+
+### Templates
+
+### Pages
