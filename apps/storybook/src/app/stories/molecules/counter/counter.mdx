@@ -1,0 +1,63 @@
+import { Canvas, Meta, Story, Source } from '@storybook/blocks';
+import { sourceDocs } from './counter.utils';
+import * as CounterStories from './counter.stories';
+
+<Meta title="Molecules/Counter/Overview" />
+
+## Molecule counter overview
+
+> The counter molecule is a component displaying a number count with a associated icon.
+
+<br />
+<br />
+
+### Composition
+
+The counter molecule is composed of a label and a icon:
+
+- The label is a number.
+- The licon is a visual representation of the counter.
+
+<br />
+
+## State
+
+### Inactive
+
+> Default state.
+
+<Canvas>
+  <Story of={CounterStories.LikeCounter}></Story>
+</Canvas>
+
+### Active
+
+> The counter molecule is active when a user action is associated to the count.
+
+<Canvas>
+  <Story of={CounterStories.LikeCounterActive}></Story>
+</Canvas>
+
+## Code
+
+<br />
+
+### Default
+
+<Source {...sourceDocs().docs.source} />
+
+### Active
+
+<Source {...sourceDocs({ active: true }).docs.source} />
+
+## Use cases
+
+> This component is used in the following stories:
+
+### Molecules
+
+### Organisms
+
+### Templates
+
+### Pages
