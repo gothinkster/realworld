@@ -52,7 +52,7 @@
     "@docusaurus/module-type-aliases": "2.4.0",
     "@mands/nx-playwright": "^0.4.0",
     "@nx-plus/docusaurus": "^15.0.0-rc.0",
-    "@nx/cypress": "16.1.4",
+    "@nx/cypress": "16.2.1",
     "@nx/eslint-plugin": "16.1.4",
     "@nx/express": "16.1.4",
     "@nx/jest": "16.1.4",
