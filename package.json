@@ -90,7 +90,7 @@
     "@types/jsonwebtoken": "^9.0.1",
     "@types/node": "18.15.10",
     "@types/react": "18.0.37",
-    "@types/react-dom": "18.0.11",
+    "@types/react-dom": "18.2.4",
     "@types/react-is": "17.0.3",
     "@types/react-router-dom": "5.3.3",
     "@types/styled-components": "5.1.26",
