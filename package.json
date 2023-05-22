@@ -56,7 +56,7 @@
     "@nx/eslint-plugin": "16.1.4",
     "@nx/express": "16.1.4",
     "@nx/jest": "16.1.4",
-    "@nx/js": "16.1.4",
+    "@nx/js": "16.2.1",
     "@nx/linter": "16.1.4",
     "@nx/node": "16.1.4",
     "@nx/react": "16.1.4",
