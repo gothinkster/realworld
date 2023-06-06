@@ -141,7 +141,7 @@
     "tsx": "^3.12.6",
     "typescript": "5.0.4",
     "url-loader": "^4.1.1",
-    "vite": "4.3.7",
+    "vite": "4.3.9",
     "vite-plugin-eslint": "1.8.1",
     "vite-tsconfig-paths": "4.2.0",
     "vitest": "0.31.0",
