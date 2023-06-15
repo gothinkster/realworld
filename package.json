@@ -127,7 +127,7 @@
     "nx-cloud": "16.0.5",
     "prettier": "^2.8.8",
     "prisma": "^4.7.1",
-    "react-refresh": "^0.10.0",
+    "react-refresh": "^0.14.0",
     "storybook": "^7.0.12",
     "storybook-addon-pseudo-states": "^2.0.1",
     "style-loader": "^3.3.0",
