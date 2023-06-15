@@ -2,179 +2,43 @@
   "migrations": [
     {
       "cli": "nx",
-      "version": "16.0.0-beta.0",
-      "description": "Remove @nrwl/cli.",
-      "implementation": "./src/migrations/update-16-0-0/remove-nrwl-cli",
+      "version": "16.2.0-beta.0",
+      "description": "Remove outputPath from run commands",
+      "implementation": "./src/migrations/update-16-2-0/remove-run-commands-output-path",
       "package": "nx",
-      "name": "16.0.0-remove-nrwl-cli"
+      "name": "16.2.0-remove-output-path-from-run-commands"
     },
     {
       "cli": "nx",
-      "version": "16.0.0-beta.9",
-      "description": "Replace `dependsOn.projects` and `inputs` definitions with new configuration format.",
-      "implementation": "./src/migrations/update-16-0-0/update-depends-on-to-tokens",
-      "package": "nx",
-      "name": "16.0.0-tokens-for-depends-on"
-    },
-    {
-      "cli": "nx",
-      "version": "16.0.0-beta.0",
-      "description": "Replace @nrwl/nx-cloud with nx-cloud",
-      "implementation": "./src/migrations/update-16-0-0/update-nx-cloud-runner",
-      "package": "nx",
-      "name": "16.0.0-update-nx-cloud-runner"
-    },
-    {
-      "cli": "nx",
-      "version": "16.0.0-beta.1",
-      "description": "Replace @nx/workspace with @nx/workspace",
-      "implementation": "./src/migrations/update-16-0-0-add-nx-packages/update-16-0-0-add-nx-packages",
-      "package": "@nx/workspace",
-      "name": "update-16-0-0-add-nx-packages"
-    },
-    {
-      "version": "16.0.0-beta.4",
-      "description": "Generates a plugin called 'workspace-plugin' containing your workspace generators.",
-      "cli": "nx",
-      "implementation": "./src/migrations/update-16-0-0/move-workspace-generators-to-local-plugin",
-      "package": "@nx/workspace",
-      "name": "16-0-0-move-workspace-generators-into-local-plugin"
-    },
-    {
-      "version": "16.0.0-beta.9",
-      "description": "Fix .babelrc presets if it contains an invalid entry for @nx/web/babel.",
-      "cli": "nx",
-      "implementation": "./src/migrations/update-16-0-0/fix-invalid-babelrc",
-      "package": "@nx/workspace",
-      "name": "16-0-0-fix-invalid-babelrc"
-    },
-    {
-      "cli": "nx",
-      "version": "16.0.0-beta.1",
-      "description": "Replace @nx/js with @nx/js",
-      "implementation": "./src/migrations/update-16-0-0-add-nx-packages/update-16-0-0-add-nx-packages",
-      "package": "@nx/js",
-      "name": "update-16-0-0-add-nx-packages"
-    },
-    {
-      "cli": "nx",
-      "version": "16.0.0-beta.1",
-      "description": "Replace @nx/linter with @nx/linter",
-      "implementation": "./src/migrations/update-16-0-0-add-nx-packages/update-16-0-0-add-nx-packages",
-      "package": "@nx/linter",
-      "name": "update-16-0-0-add-nx-packages"
-    },
-    {
-      "cli": "nx",
-      "version": "16.0.0-beta.1",
-      "description": "Replace @nx/cypress with @nx/cypress",
-      "implementation": "./src/migrations/update-16-0-0-add-nx-packages/update-16-0-0-add-nx-packages",
+      "version": "16.2.0-beta.0",
+      "description": "Normalize tsconfig.cy.json files to be located at '<projectRoot>/cypress/tsconfig.json'",
+      "implementation": "./src/migrations/update-16-2-0/update-cy-tsconfig",
       "package": "@nx/cypress",
-      "name": "update-16-0-0-add-nx-packages"
+      "name": "update-16-2-0-normalize-tsconfigs"
     },
     {
       "cli": "nx",
-      "version": "16.0.0-beta.1",
-      "description": "Replace @nx/storybook with @nx/storybook",
-      "implementation": "./src/migrations/update-16-0-0-add-nx-packages/update-16-0-0-add-nx-packages",
-      "package": "@nx/storybook",
-      "name": "update-16-0-0-add-nx-packages"
+      "version": "16.3.1-beta.0",
+      "description": "Replace @nx/node:webpack with @nx/node:webpack for all project targets",
+      "implementation": "./src/migrations/update-16-3-1/update-webpack-executor",
+      "package": "@nx/node",
+      "name": "update-16-3-1-update-executor"
     },
     {
       "cli": "nx",
-      "version": "16.0.0-beta.1",
-      "description": "Update workspace to use Storybook v7",
-      "implementation": "./src/migrations/update-16-0-0/update-sb-7",
-      "package": "@nx/storybook",
-      "name": "update-16-0-0-migrate-7"
-    },
-    {
-      "cli": "nx",
-      "version": "16.1.0-beta.0",
-      "description": "Ignore @nx/react/plugins/storybook in Storybook eslint rules.",
-      "factory": "./src/migrations/update-16-1-0/eslint-ignore-react-plugin",
-      "package": "@nx/storybook",
-      "name": "update-16-1-0"
-    },
-    {
-      "cli": "nx",
-      "version": "16.0.0-beta.1",
-      "description": "Replace @nx/web with @nx/web",
-      "implementation": "./src/migrations/update-16-0-0-add-nx-packages/update-16-0-0-add-nx-packages",
-      "package": "@nx/web",
-      "name": "update-16-0-0-add-nx-packages"
-    },
-    {
-      "cli": "nx",
-      "version": "16.0.0-beta.4",
-      "description": "Replace @nx/web executors with @nx/webpack and @nx/rollup",
-      "implementation": "./src/migrations/update-16-0-0-update-executors/update-16-0-0-update-executors",
-      "package": "@nx/web",
-      "name": "update-16-0-0-update-executors"
-    },
-    {
-      "cli": "nx",
-      "version": "16.0.0-beta.1",
-      "description": "Replace @nx/eslint-plugin with @nx/eslint-plugin",
-      "implementation": "./src/migrations/update-16-0-0-add-nx-packages/update-16-0-0-add-nx-packages",
-      "package": "@nx/eslint-plugin",
-      "name": "update-16-0-0-add-nx-packages"
-    },
-    {
-      "cli": "nx",
-      "version": "16.0.0-beta.1",
-      "description": "Replace @nx/vite with @nx/vite",
-      "implementation": "./src/migrations/update-16-0-0-add-nx-packages/update-16-0-0-add-nx-packages",
-      "package": "@nx/vite",
-      "name": "update-16-0-0-add-nx-packages"
-    },
-    {
-      "cli": "nx",
-      "version": "16.0.0-beta.1",
-      "description": "Replace @nx/react with @nx/react",
-      "implementation": "./src/migrations/update-16-0-0-add-nx-packages/update-16-0-0-add-nx-packages",
+      "version": "16.2.0-beta.0",
+      "description": "Remove react-test-renderer from package.json",
+      "implementation": "./src/migrations/update-16-2-0-remove-package/update-16-2-0-remove-package",
       "package": "@nx/react",
-      "name": "update-16-0-0-add-nx-packages"
+      "name": "update-16-2-0-remove-package"
     },
     {
       "cli": "nx",
-      "version": "16.0.0-beta.1",
-      "description": "Replace @nx/jest with @nx/jest",
-      "implementation": "./src/migrations/update-16-0-0-add-nx-packages/update-16-0-0-add-nx-packages",
-      "package": "@nx/jest",
-      "name": "update-16-0-0-add-nx-packages"
-    },
-    {
-      "cli": "nx",
-      "version": "16.0.0-beta.1",
-      "description": "Replace @nx/express with @nx/express",
-      "implementation": "./src/migrations/update-16-0-0-add-nx-packages/update-16-0-0-add-nx-packages",
-      "package": "@nx/express",
-      "name": "update-16-0-0-add-nx-packages"
-    },
-    {
-      "cli": "nx",
-      "version": "16.0.0-beta.1",
-      "description": "Replace @nx/node with @nx/node",
-      "implementation": "./src/migrations/update-16-0-0-add-nx-packages/update-16-0-0-add-nx-packages",
-      "package": "@nx/node",
-      "name": "update-16-0-0-add-nx-packages"
-    },
-    {
-      "cli": "nx",
-      "version": "16.0.0-beta.5",
-      "description": "Replace @nx/node:webpack with @nx/node:webpack",
-      "implementation": "./src/migrations/update-16-0-0/update-webpack-executor",
-      "package": "@nx/node",
-      "name": "update-16-0-0-update-executor"
-    },
-    {
-      "cli": "nx",
-      "version": "16.0.0-beta.1",
-      "description": "Replace @nx/webpack with @nx/webpack",
-      "implementation": "./src/migrations/update-16-0-0-add-nx-packages/update-16-0-0-add-nx-packages",
-      "package": "@nx/webpack",
-      "name": "update-16-0-0-add-nx-packages"
+      "version": "16.3.0-beta.2",
+      "description": "Remove @types/react-router-dom from package.json",
+      "implementation": "./src/migrations/update-16-3-0/remove-types-react-router-dom-package",
+      "package": "@nx/react",
+      "name": "remove-types-react-router-dom"
     }
   ]
 }
