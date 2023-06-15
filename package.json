@@ -121,7 +121,7 @@
     "jest-environment-jsdom": "29.5.0",
     "jest-mock-extended": "^3.0.1",
     "jsdom": "~21.1.0",
-    "lint-staged": "^13.2.1",
+    "lint-staged": "^13.2.2",
     "newman": "^5.3.0",
     "nx": "16.3.2",
     "nx-cloud": "16.0.5",
