@@ -1,3 +1,3 @@
-web: npx nx serve api -- --schema=./apps/api/src/prisma/schema.prisma
+web: npx nx serve api
 
 release: npx prisma migrate deploy

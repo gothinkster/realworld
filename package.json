@@ -25,13 +25,13 @@
     "start": "nx serve",
     "build": "nx build",
     "test": "nx test",
-    "prisma:migrate": "prisma migrate dev --skip-seed --schema=./apps/api/src/prisma/schema.prisma",
-    "prisma:format": "prisma format --schema=./apps/api/src/prisma/schema.prisma",
-    "prisma:generate": "prisma generate --schema=./apps/api/src/prisma/schema.prisma",
-    "prisma:generate:watch": "prisma generate --watch --schema=./apps/api/src/prisma/schema.prisma",
-    "prisma:seed": "prisma db seed --schema=./apps/api/src/prisma/schema.prisma -- --verbose",
-    "prisma:studio": "prisma studio --schema=./apps/api/src/prisma/schema.prisma",
-    "prisma:reset": "prisma migrate reset --schema=./apps/api/src/prisma/schema.prisma",
+    "prisma:migrate": "prisma migrate dev --skip-seed",
+    "prisma:format": "prisma format",
+    "prisma:generate": "prisma generate",
+    "prisma:generate:watch": "prisma generate --watch",
+    "prisma:seed": "prisma db seed",
+    "prisma:studio": "prisma studio",
+    "prisma:reset": "prisma migrate reset",
     "prettier:write": "npx prettier --write .",
     "prettier:check": "npx prettier --check .",
     "lint:check": "npx eslint apps/**/*.ts",
@@ -42,7 +42,8 @@
     "chromatic": "npx chromatic"
   },
   "prisma": {
-    "seed": "tsx ./apps/api/src/prisma/seed.ts"
+    "seed": "tsx ./apps/api/src/prisma/seed.ts",
+    "schema": "./apps/api/src/prisma/schema.prisma"
   },
   "private": true,
   "devDependencies": {
