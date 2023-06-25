@@ -36,7 +36,7 @@
     "prettier:check": "npx prettier --check .",
     "lint:check": "npx eslint apps/**/*.ts",
     "lint:fix": "npx eslint --fix apps/**/*.ts",
-    "prepare": "husky install",
+    "prepare": "node -e \"if (process.env.NODE_ENV !== 'production'){process.exit(1)} \" || husky install",
     "storybook": "nx run storybook:storybook",
     "build-storybook": "nx run storybook:build-storybook",
     "chromatic": "npx chromatic"
