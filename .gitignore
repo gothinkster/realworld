@@ -54,3 +54,6 @@ Thumbs.db
 # Storybook
 build-storybook.log
 static-storybook
+
+# Next.js
+.next

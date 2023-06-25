@@ -1,0 +1,17 @@
+{
+  "name": "RealWorld API",
+  "description": "Node / Express / Prisma API for RealWorld project",
+  "keywords": ["node", "express", "prisma", "realworld"],
+  "website": "https://gothinkster.github.io/realworld/",
+  "repository": "https://github.com/gothinkster/realworld",
+  "addons": ["heroku-postgresql"],
+  "env": {
+    "JWT_SECRET": {
+      "description": "A secret key for verifying authenticated users",
+      "generator": "secret"
+    },
+    "FAKE_PASSWORD": {
+      "description": "password for the fake generated data"
+    }
+  }
+}
