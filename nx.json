@@ -66,5 +66,5 @@
       }
     }
   },
-  "defaultProject": "storybook"
+  "defaultProject": "api"
 }
