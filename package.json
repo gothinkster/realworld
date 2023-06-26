@@ -91,7 +91,7 @@
     "@types/jest": "29.5.1",
     "@types/jsonwebtoken": "^9.0.1",
     "@types/marked": "^5.0.0",
-    "@types/node": "18.15.10",
+    "@types/node": "20.3.1",
     "@types/react": "18.0.37",
     "@types/react-dom": "18.2.4",
     "@types/react-is": "17.0.3",
