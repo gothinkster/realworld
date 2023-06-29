@@ -5,6 +5,7 @@ import { PropsWithChildren } from 'react';
 import { AuthContextType } from './auth.context.model';
 import { User } from '../models/user.model';
 import { getCurrentUser } from '../services/auth.service';
+import { mutate } from 'swr';
 
 export const AuthContext = createContext<AuthContextType>(null as unknown as AuthContextType);
 
@@ -14,12 +15,14 @@ const AuthProvider = ({ children }: PropsWithChildren) => {
   useEffect(() => {
     const token = localStorage.getItem('token');
 
-    console.log(token);
-
     const setCurrentUser = async () => {
       const response = await getCurrentUser();
       const data = await response.json();
       setUser(data.user);
+
+      mutate(key => typeof key === 'string' && key.startsWith('/api/'), undefined, {
+        revalidate: true,
+      });
     };
 
     if (token) {

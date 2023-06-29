@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import FavoriteButton from './favorite-button';
 import { Article } from '../models/article.model';
+import { dateFormatter } from '../utils/date.utils';
 
 interface ArticlePreviewProps {
   article: Article;
@@ -17,7 +18,7 @@ export default function ArticlePreview({ article }: ArticlePreviewProps) {
           <Link href={'profile/' + article.author.username} className="author">
             {article.author.username}
           </Link>
-          <span className="date">{new Date(article.createdAt).toDateString()}</span>
+          <span className="date">{dateFormatter(article.createdAt)}</span>
         </div>
         <FavoriteButton article={article} />
       </div>

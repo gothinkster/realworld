@@ -1,5 +1,6 @@
 export interface SearchParams {
-  offset: number;
+  limit?: number;
+  offset?: number;
   author?: string;
   tag?: string;
   favorited?: string;

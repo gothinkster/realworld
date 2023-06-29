@@ -1,11 +1,33 @@
 'use client';
 
-import { useContext } from 'react';
+import React, { useContext } from 'react';
 import { AuthContext } from '../../auth/auth.context';
 import Link from 'next/link';
+import { useComments } from '../hooks/comments.hook';
+import { Comment } from '../../models/comment.model';
+import { createComment, deleteComment } from '../services/comment.service';
+import { dateFormatter } from '../../utils/date.utils';
 
-export default function CommentList() {
+interface CommentListProps {
+  slug: string;
+}
+
+export default function CommentList({ slug }: CommentListProps) {
   const { user } = useContext(AuthContext);
+  const { comments, mutate } = useComments(slug);
+
+  async function create(event: React.FormEvent<HTMLFormElement>): Promise<void> {
+    event.preventDefault();
+
+    const comment = (event.target as HTMLFormElement).comment.value;
+    const createdComment = await createComment(slug, comment);
+    mutate([...comments, createdComment], { populateCache: false });
+  }
+
+  async function deleteC(id: number): Promise<void> {
+    await deleteComment(slug, id);
+    mutate([...comments.filter((comment: Comment) => comment.id !== id)], { populateCache: false });
+  }
 
   if (!user) {
     return (
@@ -25,55 +47,48 @@ export default function CommentList() {
   return (
     <div className="row">
       <div className="col-xs-12 col-md-8 offset-md-2">
-        <form className="card comment-form">
+        <form className="card comment-form" onSubmit={create}>
           <div className="card-block">
-            <textarea className="form-control" placeholder="Write a comment..." rows={3}></textarea>
+            <textarea
+              name="comment"
+              className="form-control"
+              placeholder="Write a comment..."
+              rows={3}
+            ></textarea>
           </div>
           <div className="card-footer">
-            <img src="http://i.imgur.com/Qr71crq.jpg" className="comment-author-img" />
-            <button className="btn btn-sm btn-primary">Post Comment</button>
+            <img src={user.image} className="comment-author-img" alt={`${user.username} avatar`} />
+            <button type="submit" className="btn btn-sm btn-primary">
+              Post Comment
+            </button>
           </div>
         </form>
 
-        <div className="card">
-          <div className="card-block">
-            <p className="card-text">
-              With supporting text below as a natural lead-in to additional content.
-            </p>
-          </div>
-          <div className="card-footer">
-            <a href="" className="comment-author">
-              <img src="http://i.imgur.com/Qr71crq.jpg" className="comment-author-img" />
-            </a>
-            &nbsp;
-            <a href="" className="comment-author">
-              Jacob Schmidt
-            </a>
-            <span className="date-posted">Dec 29th</span>
-          </div>
-        </div>
-
-        <div className="card">
-          <div className="card-block">
-            <p className="card-text">
-              With supporting text below as a natural lead-in to additional content.
-            </p>
-          </div>
-          <div className="card-footer">
-            <a href="" className="comment-author">
-              <img src="http://i.imgur.com/Qr71crq.jpg" className="comment-author-img" />
-            </a>
-            &nbsp;
-            <a href="" className="comment-author">
-              Jacob Schmidt
-            </a>
-            <span className="date-posted">Dec 29th</span>
-            <span className="mod-options">
-              <i className="ion-edit"></i>
-              <i className="ion-trash-a"></i>
-            </span>
-          </div>
-        </div>
+        {comments &&
+          comments.map((comment: Comment, key: number) => (
+            <div key={key} className="card">
+              <div className="card-block">
+                <p className="card-text">{comment.body}</p>
+              </div>
+              <div className="card-footer">
+                <Link href={'/profile/' + comment.author.username} className="comment-author">
+                  <img
+                    src={comment.author.image}
+                    className="comment-author-img"
+                    alt={`${comment.author.username} avatar`}
+                  />
+                </Link>
+                &nbsp;
+                <Link href={'/profile/' + comment.author.username} className="comment-author">
+                  {comment.author.username}
+                </Link>
+                <span className="date-posted">{dateFormatter(comment.createdAt)}</span>
+                <span className="mod-options">
+                  <i className="ion-trash-a" onClick={() => deleteC(comment.id)}></i>
+                </span>
+              </div>
+            </div>
+          ))}
       </div>
     </div>
   );

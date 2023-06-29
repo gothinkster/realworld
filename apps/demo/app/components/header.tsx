@@ -51,7 +51,7 @@ export default function Header() {
           )}
           {user && (
             <li className="nav-item">
-              <Link className="nav-link" href="/profile">
+              <Link className="nav-link" href={'/profile/' + user.username}>
                 <img src={user.image} className="user-pic" alt={user.username} />
                 {user.username}
               </Link>

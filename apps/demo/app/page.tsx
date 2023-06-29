@@ -15,7 +15,7 @@ export default async function Index() {
         <div className="row">
           <div className="col-md-9">
             <div className="feed-toggle">
-              <ul className="nav nav-pills outclassNameactive">
+              <ul className="nav nav-pills outline-active">
                 <li className="nav-item">
                   <a className="nav-link disabled" href="">
                     Your Feed

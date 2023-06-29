@@ -1,16 +1,19 @@
 'use client';
 
 import { SearchParams } from '../models/search-params.model';
+import { Article } from '../models/article.model';
 import useSWR from 'swr';
 
-export async function getArticles(
-  { offset, author, tag, favorited }: SearchParams = {
-    offset: 0,
-  },
-): Promise<any> {
+export async function getArticles({
+  offset,
+  author,
+  tag,
+  favorited,
+  limit,
+}: SearchParams): Promise<{ data: Article[] }> {
   const params = new URLSearchParams({
-    limit: '10',
-    offset: offset.toString(),
+    limit: (limit || '10').toString(),
+    offset: (offset || '0').toString(),
     ...(author ? { author } : {}),
     ...(tag ? { tag } : {}),
     ...(favorited ? { favorited } : {}),
@@ -19,21 +22,23 @@ export async function getArticles(
   return await res.json();
 }
 
-export function useArticles(
-  { offset, author, tag, favorited }: SearchParams = {
-    offset: 0,
-  },
-) {
+export function useArticles({ offset, author, tag, favorited, limit }: SearchParams) {
+  const token = localStorage.getItem('token') as string;
   const params = new URLSearchParams({
-    limit: '10',
-    offset: offset.toString(),
+    limit: (limit || '10').toString(),
+    offset: (offset || '0').toString(),
     ...(author ? { author } : {}),
     ...(tag ? { tag } : {}),
     ...(favorited ? { favorited } : {}),
   });
 
   const { data, error, isLoading } = useSWR('/api/articles' + '?' + params, url =>
-    fetch('https://api.realworld.io' + url).then(res => res.json()),
+    fetch('https://api.realworld.io' + url, {
+      headers: {
+        'Content-Type': 'application/json',
+        ...(token ? { Authorization: `Token ${encodeURIComponent(token)}` } : {}),
+      },
+    }).then(res => res.json()),
   );
 
   return {
@@ -58,7 +63,7 @@ export function useTags() {
   };
 }
 
-export async function favoriteArticle(slug: string): Promise<any> {
+export async function favoriteArticle(slug: string): Promise<Article> {
   const token = localStorage.getItem('token') as string;
   const res = await fetch(`https://api.realworld.io/api/articles/${slug}/favorite`, {
     method: 'POST',
@@ -71,7 +76,7 @@ export async function favoriteArticle(slug: string): Promise<any> {
   return data.article;
 }
 
-export async function unfavoriteArticle(slug: string): Promise<any> {
+export async function unfavoriteArticle(slug: string): Promise<Article> {
   const token = localStorage.getItem('token') as string;
   const res = await fetch(`https://api.realworld.io/api/articles/${slug}/favorite`, {
     method: 'DELETE',

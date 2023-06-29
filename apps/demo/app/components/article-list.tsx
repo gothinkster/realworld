@@ -5,11 +5,15 @@ import ArticlePreview from './article-preview';
 import { useArticles } from '../services/article.service';
 import { Pagination } from './pagination';
 
-export default function ArticleList() {
-  const { articles, articlesCount, isLoading, isError } = useArticles();
+interface ArticleListProps {
+  limit?: number;
+}
+
+export default function ArticleList({ limit = 10 }: ArticleListProps = {}) {
+  const { articles, articlesCount, isLoading, isError } = useArticles({ limit });
   return (
     <>
-      {isLoading && <div>Loading...</div>}
+      {isLoading && <div>Loading articles...</div>}
       {isError && <div>Error</div>}
       {articles &&
         articles.map((article: Article, index: number) => (

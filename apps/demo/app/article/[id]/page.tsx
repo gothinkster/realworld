@@ -1,21 +1,22 @@
+'use client';
+
 import CommentList from '../components/comment-list';
 import Link from 'next/link';
 import ArticleActions from '../components/article-actions';
 import { marked } from 'marked';
+import { useArticle } from '../hooks/article.hook';
+import { dateFormatter } from '../../utils/date.utils';
 
-export default async function Page({ params }: { params: { id: string } }) {
-  const article = await fetch(`https://api.realworld.io/api/articles/${params.id}`)
-    .then(res => res.json())
-    .then(res => res.article);
+export default function Page({ params }: { params: { id: string } }) {
+  const { article } = useArticle(params.id);
 
   if (!article) {
     return <div>Loading...</div>;
   }
 
   if (article) {
-    console.log(article.body);
     const markup = {
-      __html: marked(article.body.replace('\\n', '\n'), {
+      __html: marked(article.body, {
         sanitize: true,
         breaks: true,
         gfm: true,
@@ -36,7 +37,7 @@ export default async function Page({ params }: { params: { id: string } }) {
                 <Link href={'profile/' + article.author.username} className="author">
                   {article.author.username}
                 </Link>
-                <span className="date">{new Date(article.createdAt).toDateString()}</span>
+                <span className="date">{dateFormatter(article.createdAt)}</span>
               </div>
               <ArticleActions article={article} />
             </div>
@@ -59,7 +60,7 @@ export default async function Page({ params }: { params: { id: string } }) {
           </div>
           <hr />
 
-          <CommentList />
+          <CommentList slug={article.slug} />
         </div>
       </div>
     );

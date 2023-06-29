@@ -5,6 +5,9 @@ import { followUser, unfollowUser } from '../services/profile.service';
 import { useRouter } from 'next/navigation';
 import { AuthContext } from '../auth/auth.context';
 
+const FOLLOWING_CLASS = 'btn btn-sm action-btn btn-secondary';
+const NOT_FOLLOWING_CLASS = 'btn btn-sm action-btn btn-outline-secondary';
+
 interface FollowButtonProps {
   username: string;
   following: boolean;
@@ -31,7 +34,7 @@ export default function FollowButton({ username, following }: FollowButtonProps)
   }
   return (
     <button
-      className="btn btn-sm btn-outline-secondary action-btn"
+      className={isFollowing ? FOLLOWING_CLASS : NOT_FOLLOWING_CLASS}
       onClick={handleFollow}
       disabled={isLoading}
     >

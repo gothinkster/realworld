@@ -11,7 +11,7 @@ export default async function Tags() {
         <p>Popular Tags</p>
 
         <div className="tag-list">
-          {!tags && <div>Loading...</div>}
+          {!tags && <div>Loading tags...</div>}
           {tags &&
             tags.map((tag: string, index: number) => (
               <Link key={index} href={tag} className="tag-pill tag-default">
