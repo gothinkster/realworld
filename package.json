@@ -98,7 +98,7 @@
     "@types/react-router-dom": "5.3.3",
     "@types/styled-components": "5.1.26",
     "@types/swagger-ui-react": "^4.11.0",
-    "@typescript-eslint/eslint-plugin": "5.59.6",
+    "@typescript-eslint/eslint-plugin": "5.60.1",
     "@typescript-eslint/parser": "5.59.6",
     "@vitejs/plugin-react": "4.0.0",
     "@vitest/coverage-c8": "^0.31.0",
