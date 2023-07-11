@@ -20,8 +20,6 @@ declare namespace Cypress {
 }
 
 Cypress.Commands.add('getRequest', (endpoint, token) => {
-  // TODO missing token
-  console.log('get request', token);
   return cy.api({
     method: 'GET',
     url: `${Cypress.env('baseUrl')}${endpoint}`,
@@ -30,7 +28,7 @@ Cypress.Commands.add('getRequest', (endpoint, token) => {
   });
 });
 
-Cypress.Commands.add('postRequest', (endpoint, body, token) => {
+Cypress.Commands.add('postRequest', (endpoint, body: any, token) => {
   return cy.api({
     method: 'POST',
     url: `${Cypress.env('baseUrl')}${endpoint}`,
@@ -40,7 +38,7 @@ Cypress.Commands.add('postRequest', (endpoint, body, token) => {
   });
 });
 
-Cypress.Commands.add('putRequest', (endpoint, body, token) => {
+Cypress.Commands.add('putRequest', (endpoint, body: any, token) => {
   return cy.api({
     method: 'PUT',
     url: `${Cypress.env('baseUrl')}${endpoint}`,
