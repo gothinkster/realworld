@@ -14,7 +14,7 @@ const router = Router();
 router.post('/users', async (req: Request, res: Response, next: NextFunction) => {
   try {
     const user = await createUser({ ...req.body.user, demo: false });
-    res.json({ user });
+    res.status(201).json({ user });
   } catch (error) {
     next(error);
   }
