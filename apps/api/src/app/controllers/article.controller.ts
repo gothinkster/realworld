@@ -71,7 +71,7 @@ router.get(
 router.post('/articles', auth.required, async (req: Request, res: Response, next: NextFunction) => {
   try {
     const article = await createArticle(req.body.article, req.auth?.user?.username as string);
-    res.json({ article });
+    res.status(201).json({ article });
   } catch (error) {
     next(error);
   }
