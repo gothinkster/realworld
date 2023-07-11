@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(routes);
 
 // Serves images
-app.use(express.static('public'));
+app.use(express.static(__dirname + '/assets'));
 
 app.get('/', (req: express.Request, res: express.Response) => {
   res.json({ status: 'API is running on /api' });
