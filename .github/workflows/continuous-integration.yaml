@@ -14,7 +14,7 @@ jobs:
       - uses: actions/setup-node@v3
         id: setup-node
         with:
-          node-version: '16'
+          node-version: '18'
 
       - name: Get node version
         id: node
@@ -72,7 +72,7 @@ jobs:
       - uses: actions/setup-node@v3
         id: setup-node
         with:
-          node-version: '16'
+          node-version: '18'
 
       - name: Get node version
         id: node
@@ -102,7 +102,7 @@ jobs:
       - uses: actions/setup-node@v3
         id: setup-node
         with:
-          node-version: '16'
+          node-version: '18'
 
       - name: Get node version
         id: node
@@ -132,7 +132,7 @@ jobs:
       - uses: actions/setup-node@v3
         id: setup-node
         with:
-          node-version: '16'
+          node-version: '18'
       - name: Install dependencies
         run: npm ci --no-audit --prefer-offline --progress=false
       - name: Check api tests
@@ -146,7 +146,7 @@ jobs:
       - uses: actions/setup-node@v3
         id: setup-node
         with:
-          node-version: '16'
+          node-version: '18'
 
       - name: Get node version
         id: node
@@ -176,7 +176,7 @@ jobs:
       - uses: actions/setup-node@v3
         id: setup-node
         with:
-          node-version: '16'
+          node-version: '18'
 
       - name: Get node version
         id: node
@@ -205,7 +205,7 @@ jobs:
       - uses: actions/setup-node@v3
         id: setup-node
         with:
-          node-version: '16'
+          node-version: '18'
 
       - name: Get node version
         id: node
@@ -237,7 +237,7 @@ jobs:
       - uses: actions/setup-node@v3
         id: setup-node
         with:
-          node-version: '16'
+          node-version: '18'
 
       - name: Get node version
         id: node
@@ -270,7 +270,7 @@ jobs:
       - uses: actions/setup-node@v3
         id: setup-node
         with:
-          node-version: '16'
+          node-version: '18'
 
       - name: Get node version
         id: node
