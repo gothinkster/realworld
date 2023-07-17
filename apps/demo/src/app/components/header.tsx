@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../auth/auth.context';
 import { useContext } from 'react';
 
@@ -13,46 +13,46 @@ export default function Header() {
         </Link>
         <ul className="nav navbar-nav pull-xs-right">
           <li className="nav-item">
-            <Link className="nav-link active" to="/">
+            <NavLink className="nav-link" to="/">
               Home
-            </Link>
+            </NavLink>
           </li>
           {user && (
             <li className="nav-item">
-              <Link className="nav-link" to="/editor">
+              <NavLink className="nav-link" to="/editor">
                 {' '}
                 <i className="ion-compose"></i>&nbsp;New Article{' '}
-              </Link>
+              </NavLink>
             </li>
           )}
           {user && (
             <li className="nav-item">
-              <Link className="nav-link" to="/settings">
+              <NavLink className="nav-link" to="/settings">
                 {' '}
                 <i className="ion-gear-a"></i>&nbsp;Settings{' '}
-              </Link>
+              </NavLink>
             </li>
           )}
           {!user && (
             <li className="nav-item">
-              <Link className="nav-link" to="/login">
+              <NavLink className="nav-link" to="/login">
                 Sign in
-              </Link>
+              </NavLink>
             </li>
           )}
           {!user && (
             <li className="nav-item">
-              <Link className="nav-link" to="/register">
+              <NavLink className="nav-link" to="/register">
                 Sign up
-              </Link>
+              </NavLink>
             </li>
           )}
           {user && (
             <li className="nav-item">
-              <Link className="nav-link" to={'/profile/' + user.username}>
+              <NavLink className="nav-link" to={'/profile/' + user.username}>
                 <img src={user.image} className="user-pic" alt={user.username} />
                 {user.username}
-              </Link>
+              </NavLink>
             </li>
           )}
         </ul>
