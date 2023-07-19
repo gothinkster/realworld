@@ -120,7 +120,7 @@ If no user is logged in the header includes links to:
 The Home page includes up to three tabs:
 
 - the default **Global Feed** one
-- the optional **#<tag name>** one by clicking on one of the popular tags
+- the optional **tag name** one by clicking on one of the popular tags
 - the optional **Your Feed** by being logged in
 
 ```html

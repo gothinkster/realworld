@@ -224,7 +224,7 @@ jobs:
       - name: Install dependencies
         if: steps.cache.outputs.cache-hit != 'true'
         run: npm ci --no-audit --prefer-offline --progress=false
-      - name: Check api tests
+      - name: Build documentation
         run: npx nx build documentation
   chromatic:
     runs-on: ubuntu-latest
