@@ -1,7 +1,7 @@
 import { login, registerUser } from '../support/user.util';
 
 describe('@POST register user', () => {
-  it('OK @200', () => {
+  it('OK @201', () => {
     // Given
     const user = {
       username: `${Cypress.env('prefix')}${Date.now()}`,
@@ -12,7 +12,7 @@ describe('@POST register user', () => {
     // When
     registerUser(user).then((response: Cypress.Response<User>) => {
       // Then
-      expect(response.status).to.equal(200);
+      expect(response.status).to.equal(201);
       expect(response.body.user.username).to.equal(user.username);
       expect(response.body.user.email).to.equal(user.email);
       expect(response.body.user).to.haveOwnProperty('token');

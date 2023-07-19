@@ -59,7 +59,7 @@ describe('@GET article', () => {
 });
 
 describe('@POST article', () => {
-  it('OK @200', () => {
+  it('OK @201', () => {
     // Given
     registerUser().then((response: Cypress.Response<User>) => {
       cy.wrap(response.body.user.token).as('token');
@@ -76,7 +76,7 @@ describe('@POST article', () => {
     cy.then(function () {
       createArticle(article, this.token).then((response: Cypress.Response<Article>) => {
         // Then
-        expect(response.status).to.equal(200);
+        expect(response.status).to.equal(201);
         expect(response.body.article.title).to.equal(article.title);
         expect(response.body.article.description).to.equal(article.description);
         expect(response.body.article.body).to.equal(article.body);
