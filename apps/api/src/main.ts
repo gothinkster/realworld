@@ -2,7 +2,6 @@ import * as express from 'express';
 import * as cors from 'cors';
 import * as bodyParser from 'body-parser';
 import routes from './app/routes/routes';
-import { generateFakeData } from './app/utils/cron';
 import HttpException from './app/models/http-exception.model';
 
 const app = express();
@@ -46,8 +45,6 @@ app.use(
     }
   },
 );
-
-generateFakeData();
 
 /**
  * Server activation
