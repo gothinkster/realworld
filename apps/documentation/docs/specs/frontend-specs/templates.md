@@ -64,7 +64,7 @@ If no user is logged in the header includes links to:
 
 #### Authenticated user
 
-If no user is logged in the header includes links to:
+If user is logged in the header includes links to:
 
 - the home page
 - the new article page
@@ -189,6 +189,15 @@ The Home page includes up to three tabs:
             </ul>
           </a>
         </div>
+
+        <ul class="pagination">
+          <li class="page-item active">
+            <a class="page-link" href="">1</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="">2</a>
+          </li>
+        </ul>
       </div>
 
       <div class="col-md-3">
@@ -297,6 +306,10 @@ The Home page includes up to three tabs:
             <i class="ion-plus-round"></i>
             &nbsp; Follow Eric Simons
           </button>
+          <button class="btn btn-sm btn-outline-secondary action-btn">
+            <i class="ion-gear-a"></i>
+            &nbsp; Edit Profile Settings
+          </button>
         </div>
       </div>
     </div>
@@ -359,6 +372,15 @@ The Home page includes up to three tabs:
             </ul>
           </a>
         </div>
+
+        <ul class="pagination">
+          <li class="page-item active">
+            <a class="page-link" href="">1</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="">2</a>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
@@ -373,6 +395,10 @@ The Home page includes up to three tabs:
     <div class="row">
       <div class="col-md-6 offset-md-3 col-xs-12">
         <h1 class="text-xs-center">Your Settings</h1>
+
+        <ul class="error-messages">
+          <li>That name is required</li>
+        </ul>
 
         <form>
           <fieldset>
@@ -393,7 +419,11 @@ The Home page includes up to three tabs:
               <input class="form-control form-control-lg" type="text" placeholder="Email" />
             </fieldset>
             <fieldset class="form-group">
-              <input class="form-control form-control-lg" type="password" placeholder="Password" />
+              <input
+                class="form-control form-control-lg"
+                type="password"
+                placeholder="New Password"
+              />
             </fieldset>
             <button class="btn btn-lg btn-primary pull-xs-right">Update Settings</button>
           </fieldset>
@@ -413,6 +443,10 @@ The Home page includes up to three tabs:
   <div class="container page">
     <div class="row">
       <div class="col-md-10 offset-md-1 col-xs-12">
+        <ul class="error-messages">
+          <li>That title is required</li>
+        </ul>
+
         <form>
           <fieldset>
             <fieldset class="form-group">
@@ -430,7 +464,9 @@ The Home page includes up to three tabs:
             </fieldset>
             <fieldset class="form-group">
               <input type="text" class="form-control" placeholder="Enter tags" />
-              <div class="tag-list"></div>
+              <div class="tag-list">
+                <span class="tag-default tag-pill"> <i class="ion-close-round"></i> tag </span>
+              </div>
             </fieldset>
             <button class="btn btn-lg pull-xs-right btn-primary" type="button">
               Publish Article
@@ -467,6 +503,12 @@ The Home page includes up to three tabs:
         <button class="btn btn-sm btn-outline-primary">
           <i class="ion-heart"></i>
           &nbsp; Favorite Post <span class="counter">(29)</span>
+        </button>
+        <button class="btn btn-sm btn-outline-secondary">
+          <i class="ion-edit"></i> Edit Article
+        </button>
+        <button class="btn btn-sm btn-outline-danger">
+          <i class="ion-trash-a"></i> Delete Article
         </button>
       </div>
     </div>
@@ -505,6 +547,12 @@ The Home page includes up to three tabs:
         <button class="btn btn-sm btn-outline-primary">
           <i class="ion-heart"></i>
           &nbsp; Favorite Article <span class="counter">(29)</span>
+        </button>
+        <button class="btn btn-sm btn-outline-secondary">
+          <i class="ion-edit"></i> Edit Article
+        </button>
+        <button class="btn btn-sm btn-outline-danger">
+          <i class="ion-trash-a"></i> Delete Article
         </button>
       </div>
     </div>
@@ -551,7 +599,6 @@ The Home page includes up to three tabs:
             <a href="/profile/jacob-schmidt" class="comment-author">Jacob Schmidt</a>
             <span class="date-posted">Dec 29th</span>
             <span class="mod-options">
-              <i class="ion-edit"></i>
               <i class="ion-trash-a"></i>
             </span>
           </div>
