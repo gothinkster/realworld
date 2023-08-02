@@ -34,7 +34,7 @@ The `<head>` element includes all the metadata for a page, including the title, 
 
 #### Unauthenticated user
 
-If no user is logged in the header includes links to:
+If no user is logged in, then the header should include links to:
 
 - the home page
 - the login page
@@ -64,7 +64,7 @@ If no user is logged in the header includes links to:
 
 #### Authenticated user
 
-If user is logged in the header includes links to:
+If a user is logged in, then the header should include links to:
 
 - the home page
 - the new article page
@@ -119,9 +119,9 @@ If user is logged in the header includes links to:
 
 The Home page includes up to three tabs:
 
-- the default **Global Feed** one
-- the optional **tag name** one by clicking on one of the popular tags
-- the optional **Your Feed** by being logged in
+- a default **Global Feed** tab
+- an optional **tag name** tab, appears after clicking one of the popular tags
+- an optional **Your Feed** tab, appears after logging in
 
 ```html
 <div class="home-page">
