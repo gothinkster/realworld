@@ -25,7 +25,7 @@ const config = {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
           // Remove this to remove the "edit this page" links.
-          editUrl: 'https://github.com/gothinkster/realworld/tree/main/docs/docs/',
+          editUrl: 'https://github.com/gothinkster/realworld/blob/main/apps/documentation/docs/',
         },
         blog: {
           showReadingTime: true,
