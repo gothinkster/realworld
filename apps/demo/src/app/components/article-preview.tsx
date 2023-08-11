@@ -21,6 +21,7 @@ export default function ArticlePreview({ article }: Props) {
           </Link>
           <FormattedDate date={article.createdAt} />
         </div>
+        <ThumbsDownButton article={article} />
         <FavoriteButton article={article} />
       </div>
       <Link to={'/article/' + article.slug} className="preview-link">
