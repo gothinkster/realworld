@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import TagList from './tag-list';
 import FormattedDate from './formatted-date';
 import FavoriteButton from './favorite-button';
+import ThumbsDownButton from './thumbsdown-button';
 
 interface Props {
   article: Article;
