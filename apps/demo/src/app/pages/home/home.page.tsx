@@ -18,6 +18,7 @@ export default function HomePage() {
   const [page, setPage] = useState(1);
   const [tab, setTab] = useState<'global' | 'personal' | 'tag'>(user ? Tab.Personal : Tab.Global);
   const [activeTag, setActiveTag] = useState<string | undefined>(undefined);
+  const [activeTags, setActiveTags] = useState<string[] | undefined>(undefined);
   const { data, isLoading } = useQuery<{ articles: Article[]; articlesCount: number }>({
     queryKey: ['articles', 'home', tab, activeTag, page],
     queryFn: ({ signal }) => {
@@ -31,14 +32,18 @@ export default function HomePage() {
     },
   });
 
-  function switchTab(tab: Tab, event: React.MouseEvent<HTMLAnchorElement>): void {
+  function switchTab(tab: Tab, event: React.MouseEvent<HTMLAnchorElement>, tag?: string): void {
     event.preventDefault();
+    setActiveTag(tag);
+    console.log("===", tab, tag);
     setTab(tab);
     setPage(1);
+
   }
 
   function updateTag(tag: string): void {
     setActiveTag(tag);
+    setActiveTags([...activeTags ?? [], tag])
     setTab(Tab.Tag);
     setPage(1);
   }
@@ -79,7 +84,7 @@ export default function HomePage() {
                     Global Feed
                   </a>
                 </li>
-                {activeTag && (
+                {/* {activeTag && (
                   <li className="nav-item">
                     <a
                       className={`nav-link ${tab === Tab.Tag ? 'active' : ''}`}
@@ -89,7 +94,18 @@ export default function HomePage() {
                       #{activeTag}
                     </a>
                   </li>
-                )}
+                )} */}
+                {activeTags?.map((tag, index)=>(
+                  <li className="nav-item">
+                  <a
+                    className={`nav-link ${tab === Tab.Tag ? 'active' : ''}`}
+                    href=""
+                    onClick={event => switchTab(Tab.Tag, event, tag)}
+                  >
+                    #{tag}
+                  </a>
+                </li>                
+                ))}
               </ul>
             </div>
 
