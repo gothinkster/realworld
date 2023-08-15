@@ -9,6 +9,7 @@ type Article = {
     slug: string;
     favorited: boolean;
     favoritesCount: number;
+    unliked: boolean;
   };
 };
 type User = { user: { token: string; username: string; email: string } };

@@ -1,4 +1,5 @@
 import { Comment } from './comment.model';
+import { User } from './user.model';
 
 export interface Article {
   id: number;
@@ -7,4 +8,5 @@ export interface Article {
   description: string;
   comments: Comment[];
   favorited: boolean;
+  unlikedBy: User[];
 }

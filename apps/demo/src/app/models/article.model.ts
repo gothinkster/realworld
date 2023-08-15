@@ -1,4 +1,5 @@
 import { Author } from './author.model';
+import { User } from './user.model';
 
 export interface Article {
   slug: string;
@@ -11,4 +12,5 @@ export interface Article {
   favorited: boolean;
   favoritesCount: number;
   author: Author;
+  unliked: boolean;
 }

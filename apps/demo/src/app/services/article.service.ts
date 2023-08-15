@@ -81,3 +81,11 @@ export async function unfavoriteArticle(slug: string): Promise<Article> {
     .then(res => res.json())
     .then(res => res.article);
 }
+export async function thumbsDownArticle(slug: string): Promise<Article> {
+  return fetch(`localhost:3000/api/articles/${slug}/unlikeArticle`, {
+    method: 'POST',
+    headers: getHeaders(),
+  })
+    .then(res => res.json())
+    .then(res => res.article);
+}

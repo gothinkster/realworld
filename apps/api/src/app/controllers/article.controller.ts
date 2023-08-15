@@ -11,6 +11,7 @@ import {
   getCommentsByArticle,
   getFeed,
   unfavoriteArticle,
+  unlikeArticle,
   updateArticle,
 } from '../services/article.service';
 
@@ -241,6 +242,25 @@ router.delete(
   async (req: Request, res: Response, next: NextFunction) => {
     try {
       const article = await unfavoriteArticle(req.params.slug, req.auth?.user?.username as string);
+      res.json({ article });
+    } catch (error) {
+      next(error);
+    }
+  },
+);
+/**
+ * Unlike Thumbs down article
+ * @auth required
+ * @route {POST} /articles/:slug/unlikeArticle
+ * @param slug slug of the article (based on the title)
+ * @returns article unlike Article
+ */
+router.post(
+  '/articles/:slug/unlikeArticle',
+  auth.required,
+  async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const article = await unlikeArticle(req.params.slug, req.auth?.user?.username as string);
       res.json({ article });
     } catch (error) {
       next(error);

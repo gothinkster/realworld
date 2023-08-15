@@ -655,3 +655,37 @@ export const unfavoriteArticle = async (slugPayload: string, usernameAuth: strin
 
   return result;
 };
+export async function unlikeArticle(slugPayload: string, usernameAuth: string) {
+  const user = await findUserIdByUsername(usernameAuth);
+
+  const article = await prisma.article.update({
+    where: {
+      slug: slugPayload,
+    },
+    data: {
+      unlikedBy: {
+        disconnect: {
+          id: user?.id,
+        },
+      },
+      unlikedCount: {
+        decrement: 1,
+      },
+    },
+  });
+
+  return article;
+}
+export async function getUnlikedArticlesCount(articleId: number) {
+  const article = await prisma.article.findUnique({
+    where: {
+      id: articleId,
+    },
+    select: {
+      unlikedCount: true,
+    },
+  });
+
+  return article?.unlikedCount || 0;
+}
+

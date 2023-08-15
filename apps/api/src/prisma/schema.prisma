@@ -1,6 +1,6 @@
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url      = "postgres://faiza:faz123@host:port/database_name"
 }
 
 generator client {
@@ -9,18 +9,20 @@ generator client {
 }
 
 model Article {
-  id          Int       @id @default(autoincrement())
-  slug        String    @unique
-  title       String
-  description String
-  body        String
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @default(now())
-  tagList     Tag[]
-  author      User      @relation("UserArticles", fields: [authorId], onDelete: Cascade, references: [id])
-  authorId    Int
-  favoritedBy User[]    @relation("UserFavorites")
-  comments    Comment[]
+  id           Int       @id @default(autoincrement())
+  slug         String    @unique
+  title        String
+  description  String
+  body         String
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @default(now())
+  tagList      Tag[]
+  author       User      @relation("UserArticles", fields: [authorId], onDelete: Cascade, references: [id])
+  authorId     Int
+  favoritedBy  User[]    @relation("UserFavorites")
+  comments     Comment[]
+  unlikedBy    User[]    @relation("UserUnlikes")
+  unlikedCount Int       @default(0)
 }
 
 model Comment {
@@ -41,16 +43,17 @@ model Tag {
 }
 
 model User {
-  id         Int       @id @default(autoincrement())
-  email      String    @unique
-  username   String    @unique
-  password   String
-  image      String?   @default("https://api.realworld.io/images/smiley-cyrus.jpeg")
-  bio        String?
-  articles   Article[] @relation("UserArticles")
-  favorites  Article[] @relation("UserFavorites")
-  followedBy User[]    @relation("UserFollows")
-  following  User[]    @relation("UserFollows")
-  comments   Comment[]
-  demo       Boolean   @default(false)
+  id              Int       @id @default(autoincrement())
+  email           String    @unique
+  username        String    @unique
+  password        String
+  image           String?   @default("https://api.realworld.io/images/smiley-cyrus.jpeg")
+  bio             String?
+  articles        Article[] @relation("UserArticles")
+  favorites       Article[] @relation("UserFavorites")
+  followedBy      User[]    @relation("UserFollows")
+  following       User[]    @relation("UserFollows")
+  comments        Comment[]
+  demo            Boolean   @default(false)
+  unlikedArticles Article[] @relation("UserUnlikes")
 }

@@ -14,4 +14,5 @@ export interface User {
   following: User[];
   comments: Comment[];
   demo: boolean;
+  unlikedArticles: Article[];
 }
