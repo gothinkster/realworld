@@ -10,7 +10,7 @@ jobs:
     name: Deploy API documentation (Bump)
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Deploy API documentation
         uses: bump-sh/github-action@v1
         with:
@@ -21,7 +21,7 @@ jobs:
     name: Deploy Live (Demo)
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - uses: actions/setup-node@v3
         id: setup-node
         with:
