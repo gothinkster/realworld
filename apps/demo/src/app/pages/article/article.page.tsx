@@ -19,7 +19,7 @@ const articleQuery = (slug: string) => ({
 
 export const loader =
   (queryClient: QueryClient) =>
-  async (slug: string): Promise<{ data: Article }> => {
+  async (slug: string): Promise<Article> => {
     const query = articleQuery(slug);
 
     return await queryClient.ensureQueryData(query);
@@ -31,7 +31,7 @@ export default function ArticlePage() {
 
   const { data: article } = useQuery<Article>({
     ...articleQuery(slug),
-    initialData: initialData.data,
+    initialData: initialData,
   });
 
   return (

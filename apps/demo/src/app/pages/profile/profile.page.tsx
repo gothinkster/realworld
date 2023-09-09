@@ -30,7 +30,7 @@ const profileQuery = (username: string) => ({
 
 export const loader =
   (queryClient: QueryClient) =>
-  async (username: string): Promise<{ data: Author }> => {
+  async (username: string): Promise<Author> => {
     const query = profileQuery(username);
 
     return await queryClient.ensureQueryData(query);
@@ -43,7 +43,7 @@ export default function ProfilePage({ defaultTab }: Props) {
   const navigate = useNavigate();
   const { data: profile } = useQuery<Author>({
     ...profileQuery(username),
-    initialData: initialData.data,
+    initialData: initialData,
   });
 
   const [page, setPage] = useState(1);
