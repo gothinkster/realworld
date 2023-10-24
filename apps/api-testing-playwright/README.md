@@ -23,7 +23,7 @@ npx nx e2e api-testing-playwright
 run with ui mode:
 
 ```shell
-npx nx e2e api-testing-playwright --uiMode
+npx nx e2e api-testing-playwright --ui
 ```
 
 filter tests by tags included:
