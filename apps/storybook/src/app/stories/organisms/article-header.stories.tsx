@@ -8,7 +8,7 @@ export default {
 export const ArticleHeader = () => (
   <>
     <section className="rw-article-header">
-      <hgroup className="rw-article-header__title">
+      <div className="rw-article-header__title">
         <a className="rw-article-author__container" href="">
           <img className="rw-avatar-sm" src="avatar.jpeg" alt="user avatar" />
           <div className="rw-article-author__content">
@@ -17,12 +17,7 @@ export const ArticleHeader = () => (
           </div>
         </a>
         <h2>Try to transmit the HTTP card, maybe it will override the multi-byte hard drive!</h2>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam aspernatur blanditiis,
-          cumque, debitis dicta error facere, id in ipsum iste maiores minus nesciunt numquam
-          perspiciatis quo quod ratione reiciendis rerum.
-        </p>
-      </hgroup>
+      </div>
       <img className="rw-article-header__cover" src="avatar.jpeg" alt="user avatar" />
     </section>
     <aside className="rw-article-header__actions">
