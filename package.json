@@ -131,7 +131,7 @@
     "prettier": "^2.8.8",
     "prisma": "^4.16.1",
     "react-refresh": "^0.10.0",
-    "storybook": "^7.0.12",
+    "storybook": "^7.5.1",
     "storybook-addon-pseudo-states": "^2.0.1",
     "style-loader": "^3.3.0",
     "stylus": "0.59.0",
