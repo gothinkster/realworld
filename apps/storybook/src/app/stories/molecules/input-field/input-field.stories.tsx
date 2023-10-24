@@ -31,8 +31,12 @@ export const InputFieldError = {
   render: () => (
     <fieldset className="rw-form-group">
       <label>Password</label>
-      <input type="password" autoComplete="off" className="rw-form-control" />
-      <div className="error-banner">The password doesn't match the requirements</div>
+      <input
+        type="password"
+        autoComplete="off"
+        className="rw-form-control rw-form-control__invalid"
+      />
+      <div className="error-message">The password doesn't match the requirements</div>
     </fieldset>
   ),
 
@@ -46,8 +50,12 @@ export const InputFieldHintError = {
       <div className="hint-banner">
         Must include at least one number, one uppercase letter, and one lowercase letter
       </div>
-      <input type="password" autoComplete="off" className="rw-form-control" />
-      <div className="error-banner">The password doesn't match the requirements</div>
+      <input
+        type="password"
+        autoComplete="off"
+        className="rw-form-control rw-form-control__invalid"
+      />
+      <div className="error-message">The password doesn't match the requirements</div>
     </fieldset>
   ),
 

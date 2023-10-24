@@ -90,7 +90,7 @@ dialog {
 
 .rw-form-control {
   display: block;
-  width: calc(100% - 2rem);
+  width: -webkit-fill-available;
   padding: 0.5rem 1rem;
   font-size: 1rem;
   border-radius: var(--border-radius);
@@ -107,6 +107,20 @@ dialog {
   border-color: var(--color-secondary-dark);
   box-shadow: 0 0 5px 5px rgb(110 44 110 / 50%);
 }
+
+.rw-form-control:invalid,
+.rw-form-control__invalid {
+  border-color: var(--color-error);
+  border-width: 3px;
+  border-bottom-left-radius: unset;
+  border-bottom-right-radius: unset;
+}
+
+.rw-form-control__invalid:focus {
+  outline: 2px solid var(--color-error);
+  box-shadow: 0 0 5px 5px var(--color-error);
+}
+
 
 .rw-file-form-group {
   border: none;
@@ -185,12 +199,17 @@ dialog {
 
 /* Banner messages */
 
+.error-message,
 .error-banner {
   padding: 0.5rem;
   background: darkred;
   color: white;
-  margin-block-start: 0.5rem;
   border-radius: var(--border-radius);
+}
+
+.error-message {
+  border-top-left-radius: unset;
+  border-top-right-radius: unset;
 }
 
 .hint-banner {
