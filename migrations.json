@@ -2,43 +2,152 @@
   "migrations": [
     {
       "cli": "nx",
-      "version": "16.2.0-beta.0",
-      "description": "Remove outputPath from run commands",
-      "implementation": "./src/migrations/update-16-2-0/remove-run-commands-output-path",
+      "version": "16.6.0-beta.6",
+      "description": "Prefix outputs with {workspaceRoot}/{projectRoot} if needed",
+      "implementation": "./src/migrations/update-15-0-0/prefix-outputs",
       "package": "nx",
-      "name": "16.2.0-remove-output-path-from-run-commands"
+      "name": "16.6.0-prefix-outputs"
     },
     {
       "cli": "nx",
-      "version": "16.2.0-beta.0",
-      "description": "Normalize tsconfig.cy.json files to be located at '<projectRoot>/cypress/tsconfig.json'",
-      "implementation": "./src/migrations/update-16-2-0/update-cy-tsconfig",
+      "version": "16.8.0-beta.3",
+      "description": "Escape $ in env variables",
+      "implementation": "./src/migrations/update-16-8-0/escape-dollar-sign-env-variables",
+      "package": "nx",
+      "name": "16.8.0-escape-dollar-sign-env"
+    },
+    {
+      "cli": "nx",
+      "version": "17.0.0-beta.1",
+      "description": "Updates the default cache directory to .nx/cache",
+      "implementation": "./src/migrations/update-17-0-0/move-cache-directory",
+      "package": "nx",
+      "name": "17.0.0-move-cache-directory"
+    },
+    {
+      "cli": "nx",
+      "version": "17.0.0-beta.3",
+      "description": "Use minimal config for tasksRunnerOptions",
+      "implementation": "./src/migrations/update-17-0-0/use-minimal-config-for-tasks-runner-options",
+      "package": "nx",
+      "name": "17.0.0-use-minimal-config-for-tasks-runner-options"
+    },
+    {
+      "version": "17.0.0-rc.1",
+      "description": "Migration for v17.0.0-rc.1",
+      "implementation": "./src/migrations/update-17-0-0/rm-default-collection-npm-scope",
+      "package": "nx",
+      "name": "rm-default-collection-npm-scope"
+    },
+    {
+      "cli": "nx",
+      "version": "16.4.0-beta.10",
+      "description": "Remove tsconfig.e2e.json and add settings to project tsconfig.json. tsConfigs executor option is now deprecated. The project level tsconfig.json file should be used instead.",
+      "implementation": "./src/migrations/update-16-4-0/tsconfig-sourcemaps",
       "package": "@nx/cypress",
-      "name": "update-16-2-0-normalize-tsconfigs"
+      "name": "update-16-3-0-remove-old-tsconfigs"
     },
     {
       "cli": "nx",
-      "version": "16.3.1-beta.0",
-      "description": "Replace @nx/node:webpack with @nx/node:webpack for all project targets",
-      "implementation": "./src/migrations/update-16-3-1/update-webpack-executor",
+      "version": "16.8.0-beta.4",
+      "description": "Update to Cypress v13. Most noteable change is video recording is off by default. This migration will only update if the workspace is already on Cypress v12. https://docs.cypress.io/guides/references/migration-guide#Migrating-to-Cypress-130",
+      "implementation": "./src/migrations/update-16-8-0/cypress-13",
+      "package": "@nx/cypress",
+      "name": "update-16-8-0-cypress-13"
+    },
+    {
+      "cli": "nx",
+      "version": "16.5.0-beta.2",
+      "description": "Add test-setup.ts to ignored files in production input",
+      "implementation": "./src/migrations/update-16-5-0/add-test-setup-to-inputs-ignore",
+      "package": "@nx/jest",
+      "name": "add-test-setup-to-inputs-ignore"
+    },
+    {
+      "cli": "nx",
+      "version": "16.6.0-beta.0",
+      "description": "Explicitly set 'updateBuildableProjectDepsInPackageJson' to 'true' in targets that rely on that value as the default.",
+      "factory": "./src/migrations/update-16-6-0/explicitly-set-projects-to-update-buildable-deps",
+      "package": "@nx/js",
+      "name": "explicitly-set-projects-to-update-buildable-deps"
+    },
+    {
+      "cli": "nx",
+      "version": "16.8.2-beta.0",
+      "description": "Remove invalid options (strict, noInterop) for ES6 type modules.",
+      "factory": "./src/migrations/update-16-8-2/update-swcrc",
+      "package": "@nx/js",
+      "name": "16-8-2-update-swcrc"
+    },
+    {
+      "cli": "nx",
+      "version": "16.7.0-beta.2",
+      "description": "Add @babel/core to package.json if @babel/preset-react is present",
+      "implementation": "./src/migrations/update-16-7-0/add-babel-core",
+      "package": "@nx/react",
+      "name": "add-babel-core"
+    },
+    {
+      "cli": "nx",
+      "version": "16.7.0-beta.2",
+      "description": "Add @nx/react types to tsconfig types array",
+      "implementation": "./src/migrations/update-16-7-0-add-typings/update-16-7-0-add-typings",
+      "package": "@nx/react",
+      "name": "update-16-7-0-add-typings"
+    },
+    {
+      "cli": "nx",
+      "version": "16.4.0-beta.3",
+      "description": "Update package.json moving @nx/next from dependency to devDependency",
+      "implementation": "./src/migrations/update-16-4-0/update-nx-next-dependency",
+      "package": "@nx/next",
+      "name": "update-16-4-0-update-next-dependency"
+    },
+    {
+      "cli": "nx",
+      "version": "16.4.0-beta.8",
+      "description": "Replace @nx/node:node with @nx/js:node for all project targets",
+      "implementation": "./src/migrations/update-16-4-0/replace-node-executor",
       "package": "@nx/node",
-      "name": "update-16-3-1-update-executor"
+      "name": "update-16-4-0-replace-node-executor"
     },
     {
       "cli": "nx",
-      "version": "16.2.0-beta.0",
-      "description": "Remove react-test-renderer from package.json",
-      "implementation": "./src/migrations/update-16-2-0-remove-package/update-16-2-0-remove-package",
-      "package": "@nx/react",
-      "name": "update-16-2-0-remove-package"
+      "version": "16.5.0-beta.0",
+      "description": "Move .storybook/tsconfig.json to tsconfig.storybook.json for non-Angular projects.",
+      "factory": "./src/migrations/update-16-5-0/move-storybook-tsconfig",
+      "package": "@nx/storybook",
+      "name": "update-16-5-0"
     },
     {
+      "version": "16.4.1-beta.0",
+      "description": "Changes the testFile config in the vite:test exectutor from a string to an array of strings",
       "cli": "nx",
-      "version": "16.3.0-beta.2",
-      "description": "Remove @types/react-router-dom from package.json",
-      "implementation": "./src/migrations/update-16-3-0/remove-types-react-router-dom-package",
-      "package": "@nx/react",
-      "name": "remove-types-react-router-dom"
+      "implementation": "./src/migrations/update-16-4-1-update-test-file-config/update-16-4-1-test-file-config",
+      "package": "@nx/vite",
+      "name": "update-16-4-1-test-file-config"
+    },
+    {
+      "version": "16.6.0-beta.4",
+      "description": "Change vite-tsconfig-paths plugin for first party nx-vite-tsconfig-paths plugin",
+      "cli": "nx",
+      "implementation": "./src/migrations/update-16-6-0-change-ts-paths-plugin/change-ts-paths-plugin",
+      "package": "@nx/vite",
+      "name": "16-6-0-change-ts-paths-plugin"
+    },
+    {
+      "version": "16.8.0",
+      "description": "update-16-8-0-add-ignored-files",
+      "implementation": "./src/migrations/update-16-8-0-add-ignored-files/update-16-8-0-add-ignored-files",
+      "package": "@nx/eslint",
+      "name": "update-16-8-0-add-ignored-files"
+    },
+    {
+      "version": "17.0.0-beta.7",
+      "description": "update-17-0-0-rename-to-eslint",
+      "implementation": "./src/migrations/update-17-0-0-rename-to-eslint/update-17-0-0-rename-to-eslint",
+      "package": "@nx/eslint",
+      "name": "update-17-0-0-rename-to-eslint"
     }
   ]
 }
