@@ -1,4 +1,5 @@
 import { test as base } from '@playwright/test';
+import { uuid } from 'uuidv4';
 
 type Account = {
   email: string;
@@ -13,9 +14,9 @@ export const test = base.extend<{ account: Account }>({
     const response = await request.post('/api/users', {
       data: {
         user: {
-          username: `ggn-username-${new Date().getTime()}`,
-          email: `ggn-email-${new Date().getTime()}`,
-          password: `ggn-password-${new Date().getTime()}`,
+          username: `ggn-username-${uuid()}`,
+          email: `ggn-email-${uuid()}`,
+          password: `ggn-password-${uuid()}`,
         },
       },
     });

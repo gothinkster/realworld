@@ -1,4 +1,5 @@
 import { APIRequestContext } from 'playwright';
+import { uuid } from 'uuidv4';
 
 export const createPost = async (request: APIRequestContext, token) => {
   return request.post('/api/articles', {
@@ -7,7 +8,7 @@ export const createPost = async (request: APIRequestContext, token) => {
     },
     data: {
       article: {
-        title: `ggn-title-${new Date().getTime()}`,
+        title: `ggn-title-${uuid()}`,
         description: 'bar',
         body: 'bar',
         tagList: ['foo'],

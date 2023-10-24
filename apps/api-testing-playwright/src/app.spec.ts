@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test';
+import { uuid } from 'uuidv4';
 
 test('should retrieve articles', async ({ request }) => {
   const response = await request.get('/api/articles');
@@ -8,9 +9,9 @@ test('should retrieve articles', async ({ request }) => {
 });
 
 test('CRUD article', async ({ request }) => {
-  const username = `ggn-username-${new Date().getTime()}`;
-  const email = `ggn-email-${new Date().getTime()}`;
-  const password = `ggn-password-${new Date().getTime()}`;
+  const username = `ggn-username-${uuid()}`;
+  const email = `ggn-email-${uuid()}`;
+  const password = `ggn-password-${uuid()}`;
   const accountCreationResponse = await request.post('/api/users', {
     data: {
       user: {
@@ -24,7 +25,7 @@ test('CRUD article', async ({ request }) => {
   const { user } = await accountCreationResponse.json();
   const token = user.token;
 
-  const title = `ggn-title-${new Date().getTime()}`;
+  const title = `ggn-title-${uuid()}`;
   const articleCreationResponse = await request.post('/api/articles', {
     headers: {
       Authorization: `Token ${token}`,

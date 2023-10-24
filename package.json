@@ -54,6 +54,7 @@
     "@mands/nx-playwright": "^0.4.0",
     "@nx-plus/docusaurus": "^15.0.0-rc.0",
     "@nx/cypress": "17.0.1",
+    "@nx/eslint": "17.0.1",
     "@nx/eslint-plugin": "17.0.1",
     "@nx/express": "17.0.1",
     "@nx/jest": "17.0.1",
@@ -142,13 +143,13 @@
     "tsx": "^3.12.6",
     "typescript": "5.1.6",
     "url-loader": "^4.1.1",
+    "uuidv4": "^6.2.13",
     "vite": "4.5.0",
     "vite-plugin-eslint": "1.8.1",
     "vite-tsconfig-paths": "4.2.0",
     "vitest": "0.32.4",
     "webpack": "5.89.0",
-    "webpack-merge": "^5.8.0",
-    "@nx/eslint": "17.0.1"
+    "webpack-merge": "^5.8.0"
   },
   "lint-staged": {
     "*.{js,ts}": "eslint --cache --fix",

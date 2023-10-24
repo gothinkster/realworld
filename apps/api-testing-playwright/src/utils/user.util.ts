@@ -1,11 +1,12 @@
 import { APIRequestContext } from 'playwright';
 import { APIResponse } from '@playwright/test';
+import { uuid } from 'uuidv4';
 
 export const createUser = async (
   request: APIRequestContext,
-  username = `ggn-username-${new Date().getTime()}`,
-  email = `ggn-email-${new Date().getTime()}`,
-  password = `ggn-password-${new Date().getTime()}`,
+  username = `ggn-username-${uuid()}`,
+  email = `ggn-email-${uuid()}`,
+  password = `ggn-password-${uuid()}`,
 ): Promise<APIResponse> => {
   return request.post('/api/users', {
     data: {
