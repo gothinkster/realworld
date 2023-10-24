@@ -54,14 +54,14 @@
     },
     "test": {
       "executor": "@nx/vite:test",
-      "outputs": ["coverage/apps/storybook"],
+      "outputs": ["{workspaceRoot}/coverage/apps/storybook"],
       "options": {
         "passWithNoTests": true,
         "reportsDirectory": "../../coverage/apps/storybook"
       }
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
+      "executor": "@nx/eslint:lint",
       "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": ["apps/storybook/**/*.{ts,tsx,js,jsx}"]

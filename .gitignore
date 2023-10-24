@@ -57,3 +57,5 @@ static-storybook
 
 # Next.js
 .next
+
+.nx/cache
