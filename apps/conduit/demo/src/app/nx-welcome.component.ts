@@ -16,9 +16,21 @@ import { CommonModule } from '@angular/common';
     <style>
       html {
         -webkit-text-size-adjust: 100%;
-        font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-          'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-          'Segoe UI Symbol', 'Noto Color Emoji';
+        font-family:
+          ui-sans-serif,
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          'Segoe UI',
+          Roboto,
+          'Helvetica Neue',
+          Arial,
+          'Noto Sans',
+          sans-serif,
+          'Apple Color Emoji',
+          'Segoe UI Emoji',
+          'Segoe UI Symbol',
+          'Noto Color Emoji';
         line-height: 1.5;
         tab-size: 4;
         scroll-behavior: smooth;
@@ -73,7 +85,10 @@ import { CommonModule } from '@angular/common';
         padding: 0.5rem 0.75rem;
       }
       .shadow {
-        box-shadow: 0 0 #0000, 0 0 #0000, 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+        box-shadow:
+          0 0 #0000,
+          0 0 #0000,
+          0 10px 15px -3px rgba(0, 0, 0, 0.1),
           0 4px 6px -2px rgba(0, 0, 0, 0.05);
       }
       .rounded {
@@ -181,8 +196,18 @@ import { CommonModule } from '@angular/common';
         display: flex;
         margin-top: 1rem;
         padding: 1rem;
-        transition-property: background-color, border-color, color, fill, stroke, opacity,
-          box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
+        transition-property:
+          background-color,
+          border-color,
+          color,
+          fill,
+          stroke,
+          opacity,
+          box-shadow,
+          transform,
+          filter,
+          backdrop-filter,
+          -webkit-backdrop-filter;
         transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
         transition-duration: 150ms;
         width: 100%;
@@ -190,8 +215,18 @@ import { CommonModule } from '@angular/common';
       .list-item-link svg:first-child {
         margin-right: 1rem;
         height: 1.5rem;
-        transition-property: background-color, border-color, color, fill, stroke, opacity,
-          box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
+        transition-property:
+          background-color,
+          border-color,
+          color,
+          fill,
+          stroke,
+          opacity,
+          box-shadow,
+          transform,
+          filter,
+          backdrop-filter,
+          -webkit-backdrop-filter;
         transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
         transition-duration: 150ms;
         width: 1.5rem;
@@ -199,8 +234,18 @@ import { CommonModule } from '@angular/common';
       .list-item-link > span {
         flex-grow: 1;
         font-weight: 400;
-        transition-property: background-color, border-color, color, fill, stroke, opacity,
-          box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
+        transition-property:
+          background-color,
+          border-color,
+          color,
+          fill,
+          stroke,
+          opacity,
+          box-shadow,
+          transform,
+          filter,
+          backdrop-filter,
+          -webkit-backdrop-filter;
         transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
         transition-duration: 150ms;
       }
@@ -211,8 +256,18 @@ import { CommonModule } from '@angular/common';
         font-size: 0.75rem;
         font-weight: 300;
         line-height: 1rem;
-        transition-property: background-color, border-color, color, fill, stroke, opacity,
-          box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
+        transition-property:
+          background-color,
+          border-color,
+          color,
+          fill,
+          stroke,
+          opacity,
+          box-shadow,
+          transform,
+          filter,
+          backdrop-filter,
+          -webkit-backdrop-filter;
         transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
         transition-duration: 150ms;
       }
@@ -241,15 +296,35 @@ import { CommonModule } from '@angular/common';
         padding: 1.5rem 2rem;
         margin-bottom: 2rem;
         transition-duration: 300ms;
-        transition-property: background-color, border-color, color, fill, stroke, opacity,
-          box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
+        transition-property:
+          background-color,
+          border-color,
+          color,
+          fill,
+          stroke,
+          opacity,
+          box-shadow,
+          transform,
+          filter,
+          backdrop-filter,
+          -webkit-backdrop-filter;
         transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
         align-items: center;
         display: flex;
       }
       .button-pill svg {
-        transition-property: background-color, border-color, color, fill, stroke, opacity,
-          box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
+        transition-property:
+          background-color,
+          border-color,
+          color,
+          fill,
+          stroke,
+          opacity,
+          box-shadow,
+          transform,
+          filter,
+          backdrop-filter,
+          -webkit-backdrop-filter;
         transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
         transition-duration: 150ms;
         flex-shrink: 0;
@@ -369,8 +444,18 @@ import { CommonModule } from '@angular/common';
         font-weight: 400;
         padding: 0.5rem;
         cursor: pointer;
-        transition-property: background-color, border-color, color, fill, stroke, opacity,
-          box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
+        transition-property:
+          background-color,
+          border-color,
+          color,
+          fill,
+          stroke,
+          opacity,
+          box-shadow,
+          transform,
+          filter,
+          backdrop-filter,
+          -webkit-backdrop-filter;
         transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
         transition-duration: 150ms;
       }
