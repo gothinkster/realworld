@@ -59,3 +59,4 @@ static-storybook
 .next
 
 .nx/cache
+.angular

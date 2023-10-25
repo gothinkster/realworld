@@ -3,3 +3,4 @@
 /dist
 
 /.nx/cache
+.angular
