@@ -69,7 +69,7 @@
     "@nx/jest": "17.0.2",
     "@nx/js": "17.0.2",
     "@nx/next": "17.0.1",
-    "@nx/node": "17.0.1",
+    "@nx/node": "17.2.8",
     "@nx/playwright": "17.0.2",
     "@nx/react": "17.0.1",
     "@nx/storybook": "17.0.1",
