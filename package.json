@@ -65,7 +65,7 @@
     "@nx/devkit": "17.0.2",
     "@nx/eslint": "17.0.1",
     "@nx/eslint-plugin": "17.0.1",
-    "@nx/express": "17.0.1",
+    "@nx/express": "17.2.8",
     "@nx/jest": "17.0.2",
     "@nx/js": "17.0.2",
     "@nx/next": "17.0.1",
