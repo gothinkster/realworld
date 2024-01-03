@@ -1,11 +1,11 @@
 import { User } from '../models/user.model';
 
-const authorMapper = (author: any, username?: string) => ({
+const authorMapper = (author: any, id?: number) => ({
   username: author.username,
   bio: author.bio,
   image: author.image,
-  following: username
-    ? author?.followedBy.some((followingUser: Partial<User>) => followingUser.username === username)
+  following: id
+    ? author?.followedBy.some((followingUser: Partial<User>) => followingUser.id === id)
     : false,
 });
 

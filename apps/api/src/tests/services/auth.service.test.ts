@@ -202,7 +202,7 @@ describe('AuthService', () => {
   describe('getCurrentUser', () => {
     test('should return a token', async () => {
       // Given
-      const username = 'RealWorld';
+      const id = 123;
 
       const mockedResponse = {
         id: 123,
@@ -219,7 +219,7 @@ describe('AuthService', () => {
       prismaMock.user.findUnique.mockResolvedValue(mockedResponse);
 
       // Then
-      await expect(getCurrentUser(username)).resolves.toHaveProperty('token');
+      await expect(getCurrentUser(id)).resolves.toHaveProperty('token');
     });
   });
 
@@ -248,7 +248,7 @@ describe('AuthService', () => {
       prismaMock.user.update.mockResolvedValue(mockedResponse);
 
       // Then
-      await expect(updateUser(user, user.username)).resolves.toHaveProperty('token');
+      await expect(updateUser(user, user.id)).resolves.toHaveProperty('token');
     });
   });
 });

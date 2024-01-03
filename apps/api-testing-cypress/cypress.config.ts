@@ -9,7 +9,7 @@ export default defineConfig({
     }),
     experimentalRunAllSpecs: true,
     env: {
-      baseUrl: 'https://api.realworld.io',
+      baseUrl: 'http://localhost:3000',
       prefix: 'schmilblick',
     },
   },

@@ -10,7 +10,7 @@ describe('ProfileUtils', () => {
         image: null,
         followedBy: [],
       };
-      const username = 'RealWorld';
+      const id = 123;
 
       // When
       const expected = {
@@ -21,7 +21,7 @@ describe('ProfileUtils', () => {
       };
 
       // Then
-      expect(profileMapper(user, username)).toEqual(expected);
+      expect(profileMapper(user, id)).toEqual(expected);
     });
 
     test('should return a profile followed by the user', () => {
@@ -32,11 +32,11 @@ describe('ProfileUtils', () => {
         image: null,
         followedBy: [
           {
-            username: 'RealWorld',
+            id: 123,
           },
         ],
       };
-      const username = 'RealWorld';
+      const id = 123;
 
       // When
       const expected = {
@@ -47,7 +47,7 @@ describe('ProfileUtils', () => {
       };
 
       // Then
-      expect(profileMapper(user, username)).toEqual(expected);
+      expect(profileMapper(user, id)).toEqual(expected);
     });
 
     test('should return a profile not followed by the user', () => {
@@ -62,7 +62,7 @@ describe('ProfileUtils', () => {
           },
         ],
       };
-      const username = 'RealWorld';
+      const id = 123;
 
       // When
       const expected = {
@@ -73,7 +73,7 @@ describe('ProfileUtils', () => {
       };
 
       // Then
-      expect(profileMapper(user, username)).toEqual(expected);
+      expect(profileMapper(user, id)).toEqual(expected);
     });
   });
 });
