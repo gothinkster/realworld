@@ -10,14 +10,14 @@ describe('ArticleService', () => {
     test('should throw an error ', () => {
       // Given
       const id = 123;
-      const username = 'RealWorld';
+      const idUser = 456;
 
       // When
       // @ts-ignore
       prismaMock.comment.findFirst.mockResolvedValue(null);
 
       // Then
-      expect(deleteComment(id, username)).rejects.toThrowError();
+      expect(deleteComment(id, idUser)).rejects.toThrowError();
     });
   });
 
@@ -64,11 +64,14 @@ describe('ArticleService', () => {
       prismaMock.article.update.mockResolvedValue(mockedArticleResponse);
 
       // Then
-      await expect(favoriteArticle(slug, username)).resolves.toHaveProperty('favoritesCount');
+      await expect(favoriteArticle(slug, mockedUserResponse.id)).resolves.toHaveProperty(
+        'favoritesCount',
+      );
     });
 
     test('should throw an error if no user is found', async () => {
       // Given
+      const id = 123;
       const slug = 'how-to-train-your-dragon';
       const username = 'RealWorld';
 
@@ -76,7 +79,7 @@ describe('ArticleService', () => {
       prismaMock.user.findUnique.mockResolvedValue(null);
 
       // Then
-      await expect(favoriteArticle(slug, username)).rejects.toThrowError();
+      await expect(favoriteArticle(slug, id)).rejects.toThrowError();
     });
   });
   describe('unfavoriteArticle', () => {
@@ -120,11 +123,14 @@ describe('ArticleService', () => {
       prismaMock.article.update.mockResolvedValue(mockedArticleResponse);
 
       // Then
-      await expect(unfavoriteArticle(slug, username)).resolves.toHaveProperty('favoritesCount');
+      await expect(unfavoriteArticle(slug, mockedUserResponse.id)).resolves.toHaveProperty(
+        'favoritesCount',
+      );
     });
 
     test('should throw an error if no user is found', async () => {
       // Given
+      const id = 123;
       const slug = 'how-to-train-your-dragon';
       const username = 'RealWorld';
 
@@ -132,7 +138,7 @@ describe('ArticleService', () => {
       prismaMock.user.findUnique.mockResolvedValue(null);
 
       // Then
-      await expect(unfavoriteArticle(slug, username)).rejects.toThrowError();
+      await expect(unfavoriteArticle(slug, id)).rejects.toThrowError();
     });
   });
 });
