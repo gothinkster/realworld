@@ -1,14 +1,14 @@
 import prisma from '../../prisma/prisma-client';
 import { Tag } from '../models/tag.model';
 
-const getTags = async (username?: string): Promise<string[]> => {
+const getTags = async (id?: number): Promise<string[]> => {
   const queries = [];
   queries.push({ demo: true });
 
-  if (username) {
+  if (id) {
     queries.push({
-      username: {
-        equals: username,
+      id: {
+        equals: id,
       },
     });
   }

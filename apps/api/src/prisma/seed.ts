@@ -23,7 +23,7 @@ export const generateUser = async (): Promise<RegisteredUser> =>
     demo: true,
   });
 
-export const generateArticle = async (username: string) =>
+export const generateArticle = async (id: number) =>
   createArticle(
     {
       title: randLine(),
@@ -31,11 +31,11 @@ export const generateArticle = async (username: string) =>
       body: randLines({ length: 10 }).join(' '),
       tagList: randWord({ length: 4 }),
     },
-    username,
+    id,
   );
 
-export const generateComment = async (username: string, slug: string) =>
-  addComment(randParagraph(), slug, username);
+export const generateComment = async (id: number, slug: string) =>
+  addComment(randParagraph(), slug, id);
 
 export const main = async () => {
   const users = await Promise.all(Array.from({ length: 30 }, () => generateUser()));
@@ -43,13 +43,11 @@ export const main = async () => {
 
   // eslint-disable-next-line no-restricted-syntax
   for await (const user of users) {
-    const articles = await Promise.all(
-      Array.from({ length: 20 }, () => generateArticle(user.username)),
-    );
+    const articles = await Promise.all(Array.from({ length: 20 }, () => generateArticle(user.id)));
 
     // eslint-disable-next-line no-restricted-syntax
     for await (const article of articles) {
-      await Promise.all(users.map(userItem => generateComment(userItem.username, article.slug)));
+      await Promise.all(users.map(userItem => generateComment(userItem.id, article.slug)));
     }
   }
 };
