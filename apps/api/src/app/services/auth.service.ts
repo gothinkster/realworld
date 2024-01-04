@@ -134,6 +134,7 @@ export const getCurrentUser = async (id: number) => {
       id,
     },
     select: {
+      id: true,
       email: true,
       username: true,
       bio: true,
