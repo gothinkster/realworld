@@ -6,7 +6,7 @@ export default defineConfig({
     ...nxE2EPreset(__dirname, {
       bundler: 'webpack',
     }),
-    baseUrl: 'https://demo.realworld.io',
+    baseUrl: 'https://conduit.realworld.how',
     experimentalRunAllSpecs: true,
     env: {
       prefix: 'schmilblick',

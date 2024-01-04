@@ -26,7 +26,10 @@ function HomepageHeader() {
                 framework.
               </p>
               <div className={styles.buttons}>
-                <Link className="button button--primary button--lg" to="https://demo.realworld.io">
+                <Link
+                  className="button button--primary button--lg"
+                  to="https://conduit.realworld.how"
+                >
                   discover our demo
                 </Link>
               </div>

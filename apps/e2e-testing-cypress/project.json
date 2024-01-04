@@ -8,7 +8,7 @@
       "executor": "@nx/cypress:cypress",
       "options": {
         "cypressConfig": "apps/e2e-testing-cypress/cypress.config.ts",
-        "baseUrl": "https://demo.realworld.io",
+        "baseUrl": "https://conduit.realworld.how",
         "testingType": "e2e"
       },
       "configurations": {
