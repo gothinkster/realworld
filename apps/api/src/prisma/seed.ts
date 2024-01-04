@@ -1,10 +1,10 @@
 import {
   randEmail,
   randFullName,
-  randLine,
   randLines,
   randParagraph,
   randPassword,
+  randPhrase,
   randWord,
 } from '@ngneat/falso';
 import { PrismaClient } from '@prisma/client';
@@ -26,7 +26,7 @@ export const generateUser = async (): Promise<RegisteredUser> =>
 export const generateArticle = async (id: number) =>
   createArticle(
     {
-      title: randLine(),
+      title: randPhrase(),
       description: randParagraph(),
       body: randLines({ length: 10 }).join(' '),
       tagList: randWord({ length: 4 }),
