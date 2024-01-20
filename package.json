@@ -159,7 +159,7 @@
     "typescript": "5.1.6",
     "url-loader": "^4.1.1",
     "uuidv4": "^6.2.13",
-    "vite": "4.5.0",
+    "vite": "4.5.2",
     "vite-plugin-eslint": "1.8.1",
     "vite-tsconfig-paths": "4.2.1",
     "vitest": "0.34.6",
