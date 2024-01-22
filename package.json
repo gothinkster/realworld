@@ -63,7 +63,7 @@
     "@nx-plus/docusaurus": "^15.0.0-rc.0",
     "@nx/cypress": "17.0.1",
     "@nx/devkit": "17.0.2",
-    "@nx/eslint": "17.0.1",
+    "@nx/eslint": "17.2.8",
     "@nx/eslint-plugin": "17.0.1",
     "@nx/express": "17.0.1",
     "@nx/jest": "17.0.2",
