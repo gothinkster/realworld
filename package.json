@@ -83,7 +83,7 @@
     "@storybook/addon-essentials": "7.5.1",
     "@storybook/addon-interactions": "7.5.1",
     "@storybook/addon-mdx-gfm": "7.5.1",
-    "@storybook/blocks": "^7.5.1",
+    "@storybook/blocks": "^7.6.10",
     "@storybook/core-server": "7.5.1",
     "@storybook/jest": "^0.2.3",
     "@storybook/preview-api": "^7.5.1",
