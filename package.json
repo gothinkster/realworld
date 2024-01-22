@@ -177,7 +177,7 @@
     "@angular/core": "~16.2.0",
     "@angular/forms": "~16.2.0",
     "@angular/platform-browser": "~16.2.0",
-    "@angular/platform-browser-dynamic": "~16.2.0",
+    "@angular/platform-browser-dynamic": "~17.1.0",
     "@angular/router": "~16.2.0",
     "@docusaurus/core": "2.4.3",
     "@docusaurus/preset-classic": "2.4.3",
