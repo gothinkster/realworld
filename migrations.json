@@ -2,152 +2,109 @@
   "migrations": [
     {
       "cli": "nx",
-      "version": "16.6.0-beta.6",
-      "description": "Prefix outputs with {workspaceRoot}/{projectRoot} if needed",
-      "implementation": "./src/migrations/update-15-0-0/prefix-outputs",
+      "version": "17.3.0-beta.6",
+      "description": "Updates the nx wrapper.",
+      "implementation": "./src/migrations/update-17-3-0/update-nxw",
       "package": "nx",
-      "name": "16.6.0-prefix-outputs"
+      "name": "17.3.0-update-nx-wrapper"
     },
     {
       "cli": "nx",
-      "version": "16.8.0-beta.3",
-      "description": "Escape $ in env variables",
-      "implementation": "./src/migrations/update-16-8-0/escape-dollar-sign-env-variables",
+      "version": "18.0.0-beta.2",
+      "description": "Updates .env to disabled adding plugins when generating projects in an existing Nx workspace",
+      "implementation": "./src/migrations/update-18-0-0/disable-crystal-for-existing-workspaces",
+      "x-repair-skip": true,
       "package": "nx",
-      "name": "16.8.0-escape-dollar-sign-env"
+      "name": "18.0.0-disable-adding-plugins-for-existing-workspaces"
     },
     {
       "cli": "nx",
-      "version": "17.0.0-beta.1",
-      "description": "Updates the default cache directory to .nx/cache",
-      "implementation": "./src/migrations/update-17-0-0/move-cache-directory",
-      "package": "nx",
-      "name": "17.0.0-move-cache-directory"
+      "version": "17.3.1-beta.0",
+      "description": "Add project property to playwright config",
+      "implementation": "./src/migrations/update-17-3-1/add-project-to-config",
+      "package": "@nx/playwright",
+      "name": "17-3-1-add-project-to-config"
     },
     {
       "cli": "nx",
-      "version": "17.0.0-beta.3",
-      "description": "Use minimal config for tasksRunnerOptions",
-      "implementation": "./src/migrations/update-17-0-0/use-minimal-config-for-tasks-runner-options",
-      "package": "nx",
-      "name": "17.0.0-use-minimal-config-for-tasks-runner-options"
-    },
-    {
-      "version": "17.0.0-rc.1",
-      "description": "Migration for v17.0.0-rc.1",
-      "implementation": "./src/migrations/update-17-0-0/rm-default-collection-npm-scope",
-      "package": "nx",
-      "name": "rm-default-collection-npm-scope"
+      "version": "18.0.0-beta.0",
+      "description": "Add NX_MF_DEV_SERVER_STATIC_REMOTES to inputs for task hashing when '@nx/webpack:webpack' is used for Module Federation.",
+      "factory": "./src/migrations/update-18-0-0/add-mf-env-var-to-target-defaults",
+      "package": "@nx/react",
+      "name": "add-module-federation-env-var-to-target-defaults"
     },
     {
       "cli": "nx",
-      "version": "16.4.0-beta.10",
-      "description": "Remove tsconfig.e2e.json and add settings to project tsconfig.json. tsConfigs executor option is now deprecated. The project level tsconfig.json file should be used instead.",
-      "implementation": "./src/migrations/update-16-4-0/tsconfig-sourcemaps",
-      "package": "@nx/cypress",
-      "name": "update-16-3-0-remove-old-tsconfigs"
+      "version": "17.2.6-beta.1",
+      "description": "Rename workspace rules from @nx/workspace/name to @nx/workspace-name",
+      "implementation": "./src/migrations/update-17-2-6-rename-workspace-rules/rename-workspace-rules",
+      "package": "@nx/eslint-plugin",
+      "name": "update-17-2-6-rename-workspace-rules"
+    },
+    {
+      "version": "17.1.0-beta.1",
+      "description": "Updates for @typescript-utils/utils v6.9.1+",
+      "implementation": "./src/migrations/update-17-1-0/update-typescript-eslint",
+      "package": "@nx/eslint",
+      "name": "update-typescript-eslint"
+    },
+    {
+      "version": "17.2.0-beta.0",
+      "description": "Simplify eslintFilePatterns",
+      "implementation": "./src/migrations/update-17-2-0/simplify-eslint-patterns",
+      "package": "@nx/eslint",
+      "name": "simplify-eslint-patterns"
+    },
+    {
+      "version": "17.2.9",
+      "description": "Move executor options to target defaults",
+      "implementation": "./src/migrations/update-17-2-9/move-options-to-target-defaults",
+      "package": "@nx/eslint",
+      "name": "move-options-to-target-defaults"
     },
     {
       "cli": "nx",
-      "version": "16.8.0-beta.4",
-      "description": "Update to Cypress v13. Most noteable change is video recording is off by default. This migration will only update if the workspace is already on Cypress v12. https://docs.cypress.io/guides/references/migration-guide#Migrating-to-Cypress-130",
-      "implementation": "./src/migrations/update-16-8-0/cypress-13",
-      "package": "@nx/cypress",
-      "name": "update-16-8-0-cypress-13"
+      "version": "17.2.1-beta.0",
+      "description": "Add webpack.config.js file when webpackConfig is not defined",
+      "implementation": "./src/migrations/update-17-2-1/webpack-config-setup",
+      "package": "@nx/webpack",
+      "name": "update-17-2-1-webpack-config-setup"
     },
     {
-      "cli": "nx",
-      "version": "16.5.0-beta.2",
-      "description": "Add test-setup.ts to ignored files in production input",
-      "implementation": "./src/migrations/update-16-5-0/add-test-setup-to-inputs-ignore",
+      "version": "17.1.0-beta.2",
+      "description": "Move target defaults",
+      "implementation": "./src/migrations/update-17-1-0/move-target-defaults",
+      "package": "@nx/vite",
+      "name": "move-target-defaults"
+    },
+    {
+      "version": "17.2.0-beta.10",
+      "description": "Update vite config.",
+      "implementation": "./src/migrations/update-17-2-0/update-vite-config",
+      "package": "@nx/vite",
+      "name": "update-vite-config"
+    },
+    {
+      "version": "17.3.0-beta.0",
+      "description": "Move the vitest coverage thresholds in their own object if exists and add reporters.",
+      "implementation": "./src/migrations/update-17-3-0/vitest-coverage-and-reporters",
+      "package": "@nx/vite",
+      "name": "vitest-coverage-and-reporters"
+    },
+    {
+      "version": "17.1.0-beta.2",
+      "description": "Move jest executor options to nx.json targetDefaults",
+      "implementation": "./src/migrations/update-17-1-0/move-options-to-target-defaults",
       "package": "@nx/jest",
-      "name": "add-test-setup-to-inputs-ignore"
+      "name": "move-options-to-target-defaults"
     },
     {
       "cli": "nx",
-      "version": "16.6.0-beta.0",
-      "description": "Explicitly set 'updateBuildableProjectDepsInPackageJson' to 'true' in targets that rely on that value as the default.",
-      "factory": "./src/migrations/update-16-6-0/explicitly-set-projects-to-update-buildable-deps",
-      "package": "@nx/js",
-      "name": "explicitly-set-projects-to-update-buildable-deps"
-    },
-    {
-      "cli": "nx",
-      "version": "16.8.2-beta.0",
-      "description": "Remove invalid options (strict, noInterop) for ES6 type modules.",
-      "factory": "./src/migrations/update-16-8-2/update-swcrc",
-      "package": "@nx/js",
-      "name": "16-8-2-update-swcrc"
-    },
-    {
-      "cli": "nx",
-      "version": "16.7.0-beta.2",
-      "description": "Add @babel/core to package.json if @babel/preset-react is present",
-      "implementation": "./src/migrations/update-16-7-0/add-babel-core",
-      "package": "@nx/react",
-      "name": "add-babel-core"
-    },
-    {
-      "cli": "nx",
-      "version": "16.7.0-beta.2",
-      "description": "Add @nx/react types to tsconfig types array",
-      "implementation": "./src/migrations/update-16-7-0-add-typings/update-16-7-0-add-typings",
-      "package": "@nx/react",
-      "name": "update-16-7-0-add-typings"
-    },
-    {
-      "cli": "nx",
-      "version": "16.4.0-beta.3",
-      "description": "Update package.json moving @nx/next from dependency to devDependency",
-      "implementation": "./src/migrations/update-16-4-0/update-nx-next-dependency",
+      "version": "17.2.7",
+      "description": "Remove patched eslint rule for @next/next/no-html-link-for-pages",
+      "implementation": "./src/migrations/update-17-2-7/remove-eslint-rules-patch",
       "package": "@nx/next",
-      "name": "update-16-4-0-update-next-dependency"
-    },
-    {
-      "cli": "nx",
-      "version": "16.4.0-beta.8",
-      "description": "Replace @nx/node:node with @nx/js:node for all project targets",
-      "implementation": "./src/migrations/update-16-4-0/replace-node-executor",
-      "package": "@nx/node",
-      "name": "update-16-4-0-replace-node-executor"
-    },
-    {
-      "cli": "nx",
-      "version": "16.5.0-beta.0",
-      "description": "Move .storybook/tsconfig.json to tsconfig.storybook.json for non-Angular projects.",
-      "factory": "./src/migrations/update-16-5-0/move-storybook-tsconfig",
-      "package": "@nx/storybook",
-      "name": "update-16-5-0"
-    },
-    {
-      "version": "16.4.1-beta.0",
-      "description": "Changes the testFile config in the vite:test exectutor from a string to an array of strings",
-      "cli": "nx",
-      "implementation": "./src/migrations/update-16-4-1-update-test-file-config/update-16-4-1-test-file-config",
-      "package": "@nx/vite",
-      "name": "update-16-4-1-test-file-config"
-    },
-    {
-      "version": "16.6.0-beta.4",
-      "description": "Change vite-tsconfig-paths plugin for first party nx-vite-tsconfig-paths plugin",
-      "cli": "nx",
-      "implementation": "./src/migrations/update-16-6-0-change-ts-paths-plugin/change-ts-paths-plugin",
-      "package": "@nx/vite",
-      "name": "16-6-0-change-ts-paths-plugin"
-    },
-    {
-      "version": "16.8.0",
-      "description": "update-16-8-0-add-ignored-files",
-      "implementation": "./src/migrations/update-16-8-0-add-ignored-files/update-16-8-0-add-ignored-files",
-      "package": "@nx/eslint",
-      "name": "update-16-8-0-add-ignored-files"
-    },
-    {
-      "version": "17.0.0-beta.7",
-      "description": "update-17-0-0-rename-to-eslint",
-      "implementation": "./src/migrations/update-17-0-0-rename-to-eslint/update-17-0-0-rename-to-eslint",
-      "package": "@nx/eslint",
-      "name": "update-17-0-0-rename-to-eslint"
+      "name": "update-17-2-7"
     }
   ]
 }
