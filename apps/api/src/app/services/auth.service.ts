@@ -7,23 +7,24 @@ import generateToken from '../utils/token.utils';
 import { User } from '../models/user.model';
 
 const checkUserUniqueness = async (email: string, username: string) => {
-  const existingUserByEmail = await prisma.user.findUnique({
-    where: {
-      email,
-    },
-    select: {
-      id: true,
-    },
-  });
-
-  const existingUserByUsername = await prisma.user.findUnique({
-    where: {
-      username,
-    },
-    select: {
-      id: true,
-    },
-  });
+  const [existingUserByEmail, existingUserByUsername] = await Promise.all([
+    prisma.user.findUnique({
+      where: {
+        email,
+      },
+      select: {
+        id: true,
+      },
+    }),
+    prisma.user.findUnique({
+      where: {
+        username,
+      },
+      select: {
+        id: true,
+      },
+    }),
+  ]);
 
   if (existingUserByEmail || existingUserByUsername) {
     throw new HttpException(422, {
