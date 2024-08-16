@@ -42,7 +42,7 @@ Or you can [view upcoming implementations (WIPs)](https://github.com/gothinkster
 
 <img align="left" width="40" height="40" src="https://avatars.githubusercontent.com/u/32737308?v=4">
 
-Gérôme is a Software Engineer at Sfeir. He's an open-source enthusiast.<br /><br />
+Gérôme is a Frontend Software Engineer at Lucca. He's an open-source enthusiast.<br /><br />
 
 #### [Manuel Vila](https://github.com/mvila) - Maintainer
 
