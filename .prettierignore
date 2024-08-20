@@ -1,6 +1,0 @@
-.prettierignore
-.docusaurus/
-/dist
-
-/.nx/cache
-.angular
