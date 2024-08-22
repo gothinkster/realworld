@@ -59,13 +59,19 @@ Make sure the right content type like `Content-Type: application/json; charset=u
 
 ### Multiple Articles
 
+:::caution
+Starting from the 2024/08/16, the endpoints retrieving a list of articles do no longer return the body of an article for performance reasons.
+It affcts: 
+- `GET /api/articles`
+- `GET /api/articles/feed`
+:::
+
 ```JSON
 {
   "articles":[{
     "slug": "how-to-train-your-dragon",
     "title": "How to train your dragon",
     "description": "Ever wonder how?",
-    "body": "It takes a Jacobian",
     "tagList": ["dragons", "training"],
     "createdAt": "2016-02-18T03:22:56.637Z",
     "updatedAt": "2016-02-18T03:48:35.824Z",
@@ -81,7 +87,6 @@ Make sure the right content type like `Content-Type: application/json; charset=u
     "slug": "how-to-train-your-dragon-2",
     "title": "How to train your dragon 2",
     "description": "So toothless",
-    "body": "It a dragon",
     "tagList": ["dragons", "training"],
     "createdAt": "2016-02-18T03:22:56.637Z",
     "updatedAt": "2016-02-18T03:48:35.824Z",
