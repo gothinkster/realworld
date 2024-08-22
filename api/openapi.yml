@@ -65,7 +65,7 @@ paths:
         '422':
           $ref: '#/components/responses/GenericError'
       security:
-        - Token: []
+        - Token: [ ]
     put:
       tags:
         - User and Authentication
@@ -82,7 +82,7 @@ paths:
         '422':
           $ref: '#/components/responses/GenericError'
       security:
-        - Token: []
+        - Token: [ ]
       x-codegen-request-body-name: body
   /profiles/{username}:
     get:
@@ -127,7 +127,7 @@ paths:
         '422':
           $ref: '#/components/responses/GenericError'
       security:
-        - Token: []
+        - Token: [ ]
     delete:
       tags:
         - Profile
@@ -149,7 +149,7 @@ paths:
         '422':
           $ref: '#/components/responses/GenericError'
       security:
-        - Token: []
+        - Token: [ ]
   /articles/feed:
     get:
       tags:
@@ -169,7 +169,7 @@ paths:
         '422':
           $ref: '#/components/responses/GenericError'
       security:
-        - Token: []
+        - Token: [ ]
   /articles:
     get:
       tags:
@@ -219,7 +219,7 @@ paths:
         '422':
           $ref: '#/components/responses/GenericError'
       security:
-        - Token: []
+        - Token: [ ]
       x-codegen-request-body-name: article
   /articles/{slug}:
     get:
@@ -263,7 +263,7 @@ paths:
         '422':
           $ref: '#/components/responses/GenericError'
       security:
-        - Token: []
+        - Token: [ ]
       x-codegen-request-body-name: article
     delete:
       tags:
@@ -286,7 +286,7 @@ paths:
         '422':
           $ref: '#/components/responses/GenericError'
       security:
-        - Token: []
+        - Token: [ ]
   /articles/{slug}/comments:
     get:
       tags:
@@ -331,7 +331,7 @@ paths:
         '422':
           $ref: '#/components/responses/GenericError'
       security:
-        - Token: []
+        - Token: [ ]
       x-codegen-request-body-name: comment
   /articles/{slug}/comments/{id}:
     delete:
@@ -361,7 +361,7 @@ paths:
         '422':
           $ref: '#/components/responses/GenericError'
       security:
-        - Token: []
+        - Token: [ ]
   /articles/{slug}/favorite:
     post:
       tags:
@@ -384,7 +384,7 @@ paths:
         '422':
           $ref: '#/components/responses/GenericError'
       security:
-        - Token: []
+        - Token: [ ]
     delete:
       tags:
         - Favorites
@@ -406,7 +406,7 @@ paths:
         '422':
           $ref: '#/components/responses/GenericError'
       security:
-        - Token: []
+        - Token: [ ]
   /tags:
     get:
       tags:
@@ -662,7 +662,40 @@ components:
               articles:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Article'
+                  required:
+                    - author
+                    - createdAt
+                    - description
+                    - favorited
+                    - favoritesCount
+                    - slug
+                    - tagList
+                    - title
+                    - updatedAt
+                  type: object
+                  properties:
+                    slug:
+                      type: string
+                    title:
+                      type: string
+                    description:
+                      type: string
+                    tagList:
+                      type: array
+                      items:
+                        type: string
+                    createdAt:
+                      type: string
+                      format: date-time
+                    updatedAt:
+                      type: string
+                      format: date-time
+                    favorited:
+                      type: boolean
+                    favoritesCount:
+                      type: integer
+                    author:
+                      $ref: '#/components/schemas/Profile'
               articlesCount:
                 type: integer
     ProfileResponse:
@@ -689,10 +722,10 @@ components:
                 $ref: '#/components/schemas/User'
     EmptyOkResponse:
       description: No content
-      content: {}
+      content: { }
     Unauthorized:
       description: Unauthorized
-      content: {}
+      content: { }
     GenericError:
       description: Unexpected error
       content:
