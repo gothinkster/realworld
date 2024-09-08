@@ -68,7 +68,7 @@ export default defineConfig({
                                 slug: 'specifications/backend/introduction',
                             },
                             {
-                                label: 'Ednpoints',
+                                label: 'Endpoints',
                                 slug: 'specifications/backend/endpoints',
                             },
                             {
