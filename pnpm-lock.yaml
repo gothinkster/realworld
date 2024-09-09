@@ -40,11 +40,11 @@ importers:
         specifier: ^0.9.3
         version: 0.9.3(prettier@3.2.5)(typescript@5.5.4)
       '@astrojs/starlight':
-        specifier: ^0.26.1
-        version: 0.26.1(astro@4.14.2)
+        specifier: ^0.27.1
+        version: 0.27.1(astro@4.14.2)
       '@astrojs/starlight-tailwind':
         specifier: ^2.0.3
-        version: 2.0.3(@astrojs/starlight@0.26.1)(@astrojs/tailwind@5.1.0)(tailwindcss@3.4.10)
+        version: 2.0.3(@astrojs/starlight@0.27.1)(@astrojs/tailwind@5.1.0)(tailwindcss@3.4.10)
       '@astrojs/tailwind':
         specifier: ^5.1.0
         version: 5.1.0(astro@4.14.2)(tailwindcss@3.4.10)
@@ -203,20 +203,20 @@ packages:
       zod: 3.23.8
     dev: false
 
-  /@astrojs/starlight-tailwind@2.0.3(@astrojs/starlight@0.26.1)(@astrojs/tailwind@5.1.0)(tailwindcss@3.4.10):
+  /@astrojs/starlight-tailwind@2.0.3(@astrojs/starlight@0.27.1)(@astrojs/tailwind@5.1.0)(tailwindcss@3.4.10):
     resolution: {integrity: sha512-ZwbdXS/9rxYlo3tKZoTZoBPUnaaqek02b341dHwOkmMT0lIR2w+8k0mRUGxnRaYtPdMcaL+nYFd8RUa8sjdyRg==}
     peerDependencies:
       '@astrojs/starlight': '>=0.9.0'
       '@astrojs/tailwind': ^5.0.0
       tailwindcss: ^3.3.3
     dependencies:
-      '@astrojs/starlight': 0.26.1(astro@4.14.2)
+      '@astrojs/starlight': 0.27.1(astro@4.14.2)
       '@astrojs/tailwind': 5.1.0(astro@4.14.2)(tailwindcss@3.4.10)
       tailwindcss: 3.4.10
     dev: false
 
-  /@astrojs/starlight@0.26.1(astro@4.14.2):
-    resolution: {integrity: sha512-0qNYWZJ+ZOdSfM7du6fGuwUhyTHtAeRIl0zYe+dF0TxDvcakplO1SYLbGGX6lEVYE3PdBne7dcJww85bXZJIIQ==}
+  /@astrojs/starlight@0.27.1(astro@4.14.2):
+    resolution: {integrity: sha512-L2hEgN/Tk7tfBDeaqUOgOpey5NcUL78FuQa06iNxyZ6RjyYyuXSniOoFxZYIo5PpY9O1dLdK22PkZyCDpO729g==}
     peerDependencies:
       astro: ^4.8.6
     dependencies:
@@ -2032,7 +2032,7 @@ packages:
     resolution: {integrity: sha512-RZNwNclF7+MS/8bDg70amg32dyeZGZxiDuQmZxKLAlQjr3jGyLx+4Kkk58UO7D2QdgFIQCovuSuZESne6RG6XQ==}
     engines: {node: '>= 6.0.0'}
     dependencies:
-      debug: 4.3.4
+      debug: 4.3.6
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -2798,6 +2798,7 @@ packages:
         optional: true
     dependencies:
       ms: 2.1.2
+    dev: true
 
   /debug@4.3.6:
     resolution: {integrity: sha512-O/09Bd4Z1fBrU4VzkhFqVgpPzaGbw6Sm9FEkBT1A/YBXQFGuuSxa1dN2nxgxS34JmKXqYx8CZAwEVoJFImUXIg==}
@@ -2809,7 +2810,6 @@ packages:
         optional: true
     dependencies:
       ms: 2.1.2
-    dev: false
 
   /decode-named-character-reference@1.0.2:
     resolution: {integrity: sha512-O8x12RzrUF8xyVcY0KJowWsmaJxQbmy0/EtnNtHRpsOcT7dFk5W598coHqBVpmWo1oQQfsCqfCmkZN5DJrZVdg==}
@@ -3736,7 +3736,7 @@ packages:
     engines: {node: '>= 6'}
     dependencies:
       agent-base: 6.0.2
-      debug: 4.3.4
+      debug: 4.3.6
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -4785,7 +4785,7 @@ packages:
     resolution: {integrity: sha512-o/sd0nMof8kYff+TqcDx3VSrgBTcZpSvYcAHIfHhv5VAuNmisCxjhx6YmxS8PFEpb9z5WKWKPdzf0jM23ro3RQ==}
     dependencies:
       '@types/debug': 4.1.12
-      debug: 4.3.4
+      debug: 4.3.6
       decode-named-character-reference: 1.0.2
       devlop: 1.1.0
       micromark-core-commonmark: 2.0.1
