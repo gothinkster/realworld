@@ -24,7 +24,7 @@ Explore them on [**CodebaseShow**](https://codebase.show/projects/realworld).
 
 # Create a new implementation
 
-[**Create a new implementation >>>**](https://realworld-docs.netlify.app/docs/implementation-creation/introduction)
+[**Create a new implementation >>>**](https://realworld-docs.netlify.app/implementation-creation/introduction)
 
 Or you can [view upcoming implementations (WIPs)](https://github.com/gothinkster/realworld/discussions/categories/wip-implementations).
 
@@ -34,7 +34,7 @@ Or you can [view upcoming implementations (WIPs)](https://github.com/gothinkster
 - Every tutorial is built against the same [API spec](api/) to ensure modularity of every frontend & backend
 - Every frontend utilizes the same handcrafted [Bootstrap 4 theme](https://github.com/gothinkster/conduit-bootstrap-template) for identical UI/UX
 - There is a hosted version of the backend API available for public usage, no API keys are required
-- Interested in creating a new RealWorld stack? View our [starter guide & spec](https://realworld-docs.netlify.app/docs/implementation-creation/introduction)
+- Interested in creating a new RealWorld stack? View our [starter guide & spec](https://realworld-docs.netlify.app/implementation-creation/introduction)
 
 # Active Maintainers
 
