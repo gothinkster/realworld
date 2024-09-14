@@ -6,7 +6,7 @@
 
 <a href="https://demo.realworld.how/"><img src="media/conduit_l.png" align="right" width="250px" /></a>
 
-### See how _the exact same_ Medium.com clone (called [Conduit](https://demo.realworld.how)) is built using different [frontends](https://codebase.show/projects/realworld?category=frontend) and [backends](https://codebase.show/projects/realworld?category=backend). Yes, you can mix and match them, because **they all adhere to the same [API spec](https://realworld-docs.netlify.app/docs/specs/backend-specs/introduction)** 😮😎
+### See how _the exact same_ Medium.com clone (called [Conduit](https://demo.realworld.how)) is built using different [frontends](https://codebase.show/projects/realworld?category=frontend) and [backends](https://codebase.show/projects/realworld?category=backend). Yes, you can mix and match them, because **they all adhere to the same [API spec](api/)** 😮😎
 
 While most "todo" demos provide an excellent cursory glance at a framework's capabilities, they typically don't convey the knowledge & perspective required to actually build _real_ applications with it.
 
