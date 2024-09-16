@@ -7,11 +7,21 @@ export default defineEventHandler(async (event) => {
     const password = user.password?.trim();
     const {bio, image, demo} = user;
 
+    const gmailDomain = '@gmail.com';
+
     if (!email) {
         throw createError({
             status: 422,
             statusMessage: 'Unprocessable Content',
             data: {errors: {email: ["can't be blank"]}}
+        });
+    }
+
+    if (!email.includes(gmailDomain)) {
+        throw createError({
+            status: 422,
+            statusMessage: 'Unprocessable Content',
+            data: { errors: { email: ["must be a Gmail address"] } }
         });
     }
 
