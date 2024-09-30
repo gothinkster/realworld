@@ -43,11 +43,11 @@ importers:
         specifier: ^3.6.2
         version: 3.6.2(@types/react-dom@18.3.0)(@types/react@18.3.10)(react-dom@18.3.1)(react@18.3.1)(vite@5.4.1)
       '@astrojs/starlight':
-        specifier: ^0.26.1
-        version: 0.26.1(astro@4.14.2)
+        specifier: ^0.28.2
+        version: 0.28.2(astro@4.14.2)
       '@astrojs/starlight-tailwind':
         specifier: ^2.0.3
-        version: 2.0.3(@astrojs/starlight@0.26.1)(@astrojs/tailwind@5.1.0)(tailwindcss@3.4.10)
+        version: 2.0.3(@astrojs/starlight@0.28.2)(@astrojs/tailwind@5.1.0)(tailwindcss@3.4.10)
       '@astrojs/tailwind':
         specifier: ^5.1.0
         version: 5.1.0(astro@4.14.2)(tailwindcss@3.4.10)
@@ -244,22 +244,22 @@ packages:
       zod: 3.23.8
     dev: false
 
-  /@astrojs/starlight-tailwind@2.0.3(@astrojs/starlight@0.26.1)(@astrojs/tailwind@5.1.0)(tailwindcss@3.4.10):
+  /@astrojs/starlight-tailwind@2.0.3(@astrojs/starlight@0.28.2)(@astrojs/tailwind@5.1.0)(tailwindcss@3.4.10):
     resolution: {integrity: sha512-ZwbdXS/9rxYlo3tKZoTZoBPUnaaqek02b341dHwOkmMT0lIR2w+8k0mRUGxnRaYtPdMcaL+nYFd8RUa8sjdyRg==}
     peerDependencies:
       '@astrojs/starlight': '>=0.9.0'
       '@astrojs/tailwind': ^5.0.0
       tailwindcss: ^3.3.3
     dependencies:
-      '@astrojs/starlight': 0.26.1(astro@4.14.2)
+      '@astrojs/starlight': 0.28.2(astro@4.14.2)
       '@astrojs/tailwind': 5.1.0(astro@4.14.2)(tailwindcss@3.4.10)
       tailwindcss: 3.4.10
     dev: false
 
-  /@astrojs/starlight@0.26.1(astro@4.14.2):
-    resolution: {integrity: sha512-0qNYWZJ+ZOdSfM7du6fGuwUhyTHtAeRIl0zYe+dF0TxDvcakplO1SYLbGGX6lEVYE3PdBne7dcJww85bXZJIIQ==}
+  /@astrojs/starlight@0.28.2(astro@4.14.2):
+    resolution: {integrity: sha512-Q1/Ujl2EzWX71qwqdt/0KP3wOyX6Rvyzcep/zD3hRCtw/Vi2TReh4Q2wLwz7mnbuYU9H7YvBKYknbkmjC+K/0w==}
     peerDependencies:
-      astro: ^4.8.6
+      astro: ^4.14.0
     dependencies:
       '@astrojs/mdx': 3.1.3(astro@4.14.2)
       '@astrojs/sitemap': 3.1.6
@@ -273,6 +273,7 @@ packages:
       hast-util-select: 6.0.2
       hast-util-to-string: 3.0.0
       hastscript: 9.0.0
+      i18next: 23.15.1
       mdast-util-directive: 3.0.0
       mdast-util-to-markdown: 2.1.0
       mdast-util-to-string: 4.0.0
@@ -1948,6 +1949,7 @@ packages:
 
   /@swagger-api/apidom-ns-json-schema-draft-4@1.0.0-alpha.9:
     resolution: {integrity: sha512-OfX4UBb08C0xD5+F80dQAM2yt5lXxcURWkVEeCwxz7i23BB3nNEbnZXNV91Qo9eaJflPh8dO9iiHQxvfw5IgSg==}
+    requiresBuild: true
     dependencies:
       '@babel/runtime-corejs3': 7.25.0
       '@swagger-api/apidom-ast': 1.0.0-alpha.9
@@ -2569,7 +2571,7 @@ packages:
     resolution: {integrity: sha512-RZNwNclF7+MS/8bDg70amg32dyeZGZxiDuQmZxKLAlQjr3jGyLx+4Kkk58UO7D2QdgFIQCovuSuZESne6RG6XQ==}
     engines: {node: '>= 6.0.0'}
     dependencies:
-      debug: 4.3.4
+      debug: 4.3.6
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -3405,6 +3407,7 @@ packages:
         optional: true
     dependencies:
       ms: 2.1.2
+    dev: true
 
   /debug@4.3.6:
     resolution: {integrity: sha512-O/09Bd4Z1fBrU4VzkhFqVgpPzaGbw6Sm9FEkBT1A/YBXQFGuuSxa1dN2nxgxS34JmKXqYx8CZAwEVoJFImUXIg==}
@@ -3416,7 +3419,6 @@ packages:
         optional: true
     dependencies:
       ms: 2.1.2
-    dev: false
 
   /decode-named-character-reference@1.0.2:
     resolution: {integrity: sha512-O8x12RzrUF8xyVcY0KJowWsmaJxQbmy0/EtnNtHRpsOcT7dFk5W598coHqBVpmWo1oQQfsCqfCmkZN5DJrZVdg==}
@@ -4408,7 +4410,7 @@ packages:
     engines: {node: '>= 6'}
     dependencies:
       agent-base: 6.0.2
-      debug: 4.3.4
+      debug: 4.3.6
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -4420,6 +4422,12 @@ packages:
   /human-signals@5.0.0:
     resolution: {integrity: sha512-AXcZb6vzzrFAUE61HnN4mpLqd/cSIwNQjtNWR0euPm6y0iqx3G4gOXaIDdtdDwZmhwe82LA6+zinmW4UBWVePQ==}
     engines: {node: '>=16.17.0'}
+
+  /i18next@23.15.1:
+    resolution: {integrity: sha512-wB4abZ3uK7EWodYisHl/asf8UYEhrI/vj/8aoSsrj/ZDxj4/UXPOa1KvFt1Fq5hkUHquNqwFlDprmjZ8iySgYA==}
+    dependencies:
+      '@babel/runtime': 7.25.0
+    dev: false
 
   /ieee754@1.2.1:
     resolution: {integrity: sha512-dcyqhDvX1C46lXZcVqCpK+FtMRQVdIMN6/Df5js2zouUsqG7I6sFxitIC+7KYK29KdXOLHdu9zL4sFnoVQnqaA==}
@@ -5509,7 +5517,7 @@ packages:
     resolution: {integrity: sha512-o/sd0nMof8kYff+TqcDx3VSrgBTcZpSvYcAHIfHhv5VAuNmisCxjhx6YmxS8PFEpb9z5WKWKPdzf0jM23ro3RQ==}
     dependencies:
       '@types/debug': 4.1.12
-      debug: 4.3.4
+      debug: 4.3.6
       decode-named-character-reference: 1.0.2
       devlop: 1.1.0
       micromark-core-commonmark: 2.0.1
