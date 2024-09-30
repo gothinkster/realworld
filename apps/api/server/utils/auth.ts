@@ -1,9 +1,7 @@
 import jwt from "jsonwebtoken";
-import {LoginPayload} from "~/models/login-payload.model";
 
 export const useCheckAuth = (mode: 'optional' | 'required') => (event) => {
-    const {authorization} = getHeaders(event);
-    const token = authorization?.split(' ')[1];
+    const token = getCookie(event, 'auth_token');
 
     if (!token && mode === 'required') {
         throw createError({
@@ -14,7 +12,7 @@ export const useCheckAuth = (mode: 'optional' | 'required') => (event) => {
     }
 
     if (token) {
-        const verified = jwt.verify(token, process.env.JWT_SECRET) as LoginPayload;
+        const verified = jwt.verify(token, process.env.JWT_SECRET);
 
         if (!verified) {
             throw createError({
