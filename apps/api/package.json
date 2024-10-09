@@ -4,15 +4,23 @@
     "build": "nitro build",
     "dev": "nitro dev",
     "prepare": "nitro prepare",
-    "preview": "node .output/server/index.mjs"
+    "preview": "node .output/server/index.mjs",
+    "start": "node .output/server/index.mjs",
+    "db:seed": "npx prisma db seed"
+  },
+  "prisma": {
+    "seed": "npx ts-node --transpile-only ./prisma/seed.ts"
   },
   "devDependencies": {
+    "@ngneat/falso": "^5.0.0",
+    "@types": "link:@types",
+    "jsonwebtoken": "^9.0.2",
     "nitropack": "latest",
     "prisma": "^5.18.0"
   },
   "dependencies": {
     "@prisma/client": "^5.18.0",
     "bcryptjs": "^2.4.3",
-    "jsonwebtoken": "^9.0.2"
+    "slugify": "^1.6.0"
   }
 }
