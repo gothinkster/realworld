@@ -1,3 +1,3 @@
 web: cd apps/api && pnpm build && pnpm start
 
-release: npx prisma migrate deploy
+release: cd apps/api && npx prisma migrate deploy
