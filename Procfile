@@ -1,1 +1,1 @@
-web: cd apps/api && pnpm build && pnpm start
+web: cd apps/api && npx prisma generate && && pnpm build && pnpm start
