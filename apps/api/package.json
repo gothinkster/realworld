@@ -12,7 +12,7 @@
     "seed": "npx ts-node --transpile-only ./prisma/seed.ts"
   },
   "devDependencies": {
-    "@ngneat/falso": "^5.0.0",
+    "@ngneat/falso": "^7.2.0",
     "@types": "link:@types",
     "jsonwebtoken": "^9.0.2",
     "nitropack": "latest",
