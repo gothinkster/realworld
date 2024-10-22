@@ -8,9 +8,14 @@ export default defineEventHandler(async (event) => {
     const username = user.username?.trim();
     const password = user.password?.trim();
     const {image, bio, demo} = user;
+    const regex = new RegExp("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$");
 
     if (!email) {
         throw new HttpException(422, {errors: {email: ["can't be blank"]}});
+    }
+
+    if(!regex.test(email)){
+        throw new HttpException(422, {errors : {email : ["must be a valid email address"]}});
     }
 
     if (!username) {
