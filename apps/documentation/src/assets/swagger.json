@@ -5,7 +5,7 @@
     "description": "Conduit API documentation",
     "contact": {
       "name": "RealWorld",
-      "url": "https://realworld.how"
+      "url": "https://realworld-docs.netlify.app/"
     },
     "license": {
       "name": "MIT License",

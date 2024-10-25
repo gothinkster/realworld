@@ -1,8 +1,6 @@
 name: 🚀 Feature request
 description: Suggest a feature for RealWorld project
 title: '[Feature Request]:'
-assignees:
-  - geromegrignon
 body:
   - type: markdown
     attributes:

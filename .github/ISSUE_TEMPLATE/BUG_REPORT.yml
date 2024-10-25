@@ -3,8 +3,6 @@ description: Report a bug in the RealWorld project
 title: '[Bug]: '
 labels:
   - bug
-assignees:
-  - geromegrignon
 body:
   - type: dropdown
     attributes:
