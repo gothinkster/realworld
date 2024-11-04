@@ -52,11 +52,11 @@ importers:
         specifier: ^3.6.2
         version: 3.6.2(@types/react-dom@18.3.0)(@types/react@18.3.11)(react-dom@18.3.1)(react@18.3.1)(vite@5.4.8)
       '@astrojs/starlight':
-        specifier: ^0.26.1
-        version: 0.26.4(astro@4.15.12)
+        specifier: ^0.28.6
+        version: 0.28.6(astro@4.15.12)
       '@astrojs/starlight-tailwind':
         specifier: ^2.0.3
-        version: 2.0.3(@astrojs/starlight@0.26.4)(@astrojs/tailwind@5.1.1)(tailwindcss@3.4.13)
+        version: 2.0.3(@astrojs/starlight@0.28.6)(@astrojs/tailwind@5.1.1)(tailwindcss@3.4.13)
       '@astrojs/tailwind':
         specifier: ^5.1.0
         version: 5.1.1(astro@4.15.12)(tailwindcss@3.4.13)
@@ -250,22 +250,22 @@ packages:
       zod: 3.23.8
     dev: false
 
-  /@astrojs/starlight-tailwind@2.0.3(@astrojs/starlight@0.26.4)(@astrojs/tailwind@5.1.1)(tailwindcss@3.4.13):
+  /@astrojs/starlight-tailwind@2.0.3(@astrojs/starlight@0.28.6)(@astrojs/tailwind@5.1.1)(tailwindcss@3.4.13):
     resolution: {integrity: sha512-ZwbdXS/9rxYlo3tKZoTZoBPUnaaqek02b341dHwOkmMT0lIR2w+8k0mRUGxnRaYtPdMcaL+nYFd8RUa8sjdyRg==}
     peerDependencies:
       '@astrojs/starlight': '>=0.9.0'
       '@astrojs/tailwind': ^5.0.0
       tailwindcss: ^3.3.3
     dependencies:
-      '@astrojs/starlight': 0.26.4(astro@4.15.12)
+      '@astrojs/starlight': 0.28.6(astro@4.15.12)
       '@astrojs/tailwind': 5.1.1(astro@4.15.12)(tailwindcss@3.4.13)
       tailwindcss: 3.4.13
     dev: false
 
-  /@astrojs/starlight@0.26.4(astro@4.15.12):
-    resolution: {integrity: sha512-ks+GAYkYGZxuCjAJR88HFafY4/K73PtkbYniGaptmdB0yDJY/HwJ/s1vIuig3j63oq9otQfuZFByxWsb4x1urg==}
+  /@astrojs/starlight@0.28.6(astro@4.15.12):
+    resolution: {integrity: sha512-lY+rbRMIVxDGiXhS4lBuVrU2jTUezEt4QeTxUTHxfj2tuKBwquG7Jg+alON6l+uaV+anbOkFb001MMXZF8X85w==}
     peerDependencies:
-      astro: ^4.8.6
+      astro: ^4.14.0
     dependencies:
       '@astrojs/mdx': 3.1.7(astro@4.15.12)
       '@astrojs/sitemap': 3.2.0
@@ -279,6 +279,8 @@ packages:
       hast-util-select: 6.0.2
       hast-util-to-string: 3.0.1
       hastscript: 9.0.0
+      i18next: 23.16.4
+      js-yaml: 4.1.0
       mdast-util-directive: 3.0.0
       mdast-util-to-markdown: 2.1.0
       mdast-util-to-string: 4.0.0
@@ -1990,6 +1992,7 @@ packages:
 
   /@swagger-api/apidom-ns-json-schema-draft-4@1.0.0-alpha.9:
     resolution: {integrity: sha512-OfX4UBb08C0xD5+F80dQAM2yt5lXxcURWkVEeCwxz7i23BB3nNEbnZXNV91Qo9eaJflPh8dO9iiHQxvfw5IgSg==}
+    requiresBuild: true
     dependencies:
       '@babel/runtime-corejs3': 7.25.7
       '@swagger-api/apidom-ast': 1.0.0-alpha.9
@@ -2425,7 +2428,6 @@ packages:
     resolution: {integrity: sha512-jML7s2NAzMWc//QSJ1a3prpk78cOPchGvXJsC3C6R6PSMoooztvRVQEz89gmBTBY1SPMaqo5teB4uNHPdetShQ==}
     dependencies:
       undici-types: 6.19.8
-    dev: true
 
   /@types/prop-types@15.7.13:
     resolution: {integrity: sha512-hCZTSvwbzWGvhqxp/RqVqwU999pBf2vp7hzIjiYOsl8wqOmUxkQ6ddw1cV3l8811+kdUFus/q4d1Y3E3SyEifA==}
@@ -2457,7 +2459,7 @@ packages:
   /@types/sax@1.2.7:
     resolution: {integrity: sha512-rO73L89PJxeYM3s3pPPjiPgVVcymqU490g0YO5n5By0k2Erzj6tay/4lr1CHAAU4JyOWd1rpQ8bCf6cZfHU96A==}
     dependencies:
-      '@types/node': 17.0.45
+      '@types/node': 22.7.5
     dev: false
 
   /@types/unist@2.0.11:
@@ -4466,6 +4468,12 @@ packages:
     resolution: {integrity: sha512-AXcZb6vzzrFAUE61HnN4mpLqd/cSIwNQjtNWR0euPm6y0iqx3G4gOXaIDdtdDwZmhwe82LA6+zinmW4UBWVePQ==}
     engines: {node: '>=16.17.0'}
     dev: true
+
+  /i18next@23.16.4:
+    resolution: {integrity: sha512-9NIYBVy9cs4wIqzurf7nLXPyf3R78xYbxExVqHLK9od3038rjpyOEzW+XB130kZ1N4PZ9inTtJ471CRJ4Ituyg==}
+    dependencies:
+      '@babel/runtime': 7.25.7
+    dev: false
 
   /ieee754@1.2.1:
     resolution: {integrity: sha512-dcyqhDvX1C46lXZcVqCpK+FtMRQVdIMN6/Df5js2zouUsqG7I6sFxitIC+7KYK29KdXOLHdu9zL4sFnoVQnqaA==}
@@ -7832,7 +7840,6 @@ packages:
 
   /undici-types@6.19.8:
     resolution: {integrity: sha512-ve2KP6f/JnbPBFyobGHuerC9g1FYGn/F8n1LWTwNxCEzd6IfqTwUQcNXgEtmmQ6DlRrC1hrSrBnCZPokRrDHjw==}
-    dev: true
 
   /undici@5.28.4:
     resolution: {integrity: sha512-72RFADWFqKmUb2hmmvNODKL3p9hcB6Gt2DOQMis1SEBaV6a4MH8soBvzg+95CYhCKPFedut2JY9bMfrDl9D23g==}
