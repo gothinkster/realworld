@@ -11,11 +11,17 @@ info:
   version: 1.0.0
 tags:
   - name: Articles
+    description: Articles
   - name: Comments
+    description: Comments on articles
   - name: Favorites
+    description: Favorite articles
   - name: Profile
+    description: Settings page
   - name: Tags
+    description: Group tags
   - name: User and Authentication
+    description: Authentication
 servers:
   - url: https://api.realworld.io/api
 paths:
@@ -36,10 +42,13 @@ paths:
         '422':
           $ref: '#/components/responses/GenericError'
       x-codegen-request-body-name: body
+      security:
+        - Token: [ ]
   /users:
     post:
       tags:
         - User and Authentication
+      summary: Register
       description: Register a new user
       operationId: CreateUser
       requestBody:
@@ -50,6 +59,8 @@ paths:
         '422':
           $ref: '#/components/responses/GenericError'
       x-codegen-request-body-name: body
+      security:
+        - Token: [ ]
   /user:
     get:
       tags:
@@ -81,9 +92,9 @@ paths:
           $ref: '#/components/responses/Unauthorized'
         '422':
           $ref: '#/components/responses/GenericError'
+      x-codegen-request-body-name: body
       security:
         - Token: [ ]
-      x-codegen-request-body-name: body
   /profiles/{username}:
     get:
       tags:
@@ -105,6 +116,8 @@ paths:
           $ref: '#/components/responses/Unauthorized'
         '422':
           $ref: '#/components/responses/GenericError'
+      security:
+        - Token: [ ]
   /profiles/{username}/follow:
     post:
       tags:
@@ -203,6 +216,8 @@ paths:
           $ref: '#/components/responses/Unauthorized'
         '422':
           $ref: '#/components/responses/GenericError'
+      security:
+        - Token: [ ]
     post:
       tags:
         - Articles
@@ -218,9 +233,9 @@ paths:
           $ref: '#/components/responses/Unauthorized'
         '422':
           $ref: '#/components/responses/GenericError'
+      x-codegen-request-body-name: article
       security:
         - Token: [ ]
-      x-codegen-request-body-name: article
   /articles/{slug}:
     get:
       tags:
@@ -240,6 +255,8 @@ paths:
           $ref: '#/components/responses/SingleArticleResponse'
         '422':
           $ref: '#/components/responses/GenericError'
+      security:
+        - Token: [ ]
     put:
       tags:
         - Articles
@@ -262,9 +279,9 @@ paths:
           $ref: '#/components/responses/Unauthorized'
         '422':
           $ref: '#/components/responses/GenericError'
+      x-codegen-request-body-name: article
       security:
         - Token: [ ]
-      x-codegen-request-body-name: article
     delete:
       tags:
         - Articles
@@ -308,6 +325,8 @@ paths:
           $ref: '#/components/responses/Unauthorized'
         '422':
           $ref: '#/components/responses/GenericError'
+      security:
+        - Token: [ ]
     post:
       tags:
         - Comments
@@ -330,9 +349,9 @@ paths:
           $ref: '#/components/responses/Unauthorized'
         '422':
           $ref: '#/components/responses/GenericError'
+      x-codegen-request-body-name: comment
       security:
         - Token: [ ]
-      x-codegen-request-body-name: comment
   /articles/{slug}/comments/{id}:
     delete:
       tags:
@@ -419,6 +438,8 @@ paths:
           $ref: '#/components/responses/TagsResponse'
         '422':
           $ref: '#/components/responses/GenericError'
+      security:
+        - Token: [ ]
 components:
   schemas:
     LoginUser:
