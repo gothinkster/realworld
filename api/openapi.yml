@@ -666,6 +666,7 @@ components:
                     - author
                     - createdAt
                     - description
+                    - body
                     - favorited
                     - favoritesCount
                     - slug
@@ -679,6 +680,8 @@ components:
                     title:
                       type: string
                     description:
+                      type: string
+                    body:
                       type: string
                     tagList:
                       type: array
