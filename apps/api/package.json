@@ -16,7 +16,7 @@
     "@types": "link:@types",
     "jsonwebtoken": "^9.0.2",
     "nitropack": "latest",
-    "prisma": "^5.18.0"
+    "prisma": "^6.0.1"
   },
   "dependencies": {
     "@prisma/client": "^5.18.0",
