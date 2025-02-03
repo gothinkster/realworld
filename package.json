@@ -1,15 +1,19 @@
 {
   "name": "realworld",
-  "version": "1.0.0",
-  "description": "Fullstack example codebases for React, Angular, Node, Django, Rails & more",
-  "main": "index.js",
-  "scripts": {
-    "test": "true"
+  "author": {
+    "name": "Thinkster"
   },
+  "version": "1.2.0",
+  "license": "MIT",
+  "description": "Fullstack example codebases for React, Angular, Node, Django, Rails & more",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/gothinkster/realworld.git"
   },
+  "bugs": {
+    "url": "https://github.com/gothinkster/realworld/issues"
+  },
+  "homepage": "https://github.com/gothinkster/realworld#readme",
   "keywords": [
     "react",
     "angular",
@@ -17,15 +21,18 @@
     "examples",
     "node"
   ],
-  "author": "Thinkster",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/gothinkster/realworld/issues"
+  "scripts": {
+    "build": "turbo build",
+    "dev": "turbo dev",
+    "lint": "turbo lint",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
-  "homepage": "https://github.com/gothinkster/realworld#readme",
   "devDependencies": {
-    "axios": "^0.18.0",
-    "js-yaml": "^3.11.0",
-    "newman": "^3.5.2"
+    "prettier": "^3.2.5",
+    "turbo": "latest"
+  },
+  "packageManager": "pnpm@8.9.0",
+  "engines": {
+    "node": ">=18"
   }
 }
