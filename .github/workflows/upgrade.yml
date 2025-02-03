@@ -1,0 +1,42 @@
+name: Monthly Yarn Upgrade
+
+on:
+  schedule:
+    - cron: "*/30 * * * 1"  # Runs every 30 minutes, but only on Mondays
+
+jobs:
+  upgrade-dependencies:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "16" # or your project version
+
+      - name: Upgrade dependencies
+        run: yarn upgrade --latest
+
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git checkout -b chore/monthly-yarn-upgrade
+          git add .
+          git commit -m "chore: monthly yarn upgrade"
+
+      - name: Push changes
+        run: |
+          git push --set-upstream origin chore/monthly-yarn-upgrade
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: chore/monthly-yarn-upgrade
+          title: "chore: Monthly Yarn Upgrade"
+          body: 'This pull request upgrades project dependencies using `yarn upgrade`.'
+          labels: ["dependencies", "automated PR"]
