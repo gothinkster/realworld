@@ -28,8 +28,8 @@ importers:
         version: 1.6.6
     devDependencies:
       '@ngneat/falso':
-        specifier: ^5.0.0
-        version: 5.7.0
+        specifier: ^7.2.0
+        version: 7.2.0
       '@types':
         specifier: link:@types
         version: link:@types
@@ -1376,8 +1376,8 @@ packages:
       urlpattern-polyfill: 8.0.2
     dev: true
 
-  /@ngneat/falso@5.7.0:
-    resolution: {integrity: sha512-VbV0dcVJ5ABFEByeGiuf5obcQAI6z9mcyaeS7wlozZQ/3QCybP0Mr/FqFnki/0/FyYIGSeFTxzH4cAH0VWQgvg==}
+  /@ngneat/falso@7.2.0:
+    resolution: {integrity: sha512-283EXBFd05kCbGuGSXgmvhCsQYEYzvD/eJaE7lxd05qRB0tgREvZX7TRlJ1KSp8nHxoK6Ws029G1Y30mt4IVAA==}
     dependencies:
       seedrandom: 3.0.5
       uuid: 8.3.2
@@ -1990,6 +1990,7 @@ packages:
 
   /@swagger-api/apidom-ns-json-schema-draft-4@1.0.0-alpha.9:
     resolution: {integrity: sha512-OfX4UBb08C0xD5+F80dQAM2yt5lXxcURWkVEeCwxz7i23BB3nNEbnZXNV91Qo9eaJflPh8dO9iiHQxvfw5IgSg==}
+    requiresBuild: true
     dependencies:
       '@babel/runtime-corejs3': 7.25.7
       '@swagger-api/apidom-ast': 1.0.0-alpha.9
