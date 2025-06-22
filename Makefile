@@ -5,4 +5,5 @@ run-dummy:
 	python realworld_dummy_server.py
 
 dummy-test:
-	cd e2e-testing/postman/; APIURL=http://localhost:8000 ./run-api-tests.sh
+	DELAY_REQUEST=3 APIURL=http://localhost:8000 ./api/run-api-tests.sh || \
+	echo '\n\033[0;31m    ENSURE DEMO SERVER IS RUNNING WITH \033[0m`make run-dummy`\n'
