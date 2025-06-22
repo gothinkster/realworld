@@ -14,6 +14,11 @@ Demo backend for testing/development that manages all data in memory.
 - **In-memory storage**: Data persists only during server runtime
   - TODO Save temporary data during graceful shutdown
 - **Per-browser isolation**: Use an additional undocumented cookie to separate data between different browsers
+  - TODO Actually implement next line
+  - As the Origin header is included for POST requests regardless of origin, use it against CSRF for the
+    - regitration: POST on /users
+    - login: POST on /users/login
+  - Any other route is safe against CSRF as we are using Token in headers and not a cookie
 - **Zero dependencies**: Python standard library only
 - **Single file**: Entire server implementation in one module
 
