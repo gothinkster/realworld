@@ -1,10 +1,32 @@
 #!/usr/bin/env python3
 """
-RealWorld API Implementation - Single File Server
-THIS IS PROBABLY NOT THE PROJECT YOU ARE LOOKING FOR
-This is opposite of the whole Django Ninja project: this is a 1 file in-memory no framework version
-No external dependencies beyond Python standard library
-Vibe coded with Claude Code, could be used as a demo backend in the long term
+RealWorld API Implementation - Single File Demo Server
+
+⚠️  THIS IS PROBABLY NOT THE PROJECT YOU ARE LOOKING FOR ⚠️
+
+This is the opposite of what you'd expect in a real-world project: a single-file,
+in-memory, framework-free implementation of the RealWorld API specification.
+
+## Purpose
+Demo backend for testing/development that manages all data in memory.
+
+## Key Design Decisions
+- **In-memory storage**: Data persists only during server runtime
+  - TODO Save temporary data during graceful shutdown
+- **Per-browser isolation**: Use an additional undocumented cookie to separate data between different browsers
+- **Zero dependencies**: Python standard library only
+- **Single file**: Entire server implementation in one module
+
+## Rate Limiting
+- Applied per browser session (not per RealWorld user account)
+- Implemented via cookie-based session tracking
+
+## Development Notes
+- Vibe coded with Claude Code
+- Tested against the regular test suites
+- Usable as a demo backend, if risking to lose data is an acceptable tradeoff
+
+⚠️  DO NOT BASE NON-DEMO PROJECTS ON THIS SPECIFIC IMPLEMENTATION ⚠️
 """
 
 import hashlib
