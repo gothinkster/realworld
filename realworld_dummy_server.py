@@ -14,7 +14,6 @@ Demo backend for testing/development that manages all data in memory.
 - **In-memory storage**: Data persists only during server runtime
   - TODO Save temporary data during graceful shutdown
 - **Per-browser isolation**: Use an additional undocumented cookie to separate data between different browsers
-  - TODO Actually implement next line
   - As the Origin header is included for POST requests regardless of origin, use it against CSRF for the
     - regitration: POST on /users
     - login: POST on /users/login
@@ -48,6 +47,10 @@ from urllib.parse import parse_qs, urlparse
 
 
 DISABLE_ISOLATION_MODE = getenv("DISABLE_ISOLATION_MODE", "FALSE").lower() == "true"
+BYPASS_ORIGIN_CHECK = getenv("BYPASS_ORIGIN_CHECK", "FALSE").lower() == "true"
+ALLOWED_ORIGINS = getenv("ALLOWED_ORIGINS", "").split(";")
+if ALLOWED_ORIGINS == [""] and not BYPASS_ORIGIN_CHECK:
+    raise ValueError("ALLOWED_ORIGINS varenv should be set if BYPASS_ORIGIN_CHECK isn't")
 
 
 class InMemoryStorage:
@@ -254,8 +257,12 @@ class RealWorldHandler(BaseHTTPRequestHandler):
 
         # Route to handlers
         if method == "POST" and path == "/users":
+            if not self._check_csrf_protection():
+                return self._send_error(403, {"errors": {"body": ["Origin header required for CSRF protection"]}})
             self._handle_register(storage)
         elif method == "POST" and path == "/users/login":
+            if not self._check_csrf_protection():
+                return self._send_error(403, {"errors": {"body": ["Origin header required for CSRF protection"]}})
             self._handle_login(storage)
         elif method == "GET" and path == "/user":
             self._handle_get_current_user(storage, current_user_id)
@@ -335,6 +342,10 @@ class RealWorldHandler(BaseHTTPRequestHandler):
     def _send_error(self, status_code: int, error_data: Dict):
         """Send error response"""
         self._send_response(status_code, error_data)
+
+    def _check_csrf_protection(self) -> bool:
+        """Check CSRF protection using Origin header for POST requests"""
+        return BYPASS_ORIGIN_CHECK or (self.headers.get("Origin") in ALLOWED_ORIGINS)
 
     def _require_auth(self, current_user_id: Optional[int]) -> int:
         """Require authentication, return user_id or raise error"""

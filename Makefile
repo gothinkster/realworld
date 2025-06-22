@@ -5,7 +5,7 @@ run-dummy-for-prod:
 	python realworld_dummy_server.py
 
 run-dummy-for-postman-test:
-	DISABLE_ISOLATION_MODE=True python realworld_dummy_server.py
+	BYPASS_ORIGIN_CHECK=True DISABLE_ISOLATION_MODE=True python realworld_dummy_server.py
 
 test-dummy-api-with-postman:
 	DELAY_REQUEST=3 APIURL=http://localhost:8000 ./api/run-api-tests.sh || \
