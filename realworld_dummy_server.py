@@ -38,6 +38,7 @@ import hashlib
 import json
 import re
 import time
+import uuid
 from collections import defaultdict
 from datetime import datetime, timezone
 from http.server import BaseHTTPRequestHandler, HTTPServer
@@ -301,13 +302,22 @@ class RealWorldHandler(BaseHTTPRequestHandler):
         body = self.rfile.read(content_length).decode("utf-8")
         return json.loads(body) if body else {}
 
-    def _send_response(self, status_code: int, data: Dict):
+    def _has_demo_session_cookie(self) -> bool:
+        """Check if UNDOCUMENTED_DEMO_SESSION cookie exists"""
+        cookie_header = self.headers.get("Cookie", "")
+        return "UNDOCUMENTED_DEMO_SESSION=" in cookie_header  # Dirty but good enough
+
+    def _send_response(self, status_code: int, data: Dict, demo_session_id: Optional[uuid.UUID] = None):
         """Send JSON response"""
         self.send_response(status_code)
         self.send_header("Content-Type", "application/json")
         self.send_header("Access-Control-Allow-Origin", "*")
         self.send_header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
         self.send_header("Access-Control-Allow-Headers", "Content-Type, Authorization")
+
+        if demo_session_id:
+            self.send_header("Set-Cookie", f"UNDOCUMENTED_DEMO_SESSION={demo_session_id}; Path=/")
+
         self.end_headers()
 
         response_body = json.dumps(data, indent=2)
@@ -363,7 +373,8 @@ class RealWorldHandler(BaseHTTPRequestHandler):
         storage.follows[user_id] = set()
         storage.favorites[user_id] = set()
 
-        self._send_response(201, {"user": create_user_response(user)})
+        demo_session_id = None if self._has_demo_session_cookie() else uuid.uuid4()
+        self._send_response(201, {"user": create_user_response(user)}, demo_session_id)
 
     def _handle_login(self, storage: InMemoryStorage):
         """POST /users/login - Login user"""
@@ -386,7 +397,8 @@ class RealWorldHandler(BaseHTTPRequestHandler):
         token = generate_token(user["id"])
         user["token"] = token
 
-        self._send_response(200, {"user": create_user_response(user)})
+        demo_session_id = None if self._has_demo_session_cookie() else uuid.uuid4()
+        self._send_response(200, {"user": create_user_response(user)}, demo_session_id)
 
     def _handle_get_current_user(self, storage: InMemoryStorage, current_user_id: Optional[int]):
         """GET /user - Get current user"""
