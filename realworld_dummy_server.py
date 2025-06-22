@@ -42,8 +42,12 @@ import uuid
 from collections import defaultdict
 from datetime import datetime, timezone
 from http.server import BaseHTTPRequestHandler, HTTPServer
+from os import getenv
 from typing import Dict, Optional
 from urllib.parse import parse_qs, urlparse
+
+
+DISABLE_ISOLATION_MODE = getenv("DISABLE_ISOLATION_MODE", "FALSE").lower() == "true"
 
 
 class InMemoryStorage:
@@ -234,7 +238,8 @@ class RealWorldHandler(BaseHTTPRequestHandler):
 
     def _handle_request(self, method: str):
         """Route request to appropriate handler"""
-        storage = StorageContainer.get_storage(self.request.getpeername()[0])  # ip address of client
+        ip_address = self.request.getpeername()[0]  # TODO Use for rate limit
+        storage = StorageContainer.get_storage(None if DISABLE_ISOLATION_MODE else self._get_demo_session_cookie())
         parsed = urlparse(self.path)
         path = parsed.path
         query_params = parse_qs(parsed.query)
@@ -302,10 +307,17 @@ class RealWorldHandler(BaseHTTPRequestHandler):
         body = self.rfile.read(content_length).decode("utf-8")
         return json.loads(body) if body else {}
 
-    def _has_demo_session_cookie(self) -> bool:
-        """Check if UNDOCUMENTED_DEMO_SESSION cookie exists"""
+    def _get_demo_session_cookie(self) -> Optional[str]:
+        """Get UNDOCUMENTED_DEMO_SESSION cookie value"""
         cookie_header = self.headers.get("Cookie", "")
-        return "UNDOCUMENTED_DEMO_SESSION=" in cookie_header  # Dirty but good enough
+        if "UNDOCUMENTED_DEMO_SESSION=" not in cookie_header:
+            return None
+        # Extract cookie value (simple parsing)
+        for cookie in cookie_header.split(";"):
+            cookie = cookie.strip()
+            if cookie.startswith("UNDOCUMENTED_DEMO_SESSION="):
+                return cookie.split("=", 1)[1]
+        return None
 
     def _send_response(self, status_code: int, data: Dict, demo_session_id: Optional[uuid.UUID] = None):
         """Send JSON response"""
@@ -314,12 +326,9 @@ class RealWorldHandler(BaseHTTPRequestHandler):
         self.send_header("Access-Control-Allow-Origin", "*")
         self.send_header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
         self.send_header("Access-Control-Allow-Headers", "Content-Type, Authorization")
-
         if demo_session_id:
             self.send_header("Set-Cookie", f"UNDOCUMENTED_DEMO_SESSION={demo_session_id}; Path=/")
-
         self.end_headers()
-
         response_body = json.dumps(data, indent=2)
         self.wfile.write(response_body.encode("utf-8"))
 
@@ -373,7 +382,7 @@ class RealWorldHandler(BaseHTTPRequestHandler):
         storage.follows[user_id] = set()
         storage.favorites[user_id] = set()
 
-        demo_session_id = None if self._has_demo_session_cookie() else uuid.uuid4()
+        demo_session_id = None if self._get_demo_session_cookie() else uuid.uuid4()
         self._send_response(201, {"user": create_user_response(user)}, demo_session_id)
 
     def _handle_login(self, storage: InMemoryStorage):
@@ -397,7 +406,7 @@ class RealWorldHandler(BaseHTTPRequestHandler):
         token = generate_token(user["id"])
         user["token"] = token
 
-        demo_session_id = None if self._has_demo_session_cookie() else uuid.uuid4()
+        demo_session_id = None if self._get_demo_session_cookie() else uuid.uuid4()
         self._send_response(200, {"user": create_user_response(user)}, demo_session_id)
 
     def _handle_get_current_user(self, storage: InMemoryStorage, current_user_id: Optional[int]):
