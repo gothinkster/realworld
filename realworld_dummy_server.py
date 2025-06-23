@@ -2,7 +2,7 @@
 """
 RealWorld API Implementation - Single File Demo Server
 
-⚠️  THIS IS PROBABLY NOT THE PROJECT YOU ARE LOOKING FOR ⚠️
+⚠️  THIS IS PROBABLY NOT THE PROJECT YOU ARE LOOKING FOR  ⚠️
 
 This is the opposite of what you'd expect in a real-world project: a single-file,
 in-memory, framework-free implementation of the RealWorld API specification.
@@ -13,7 +13,7 @@ Demo backend for testing/development that manages all data in memory.
 ## Key Design Decisions
 - **In-memory storage**: Data persists only during server runtime
   - TODO Save temporary data during graceful shutdown
-- **Per-browser isolation**: Use an additional undocumented cookie to separate data between different browsers
+- **Per-browser isolation**: Uses an additional undocumented cookie to separate data between different browsers
   - As the Origin header is included for POST requests regardless of origin, use it against CSRF for the
     - regitration: POST on /users
     - login: POST on /users/login
@@ -30,7 +30,7 @@ Demo backend for testing/development that manages all data in memory.
 - Tested against the regular test suites
 - Usable as a demo backend, if risking to lose data is an acceptable tradeoff
 
-⚠️  DO NOT BASE NON-DEMO PROJECTS ON THIS SPECIFIC IMPLEMENTATION ⚠️
+⚠️  DO NOT BASE NON-DEMO PROJECTS ON THIS SPECIFIC IMPLEMENTATION  ⚠️
 """
 
 import hashlib
