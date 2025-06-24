@@ -1089,3 +1089,246 @@ class TestStorageContainer(TestCase):
         # Verify internal indices updated
         self.assertEqual(self.container.heap[orig_item2_pos][3], orig_item2_pos)
         self.assertEqual(self.container.heap[orig_item1_pos][3], orig_item1_pos)
+
+    def test_heap_with_duplicate_priorities(self):
+        # Test heap behavior with duplicate priorities
+        self.container._push(5, "item1", "data1")
+        self.container._push(5, "item2", "data2")
+        self.container._push(5, "item3", "data3")
+        self.container._push(3, "item4", "data4")
+        self.container._push(5, "item5", "data5")
+        # Root should be minimum priority
+        self.assertEqual(self.container.heap[0][0], 3)
+        self.assertEqual(self.container.heap[0][1], "item4")
+        # Verify heap property with duplicates
+        self._verify_heap_property()
+        self._verify_index_consistency()
+        # Pop minimum and verify heap still valid
+        result = self.container._pop()
+        self.assertEqual(result[0], 3)
+        self._verify_heap_property()
+        self._verify_index_consistency()
+
+    def test_update_priority_to_same_value(self):
+        # Test updating priority to the same value (should be no-op)
+        self.container._push(10, "item1", "data1")
+        self.container._push(5, "item2", "data2")
+        original_heap = [item[:] for item in self.container.heap]  # Deep copy
+        original_index_map = self.container.index_map.copy()
+        self.container._update_priority("item1", 10)  # Same priority
+        # Heap should be unchanged
+        self.assertEqual(len(self.container.heap), len(original_heap))
+        self.assertEqual(self.container.index_map, original_index_map)
+        self._verify_heap_property()
+        self._verify_index_consistency()
+
+    def test_pop_all_items_sequential(self):
+        # Test popping all items from heap
+        priorities = [15, 3, 8, 1, 12, 6, 20, 4]
+        items = []
+        for i, priority in enumerate(priorities):
+            item_id = f"item{i}"
+            self.container._push(priority, item_id, f"data{i}")
+            items.append((priority, item_id))
+        # Pop all items and verify they come out in sorted order
+        popped_priorities = []
+        while len(self.container.heap) > 0:
+            self._verify_heap_property()
+            self._verify_index_consistency()
+            result = self.container._pop()
+            popped_priorities.append(result[0])
+        # Should be in ascending order
+        self.assertEqual(popped_priorities, sorted([p for p, _ in items]))
+        self.assertEqual(len(self.container.heap), 0)
+        self.assertEqual(len(self.container.index_map), 0)
+
+    def test_mixed_operations_consistency(self):
+        # Test mix of push, pop, and update operations
+        self.container._push(10, "a", "data_a")
+        self.container._push(5, "b", "data_b")
+        self.container._push(15, "c", "data_c")
+        self._verify_heap_property()
+        self._verify_index_consistency()
+        # Update priority
+        self.container._update_priority("c", 1)
+        self._verify_heap_property()
+        self._verify_index_consistency()
+        self.assertEqual(self.container.heap[0][1], "c")  # Should be new root
+        # Pop minimum
+        result = self.container._pop()
+        self.assertEqual(result[1], "c")
+        self._verify_heap_property()
+        self._verify_index_consistency()
+        # Add more items
+        self.container._push(3, "d", "data_d")
+        self.container._push(8, "e", "data_e")
+        self._verify_heap_property()
+        self._verify_index_consistency()
+        # Update existing item
+        self.container._update_priority("b", 20)
+        self._verify_heap_property()
+        self._verify_index_consistency()
+
+    def test_empty_heap_edge_cases(self):
+        # Test operations on empty heap
+        self.assertEqual(len(self.container.heap), 0)
+        self.assertEqual(len(self.container.index_map), 0)
+        # Pop from empty heap
+        result = self.container._pop()
+        self.assertIsNone(result)
+        # Update non-existent item
+        with self.assertRaises(ValueError):
+            self.container._update_priority("nonexistent", 10)
+
+    def test_large_heap_operations(self):
+        # Stress test with many items
+        import random
+        random.seed(42)  # For reproducible tests
+        items = []
+        num_items = 100
+        # Push many items
+        for i in range(num_items):
+            priority = random.randint(1, 1000)
+            item_id = f"item_{i}"
+            self.container._push(priority, item_id, f"data_{i}")
+            items.append((priority, item_id))
+            # Verify heap property periodically
+            if i % 20 == 0:
+                self._verify_heap_property()
+                self._verify_index_consistency()
+        # Final verification
+        self._verify_heap_property()
+        self._verify_index_consistency()
+        self.assertEqual(len(self.container.heap), num_items)
+        self.assertEqual(len(self.container.index_map), num_items)
+        # Update random items
+        for _ in range(20):
+            item_idx = random.randint(0, num_items - 1)
+            item_id = f"item_{item_idx}"
+            new_priority = random.randint(1, 1000)
+            self.container._update_priority(item_id, new_priority)
+            self._verify_heap_property()
+            self._verify_index_consistency()
+
+    def test_boundary_priorities(self):
+        # Test with extreme priority values
+        import sys
+        # Test with very large and small numbers
+        self.container._push(sys.maxsize, "max_item", "max_data")
+        self.container._push(-sys.maxsize, "min_item", "min_data")
+        self.container._push(0, "zero_item", "zero_data")
+        self._verify_heap_property()
+        self._verify_index_consistency()
+        # Min should be at root
+        self.assertEqual(self.container.heap[0][0], -sys.maxsize)
+        self.assertEqual(self.container.heap[0][1], "min_item")
+        # Pop and verify order
+        result1 = self.container._pop()
+        self.assertEqual(result1[0], -sys.maxsize)
+        result2 = self.container._pop()
+        self.assertEqual(result2[0], 0)
+        result3 = self.container._pop()
+        self.assertEqual(result3[0], sys.maxsize)
+
+    def test_special_character_item_ids(self):
+        # Test with various item ID formats
+        special_ids = [
+            "item-with-dashes",
+            "item_with_underscores",
+            "item.with.dots",
+            "item with spaces",
+            "item@with#symbols",
+            "123numeric_start",
+            "",  # empty string
+            "🎯emoji_id",
+            "very_long_" + "x" * 100 + "_id"
+        ]
+        for i, item_id in enumerate(special_ids):
+            self.container._push(i + 1, item_id, f"data_{i}")
+        self._verify_heap_property()
+        self._verify_index_consistency()
+        # Update some items
+        self.container._update_priority("item-with-dashes", 50)
+        self.container._update_priority("🎯emoji_id", 0)
+        self._verify_heap_property()
+        self._verify_index_consistency()
+
+    def test_heap_after_multiple_updates(self):
+        # Test heap consistency after many priority updates
+        items = ["a", "b", "c", "d", "e", "f"]
+        priorities = [10, 20, 30, 40, 50, 60]
+        for item_id, priority in zip(items, priorities):
+            self.container._push(priority, item_id, f"data_{item_id}")
+        # Perform multiple updates that should change heap structure
+        updates = [
+            ("f", 1),   # Move last to first
+            ("a", 100), # Move first to last
+            ("c", 15),  # Minor adjustment
+            ("e", 5),   # Move middle to near front
+        ]
+        for item_id, new_priority in updates:
+            self.container._update_priority(item_id, new_priority)
+            self._verify_heap_property()
+            self._verify_index_consistency()
+        # Verify final order by popping all
+        popped_items = []
+        while self.container.heap:
+            result = self.container._pop()
+            popped_items.append((result[0], result[1]))
+            self._verify_heap_property()
+            self._verify_index_consistency()
+        # Should be in priority order
+        popped_priorities = [priority for priority, _ in popped_items]
+        self.assertEqual(popped_priorities, sorted(popped_priorities))
+
+    def test_sift_operations_edge_cases(self):
+        # Test sift operations at heap boundaries
+        # Single item - sift operations should be no-ops
+        self.container._push(5, "single", "data")
+        original_heap = [item[:] for item in self.container.heap]
+        self.container._sift_up(0)
+        self.container._sift_down(0)
+        self.assertEqual(self.container.heap, original_heap)
+        # Two items
+        self.container._push(10, "second", "data2")
+        self._verify_heap_property()
+        # Manually test sift operations
+        if self.container.heap[1][0] < self.container.heap[0][0]:
+            self.container._swap(0, 1)
+        self._verify_heap_property()
+        self._verify_index_consistency()
+
+    def _verify_heap_property(self):
+        # Helper to verify min-heap property
+        for i in range(len(self.container.heap)):
+            left_child = 2 * i + 1
+            right_child = 2 * i + 2
+            if left_child < len(self.container.heap):
+                self.assertLessEqual(
+                    self.container.heap[i][0],
+                    self.container.heap[left_child][0],
+                    f"Heap property violated at index {i} and left child {left_child}"
+                )
+            if right_child < len(self.container.heap):
+                self.assertLessEqual(
+                    self.container.heap[i][0],
+                    self.container.heap[right_child][0],
+                    f"Heap property violated at index {i} and right child {right_child}"
+                )
+
+    def _verify_index_consistency(self):
+        # Helper to verify index_map consistency with heap
+        self.assertEqual(len(self.container.index_map), len(self.container.heap))
+        for item_id, index in self.container.index_map.items():
+            # Index should be valid
+            self.assertGreaterEqual(index, 0)
+            self.assertLess(index, len(self.container.heap))
+            # Heap item at index should match
+            heap_item = self.container.heap[index]
+            self.assertEqual(heap_item[1], item_id, f"Index map inconsistency for {item_id}")
+            self.assertEqual(heap_item[3], index, f"Internal index inconsistency for {item_id}")
+        # Every heap item should be in index_map
+        for i, heap_item in enumerate(self.container.heap):
+            item_id = heap_item[1]
+            self.assertIn(item_id, self.container.index_map)
+            self.assertEqual(self.container.index_map[item_id], i)
