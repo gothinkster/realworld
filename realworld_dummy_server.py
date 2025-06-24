@@ -55,6 +55,22 @@ if ALLOWED_ORIGINS == [""] and not BYPASS_ORIGIN_CHECK:
     raise ValueError("ALLOWED_ORIGINS varenv should be set if BYPASS_ORIGIN_CHECK isn't")
 
 
+class InMemoryStorage:
+    """In-memory storage for all data"""
+
+    def __init__(self):
+        self.users: Dict[int, Dict] = {}
+        self.articles: Dict[int, Dict] = {}
+        self.comments: Dict[int, Dict] = {}
+        self.tags: set = set()
+        self.follows: Dict[int, set] = {}  # user_id -> set of followed user_ids
+        self.favorites: Dict[int, set] = {}  # user_id -> set of favorited article_ids
+        # Counters for auto-incrementing IDs
+        self.user_id_counter = 1
+        self.article_id_counter = 1
+        self.comment_id_counter = 1
+
+
 class _StorageContainer:
     """Remove storage for the least used session once MAX_SESSION is reached"""  # TODO
 
@@ -147,22 +163,6 @@ class _StorageContainer:
 
 
 storage_container = _StorageContainer()
-
-
-class InMemoryStorage:
-    """In-memory storage for all data"""
-
-    def __init__(self):
-        self.users: Dict[int, Dict] = {}
-        self.articles: Dict[int, Dict] = {}
-        self.comments: Dict[int, Dict] = {}
-        self.tags: set = set()
-        self.follows: Dict[int, set] = {}  # user_id -> set of followed user_ids
-        self.favorites: Dict[int, set] = {}  # user_id -> set of favorited article_ids
-        # Counters for auto-incrementing IDs
-        self.user_id_counter = 1
-        self.article_id_counter = 1
-        self.comment_id_counter = 1
 
 
 def generate_slug(title: str) -> str:
