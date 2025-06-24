@@ -1020,7 +1020,7 @@ class TestStorageContainer(TestCase):
         self.assertIs(storage1, storage2)
         self.assertIs(storage1, container.storage_containers[None])
 
-    def test_get_storage_with_isolation_enabled(self):  # TODO Fix
+    def test_get_storage_with_isolation_enabled_2_different(self):
         container = _StorageContainer(disable_isolation_mode=False)
         storage1 = container.get_storage("session1")
         storage2 = container.get_storage("session2")
@@ -1028,6 +1028,14 @@ class TestStorageContainer(TestCase):
         self.assertIsNot(storage1, storage2)
         self.assertIs(storage1, container.storage_containers["session1"])
         self.assertIs(storage2, container.storage_containers["session2"])
+
+    def test_get_storage_with_isolation_enabled_2_same(self):
+        container = _StorageContainer(disable_isolation_mode=False)
+        storage1 = container.get_storage("session1")
+        container.get_storage("something-else")  # Call to other session in between
+        storage1_bis = container.get_storage("session1")
+        # Storage containers from the same id should get the same storage
+        self.assertIst(storage1, storage1_bis)
 
     def test_get_storage_with_empty_identifier(self):
         container = _StorageContainer(disable_isolation_mode=False)
