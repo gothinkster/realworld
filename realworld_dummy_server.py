@@ -45,6 +45,7 @@ from http.server import BaseHTTPRequestHandler, HTTPServer
 from os import getenv
 from time import time_ns
 from typing import Dict, Optional
+from unittest import TestCase
 from urllib.parse import parse_qs, urlparse
 
 
@@ -74,7 +75,8 @@ class InMemoryStorage:
 class _StorageContainer:
     """Remove storage for the least used session once MAX_SESSION is reached"""  # TODO
 
-    def __init__(self):
+    def __init__(self, disable_isolation_mode=DISABLE_ISOLATION_MODE):
+        self.DISABLE_ISOLATION_MODE = disable_isolation_mode
         self.heap = []
         self.index_map = {}
         self.storage_containers = defaultdict(InMemoryStorage)  # TODO old implem
@@ -153,14 +155,11 @@ class _StorageContainer:
         self.heap[i], self.heap[j] = self.heap[j], self.heap[i]
 
     def get_storage(self, identifier):
-        if DISABLE_ISOLATION_MODE:
+        if self.DISABLE_ISOLATION_MODE:
             return self.storage_containers[None]
         if not identifier:  # UNDOCUMENTED_DEMO_SESSION is not defined, but what if the logged-in user deleted it?
             return InMemoryStorage()  # quick and dirty solution to prevent overwriting
-        storage_container = self.storage_containers[identifier]
-        if storage_container.priority_pointer is not None:
-            old_priority_pointer = storage_container.priority_pointer
-            storage_container.priority_pointer = (time_ns(), )
+        raise NotImplementedError
 
 
 storage_container = _StorageContainer()
@@ -917,3 +916,176 @@ if __name__ == "__main__":
 
     port = int(sys.argv[1]) if len(sys.argv) > 1 else 8000
     run_server(port)
+
+
+#### TESTS #############################################################################################################
+
+
+class TestStorageContainer(TestCase):
+    def setUp(self):
+        self.container = _StorageContainer(disable_isolation_mode=False)
+
+    def test_heap_push_single_item(self):
+        self.container._push(5, "item1", "data1")
+        self.assertEqual(len(self.container.heap), 1)
+        self.assertEqual(self.container.heap[0], [5, "item1", "data1", 0])
+        self.assertEqual(self.container.index_map["item1"], 0)
+
+    def test_heap_push_multiple_items_maintains_min_heap(self):
+        self.container._push(10, "item1", "data1")
+        self.container._push(5, "item2", "data2")
+        self.container._push(15, "item3", "data3")
+        self.container._push(3, "item4", "data4")
+        # Root should be the minimum
+        self.assertEqual(self.container.heap[0][0], 3)
+        self.assertEqual(self.container.heap[0][1], "item4")
+        # Verify heap property: parent <= children
+        for i in range(len(self.container.heap)):
+            left_child = 2 * i + 1
+            right_child = 2 * i + 2
+            if left_child < len(self.container.heap):
+                self.assertLessEqual(self.container.heap[i][0], self.container.heap[left_child][0])
+            if right_child < len(self.container.heap):
+                self.assertLessEqual(self.container.heap[i][0], self.container.heap[right_child][0])
+
+    def test_heap_pop_empty_heap(self):
+        result = self.container._pop()
+        self.assertIsNone(result)
+
+    def test_heap_pop_single_item(self):
+        self.container._push(5, "item1", "data1")
+        result = self.container._pop()
+        self.assertEqual(result, [5, "item1", "data1", 0])
+        self.assertEqual(len(self.container.heap), 0)
+        self.assertNotIn("item1", self.container.index_map)
+
+    def test_heap_pop_multiple_items_returns_min(self):
+        items = [(10, "item1"), (5, "item2"), (15, "item3"), (3, "item4"), (7, "item5")]
+        for priority, item_id in items:
+            self.container._push(priority, item_id, f"data_{item_id}")
+        # Pop items should come out in priority order
+        result1 = self.container._pop()
+        self.assertEqual(result1[0], 3)  # minimum priority
+        self.assertEqual(result1[1], "item4")
+        result2 = self.container._pop()
+        self.assertEqual(result2[0], 5)
+        self.assertEqual(result2[1], "item2")
+        # Verify heap property is maintained after pops
+        for i in range(len(self.container.heap)):
+            left_child = 2 * i + 1
+            right_child = 2 * i + 2
+            if left_child < len(self.container.heap):
+                self.assertLessEqual(self.container.heap[i][0], self.container.heap[left_child][0])
+            if right_child < len(self.container.heap):
+                self.assertLessEqual(self.container.heap[i][0], self.container.heap[right_child][0])
+
+    def test_update_priority_increase(self):
+        self.container._push(5, "item1", "data1")
+        self.container._push(10, "item2", "data2")
+        self.container._push(15, "item3", "data3")
+        # Increase priority of root element
+        self.container._update_priority("item1", 20)
+        # Root should no longer be item1
+        self.assertNotEqual(self.container.heap[0][1], "item1")
+        # Verify heap property is maintained
+        for i in range(len(self.container.heap)):
+            left_child = 2 * i + 1
+            right_child = 2 * i + 2
+            if left_child < len(self.container.heap):
+                self.assertLessEqual(self.container.heap[i][0], self.container.heap[left_child][0])
+            if right_child < len(self.container.heap):
+                self.assertLessEqual(self.container.heap[i][0], self.container.heap[right_child][0])
+
+    def test_update_priority_decrease(self):
+        self.container._push(15, "item1", "data1")
+        self.container._push(10, "item2", "data2")
+        self.container._push(20, "item3", "data3")
+        # Decrease priority of last element to make it root
+        self.container._update_priority("item3", 1)
+        # Root should now be item3
+        self.assertEqual(self.container.heap[0][1], "item3")
+        self.assertEqual(self.container.heap[0][0], 1)
+
+    def test_update_priority_nonexistent_item(self):
+        self.container._push(5, "item1", "data1")
+        with self.assertRaises(ValueError) as context:
+            self.container._update_priority("nonexistent", 10)
+        self.assertIn("not found in heap", str(context.exception))
+
+    def test_get_storage_with_isolation_disabled(self):
+        container = _StorageContainer(disable_isolation_mode=True)
+        storage1 = container.get_storage("session1")
+        storage2 = container.get_storage("session2")
+        # Both should return the same storage (None key)
+        self.assertIs(storage1, storage2)
+        self.assertIs(storage1, container.storage_containers[None])
+
+    def test_get_storage_with_isolation_enabled(self):  # TODO Fix
+        container = _StorageContainer(disable_isolation_mode=False)
+        storage1 = container.get_storage("session1")
+        storage2 = container.get_storage("session2")
+        # Different sessions should get different storage
+        self.assertIsNot(storage1, storage2)
+        self.assertIs(storage1, container.storage_containers["session1"])
+        self.assertIs(storage2, container.storage_containers["session2"])
+
+    def test_get_storage_with_empty_identifier(self):
+        container = _StorageContainer(disable_isolation_mode=False)
+        storage = container.get_storage("")
+        # Should return a new InMemoryStorage instance
+        self.assertIsInstance(storage, InMemoryStorage)
+        # Should not be stored in storage_containers
+        self.assertNotIn("", container.storage_containers)
+
+    def test_heap_index_consistency(self):
+        # Test that index_map stays consistent with heap positions
+        items = [(10, "a"), (5, "b"), (15, "c"), (3, "d"), (7, "e"), (12, "f")]
+        for priority, item_id in items:
+            self.container._push(priority, item_id, f"data_{item_id}")
+        # Verify all items are in index_map
+        for _, item_id in items:
+            self.assertIn(item_id, self.container.index_map)
+        # Verify index_map points to correct positions
+        for item_id, index in self.container.index_map.items():
+            self.assertEqual(self.container.heap[index][1], item_id)
+            self.assertEqual(self.container.heap[index][3], index)
+        # Pop some items and verify consistency
+        self.container._pop()
+        self.container._pop()
+        # Re-verify consistency
+        for item_id, index in self.container.index_map.items():
+            self.assertEqual(self.container.heap[index][1], item_id)
+            self.assertEqual(self.container.heap[index][3], index)
+
+    def test_sift_operations_maintain_heap_property(self):
+        # Test internal sift operations
+        self.container.heap = [[10, "a", "data_a", 0], [5, "b", "data_b", 1], [15, "c", "data_c", 2]]
+        self.container.index_map = {"a": 0, "b": 1, "c": 2}
+        # Manually trigger sift_up (simulating priority decrease)
+        self.container.heap[2][0] = 1  # Change priority
+        self.container._sift_up(2)
+        # Verify heap property
+        for i in range(len(self.container.heap)):
+            left_child = 2 * i + 1
+            right_child = 2 * i + 2
+            if left_child < len(self.container.heap):
+                self.assertLessEqual(self.container.heap[i][0], self.container.heap[left_child][0])
+            if right_child < len(self.container.heap):
+                self.assertLessEqual(self.container.heap[i][0], self.container.heap[right_child][0])
+
+    def test_swap_operation(self):
+        self.container._push(10, "item1", "data1")
+        self.container._push(5, "item2", "data2")
+        # Test swap operation
+        orig_item1_pos = self.container.index_map["item1"]
+        orig_item2_pos = self.container.index_map["item2"]
+        self.container._swap(0, 1)
+        # Verify positions swapped
+        self.assertEqual(self.container.index_map["item1"], orig_item2_pos)
+        self.assertEqual(self.container.index_map["item2"], orig_item1_pos)
+        # Verify heap items swapped
+        self.assertEqual(self.container.heap[orig_item2_pos][1], "item1")
+        self.assertEqual(self.container.heap[orig_item1_pos][1], "item2")
+        # Verify internal indices updated
+        self.assertEqual(self.container.heap[orig_item2_pos][3], orig_item2_pos)
+        self.assertEqual(self.container.heap[orig_item1_pos][3], orig_item1_pos)
