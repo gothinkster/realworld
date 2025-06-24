@@ -151,7 +151,6 @@ class _StorageContainer:
         self.heap[j][3] = i
         # Swap items
         self.heap[i], self.heap[j] = self.heap[j], self.heap[i]
-    storage_containers = defaultdict(InMemoryStorage)
 
     def get_storage(self, identifier):
         if not identifier:  # UNDOCUMENTED_DEMO_SESSION is not defined, but what if the logged-in user deleted it?
