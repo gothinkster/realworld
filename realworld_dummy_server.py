@@ -39,9 +39,11 @@ import re
 import time
 import uuid
 from collections import defaultdict
+from copy import deepcopy
 from datetime import datetime, timezone
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from os import getenv
+from time import time_ns
 from typing import Dict, Optional
 from urllib.parse import parse_qs, urlparse
 
@@ -51,6 +53,100 @@ BYPASS_ORIGIN_CHECK = getenv("BYPASS_ORIGIN_CHECK", "FALSE").lower() == "true"
 ALLOWED_ORIGINS = getenv("ALLOWED_ORIGINS", "").split(";")
 if ALLOWED_ORIGINS == [""] and not BYPASS_ORIGIN_CHECK:
     raise ValueError("ALLOWED_ORIGINS varenv should be set if BYPASS_ORIGIN_CHECK isn't")
+
+
+class _StorageContainer:
+    """Remove storage for the least used session once MAX_SESSION is reached"""  # TODO
+
+    def __init__(self):
+        self.heap = []
+        self.index_map = {}
+        self.storage_containers = defaultdict(InMemoryStorage)  # TODO old implem
+
+    def _push(self, priority, obj_id, data=None):
+        """Push an item onto the heap"""
+        index = len(self.heap)
+        item = [priority, obj_id, data, index]  # Include index in item
+        self.heap.append(item)
+        self.index_map[obj_id] = index
+        self._sift_up(index)
+
+    def _pop(self):
+        """Pop the smallest item from the heap"""
+        if not self.heap:
+            return None
+        # Remove from index map
+        root_item = self.heap[0]
+        del self.index_map[root_item[1]]
+        if len(self.heap) == 1:
+            return self.heap.pop()
+        # Move last item to root
+        last_item = self.heap.pop()
+        self.heap[0] = last_item
+        self.heap[0][3] = 0  # Update index
+        self.index_map[last_item[1]] = 0
+        self._sift_down(0)
+        return root_item
+
+    def _update_priority(self, obj_id, new_priority):
+        """Update the priority of an existing item"""
+        if obj_id not in self.index_map:
+            raise ValueError(f"Object {obj_id} not found in heap")
+        index = self.index_map[obj_id]
+        old_priority = self.heap[index][0]
+        self.heap[index][0] = new_priority
+        if new_priority < old_priority:
+            self._sift_up(index)
+        elif new_priority > old_priority:
+            self._sift_down(index)
+
+    def _sift_up(self, index):
+        """Restore heap property upward"""
+        while index > 0:
+            parent_index = (index - 1) // 2
+            if self.heap[index][0] >= self.heap[parent_index][0]:
+                break
+            # Swap items
+            self._swap(index, parent_index)
+            index = parent_index
+
+    def _sift_down(self, index):
+        """Restore heap property downward"""
+        while True:
+            smallest = index
+            left_child = 2 * index + 1
+            right_child = 2 * index + 2
+            if (left_child < len(self.heap) and self.heap[left_child][0] < self.heap[smallest][0]):
+                smallest = left_child
+            if (right_child < len(self.heap) and self.heap[right_child][0] < self.heap[smallest][0]):
+                smallest = right_child
+            if smallest == index:
+                break
+            self._swap(index, smallest)
+            index = smallest
+
+    def _swap(self, i, j):
+        """Swap two items and update their indices"""
+        # Update index map
+        self.index_map[self.heap[i][1]] = j
+        self.index_map[self.heap[j][1]] = i
+        # Update indices in items
+        self.heap[i][3] = j
+        self.heap[j][3] = i
+        # Swap items
+        self.heap[i], self.heap[j] = self.heap[j], self.heap[i]
+    storage_containers = defaultdict(InMemoryStorage)
+
+    def get_storage(self, identifier):
+        if not identifier:  # UNDOCUMENTED_DEMO_SESSION is not defined, but what if the logged-in user deleted it?
+            return InMemoryStorage()  # quick and dirty solution to prevent overwriting
+        storage_container = self.storage_containers[identifier]
+        if storage_container.priority_pointer is not None:
+            old_priority_pointer = storage_container.priority_pointer
+            storage_container.priority_pointer = (time_ns(), )
+
+
+storage_container = _StorageContainer()
 
 
 class InMemoryStorage:
@@ -63,21 +159,10 @@ class InMemoryStorage:
         self.tags: set = set()
         self.follows: Dict[int, set] = {}  # user_id -> set of followed user_ids
         self.favorites: Dict[int, set] = {}  # user_id -> set of favorited article_ids
-
         # Counters for auto-incrementing IDs
         self.user_id_counter = 1
         self.article_id_counter = 1
         self.comment_id_counter = 1
-
-
-class StorageContainer:
-    """Long term, this should rate limit through additional data structs, and remove least used ip"""
-
-    storage_containers = defaultdict(InMemoryStorage)
-
-    @classmethod
-    def get_storage(cls, identifier):
-        return cls.storage_containers[identifier]
 
 
 def generate_slug(title: str) -> str:
@@ -242,7 +327,7 @@ class RealWorldHandler(BaseHTTPRequestHandler):
     def _handle_request(self, method: str):
         """Route request to appropriate handler"""
         ip_address = self.request.getpeername()[0]  # TODO Use for rate limit
-        storage = StorageContainer.get_storage(None if DISABLE_ISOLATION_MODE else self._get_demo_session_cookie())
+        storage = _storage_container.get_storage(None if DISABLE_ISOLATION_MODE else self._get_demo_session_cookie())
         parsed = urlparse(self.path)
         path = parsed.path
         query_params = parse_qs(parsed.query)
