@@ -20,6 +20,7 @@ Demo backend for testing/development that manages all data in memory.
   - Any other route is safe against CSRF as we are using Token in headers and not a cookie
 - **Zero dependencies**: Python standard library only
 - **Single file**: Entire server implementation in one module
+- **Simple logging**: Of most operations  TODO
 
 ## Rate Limiting
 - Applied per browser session (not per RealWorld user account)
@@ -50,6 +51,7 @@ from urllib.parse import parse_qs, urlparse
 
 
 DISABLE_ISOLATION_MODE = getenv("DISABLE_ISOLATION_MODE", "FALSE").lower() == "true"
+MAX_SESSIONS = int(getenv("MAX_SESSIONS") or 1000)
 BYPASS_ORIGIN_CHECK = getenv("BYPASS_ORIGIN_CHECK", "FALSE").lower() == "true"
 ALLOWED_ORIGINS = getenv("ALLOWED_ORIGINS", "").split(";")
 if ALLOWED_ORIGINS == [""] and not BYPASS_ORIGIN_CHECK:
@@ -60,6 +62,9 @@ class InMemoryStorage:
     """In-memory storage for all data"""
 
     def __init__(self):
+        # TODO getters and setters for all those attributes that validate a max count, delete oldest one
+        # TODO values from get are deepcopied
+        # TODO when values are set, we register a deepcopy with limited storage
         self.users: Dict[int, Dict] = {}
         self.articles: Dict[int, Dict] = {}
         self.comments: Dict[int, Dict] = {}
@@ -73,13 +78,13 @@ class InMemoryStorage:
 
 
 class _StorageContainer:
-    """Remove storage for the least used session once MAX_SESSION is reached"""  # TODO
+    """Remove storage for the least used session once max_sessions is reached"""
 
-    def __init__(self, disable_isolation_mode=DISABLE_ISOLATION_MODE):
+    def __init__(self, disable_isolation_mode=DISABLE_ISOLATION_MODE, max_sessions=MAX_SESSIONS):
         self.DISABLE_ISOLATION_MODE = disable_isolation_mode
+        self.MAX_SESSIONS = max_sessions
         self.heap = []
         self.index_map = {}
-        self.storage_containers = defaultdict(InMemoryStorage)  # TODO old implem
 
     def _push(self, priority, obj_id, data=None):
         """Push an item onto the heap"""
@@ -154,12 +159,24 @@ class _StorageContainer:
         # Swap items
         self.heap[i], self.heap[j] = self.heap[j], self.heap[i]
 
+    # TODO More tests for this, check MAX_SESSIONS is working with a no-updates sequence
+    # TODO More tests for this, check MAX_SESSIONS is working with a sequence of specific calls triggering updated
     def get_storage(self, identifier):
         if self.DISABLE_ISOLATION_MODE:
-            return self.storage_containers[None]
+            if not self.heap:
+                self.heap.append(InMemoryStorage())  # Not using expected implem
+            return self.heap[0]  # Heap is not filled with the expected lists
         if not identifier:  # UNDOCUMENTED_DEMO_SESSION is not defined, but what if the logged-in user deleted it?
             return InMemoryStorage()  # quick and dirty solution to prevent overwriting
-        raise NotImplementedError
+        storage_container_index = self.index_map.get(identifier)
+        if storage_container_index is None:
+            if len(self.index_map) >= self.MAX_SESSIONS:
+                self._pop()
+            self._push(time_ns(), identifier, data=InMemoryStorage())
+            return self.heap[self.index_map.get(identifier)][2]
+        r = self.heap[storage_container_index][2]
+        self._update_priority(identifier, time_ns())
+        return r
 
 
 storage_container = _StorageContainer()
@@ -1014,20 +1031,19 @@ class TestStorageContainer(TestCase):
 
     def test_get_storage_with_isolation_disabled(self):
         container = _StorageContainer(disable_isolation_mode=True)
+        storage0 = container.get_storage(None)
         storage1 = container.get_storage("session1")
         storage2 = container.get_storage("session2")
-        # Both should return the same storage (None key)
-        self.assertIs(storage1, storage2)
-        self.assertIs(storage1, container.storage_containers[None])
+        # All should return the same storage
+        self.assertIs(storage1, storage0)
+        self.assertIs(storage2, storage0)
 
-    def test_get_storage_with_isolation_enabled_2_different(self):
+    def test_get_storage_with_isolation_enabled_2_different_session(self):
         container = _StorageContainer(disable_isolation_mode=False)
         storage1 = container.get_storage("session1")
         storage2 = container.get_storage("session2")
         # Different sessions should get different storage
         self.assertIsNot(storage1, storage2)
-        self.assertIs(storage1, container.storage_containers["session1"])
-        self.assertIs(storage2, container.storage_containers["session2"])
 
     def test_get_storage_with_isolation_enabled_2_same(self):
         container = _StorageContainer(disable_isolation_mode=False)
@@ -1035,15 +1051,23 @@ class TestStorageContainer(TestCase):
         container.get_storage("something-else")  # Call to other session in between
         storage1_bis = container.get_storage("session1")
         # Storage containers from the same id should get the same storage
-        self.assertIst(storage1, storage1_bis)
+        self.assertIs(storage1, storage1_bis)
 
-    def test_get_storage_with_empty_identifier(self):
+    def test_get_storage_with_isolation_enabled_2_default_sessions_are_not_the_same_none_version(self):
+        """We don't want the modifications of a default session to have an impact for other users"""
         container = _StorageContainer(disable_isolation_mode=False)
-        storage = container.get_storage("")
-        # Should return a new InMemoryStorage instance
-        self.assertIsInstance(storage, InMemoryStorage)
-        # Should not be stored in storage_containers
-        self.assertNotIn("", container.storage_containers)
+        storage1 = container.get_storage(None)
+        storage2 = container.get_storage(None)
+        # Multiple defaults sessions should get different storage
+        self.assertIsNot(storage1, storage2)
+
+    def test_get_storage_with_isolation_enabled_2_default_sessions_are_not_the_same_empty_string_version(self):
+        """We don't want the modifications of a default session to have an impact for other users"""
+        container = _StorageContainer(disable_isolation_mode=False)
+        storage1 = container.get_storage("")
+        storage2 = container.get_storage("")
+        # Multiple defaults sessions should get different storage
+        self.assertIsNot(storage1, storage2)
 
     def test_heap_index_consistency(self):
         # Test that index_map stays consistent with heap positions
