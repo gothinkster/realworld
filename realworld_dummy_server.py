@@ -153,6 +153,8 @@ class _StorageContainer:
         self.heap[i], self.heap[j] = self.heap[j], self.heap[i]
 
     def get_storage(self, identifier):
+        if DISABLE_ISOLATION_MODE:
+            return self.storage_containers[identifier]
         if not identifier:  # UNDOCUMENTED_DEMO_SESSION is not defined, but what if the logged-in user deleted it?
             return InMemoryStorage()  # quick and dirty solution to prevent overwriting
         storage_container = self.storage_containers[identifier]
@@ -326,7 +328,7 @@ class RealWorldHandler(BaseHTTPRequestHandler):
     def _handle_request(self, method: str):
         """Route request to appropriate handler"""
         ip_address = self.request.getpeername()[0]  # TODO Use for rate limit
-        storage = storage_container.get_storage(None if DISABLE_ISOLATION_MODE else self._get_demo_session_cookie())
+        storage = storage_container.get_storage(self._get_demo_session_cookie())
         parsed = urlparse(self.path)
         path = parsed.path
         query_params = parse_qs(parsed.query)
