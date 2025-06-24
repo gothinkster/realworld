@@ -327,7 +327,7 @@ class RealWorldHandler(BaseHTTPRequestHandler):
     def _handle_request(self, method: str):
         """Route request to appropriate handler"""
         ip_address = self.request.getpeername()[0]  # TODO Use for rate limit
-        storage = _storage_container.get_storage(None if DISABLE_ISOLATION_MODE else self._get_demo_session_cookie())
+        storage = storage_container.get_storage(None if DISABLE_ISOLATION_MODE else self._get_demo_session_cookie())
         parsed = urlparse(self.path)
         path = parsed.path
         query_params = parse_qs(parsed.query)
