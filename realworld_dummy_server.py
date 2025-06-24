@@ -154,7 +154,7 @@ class _StorageContainer:
 
     def get_storage(self, identifier):
         if DISABLE_ISOLATION_MODE:
-            return self.storage_containers[identifier]
+            return self.storage_containers[None]
         if not identifier:  # UNDOCUMENTED_DEMO_SESSION is not defined, but what if the logged-in user deleted it?
             return InMemoryStorage()  # quick and dirty solution to prevent overwriting
         storage_container = self.storage_containers[identifier]
