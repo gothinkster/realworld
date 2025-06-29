@@ -103,7 +103,6 @@ class InMemoryStorage:
         self.users = InMemoryModel(max_count=1000, validate_input=lambda x: True)  # TODO limit
         self.articles = InMemoryModel(max_count=1000, validate_input=lambda x: True)  # TODO limit
         self.comments = InMemoryModel(max_count=1000, validate_input=lambda x: True)  # TODO limit
-        self.tags: set = set()  # TODO limit
         self.follows: Dict[int, set] = {}  # user_id -> set of followed user_ids  # TODO limit
         self.favorites: Dict[int, set] = {}  # user_id -> set of favorited article_ids  # TODO limit
 
@@ -700,11 +699,6 @@ class RealWorldHandler(BaseHTTPRequestHandler):
         }
 
         storage.articles.add(article)
-
-        # Add tags to global tag set
-        for tag in tag_list:
-            storage.tags.add(tag)
-
         self._send_response(201, {"article": create_article_response(article, storage, user_id)})
 
     def _handle_get_article(self, storage: InMemoryStorage, slug: str, current_user_id: Optional[int]):
@@ -880,7 +874,7 @@ class RealWorldHandler(BaseHTTPRequestHandler):
     # Tag endpoints
     def _handle_get_tags(self, storage: InMemoryStorage):
         """GET /tags - Get all tags"""
-        self._send_response(200, {"tags": sorted(storage.tags)})
+        self._send_response(200, {"tags": sorted({t for u in storage.users.values() for t in u.get("tagList", [])})})
 
     def do_OPTIONS(self):
         """Handle OPTIONS requests for CORS"""
