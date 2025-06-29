@@ -100,15 +100,14 @@ class InMemoryStorage:
         # TODO getters and setters for all those attributes that validate a max count, delete oldest one
         # TODO values from get are deepcopied
         # TODO when values are set, we register a deepcopy with limited storage
-        self.users: Dict[int, Dict] = {}
-        self.articles: Dict[int, Dict] = {}
-        self.comments = InMemoryModel(max_count=1000, validate_input=lambda x: True)
-        self.tags: set = set()
-        self.follows: Dict[int, set] = {}  # user_id -> set of followed user_ids
-        self.favorites: Dict[int, set] = {}  # user_id -> set of favorited article_ids
+        self.users: Dict[int, Dict] = {}  # TODO limit
+        self.articles = InMemoryModel(max_count=1000, validate_input=lambda x: True)  # TODO limit
+        self.comments = InMemoryModel(max_count=1000, validate_input=lambda x: True)  # TODO limit
+        self.tags: set = set()  # TODO limit
+        self.follows: Dict[int, set] = {}  # user_id -> set of followed user_ids  # TODO limit
+        self.favorites: Dict[int, set] = {}  # user_id -> set of favorited article_ids  # TODO limit
         # Counters for auto-incrementing IDs
         self.user_id_counter = 1
-        self.article_id_counter = 1
 
 
 class _StorageContainer:
@@ -713,12 +712,8 @@ class RealWorldHandler(BaseHTTPRequestHandler):
             counter += 1
 
         # Create article
-        article_id = storage.article_id_counter
-        storage.article_id_counter += 1
-
         current_time = get_current_time()
         article = {
-            "id": article_id,
             "slug": slug,
             "title": title,
             "description": description,
@@ -729,7 +724,7 @@ class RealWorldHandler(BaseHTTPRequestHandler):
             "updatedAt": current_time,
         }
 
-        storage.articles[article_id] = article
+        storage.articles.add(article)
 
         # Add tags to global tag set
         for tag in tag_list:
@@ -790,7 +785,7 @@ class RealWorldHandler(BaseHTTPRequestHandler):
 
         # Delete article and related data
         article_id = article["id"]
-        del storage.articles[article_id]
+        storage.articles.delete(article_id)
 
         # Remove from favorites
         for user_favorites in storage.favorites.values():
