@@ -159,8 +159,6 @@ class _StorageContainer:
         # Swap items
         self.heap[i], self.heap[j] = self.heap[j], self.heap[i]
 
-    # TODO More tests for this, check MAX_SESSIONS is working with a no-updates sequence
-    # TODO More tests for this, check MAX_SESSIONS is working with a sequence of specific calls triggering updated
     def get_storage(self, identifier):
         if self.DISABLE_ISOLATION_MODE:
             if not self.heap:
@@ -939,8 +937,50 @@ if __name__ == "__main__":
 
 
 class TestStorageContainer(TestCase):
+
+    # Setup
+
     def setUp(self):
         self.container = _StorageContainer(disable_isolation_mode=False)
+
+    # Helpers
+
+    def _verify_heap_property(self, container):
+        # Helper to verify min-heap property for a given container
+        for i in range(len(container.heap)):
+            left_child = 2 * i + 1
+            right_child = 2 * i + 2
+            if left_child < len(container.heap):
+                self.assertLessEqual(
+                    container.heap[i][0],
+                    container.heap[left_child][0],
+                    f"Heap property violated at index {i} and left child {left_child}"
+                )
+            if right_child < len(container.heap):
+                self.assertLessEqual(
+                    container.heap[i][0],
+                    container.heap[right_child][0],
+                    f"Heap property violated at index {i} and right child {right_child}"
+                )
+
+    def _verify_index_consistency(self, container):
+        # Helper to verify index_map consistency with heap for a given container
+        self.assertEqual(len(container.index_map), len(container.heap))
+        for item_id, index in container.index_map.items():
+            # Index should be valid
+            self.assertGreaterEqual(index, 0)
+            self.assertLess(index, len(container.heap))
+            # Heap item at index should match
+            heap_item = container.heap[index]
+            self.assertEqual(heap_item[1], item_id, f"Index map inconsistency for {item_id}")
+            self.assertEqual(heap_item[3], index, f"Internal index inconsistency for {item_id}")
+        # Every heap item should be in index_map
+        for i, heap_item in enumerate(container.heap):
+            item_id = heap_item[1]
+            self.assertIn(item_id, container.index_map)
+            self.assertEqual(container.index_map[item_id], i)
+
+    # Tests
 
     def test_heap_push_single_item(self):
         self.container._push(5, "item1", "data1")
@@ -1133,13 +1173,13 @@ class TestStorageContainer(TestCase):
         self.assertEqual(self.container.heap[0][0], 3)
         self.assertEqual(self.container.heap[0][1], "item4")
         # Verify heap property with duplicates
-        self._verify_heap_property()
-        self._verify_index_consistency()
+        self._verify_heap_property(self.container)
+        self._verify_index_consistency(self.container)
         # Pop minimum and verify heap still valid
         result = self.container._pop()
         self.assertEqual(result[0], 3)
-        self._verify_heap_property()
-        self._verify_index_consistency()
+        self._verify_heap_property(self.container)
+        self._verify_index_consistency(self.container)
 
     def test_update_priority_to_same_value(self):
         # Test updating priority to the same value (should be no-op)
@@ -1151,8 +1191,8 @@ class TestStorageContainer(TestCase):
         # Heap should be unchanged
         self.assertEqual(len(self.container.heap), len(original_heap))
         self.assertEqual(self.container.index_map, original_index_map)
-        self._verify_heap_property()
-        self._verify_index_consistency()
+        self._verify_heap_property(self.container)
+        self._verify_index_consistency(self.container)
 
     def test_pop_all_items_sequential(self):
         # Test popping all items from heap
@@ -1165,8 +1205,8 @@ class TestStorageContainer(TestCase):
         # Pop all items and verify they come out in sorted order
         popped_priorities = []
         while len(self.container.heap) > 0:
-            self._verify_heap_property()
-            self._verify_index_consistency()
+            self._verify_heap_property(self.container)
+            self._verify_index_consistency(self.container)
             result = self.container._pop()
             popped_priorities.append(result[0])
         # Should be in ascending order
@@ -1179,27 +1219,27 @@ class TestStorageContainer(TestCase):
         self.container._push(10, "a", "data_a")
         self.container._push(5, "b", "data_b")
         self.container._push(15, "c", "data_c")
-        self._verify_heap_property()
-        self._verify_index_consistency()
+        self._verify_heap_property(self.container)
+        self._verify_index_consistency(self.container)
         # Update priority
         self.container._update_priority("c", 1)
-        self._verify_heap_property()
-        self._verify_index_consistency()
+        self._verify_heap_property(self.container)
+        self._verify_index_consistency(self.container)
         self.assertEqual(self.container.heap[0][1], "c")  # Should be new root
         # Pop minimum
         result = self.container._pop()
         self.assertEqual(result[1], "c")
-        self._verify_heap_property()
-        self._verify_index_consistency()
+        self._verify_heap_property(self.container)
+        self._verify_index_consistency(self.container)
         # Add more items
         self.container._push(3, "d", "data_d")
         self.container._push(8, "e", "data_e")
-        self._verify_heap_property()
-        self._verify_index_consistency()
+        self._verify_heap_property(self.container)
+        self._verify_index_consistency(self.container)
         # Update existing item
         self.container._update_priority("b", 20)
-        self._verify_heap_property()
-        self._verify_index_consistency()
+        self._verify_heap_property(self.container)
+        self._verify_index_consistency(self.container)
 
     def test_empty_heap_edge_cases(self):
         # Test operations on empty heap
@@ -1226,11 +1266,11 @@ class TestStorageContainer(TestCase):
             items.append((priority, item_id))
             # Verify heap property periodically
             if i % 20 == 0:
-                self._verify_heap_property()
-                self._verify_index_consistency()
+                self._verify_heap_property(self.container)
+                self._verify_index_consistency(self.container)
         # Final verification
-        self._verify_heap_property()
-        self._verify_index_consistency()
+        self._verify_heap_property(self.container)
+        self._verify_index_consistency(self.container)
         self.assertEqual(len(self.container.heap), num_items)
         self.assertEqual(len(self.container.index_map), num_items)
         # Update random items
@@ -1239,8 +1279,8 @@ class TestStorageContainer(TestCase):
             item_id = f"item_{item_idx}"
             new_priority = random.randint(1, 1000)
             self.container._update_priority(item_id, new_priority)
-            self._verify_heap_property()
-            self._verify_index_consistency()
+            self._verify_heap_property(self.container)
+            self._verify_index_consistency(self.container)
 
     def test_boundary_priorities(self):
         # Test with extreme priority values
@@ -1249,8 +1289,8 @@ class TestStorageContainer(TestCase):
         self.container._push(sys.maxsize, "max_item", "max_data")
         self.container._push(-sys.maxsize, "min_item", "min_data")
         self.container._push(0, "zero_item", "zero_data")
-        self._verify_heap_property()
-        self._verify_index_consistency()
+        self._verify_heap_property(self.container)
+        self._verify_index_consistency(self.container)
         # Min should be at root
         self.assertEqual(self.container.heap[0][0], -sys.maxsize)
         self.assertEqual(self.container.heap[0][1], "min_item")
@@ -1277,13 +1317,13 @@ class TestStorageContainer(TestCase):
         ]
         for i, item_id in enumerate(special_ids):
             self.container._push(i + 1, item_id, f"data_{i}")
-        self._verify_heap_property()
-        self._verify_index_consistency()
+        self._verify_heap_property(self.container)
+        self._verify_index_consistency(self.container)
         # Update some items
         self.container._update_priority("item-with-dashes", 50)
         self.container._update_priority("🎯emoji_id", 0)
-        self._verify_heap_property()
-        self._verify_index_consistency()
+        self._verify_heap_property(self.container)
+        self._verify_index_consistency(self.container)
 
     def test_heap_after_multiple_updates(self):
         # Test heap consistency after many priority updates
@@ -1300,15 +1340,15 @@ class TestStorageContainer(TestCase):
         ]
         for item_id, new_priority in updates:
             self.container._update_priority(item_id, new_priority)
-            self._verify_heap_property()
-            self._verify_index_consistency()
+            self._verify_heap_property(self.container)
+            self._verify_index_consistency(self.container)
         # Verify final order by popping all
         popped_items = []
         while self.container.heap:
             result = self.container._pop()
             popped_items.append((result[0], result[1]))
-            self._verify_heap_property()
-            self._verify_index_consistency()
+            self._verify_heap_property(self.container)
+            self._verify_index_consistency(self.container)
         # Should be in priority order
         popped_priorities = [priority for priority, _ in popped_items]
         self.assertEqual(popped_priorities, sorted(popped_priorities))
@@ -1323,44 +1363,96 @@ class TestStorageContainer(TestCase):
         self.assertEqual(self.container.heap, original_heap)
         # Two items
         self.container._push(10, "second", "data2")
-        self._verify_heap_property()
+        self._verify_heap_property(self.container)
         # Manually test sift operations
         if self.container.heap[1][0] < self.container.heap[0][0]:
             self.container._swap(0, 1)
-        self._verify_heap_property()
-        self._verify_index_consistency()
+        self._verify_heap_property(self.container)
+        self._verify_index_consistency(self.container)
 
-    def _verify_heap_property(self):
-        # Helper to verify min-heap property
-        for i in range(len(self.container.heap)):
-            left_child = 2 * i + 1
-            right_child = 2 * i + 2
-            if left_child < len(self.container.heap):
-                self.assertLessEqual(
-                    self.container.heap[i][0],
-                    self.container.heap[left_child][0],
-                    f"Heap property violated at index {i} and left child {left_child}"
-                )
-            if right_child < len(self.container.heap):
-                self.assertLessEqual(
-                    self.container.heap[i][0],
-                    self.container.heap[right_child][0],
-                    f"Heap property violated at index {i} and right child {right_child}"
-                )
+    def test_max_sessions_is_working_with_a_continuous_sequence(self):
+        # Test that when max_sessions is reached, oldest sessions are evicted
+        max_sessions = 3
+        container = _StorageContainer(disable_isolation_mode=False, max_sessions=max_sessions)
+        # Create sessions up to the limit
+        storages = []
+        for i in range(max_sessions):
+            session_id = f"session_{i}"
+            storage = container.get_storage(session_id)
+            storages.append(storage)
+            # Verify storage was created
+            self.assertIsNotNone(storage)
+            # Verify it's in the container
+            self.assertIn(session_id, container.index_map)
+            # Verify heap properties after each insertion
+            self._verify_heap_property(container)
+            self._verify_index_consistency(container)
+        # All sessions should be present
+        self.assertEqual(len(container.index_map), max_sessions)
+        self.assertEqual(len(container.heap), max_sessions)
+        # Add one more session - should evict the oldest (first) session
+        new_session_id = "session_new"
+        new_storage = container.get_storage(new_session_id)
+        # Verify heap properties after eviction and insertion
+        self._verify_heap_property(container)
+        self._verify_index_consistency(container)
+        # Should still have max_sessions total
+        self.assertEqual(len(container.index_map), max_sessions)
+        self.assertEqual(len(container.heap), max_sessions)
+        # New session should be present
+        self.assertIn(new_session_id, container.index_map)
+        # First session should have been evicted (it had the smallest timestamp)
+        self.assertNotIn("session_0", container.index_map)
 
-    def _verify_index_consistency(self):
-        # Helper to verify index_map consistency with heap
-        self.assertEqual(len(self.container.index_map), len(self.container.heap))
-        for item_id, index in self.container.index_map.items():
-            # Index should be valid
-            self.assertGreaterEqual(index, 0)
-            self.assertLess(index, len(self.container.heap))
-            # Heap item at index should match
-            heap_item = self.container.heap[index]
-            self.assertEqual(heap_item[1], item_id, f"Index map inconsistency for {item_id}")
-            self.assertEqual(heap_item[3], index, f"Internal index inconsistency for {item_id}")
-        # Every heap item should be in index_map
-        for i, heap_item in enumerate(self.container.heap):
-            item_id = heap_item[1]
-            self.assertIn(item_id, self.container.index_map)
-            self.assertEqual(self.container.index_map[item_id], i)
+    def test_max_sessions_is_working_with_a_sequence_of_calls_actually_triggering_reorders(self):
+        # Test that accessing existing sessions updates their priority and affects eviction order
+        import time
+        max_sessions = 3
+        container = _StorageContainer(disable_isolation_mode=False, max_sessions=max_sessions)
+        # Create initial sessions
+        session_ids = ["session_1", "session_2", "session_3"]
+        for session_id in session_ids:
+            container.get_storage(session_id)
+            time.sleep(0.00001)  # Small delay to ensure different timestamps
+            # Verify heap properties after each insertion
+            self._verify_heap_property(container)
+            self._verify_index_consistency(container)
+        # Access session_1 to update its priority (make it more recently used)
+        time.sleep(0.00001)
+        container.get_storage("session_1")
+        self._verify_heap_property(container)
+        self._verify_index_consistency(container)
+        # Add a new session - should evict session_2 (oldest untouched)
+        time.sleep(0.00001)
+        container.get_storage("session_4")
+        self._verify_heap_property(container)
+        self._verify_index_consistency(container)
+        # Verify session_1 and session_3 are still present (session_1 was recently accessed)
+        self.assertIn("session_1", container.index_map)
+        self.assertIn("session_3", container.index_map)
+        self.assertIn("session_4", container.index_map)
+        # session_2 should have been evicted (it was the oldest unused)
+        self.assertNotIn("session_2", container.index_map)
+        # Verify we still have exactly max_sessions
+        self.assertEqual(len(container.index_map), max_sessions)
+        self.assertEqual(len(container.heap), max_sessions)
+        # Access session_3 multiple times to make it most recent
+        time.sleep(0.00001)
+        container.get_storage("session_3")
+        self._verify_heap_property(container)
+        self._verify_index_consistency(container)
+        time.sleep(0.00001)
+        container.get_storage("session_3")
+        self._verify_heap_property(container)
+        self._verify_index_consistency(container)
+        # Add another session - should evict session_1 now (oldest of remaining)
+        time.sleep(0.00001)
+        container.get_storage("session_5")
+        self._verify_heap_property(container)
+        self._verify_index_consistency(container)
+        # Verify session_3 is still present (most recently accessed)
+        self.assertIn("session_3", container.index_map)
+        self.assertIn("session_4", container.index_map)
+        self.assertIn("session_5", container.index_map)
+        # session_1 should now be evicted
+        self.assertNotIn("session_1", container.index_map)
