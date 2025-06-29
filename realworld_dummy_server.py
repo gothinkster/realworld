@@ -100,14 +100,12 @@ class InMemoryStorage:
         # TODO getters and setters for all those attributes that validate a max count, delete oldest one
         # TODO values from get are deepcopied
         # TODO when values are set, we register a deepcopy with limited storage
-        self.users: Dict[int, Dict] = {}  # TODO limit
+        self.users = InMemoryModel(max_count=1000, validate_input=lambda x: True)  # TODO limit
         self.articles = InMemoryModel(max_count=1000, validate_input=lambda x: True)  # TODO limit
         self.comments = InMemoryModel(max_count=1000, validate_input=lambda x: True)  # TODO limit
         self.tags: set = set()  # TODO limit
         self.follows: Dict[int, set] = {}  # user_id -> set of followed user_ids  # TODO limit
         self.favorites: Dict[int, set] = {}  # user_id -> set of favorited article_ids  # TODO limit
-        # Counters for auto-incrementing IDs
-        self.user_id_counter = 1
 
 
 class _StorageContainer:
@@ -307,7 +305,7 @@ def create_profile_response(user: Dict, storage: InMemoryStorage, current_user_i
 
 def create_article_response(article: Dict, storage: InMemoryStorage, current_user_id: Optional[int] = None) -> Dict:
     """Create article response format"""
-    author = storage.users[article["author_id"]]
+    author = storage.users.get(article["author_id"])
     favorited = False
     if current_user_id:
         favorited = article["id"] in storage.favorites.get(current_user_id, set())
@@ -330,7 +328,7 @@ def create_article_response(article: Dict, storage: InMemoryStorage, current_use
 
 def create_comment_response(comment: Dict, storage: InMemoryStorage, current_user_id: Optional[int] = None) -> Dict:
     """Create comment response format"""
-    author = storage.users[comment["author_id"]]
+    author = storage.users.get(comment["author_id"])
 
     return {
         "id": comment["id"],
@@ -492,40 +490,33 @@ class RealWorldHandler(BaseHTTPRequestHandler):
         """POST /users - Register new user"""
         data = self._get_request_body()
         user_data = data.get("user", {})
-
         email = user_data.get("email")
         username = user_data.get("username")
         password = user_data.get("password")
-
         if not all([email, username, password]):
             self._send_error(422, {"errors": {"body": ["Email, username and password are required"]}})
             return
-
         # Check if user already exists
         if get_user_by_email(email, storage) or get_user_by_username(username, storage):
             self._send_error(409, {"errors": {"body": ["User already exists"]}})
             return
-
         # Create new user
-        user_id = storage.user_id_counter
-        storage.user_id_counter += 1
-
-        token = generate_token(user_id)
         user = {
-            "id": user_id,
             "email": email,
             "username": username,
             "password": hash_password(password),
             "bio": "",
             "image": "https://api.realworld.io/images/smiley-cyrus.jpeg",
-            "token": token,
             "createdAt": get_current_time(),
         }
-
-        storage.users[user_id] = user
+        # Add user and get the auto-assigned ID
+        user = storage.users.add(user)
+        user_id = user["id"]
+        # Generate token after we have the user_id
+        token = generate_token(user_id)
+        user["token"] = token
         storage.follows[user_id] = set()
         storage.favorites[user_id] = set()
-
         demo_session_id = None if self._get_demo_session_cookie() else uuid.uuid4()
         self._send_response(201, {"user": create_user_response(user)}, demo_session_id)
 
@@ -533,40 +524,31 @@ class RealWorldHandler(BaseHTTPRequestHandler):
         """POST /users/login - Login user"""
         data = self._get_request_body()
         user_data = data.get("user", {})
-
         email = user_data.get("email")
         password = user_data.get("password")
-
         if not all([email, password]):
             self._send_error(422, {"errors": {"body": ["Email and password are required"]}})
             return
-
         user = get_user_by_email(email, storage)
         if not user or user["password"] != hash_password(password):
             self._send_error(401, {"errors": {"body": ["Invalid credentials"]}})
             return
-
-        # Generate new token
-        token = generate_token(user["id"])
-        user["token"] = token
-
+        user["token"] = generate_token(user["id"])  # Generate new token
         demo_session_id = None if self._get_demo_session_cookie() else uuid.uuid4()
         self._send_response(200, {"user": create_user_response(user)}, demo_session_id)
 
     def _handle_get_current_user(self, storage: InMemoryStorage, current_user_id: Optional[int]):
         """GET /user - Get current user"""
         user_id = self._require_auth(current_user_id)
-        user = storage.users[user_id]
+        user = storage.users.get(user_id)
         self._send_response(200, {"user": create_user_response(user)})
 
     def _handle_update_user(self, storage: InMemoryStorage, current_user_id: Optional[int]):
         """PUT /user - Update current user"""
         user_id = self._require_auth(current_user_id)
-        user = storage.users[user_id]
-
+        user = storage.users.get(user_id)
         data = self._get_request_body()
         user_data = data.get("user", {})
-
         # Update fields if provided
         if "email" in user_data:
             user["email"] = user_data["email"]
@@ -578,7 +560,6 @@ class RealWorldHandler(BaseHTTPRequestHandler):
             user["bio"] = user_data["bio"]
         if "image" in user_data:
             user["image"] = user_data["image"]
-
         self._send_response(200, {"user": create_user_response(user)})
 
     # Profile endpoints
@@ -588,34 +569,28 @@ class RealWorldHandler(BaseHTTPRequestHandler):
         if not user:
             self._send_error(404, {"errors": {"body": ["Profile not found"]}})
             return
-
         self._send_response(200, {"profile": create_profile_response(user, storage, current_user_id)})
 
     def _handle_follow_user(self, storage: InMemoryStorage, username: str, current_user_id: Optional[int]):
         """POST /profiles/{username}/follow - Follow user"""
         user_id = self._require_auth(current_user_id)
-
         target_user = get_user_by_username(username, storage)
         if not target_user:
             self._send_error(404, {"errors": {"body": ["Profile not found"]}})
             return
-
         if target_user["id"] == user_id:
             self._send_error(422, {"errors": {"body": ["Cannot follow yourself"]}})
             return
-
         storage.follows[user_id].add(target_user["id"])
         self._send_response(200, {"profile": create_profile_response(target_user, storage, user_id)})
 
     def _handle_unfollow_user(self, storage: InMemoryStorage, username: str, current_user_id: Optional[int]):
         """DELETE /profiles/{username}/follow - Unfollow user"""
         user_id = self._require_auth(current_user_id)
-
         target_user = get_user_by_username(username, storage)
         if not target_user:
             self._send_error(404, {"errors": {"body": ["Profile not found"]}})
             return
-
         storage.follows[user_id].discard(target_user["id"])
         self._send_response(200, {"profile": create_profile_response(target_user, storage, user_id)})
 
