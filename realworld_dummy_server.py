@@ -58,6 +58,41 @@ if ALLOWED_ORIGINS == [""] and not BYPASS_ORIGIN_CHECK:
     raise ValueError("ALLOWED_ORIGINS varenv should be set if BYPASS_ORIGIN_CHECK isn't")
 
 
+class InMemoryModel:
+    def __init__(self, max_count, validate_input, auto_add_id=True):
+        self.max_count: int = max_count  # TODO Use
+        self.validate_input: callable = validate_input  # TODO Use
+        self.objects: Dict[int, object] = {}
+        self.last_updated = []  # ok to implement that way since we won't allow much objects per model per session
+        self.current_id_counter = 1
+        self.auto_add_id = auto_add_id
+
+    def add(self, obj):
+        self.objects[self.current_id_counter] = obj
+        if self.auto_add_id:
+            obj["id"] = self.current_id_counter
+        self.current_id_counter += 1
+        return obj
+
+    def get(self, _id):
+        return self.objects.get(_id)
+
+    def keys(self):
+        return self.objects.keys()
+
+    def values(self):
+        return self.objects.values()
+
+    def items(self):
+        return self.objects.items()
+
+    def delete(self, _id):
+        if _id in self.objects:
+            del self.objects[_id]
+            return True
+        return False
+
+
 class InMemoryStorage:
     """In-memory storage for all data"""
 
@@ -67,14 +102,13 @@ class InMemoryStorage:
         # TODO when values are set, we register a deepcopy with limited storage
         self.users: Dict[int, Dict] = {}
         self.articles: Dict[int, Dict] = {}
-        self.comments: Dict[int, Dict] = {}
+        self.comments = InMemoryModel(max_count=1000, validate_input=lambda x: True)
         self.tags: set = set()
         self.follows: Dict[int, set] = {}  # user_id -> set of followed user_ids
         self.favorites: Dict[int, set] = {}  # user_id -> set of favorited article_ids
         # Counters for auto-incrementing IDs
         self.user_id_counter = 1
         self.article_id_counter = 1
-        self.comment_id_counter = 1
 
 
 class _StorageContainer:
@@ -765,7 +799,7 @@ class RealWorldHandler(BaseHTTPRequestHandler):
         # Delete comments
         comments_to_delete = [c_id for c_id, c in storage.comments.items() if c["article_id"] == article_id]
         for c_id in comments_to_delete:
-            del storage.comments[c_id]
+            storage.comments.delete(c_id)
 
         # Send 204 No Content
         self.send_response(204)
@@ -830,12 +864,8 @@ class RealWorldHandler(BaseHTTPRequestHandler):
             return
 
         # Create comment
-        comment_id = storage.comment_id_counter
-        storage.comment_id_counter += 1
-
         current_time = get_current_time()
         comment = {
-            "id": comment_id,
             "body": body,
             "article_id": article["id"],
             "author_id": user_id,
@@ -843,7 +873,7 @@ class RealWorldHandler(BaseHTTPRequestHandler):
             "updatedAt": current_time,
         }
 
-        storage.comments[comment_id] = comment
+        storage.comments.add(comment)
 
         self._send_response(200, {"comment": create_comment_response(comment, storage, user_id)})
 
@@ -868,7 +898,7 @@ class RealWorldHandler(BaseHTTPRequestHandler):
             self._send_error(403, {"errors": {"body": ["Forbidden"]}})
             return
 
-        del storage.comments[comment_id]
+        storage.comments.delete(comment_id)
 
         # Send 204 No Content
         self.send_response(204)
