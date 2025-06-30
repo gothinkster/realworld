@@ -64,6 +64,8 @@ MAX_ID_LEN = 64
 MAX_USERS_PER_SESSION = 60
 MAX_ARTICLES_PER_SESSION = 60
 MAX_COMMENTS_PER_SESSION = 60
+MAX_FOLLOWS_PER_SESSION = 100
+MAX_FAVORITES_PER_SESSION = 100
 
 
 def normalize_id(value):
@@ -140,6 +142,22 @@ class InMemoryLinks:
         if _index is not None:
             self.links = [*self.links[:_index], *self.links[_index+1:]]
 
+    def is_linked(self, source, target):
+        source, target = normalize_id(source), normalize_id(target)
+        return (source, target) in self.links
+
+    def targets_for_source(self, wanted_source):
+        return [target for source, target in self.links if source == normalize_id(wanted_source)]
+
+    def sources_for_target(self, wanted_target):
+        return [source for source, target in self.links if target == normalize_id(wanted_target)]
+
+    def delete_source(self, source_to_delete):
+        self.links = [(source, target) for source, target in self.links if source != normalize_id(source_to_delete)]
+
+    def delete_target(self, target_to_delete):
+        self.links = [(source, target) for source, target in self.links if target != normalize_id(target_to_delete)]
+
 
 class InMemoryStorage:
     """In-memory storage for all data"""
@@ -151,8 +169,8 @@ class InMemoryStorage:
         self.users = InMemoryModel(max_count=MAX_USERS_PER_SESSION, validate_input=lambda x: True)  # TODO limit
         self.articles = InMemoryModel(max_count=MAX_ARTICLES_PER_SESSION, validate_input=lambda x: True)  # TODO limit
         self.comments = InMemoryModel(max_count=MAX_COMMENTS_PER_SESSION, validate_input=lambda x: True)  # TODO limit
-        self.follows: Dict[int, set] = {}  # user_id -> set of followed user_ids  # TODO limit
-        self.favorites: Dict[int, set] = {}  # user_id -> set of favorited article_ids  # TODO limit
+        self.follows = InMemoryLinks(max_count=MAX_FOLLOWS_PER_SESSION)  # user_id -> followed user_ids
+        self.favorites = InMemoryLinks(max_count=MAX_FAVORITES_PER_SESSION)  # user_id -> favorited article_ids
 
 
 class _StorageContainer:
@@ -340,7 +358,7 @@ def create_profile_response(user: Dict, storage: InMemoryStorage, current_user_i
     """Create profile response format"""
     following = False
     if current_user_id:
-        following = user["id"] in storage.follows.get(current_user_id, set())
+        following = storage.follows.is_linked(current_user_id, user["id"])
 
     return {
         "username": user["username"],
@@ -355,9 +373,9 @@ def create_article_response(article: Dict, storage: InMemoryStorage, current_use
     author = storage.users.get(article["author_id"])
     favorited = False
     if current_user_id:
-        favorited = article["id"] in storage.favorites.get(current_user_id, set())
+        favorited = storage.favorites.is_linked(current_user_id, article["id"])
 
-    favorites_count = sum(1 for favs in storage.favorites.values() if article["id"] in favs)
+    favorites_count = len(storage.favorites.sources_for_target(article["id"]))
 
     return {
         "slug": article["slug"],
@@ -562,8 +580,6 @@ class RealWorldHandler(BaseHTTPRequestHandler):
         # Generate token after we have the user_id
         token = generate_token(user_id)
         user["token"] = token
-        storage.follows[user_id] = set()
-        storage.favorites[user_id] = set()
         demo_session_id = None if self._get_demo_session_cookie() else uuid.uuid4()
         self._send_response(201, {"user": create_user_response(user)}, demo_session_id)
 
@@ -628,7 +644,7 @@ class RealWorldHandler(BaseHTTPRequestHandler):
         if target_user["id"] == user_id:
             self._send_error(422, {"errors": {"body": ["Cannot follow yourself"]}})
             return
-        storage.follows[user_id].add(target_user["id"])
+        storage.follows.add(user_id, target_user["id"])
         self._send_response(200, {"profile": create_profile_response(target_user, storage, user_id)})
 
     def _handle_unfollow_user(self, storage: InMemoryStorage, username: str, current_user_id: Optional[int]):
@@ -638,7 +654,7 @@ class RealWorldHandler(BaseHTTPRequestHandler):
         if not target_user:
             self._send_error(404, {"errors": {"body": ["Profile not found"]}})
             return
-        storage.follows[user_id].discard(target_user["id"])
+        storage.follows.remove(user_id, target_user["id"])
         self._send_response(200, {"profile": create_profile_response(target_user, storage, user_id)})
 
     # Article endpoints
@@ -668,7 +684,7 @@ class RealWorldHandler(BaseHTTPRequestHandler):
         if favorited:
             favorited_user = get_user_by_username(favorited, storage)
             if favorited_user:
-                favorited_article_ids = storage.favorites.get(favorited_user["id"], set())
+                favorited_article_ids = storage.favorites.targets_for_source(favorited_user["id"])
                 articles = [a for a in articles if a["id"] in favorited_article_ids]
             else:
                 articles = []
@@ -692,7 +708,7 @@ class RealWorldHandler(BaseHTTPRequestHandler):
         limit = int(query_params.get("limit", [20])[0])
         offset = int(query_params.get("offset", [0])[0])
 
-        followed_user_ids = storage.follows.get(user_id, set())
+        followed_user_ids = storage.follows.targets_for_source(user_id)
         articles = [a for a in storage.articles.values() if a["author_id"] in followed_user_ids]
 
         # Sort by creation date (newest first)
@@ -805,8 +821,7 @@ class RealWorldHandler(BaseHTTPRequestHandler):
         storage.articles.delete(article_id)
 
         # Remove from favorites
-        for user_favorites in storage.favorites.values():
-            user_favorites.discard(article_id)
+        storage.favorites.delete_target(article_id)
 
         # Delete comments
         comments_to_delete = [c_id for c_id, c in storage.comments.items() if c["article_id"] == article_id]
@@ -829,7 +844,7 @@ class RealWorldHandler(BaseHTTPRequestHandler):
             self._send_error(404, {"errors": {"body": ["Article not found"]}})
             return
 
-        storage.favorites[user_id].add(article["id"])
+        storage.favorites.add(user_id, article["id"])
         self._send_response(200, {"article": create_article_response(article, storage, user_id)})
 
     def _handle_unfavorite_article(self, storage: InMemoryStorage, slug: str, current_user_id: Optional[str]):
@@ -841,7 +856,7 @@ class RealWorldHandler(BaseHTTPRequestHandler):
             self._send_error(404, {"errors": {"body": ["Article not found"]}})
             return
 
-        storage.favorites[user_id].discard(article["id"])
+        storage.favorites.remove(user_id, article["id"])
         self._send_response(200, {"article": create_article_response(article, storage, user_id)})
 
     # Comment endpoints
@@ -1084,6 +1099,153 @@ class TestInMemoryLinks(TestCase):
         with self.assertRaises(ValueError) as context:
             self.links.add({"key": "value"}, {"other": "data"})
         self.assertIn("id must be an int or an str", str(context.exception))
+
+    def test_is_linked_empty_links(self):
+        self.assertFalse(self.links.is_linked("1", "2"))
+
+    def test_is_linked_existing_link(self):
+        self.links.add("1", "2")
+        self.assertTrue(self.links.is_linked("1", "2"))
+
+    def test_is_linked_nonexistent_link(self):
+        self.links.add("1", "2")
+        self.assertFalse(self.links.is_linked("2", "1"))
+        self.assertFalse(self.links.is_linked("1", "3"))
+
+    def test_is_linked_with_int_ids(self):
+        self.links.add(1, 2)
+        self.assertTrue(self.links.is_linked(1, 2))
+        self.assertTrue(self.links.is_linked("1", "2"))
+
+    def test_is_linked_after_removal(self):
+        self.links.add("1", "2")
+        self.assertTrue(self.links.is_linked("1", "2"))
+        self.links.remove("1", "2")
+        self.assertFalse(self.links.is_linked("1", "2"))
+
+    def test_targets_for_source_empty_links(self):
+        self.assertEqual(self.links.targets_for_source("1"), [])
+
+    def test_targets_for_source_no_matches(self):
+        self.links.add("1", "2")
+        self.links.add("2", "3")
+        self.assertEqual(self.links.targets_for_source("3"), [])
+
+    def test_targets_for_source_single_target(self):
+        self.links.add("1", "2")
+        self.assertEqual(self.links.targets_for_source("1"), ["2"])
+
+    def test_targets_for_source_multiple_targets(self):
+        self.links.add("1", "2")
+        self.links.add("1", "3")
+        self.links.add("1", "4")
+        targets = self.links.targets_for_source("1")
+        self.assertEqual(sorted(targets), ["2", "3", "4"])
+
+    def test_targets_for_source_mixed_sources(self):
+        self.links.add("1", "2")
+        self.links.add("2", "3")
+        self.links.add("1", "4")
+        self.assertEqual(sorted(self.links.targets_for_source("1")), ["2", "4"])
+        self.assertEqual(self.links.targets_for_source("2"), ["3"])
+
+    def test_targets_for_source_with_int_id(self):
+        self.links.add(1, 2)
+        self.links.add(1, 3)
+        targets = self.links.targets_for_source(1)
+        self.assertEqual(sorted(targets), ["2", "3"])
+
+    def test_sources_for_target_empty_links(self):
+        self.assertEqual(self.links.sources_for_target("1"), [])
+
+    def test_sources_for_target_no_matches(self):
+        self.links.add("1", "2")
+        self.links.add("2", "3")
+        self.assertEqual(self.links.sources_for_target("1"), [])
+
+    def test_sources_for_target_single_source(self):
+        self.links.add("1", "2")
+        self.assertEqual(self.links.sources_for_target("2"), ["1"])
+
+    def test_sources_for_target_multiple_sources(self):
+        self.links.add("1", "4")
+        self.links.add("2", "4")
+        self.links.add("3", "4")
+        sources = self.links.sources_for_target("4")
+        self.assertEqual(sorted(sources), ["1", "2", "3"])
+
+    def test_sources_for_target_mixed_targets(self):
+        self.links.add("1", "2")
+        self.links.add("3", "2")
+        self.links.add("1", "4")
+        self.assertEqual(sorted(self.links.sources_for_target("2")), ["1", "3"])
+        self.assertEqual(self.links.sources_for_target("4"), ["1"])
+
+    def test_sources_for_target_with_int_id(self):
+        self.links.add(1, 3)
+        self.links.add(2, 3)
+        sources = self.links.sources_for_target(3)
+        self.assertEqual(sorted(sources), ["1", "2"])
+
+    def test_delete_source_empty_links(self):
+        self.links.delete_source("1")
+        self.assertEqual(self.links.links, [])
+
+    def test_delete_source_single_match(self):
+        self.links.add("1", "2")
+        self.links.add("3", "4")
+        self.links.delete_source("1")
+        self.assertEqual(self.links.links, [("3", "4")])
+
+    def test_delete_source_multiple_matches(self):
+        self.links.add("1", "2")
+        self.links.add("1", "3")
+        self.links.add("2", "4")
+        self.links.delete_source("1")
+        self.assertEqual(self.links.links, [("2", "4")])
+
+    def test_delete_source_no_matches(self):
+        self.links.add("1", "2")
+        self.links.add("3", "4")
+        original_links = self.links.links[:]
+        self.links.delete_source("5")
+        self.assertEqual(self.links.links, original_links)
+
+    def test_delete_source_with_int_id(self):
+        self.links.add(1, 2)
+        self.links.add(3, 4)
+        self.links.delete_source(1)
+        self.assertEqual(self.links.links, [("3", "4")])
+
+    def test_delete_target_empty_links(self):
+        self.links.delete_target("1")
+        self.assertEqual(self.links.links, [])
+
+    def test_delete_target_single_match(self):
+        self.links.add("1", "2")
+        self.links.add("3", "4")
+        self.links.delete_target("2")
+        self.assertEqual(self.links.links, [("3", "4")])
+
+    def test_delete_target_multiple_matches(self):
+        self.links.add("1", "4")
+        self.links.add("2", "4")
+        self.links.add("3", "5")
+        self.links.delete_target("4")
+        self.assertEqual(self.links.links, [("3", "5")])
+
+    def test_delete_target_no_matches(self):
+        self.links.add("1", "2")
+        self.links.add("3", "4")
+        original_links = self.links.links[:]
+        self.links.delete_target("5")
+        self.assertEqual(self.links.links, original_links)
+
+    def test_delete_target_with_int_id(self):
+        self.links.add(1, 2)
+        self.links.add(3, 4)
+        self.links.delete_target(2)
+        self.assertEqual(self.links.links, [("3", "4")])
 
 
 class TestStorageContainer(TestCase):
