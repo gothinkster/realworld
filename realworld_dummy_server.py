@@ -108,7 +108,15 @@ class InMemoryModel:
     def get(self, _id):  # TODO deepcopy on get? => no, but instead document no modif, and check code, always use update
         return self.objects.get(normalize_id(_id))
 
-    # TODO update, and validate on update, without the possbility to update id, update last_updated list
+    def update(self, _id, new_values_dict):
+        """this method should always be used on modification, because we want to run the validate_input callback"""
+        _id = normalize_id(_id)
+        # TODO run validate_input
+        if _id not in self.objects:
+            raise ValueError("object not found")
+        self.last_updated = [*(e for e in self.last_updated if e != _id), _id]
+        self.objects[_id] = {**self.objects[_id], **new_values_dict, "id": _id}  # better safe than sorry redefining id
+        return self.objects[_id]
 
     def keys(self):
         return self.objects.keys()
@@ -1007,12 +1015,21 @@ class TestInMemoryModel(TestCase):
     def setUp(self):
         self.model = InMemoryModel(max_count=3, validate_input=lambda x: True)
 
+    # init
+
     def test_init(self):
         model = InMemoryModel(max_count=5, validate_input=lambda x: True)
         self.assertEqual(model.max_count, 5)
         self.assertEqual(model.objects, {})
         self.assertEqual(model.last_updated, [])
         self.assertEqual(model.current_id_counter, 1)
+
+    def test_negative_max_count(self):
+        with self.assertRaises(ValueError) as exc:
+            model = InMemoryModel(max_count=-1, validate_input=lambda x: True)
+        self.assertEqual(str(exc.exception), "invalid value for max_count")
+
+    # add
 
     def test_add_single_object(self):
         obj = {"name": "test"}
@@ -1061,6 +1078,23 @@ class TestInMemoryModel(TestCase):
         )
         self.assertEqual(self.model.last_updated, ['2', '3', '4'])
 
+    def test_add_dict_with_existing_id_key(self):
+        # Test adding object that already has an "id" key
+        obj = {"name": "test", "id": "existing_id"}
+        self.model.add(obj)
+        # Should overwrite the existing id
+        self.assertEqual(obj["id"], "1")
+        self.assertNotEqual(obj["id"], "existing_id")
+
+    def test_current_id_counter_increments(self):
+        initial_counter = self.model.current_id_counter
+        self.model.add({"name": "test1"})
+        self.assertEqual(self.model.current_id_counter, initial_counter + 1)
+        self.model.add({"name": "test2"})
+        self.assertEqual(self.model.current_id_counter, initial_counter + 2)
+
+    # get
+
     def test_get_existing_object(self):
         obj = {"name": "test"}
         self.model.add(obj)
@@ -1088,6 +1122,8 @@ class TestInMemoryModel(TestCase):
             self.model.get(long_id)
         self.assertIn("id is too long", str(context.exception))
 
+    # keys / values / items
+
     def test_keys(self):
         obj1 = {"name": "test1"}
         obj2 = {"name": "test2"}
@@ -1114,6 +1150,100 @@ class TestInMemoryModel(TestCase):
         items = dict(self.model.items())
         self.assertEqual(items["1"], obj1)
         self.assertEqual(items["2"], obj2)
+
+    # update
+
+    def test_object_mutation_after_storage(self):
+        # currently implemented that way, but not supposed to be used as a mutable object
+        obj = {"name": "test", "data": {"count": 0}}
+        self.model.add(obj)
+        # mutate the stored object
+        retrieved = self.model.get("1")
+        retrieved["data"]["count"] = 42
+        retrieved["new_field"] = "added"
+        # changes should persist
+        retrieved_again = self.model.get("1")
+        self.assertEqual(retrieved_again["data"]["count"], 42)
+        self.assertEqual(retrieved_again["new_field"], "added")
+
+    def test_update_existing_object_success(self):
+        obj = {"name": "test", "value": 42}
+        added_obj = self.model.add(obj)
+        test_id = added_obj["id"]
+        new_values = {"name": "updated", "extra": "new_field"}
+        result = self.model.update(test_id, new_values)
+        expected = {"id": test_id, "name": "updated", "value": 42, "extra": "new_field"}
+        self.assertEqual(result, expected)
+        self.assertEqual(self.model.get(test_id), expected)
+
+    def test_update_preserves_id(self):
+        obj = {"name": "test"}
+        added_obj = self.model.add(obj)
+        test_id = added_obj["id"]
+        new_values = {"id": "different_id", "name": "updated"}
+        result = self.model.update(test_id, new_values)
+        self.assertEqual(result["id"], test_id)
+        self.assertEqual(self.model.get(test_id)["id"], test_id)
+
+    def test_update_with_string_and_int_id(self):
+        obj = {"name": "test"}
+        added_obj = self.model.add(obj)
+        test_id = added_obj["id"]
+        # Test with string ID
+        result1 = self.model.update(str(test_id), {"name": "string_test"})
+        self.assertEqual(result1["name"], "string_test")
+        # Test with integer ID
+        result2 = self.model.update(int(test_id), {"name": "int_test"})
+        self.assertEqual(result2["name"], "int_test")
+
+    def test_update_nonexistent_object_raises_error(self):
+        with self.assertRaises(ValueError) as context:
+            self.model.update("nonexistent_id", {"name": "test"})
+        self.assertEqual(str(context.exception), "object not found")
+
+    def test_update_empty_new_values(self):
+        obj = {"name": "test"}
+        added_obj = self.model.add(obj)
+        test_id = added_obj["id"]
+        original_obj = self.model.get(test_id).copy()
+        result = self.model.update(test_id, {})
+        self.assertEqual(result, original_obj)
+
+    def test_update_updates_last_updated_list(self):
+        obj1 = self.model.add({"name": "first"})
+        obj2 = self.model.add({"name": "second"})
+        initial_order = [obj1["id"], obj2["id"]]
+        self.assertEqual(self.model.last_updated, initial_order)
+        # Update first object - should move to end
+        self.model.update(obj1["id"], {"name": "updated_first"})
+        self.assertEqual(self.model.last_updated, [obj2["id"], obj1["id"]])
+
+    def test_update_same_object_twice(self):
+        obj = self.model.add({"name": "test"})
+        test_id = obj["id"]
+        self.model.update(test_id, {"name": "first_update"})
+        self.assertEqual(self.model.last_updated[-1], test_id)
+        self.model.update(test_id, {"name": "second_update"})
+        self.assertEqual(self.model.last_updated[-1], test_id)
+        self.assertEqual(self.model.get(test_id)["name"], "second_update")
+
+    def test_update_merges_values_correctly(self):
+        obj = {"name": "test", "value": 42}
+        added_obj = self.model.add(obj)
+        test_id = added_obj["id"]
+        new_values = {"value": 100, "new_field": "added"}
+        result = self.model.update(test_id, new_values)
+        expected = {"id": test_id, "name": "test", "value": 100, "new_field": "added"}
+        self.assertEqual(result, expected)
+
+    def test_update_returns_stored_object_reference(self):
+        obj = self.model.add({"name": "test"})
+        test_id = obj["id"]
+        result = self.model.update(test_id, {"name": "updated"})
+        stored_obj = self.model.get(test_id)
+        self.assertIs(result, stored_obj)
+
+    # delete
 
     def test_delete_existing_object_with_one_object(self):
         obj = {"name": "test"}
@@ -1180,12 +1310,7 @@ class TestInMemoryModel(TestCase):
             self.model.delete({"invalid": "id"})
         self.assertIn("id must be an int or an str", str(context.exception))
 
-    def test_current_id_counter_increments(self):
-        initial_counter = self.model.current_id_counter
-        self.model.add({"name": "test1"})
-        self.assertEqual(self.model.current_id_counter, initial_counter + 1)
-        self.model.add({"name": "test2"})
-        self.assertEqual(self.model.current_id_counter, initial_counter + 2)
+    # mixed
 
     def test_max_id_length_exceeded(self):
         # Create a model with a very low MAX_ID_LEN to test the limit
@@ -1243,16 +1368,8 @@ class TestInMemoryModel(TestCase):
 
     def test_string_and_int_id_equivalence(self):
         self.model.add({"name": "test"})
-        self.assertEqual(self.model.get("1"), {"name": "test"})
-        self.assertEqual(self.model.get(1), {"name": "test"})
-
-    def test_add_dict_with_existing_id_key(self):
-        # Test adding object that already has an "id" key
-        obj = {"name": "test", "id": "existing_id"}
-        self.model.add(obj)
-        # Should overwrite the existing id
-        self.assertEqual(obj["id"], "1")
-        self.assertNotEqual(obj["id"], "existing_id")
+        self.assertEqual(self.model.get("1"), {"id": "1", "name": "test"})
+        self.assertEqual(self.model.get(1), {"id": "1", "name": "test"})
 
     def test_large_max_count(self):
         model = InMemoryModel(max_count=1000000, validate_input=lambda x: True)
@@ -1260,11 +1377,6 @@ class TestInMemoryModel(TestCase):
         model.add(obj)
         self.assertEqual(len(model.objects), 1)
         self.assertEqual(obj["id"], "1")
-
-    def test_negative_max_count(self):
-        with self.assertRaises(ValueError) as exc:
-            model = InMemoryModel(max_count=-1, validate_input=lambda x: True)
-        self.assertEqual(str(exc.exception), "invalid value for max_count")
 
     def test_float_ids_rejected(self):
         with self.assertRaises(ValueError) as context:
@@ -1357,19 +1469,6 @@ class TestInMemoryModel(TestCase):
             self.assertEqual(retrieved["value"], i * 10)
         # Verify all objects still accessible
         self.assertEqual(len(list(self.model.keys())), 3)  # max_count is 3
-
-    def test_object_mutation_after_storage(self):
-        # currently implemented that way, but not supposed to be used as a mutable object
-        obj = {"name": "test", "data": {"count": 0}}
-        self.model.add(obj)
-        # mutate the stored object
-        retrieved = self.model.get("1")
-        retrieved["data"]["count"] = 42
-        retrieved["new_field"] = "added"
-        # changes should persist
-        retrieved_again = self.model.get("1")
-        self.assertEqual(retrieved_again["data"]["count"], 42)
-        self.assertEqual(retrieved_again["new_field"], "added")
 
 
 class TestInMemoryLinks(TestCase):
