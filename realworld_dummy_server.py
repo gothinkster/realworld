@@ -9,6 +9,8 @@ in-memory, framework-free implementation of the RealWorld API specification.
 
 ## Purpose
 Demo backend for testing/development that manages all data in memory.
+For a regular Python implementation that follows commonly accepted best practices, you can check:
+https://github.com/c4ffein/realworld-django-ninja/
 
 ## Key Design Decisions
 - **In-memory storage**: Data persists only during server runtime
@@ -45,17 +47,33 @@ from datetime import datetime, timezone
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from os import getenv
 from time import time_ns
-from typing import Dict, Optional
+from typing import Dict, List, Optional, Tuple
 from unittest import TestCase
 from urllib.parse import parse_qs, urlparse
 
 
+# security
 DISABLE_ISOLATION_MODE = getenv("DISABLE_ISOLATION_MODE", "FALSE").lower() == "true"
 MAX_SESSIONS = int(getenv("MAX_SESSIONS") or 1000)
 BYPASS_ORIGIN_CHECK = getenv("BYPASS_ORIGIN_CHECK", "FALSE").lower() == "true"
 ALLOWED_ORIGINS = getenv("ALLOWED_ORIGINS", "").split(";")
 if ALLOWED_ORIGINS == [""] and not BYPASS_ORIGIN_CHECK:
     raise ValueError("ALLOWED_ORIGINS varenv should be set if BYPASS_ORIGIN_CHECK isn't")
+# max lengths for keys and data
+MAX_ID_LEN = 64
+MAX_USERS_PER_SESSION = 60
+MAX_ARTICLES_PER_SESSION = 60
+MAX_COMMENTS_PER_SESSION = 60
+
+
+def normalize_id(value):
+    if type(value) == int:
+        value = str(value)
+    if type(value) == str:
+        if len(value) > MAX_ID_LEN:
+            raise ValueError("id is too long")
+        return value
+    raise ValueError("id must be an int or an str")
 
 
 class InMemoryModel:
@@ -68,14 +86,18 @@ class InMemoryModel:
         self.auto_add_id = auto_add_id
 
     def add(self, obj):
-        self.objects[self.current_id_counter] = obj
+        self.objects[str(self.current_id_counter)] = obj
         if self.auto_add_id:
-            obj["id"] = self.current_id_counter
+            obj["id"] = str(self.current_id_counter)
         self.current_id_counter += 1
+        if len(str(self.current_id_counter)) > MAX_ID_LEN:
+            raise ValueError("cannot allocate id: we reached MAX_ID_LEN limit")
         return obj
 
-    def get(self, _id):
-        return self.objects.get(_id)
+    def get(self, _id):  # TODO deepcopy on get?
+        return self.objects.get(normalize_id(_id))
+
+    # TODO update?
 
     def keys(self):
         return self.objects.keys()
@@ -87,10 +109,36 @@ class InMemoryModel:
         return self.objects.items()
 
     def delete(self, _id):
+        _id = normalize_id(_id)
         if _id in self.objects:
             del self.objects[_id]
             return True
         return False
+
+
+class InMemoryLinks:
+    def __init__(self, max_count):
+        self.max_count: int = max_count
+        self.links: List[Tuple[int, int]] = []  # cheaper implem to limit global number of links and wipe oldest
+
+    def add(self, source, target):
+        source, target = normalize_id(source), normalize_id(target)
+        # TODO ensure we now work with str everywhere
+        if self.max_count == 0:
+            return
+        _index = self.links.index((source, target)) if (source, target) in self.links else None
+        if _index is not None:
+            self.links = [*self.links[:_index], *self.links[_index+1:], (source, target)]
+        elif len(self.links) >= self.max_count:
+            self.links = [*self.links[1:], (source, target)]
+        else:
+            self.links = [*self.links, (source, target)]
+
+    def remove(self, source, target):
+        source, target = normalize_id(source), normalize_id(target)
+        _index = self.links.index((source, target)) if (source, target) in self.links else None
+        if _index is not None:
+            self.links = [*self.links[:_index], *self.links[_index+1:]]
 
 
 class InMemoryStorage:
@@ -100,9 +148,9 @@ class InMemoryStorage:
         # TODO getters and setters for all those attributes that validate a max count, delete oldest one
         # TODO values from get are deepcopied
         # TODO when values are set, we register a deepcopy with limited storage
-        self.users = InMemoryModel(max_count=1000, validate_input=lambda x: True)  # TODO limit
-        self.articles = InMemoryModel(max_count=1000, validate_input=lambda x: True)  # TODO limit
-        self.comments = InMemoryModel(max_count=1000, validate_input=lambda x: True)  # TODO limit
+        self.users = InMemoryModel(max_count=MAX_USERS_PER_SESSION, validate_input=lambda x: True)  # TODO limit
+        self.articles = InMemoryModel(max_count=MAX_ARTICLES_PER_SESSION, validate_input=lambda x: True)  # TODO limit
+        self.comments = InMemoryModel(max_count=MAX_COMMENTS_PER_SESSION, validate_input=lambda x: True)  # TODO limit
         self.follows: Dict[int, set] = {}  # user_id -> set of followed user_ids  # TODO limit
         self.favorites: Dict[int, set] = {}  # user_id -> set of favorited article_ids  # TODO limit
 
@@ -222,7 +270,7 @@ def hash_password(password: str) -> str:
     return hashlib.sha256(password.encode()).hexdigest()
 
 
-def generate_token(user_id: int) -> str:
+def generate_token(user_id: str) -> str:
     """Generate JWT-like token (simplified)"""
     payload = f"{user_id}:{int(time.time())}"
     return f"token_{hashlib.sha256(payload.encode()).hexdigest()[:32]}"
@@ -288,7 +336,7 @@ def create_user_response(user: Dict, include_token: bool = True) -> Dict:
     return response
 
 
-def create_profile_response(user: Dict, storage: InMemoryStorage, current_user_id: Optional[int] = None) -> Dict:
+def create_profile_response(user: Dict, storage: InMemoryStorage, current_user_id: Optional[str] = None) -> Dict:
     """Create profile response format"""
     following = False
     if current_user_id:
@@ -302,7 +350,7 @@ def create_profile_response(user: Dict, storage: InMemoryStorage, current_user_i
     }
 
 
-def create_article_response(article: Dict, storage: InMemoryStorage, current_user_id: Optional[int] = None) -> Dict:
+def create_article_response(article: Dict, storage: InMemoryStorage, current_user_id: Optional[str] = None) -> Dict:
     """Create article response format"""
     author = storage.users.get(article["author_id"])
     favorited = False
@@ -325,7 +373,7 @@ def create_article_response(article: Dict, storage: InMemoryStorage, current_use
     }
 
 
-def create_comment_response(comment: Dict, storage: InMemoryStorage, current_user_id: Optional[int] = None) -> Dict:
+def create_comment_response(comment: Dict, storage: InMemoryStorage, current_user_id: Optional[str] = None) -> Dict:
     """Create comment response format"""
     author = storage.users.get(comment["author_id"])
 
@@ -637,7 +685,7 @@ class RealWorldHandler(BaseHTTPRequestHandler):
 
         self._send_response(200, {"articles": article_responses, "articlesCount": total_count})
 
-    def _handle_articles_feed(self, storage: InMemoryStorage, query_params: Dict, current_user_id: Optional[int]):
+    def _handle_articles_feed(self, storage: InMemoryStorage, query_params: Dict, current_user_id: Optional[str]):
         """GET /articles/feed - Get feed of followed users"""
         user_id = self._require_auth(current_user_id)
 
@@ -659,7 +707,7 @@ class RealWorldHandler(BaseHTTPRequestHandler):
 
         self._send_response(200, {"articles": article_responses, "articlesCount": total_count})
 
-    def _handle_create_article(self, storage: InMemoryStorage, current_user_id: Optional[int]):
+    def _handle_create_article(self, storage: InMemoryStorage, current_user_id: Optional[str]):
         """POST /articles - Create article"""
         user_id = self._require_auth(current_user_id)
 
@@ -701,7 +749,7 @@ class RealWorldHandler(BaseHTTPRequestHandler):
         storage.articles.add(article)
         self._send_response(201, {"article": create_article_response(article, storage, user_id)})
 
-    def _handle_get_article(self, storage: InMemoryStorage, slug: str, current_user_id: Optional[int]):
+    def _handle_get_article(self, storage: InMemoryStorage, slug: str, current_user_id: Optional[str]):
         """GET /articles/{slug} - Get article"""
         article = get_article_by_slug(slug, storage)
         if not article:
@@ -710,7 +758,7 @@ class RealWorldHandler(BaseHTTPRequestHandler):
 
         self._send_response(200, {"article": create_article_response(article, storage, current_user_id)})
 
-    def _handle_update_article(self, storage: InMemoryStorage, slug: str, current_user_id: Optional[int]):
+    def _handle_update_article(self, storage: InMemoryStorage, slug: str, current_user_id: Optional[str]):
         """PUT /articles/{slug} - Update article"""
         user_id = self._require_auth(current_user_id)
 
@@ -739,7 +787,7 @@ class RealWorldHandler(BaseHTTPRequestHandler):
 
         self._send_response(200, {"article": create_article_response(article, storage, user_id)})
 
-    def _handle_delete_article(self, storage: InMemoryStorage, slug: str, current_user_id: Optional[int]):
+    def _handle_delete_article(self, storage: InMemoryStorage, slug: str, current_user_id: Optional[str]):
         """DELETE /articles/{slug} - Delete article"""
         user_id = self._require_auth(current_user_id)
 
@@ -772,7 +820,7 @@ class RealWorldHandler(BaseHTTPRequestHandler):
         self.send_header("Access-Control-Allow-Headers", "Content-Type, Authorization")
         self.end_headers()
 
-    def _handle_favorite_article(self, storage: InMemoryStorage, slug: str, current_user_id: Optional[int]):
+    def _handle_favorite_article(self, storage: InMemoryStorage, slug: str, current_user_id: Optional[str]):
         """POST /articles/{slug}/favorite - Favorite article"""
         user_id = self._require_auth(current_user_id)
 
@@ -784,7 +832,7 @@ class RealWorldHandler(BaseHTTPRequestHandler):
         storage.favorites[user_id].add(article["id"])
         self._send_response(200, {"article": create_article_response(article, storage, user_id)})
 
-    def _handle_unfavorite_article(self, storage: InMemoryStorage, slug: str, current_user_id: Optional[int]):
+    def _handle_unfavorite_article(self, storage: InMemoryStorage, slug: str, current_user_id: Optional[str]):
         """DELETE /articles/{slug}/favorite - Unfavorite article"""
         user_id = self._require_auth(current_user_id)
 
@@ -797,7 +845,7 @@ class RealWorldHandler(BaseHTTPRequestHandler):
         self._send_response(200, {"article": create_article_response(article, storage, user_id)})
 
     # Comment endpoints
-    def _handle_get_comments(self, storage: InMemoryStorage, slug: str, current_user_id: Optional[int]):
+    def _handle_get_comments(self, storage: InMemoryStorage, slug: str, current_user_id: Optional[str]):
         """GET /articles/{slug}/comments - Get comments"""
         article = get_article_by_slug(slug, storage)
         if not article:
@@ -810,7 +858,7 @@ class RealWorldHandler(BaseHTTPRequestHandler):
         comment_responses = [create_comment_response(c, storage, current_user_id) for c in comments]
         self._send_response(200, {"comments": comment_responses})
 
-    def _handle_create_comment(self, storage: InMemoryStorage, slug: str, current_user_id: Optional[int]):
+    def _handle_create_comment(self, storage: InMemoryStorage, slug: str, current_user_id: Optional[str]):
         """POST /articles/{slug}/comments - Create comment"""
         user_id = self._require_auth(current_user_id)
 
@@ -842,7 +890,7 @@ class RealWorldHandler(BaseHTTPRequestHandler):
         self._send_response(200, {"comment": create_comment_response(comment, storage, user_id)})
 
     def _handle_delete_comment(
-        self, storage: InMemoryStorage, slug: str, comment_id: int, current_user_id: Optional[int]
+        self, storage: InMemoryStorage, slug: str, comment_id: int, current_user_id: Optional[str]
     ):
         """DELETE /articles/{slug}/comments/{id} - Delete comment"""
         user_id = self._require_auth(current_user_id)
@@ -928,6 +976,114 @@ if __name__ == "__main__":
 
 
 #### TESTS #############################################################################################################
+
+
+class TestInMemoryLinks(TestCase):
+
+    def setUp(self):
+        self.links = InMemoryLinks(max_count=3)
+
+    def test_init(self):
+        links = InMemoryLinks(max_count=5)
+        self.assertEqual(links.max_count, 5)
+        self.assertEqual(links.links, [])
+
+    def test_add_single_link(self):
+        self.links.add("1", "2")
+        self.assertEqual(self.links.links, [("1", "2")])
+
+    def test_add_multiple_links(self):
+        self.links.add("1", "2")
+        self.links.add("2", "3")
+        self.links.add("3", "4")
+        self.assertEqual(self.links.links, [("1", "2"), ("2", "3"), ("3", "4")])
+
+    def test_add_duplicate_link_moves_to_end(self):
+        self.links.add("1", "2")
+        self.links.add("2", "3")
+        self.links.add("1", "2")  # Duplicate
+        self.assertEqual(self.links.links, [("2", "3"), ("1", "2")])
+
+    def test_add_exceeds_max_count_removes_oldest(self):
+        self.links.add("1", "2")
+        self.links.add("2", "3")
+        self.links.add("3", "4")
+        self.links.add("4", "5")  # Should remove ("1", "2")
+        self.assertEqual(self.links.links, [("2", "3"), ("3", "4"), ("4", "5")])
+
+    def test_add_duplicate_when_at_max_count(self):
+        self.links.add("1", "2")
+        self.links.add("2", "3")
+        self.links.add("3", "4")
+        self.links.add("2", "3")  # Duplicate when at max
+        self.assertEqual(self.links.links, [("1", "2"), ("3", "4"), ("2", "3")])
+
+    def test_remove_existing_link(self):
+        self.links.add("1", "2")
+        self.links.add("2", "3")
+        self.links.remove("1", "2")
+        self.assertEqual(self.links.links, [("2", "3")])
+
+    def test_remove_nonexistent_link(self):
+        self.links.add("1", "2")
+        self.links.remove("3", "4")  # Doesn't exist
+        self.assertEqual(self.links.links, [("1", "2")])
+
+    def test_remove_from_empty_links(self):
+        self.links.remove("1", "2")
+        self.assertEqual(self.links.links, [])
+
+    def test_remove_middle_link(self):
+        self.links.add("1", "2")
+        self.links.add("2", "3")
+        self.links.add("3", "4")
+        self.links.remove("2", "3")
+        self.assertEqual(self.links.links, [("1", "2"), ("3", "4")])
+
+    def test_zero_max_count(self):
+        links = InMemoryLinks(max_count=0)
+        links.add("1", "2")
+        self.assertEqual(links.links, [])
+
+    def test_one_max_count(self):
+        links = InMemoryLinks(max_count=1)
+        links.add("1", "2")
+        links.add("2", "3")
+        self.assertEqual(links.links, [("2", "3")])
+
+    def test_mixed_operations(self):
+        self.links.add("1", "2")
+        self.links.add("2", "3")
+        self.links.remove("1", "2")
+        self.links.add("3", "4")
+        self.links.add("4", "5")
+        self.assertEqual(self.links.links, [("2", "3"), ("3", "4"), ("4", "5")])
+
+    def test_add_same_link_multiple_times(self):
+        self.links.add("1", "2")
+        self.links.add("1", "2")
+        self.links.add("1", "2")
+        self.assertEqual(self.links.links, [("1", "2")])
+
+    def test_edge_case_same_source_and_target(self):
+        self.links.add("1", "1")
+        self.assertEqual(self.links.links, [("1", "1")])
+        self.links.remove("1", "1")
+        self.assertEqual(self.links.links, [])
+
+    def test_add_int_converts_to_str(self):
+        self.links.add(1, 2)
+        self.assertEqual(self.links.links, [("1", "2")])
+
+    def test_add_boolean_raises_error(self):
+        with self.assertRaises(ValueError) as context:
+            self.links.add(True, False)
+        self.assertIn("id must be an int or an str", str(context.exception))
+
+    def test_add_dict_raises_error(self):
+        with self.assertRaises(ValueError) as context:
+            self.links.add({"key": "value"}, {"other": "data"})
+        self.assertIn("id must be an int or an str", str(context.exception))
 
 
 class TestStorageContainer(TestCase):
