@@ -25,13 +25,21 @@ https://github.com/c4ffein/realworld-django-ninja/
 - **Simple logging**: Of most operations  TODO
 
 ## Rate Limiting
-- Applied per browser session (not per RealWorld user account)
-- Implemented via cookie-based session tracking
+- Applied per browser session (not per RealWorld user account) via the UNDOCUMENTED_DEMO_SESSION cookie
+  - Prevents the same IPv4 or IPv6 range to use too many different UNDOCUMENTED_DEMO_SESSION
+    - That way it doesn't overflow the pool of the currently saved sessions
+- There are limits on the objects that will be saved in memory
+
+## Deploy
+- You should also rate limit per IPv4 address and IPv6 range through a reverse proxy
+- You should still limit the max body size per request through a reverse proxy
 
 ## Development Notes
 - Vibe coded with Claude Code
 - Tested against the regular test suites
 - Usable as a demo backend, if risking to lose data is an acceptable tradeoff
+- Working on this project was refreshing because the implementation approach differed a lot from typical web dev:
+  It allowed for design decisions based on different constraints than these of more standard web projects
 
 ⚠️  DO NOT BASE NON-DEMO PROJECTS ON THIS SPECIFIC IMPLEMENTATION  ⚠️
 """
@@ -54,18 +62,30 @@ from urllib.parse import parse_qs, urlparse
 
 # security
 DISABLE_ISOLATION_MODE = getenv("DISABLE_ISOLATION_MODE", "FALSE").lower() == "true"
-MAX_SESSIONS = int(getenv("MAX_SESSIONS") or 1000)
+MAX_SESSIONS = int(getenv("MAX_SESSIONS") or 300)
 BYPASS_ORIGIN_CHECK = getenv("BYPASS_ORIGIN_CHECK", "FALSE").lower() == "true"
 ALLOWED_ORIGINS = getenv("ALLOWED_ORIGINS", "").split(";")
 if ALLOWED_ORIGINS == [""] and not BYPASS_ORIGIN_CHECK:
     raise ValueError("ALLOWED_ORIGINS varenv should be set if BYPASS_ORIGIN_CHECK isn't")
-# max lengths for keys and data
-MAX_ID_LEN = 64
-MAX_USERS_PER_SESSION = 60
-MAX_ARTICLES_PER_SESSION = 60
-MAX_COMMENTS_PER_SESSION = 60
-MAX_FOLLOWS_PER_SESSION = 100
-MAX_FAVORITES_PER_SESSION = 100
+# max lengths for keys and objects per session
+MAX_ID_LEN = int(getenv("MAX_ID_LEN", 64))
+MAX_USERS_PER_SESSION = int(getenv("MAX_USERS_PER_SESSION", 60))
+MAX_ARTICLES_PER_SESSION = int(getenv("MAX_ARTICLES_PER_SESSION", 10))
+MAX_COMMENTS_PER_SESSION = int(getenv("MAX_COMMENTS_PER_SESSION", 20))
+MAX_FOLLOWS_PER_SESSION = int(getenv("MAX_FOLLOWS_PER_SESSION", 100))
+MAX_FAVORITES_PER_SESSION = int(getenv("MAX_FAVORITES_PER_SESSION", 100))
+# max lengths for fields in models
+MAX_LEN_USER_EMAIL = int(getenv("MAX_LEN_USER_EMAIL", 100))
+MAX_LEN_USER_USERNAME = int(getenv("MAX_LEN_USER_USERNAME", 60))
+MAX_LEN_USER_PASSWORD = int(getenv("MAX_LEN_USER_PASSWORD", 60))
+MAX_LEN_USER_BIO = int(getenv("MAX_LEN_USER_BIO", 400))
+MAX_LEN_USER_IMAGE = int(getenv("MAX_LEN_USER_IMAGE", 200))
+MAX_LEN_ARTICLE_TITLE = int(getenv("MAX_LEN_ARTICLE_TITLE", 100))
+MAX_LEN_ARTICLE_DESCRIPTION = int(getenv("MAX_LEN_ARTICLE_DESCRIPTION", 300))
+MAX_LEN_ARTICLE_BODY = int(getenv("MAX_LEN_ARTICLE_BODY", 3000))
+MAX_LEN_ARTICLE_TAG_LIST = int(getenv("MAX_LEN_ARTICLE_TAG_LIST", 10))
+MAX_LEN_ARTICLE_TAG_LEN = int(getenv("MAX_LEN_ARTICLE_TAG_LEN", 20))
+MAX_LEN_COMMENT_BODY = int(getenv("MAX_LEN_COMMENT_BODY", 300))
 
 
 def normalize_id(value):
@@ -83,11 +103,10 @@ class InMemoryModel:
     when rolling with new ids, we may safe-delete so we don't break any link in the storage (maybe through a callback)
     won't implement for now as the ROI isn't really there
     """
-    def __init__(self, max_count, validate_input):
+    def __init__(self, max_count):
         self.max_count: int = max_count
-        self.validate_input: callable = validate_input  # TODO Use
         self.objects: Dict[str, object] = {}
-        self.last_updated: List[str] = []  # implement that way since we won't allow many objects per model per session
+        self.last_accessed_ids: List[str] = []  # perf ok because of the objects per model per session limit
         self.current_id_counter = 1
         if self.max_count <= 0:
             raise ValueError("invalid value for max_count")
@@ -99,23 +118,17 @@ class InMemoryModel:
         obj["id"] = str(self.current_id_counter)
         self.current_id_counter += 1
         if len(self.objects) > self.max_count:
-            del self.objects[self.last_updated[0]]
-            self.last_updated = self.last_updated[1:] + [obj["id"]]
+            del self.objects[self.last_accessed_ids[0]]
+            self.last_accessed_ids = self.last_accessed_ids[1:] + [obj["id"]]
         else:
-            self.last_updated.append(obj["id"])
+            self.last_accessed_ids.append(obj["id"])
         return obj
 
-    def get(self, _id):  # TODO deepcopy on get? => no, but instead document no modif, and check code, always use update
-        return self.objects.get(normalize_id(_id))
-
-    def update(self, _id, new_values_dict):
-        """this method should always be used on modification, because we want to run the validate_input callback"""
+    def get(self, _id):
         _id = normalize_id(_id)
-        # TODO run validate_input
         if _id not in self.objects:
-            raise ValueError("object not found")
-        self.last_updated = [*(e for e in self.last_updated if e != _id), _id]
-        self.objects[_id] = {**self.objects[_id], **new_values_dict, "id": _id}  # better safe than sorry redefining id
+            return None
+        self.last_accessed_ids = [*(e for e in self.last_accessed_ids if e != _id), _id]
         return self.objects[_id]
 
     def keys(self):
@@ -131,7 +144,7 @@ class InMemoryModel:
         _id = normalize_id(_id)
         if _id in self.objects:
             del self.objects[_id]
-            self.last_updated = [cid for cid in self.last_updated if cid != _id]
+            self.last_accessed_ids = [cid for cid in self.last_accessed_ids if cid != _id]
             return True
         return False
 
@@ -180,12 +193,9 @@ class InMemoryStorage:
     """In-memory storage for all data"""
 
     def __init__(self):
-        # TODO getters and setters for all those attributes that validate a max count, delete oldest one
-        # TODO values from get are deepcopied
-        # TODO when values are set, we register a deepcopy with limited storage
-        self.users = InMemoryModel(max_count=MAX_USERS_PER_SESSION, validate_input=lambda x: True)  # TODO limit
-        self.articles = InMemoryModel(max_count=MAX_ARTICLES_PER_SESSION, validate_input=lambda x: True)  # TODO limit
-        self.comments = InMemoryModel(max_count=MAX_COMMENTS_PER_SESSION, validate_input=lambda x: True)  # TODO limit
+        self.users = InMemoryModel(max_count=MAX_USERS_PER_SESSION)
+        self.articles = InMemoryModel(max_count=MAX_ARTICLES_PER_SESSION)
+        self.comments = InMemoryModel(max_count=MAX_COMMENTS_PER_SESSION)
         self.follows = InMemoryLinks(max_count=MAX_FOLLOWS_PER_SESSION)  # user_id -> followed user_ids
         self.favorites = InMemoryLinks(max_count=MAX_FAVORITES_PER_SESSION)  # user_id -> favorited article_ids
 
@@ -263,14 +273,9 @@ class _StorageContainer:
 
     def _swap(self, i, j):
         """Swap two items and update their indices"""
-        # Update index map
-        self.index_map[self.heap[i][1]] = j
-        self.index_map[self.heap[j][1]] = i
-        # Update indices in items
-        self.heap[i][3] = j
-        self.heap[j][3] = i
-        # Swap items
-        self.heap[i], self.heap[j] = self.heap[j], self.heap[i]
+        self.index_map[self.heap[i][1]], self.index_map[self.heap[j][1]] = j, i  # Update index map
+        self.heap[i][3], self.heap[j][3] = j, i  # Update indices in items
+        self.heap[i], self.heap[j] = self.heap[j], self.heap[i]  # Swap items
 
     def get_storage(self, identifier):
         if self.DISABLE_ISOLATION_MODE:
@@ -315,37 +320,23 @@ def verify_token(token: str, storage: InMemoryStorage) -> Optional[int]:
     """Verify token and return user_id if valid"""
     if not token or not token.startswith("token_"):
         return None
-
-    # In a real implementation, you'd decode the JWT
-    # For simplicity, we'll store token->user_id mapping
-    for user_id, user in storage.users.items():
-        if user.get("token") == token:
-            return user_id
-    return None
+    # in a real implementation, you'd decode the JWT => for simplicity, we'll store token->user_id mapping
+    return next((user_id for user_id, user in storage.users.items() if user.get("token") == token), None)
 
 
 def get_user_by_email(email: str, storage: InMemoryStorage) -> Optional[Dict]:
     """Find user by email"""
-    for user in storage.users.values():
-        if user["email"] == email:
-            return user
-    return None
+    return next((user for user in storage.users.values() if user["email"] == email), None)
 
 
 def get_user_by_username(username: str, storage: InMemoryStorage) -> Optional[Dict]:
     """Find user by username"""
-    for user in storage.users.values():
-        if user["username"] == username:
-            return user
-    return None
+    return next((user for user in storage.users.values() if user["username"] == username), None)
 
 
 def get_article_by_slug(slug: str, storage: InMemoryStorage) -> Optional[Dict]:
     """Find article by slug"""
-    for article in storage.articles.values():
-        if article["slug"] == slug:
-            return article
-    return None
+    return next((article for article in storage.articles.values() if article["slug"] == slug), None)
 
 
 def format_datetime(dt: datetime) -> str:
@@ -454,20 +445,17 @@ class RealWorldHandler(BaseHTTPRequestHandler):
 
     def _handle_request(self, method: str):
         """Route request to appropriate handler"""
-        ip_address = self.request.getpeername()[0]  # TODO Use for rate limit
+        ip_address = self.request.getpeername()[0]  # TODO Use this or X-Forwarded-For / X-Real-IP depending on setup + document
         storage = storage_container.get_storage(self._get_demo_session_cookie())
         parsed = urlparse(self.path)
         path = parsed.path
         query_params = parse_qs(parsed.query)
-
         # Remove leading slash and split path
         path_parts = path.strip("/").split("/")
-
         # Get authorization header
         auth_header = self.headers.get("Authorization", "")
         token = auth_header.replace("Token ", "") if auth_header.startswith("Token ") else None
         current_user_id = verify_token(token, storage) if token else None
-
         # Route to handlers
         if method == "POST" and path == "/users":
             if not self._check_csrf_protection():
@@ -523,7 +511,6 @@ class RealWorldHandler(BaseHTTPRequestHandler):
         content_length = int(self.headers.get("Content-Length", 0))
         if content_length == 0:
             return {}
-
         body = self.rfile.read(content_length).decode("utf-8")
         return json.loads(body) if body else {}
 
@@ -568,6 +555,7 @@ class RealWorldHandler(BaseHTTPRequestHandler):
         return current_user_id
 
     # Auth endpoints
+
     def _handle_register(self, storage: InMemoryStorage):
         """POST /users - Register new user"""
         data = self._get_request_body()
@@ -577,6 +565,12 @@ class RealWorldHandler(BaseHTTPRequestHandler):
         password = user_data.get("password")
         if not all([email, username, password]):
             self._send_error(422, {"errors": {"body": ["Email, username and password are required"]}})
+            return
+        max_lens = ((email, MAX_LEN_USER_EMAIL), (username, MAX_LEN_USER_USERNAME), (password, MAX_LEN_USER_PASSWORD))
+        if not all(type[d] == str for d in (email, username, password)) and not all(len(d) <= l for d, l in max_lens):
+            err_str = "Email, username and password are expected as strings of length less than "
+            err_str += f"{MAX_LEN_USER_EMAIL}, {MAX_LEN_USER_USERNAME}, and {MAX_LEN_USER_PASSWORD}, respectively"
+            self._send_error(422, {"errors": {"body": [err_str]}})
             return
         # Check if user already exists
         if get_user_by_email(email, storage) or get_user_by_username(username, storage):
@@ -623,26 +617,39 @@ class RealWorldHandler(BaseHTTPRequestHandler):
         user = storage.users.get(user_id)
         self._send_response(200, {"user": create_user_response(user)})
 
+    def _helper_update_user_field(self, source_dict, target_dict, name, max_len):
+        """returns True if there is an error"""
+        if name not in source_dict:
+            return False
+        if type(source_dict[name]) != str or len(source_dict[name]) > max_len:
+            err_str = f"{name} is an optional string of length <= {max_len}"
+            self._send_error(422, {"errors": {"body": [err_str]}})
+            return True
+        target_dict[name] = source_dict[name]
+        return False
+
     def _handle_update_user(self, storage: InMemoryStorage, current_user_id: Optional[int]):
         """PUT /user - Update current user"""
         user_id = self._require_auth(current_user_id)
-        user = storage.users.get(user_id)
         data = self._get_request_body()
         user_data = data.get("user", {})
+        user_update = {}
         # Update fields if provided
-        if "email" in user_data:
-            user["email"] = user_data["email"]
-        if "username" in user_data:
-            user["username"] = user_data["username"]
-        if "password" in user_data:
-            user["password"] = hash_password(user_data["password"])
-        if "bio" in user_data:
-            user["bio"] = user_data["bio"]
-        if "image" in user_data:
-            user["image"] = user_data["image"]
+        if (
+            self._helper_update_user_field(user_data, user_update, "username", MAX_LEN_USER_USERNAME)
+            or self._helper_update_user_field(user_data, user_update, "password", MAX_LEN_USER_PASSWORD)
+            or self._helper_update_user_field(user_data, user_update, "bio", MAX_LEN_USER_BIO)
+            or self._helper_update_user_field(user_data, user_update, "image", MAX_LEN_USER_IMAGE)
+        ):
+            return
+        if "password" in user_update:
+            user_update["password"] = hash_password(user_update["password"])
+        user = storage.users.get(user_id)
+        user.update(**user_update)
         self._send_response(200, {"user": create_user_response(user)})
 
     # Profile endpoints
+
     def _handle_get_profile(self, storage: InMemoryStorage, username: str, current_user_id: Optional[int]):
         """GET /profiles/{username} - Get profile"""
         user = get_user_by_username(username, storage)
@@ -675,6 +682,7 @@ class RealWorldHandler(BaseHTTPRequestHandler):
         self._send_response(200, {"profile": create_profile_response(target_user, storage, user_id)})
 
     # Article endpoints
+
     def _handle_list_articles(self, storage: InMemoryStorage, query_params: Dict, current_user_id: Optional[int]):
         """GET /articles - List articles"""
         tag = query_params.get("tag", [None])[0]
@@ -682,21 +690,14 @@ class RealWorldHandler(BaseHTTPRequestHandler):
         favorited = query_params.get("favorited", [None])[0]
         limit = int(query_params.get("limit", [20])[0])
         offset = int(query_params.get("offset", [0])[0])
-
         articles = list(storage.articles.values())
-
         # Filter by tag
         if tag:
             articles = [a for a in articles if tag in a["tagList"]]
-
         # Filter by author
         if author:
             author_user = get_user_by_username(author, storage)
-            if author_user:
-                articles = [a for a in articles if a["author_id"] == author_user["id"]]
-            else:
-                articles = []
-
+            articles = [a for a in articles if a["author_id"] == author_user["id"]] if author_user else []
         # Filter by favorited
         if favorited:
             favorited_user = get_user_by_username(favorited, storage)
@@ -705,67 +706,80 @@ class RealWorldHandler(BaseHTTPRequestHandler):
                 articles = [a for a in articles if a["id"] in favorited_article_ids]
             else:
                 articles = []
-
         # Sort by creation date (newest first)
         articles.sort(key=lambda x: x["createdAt"], reverse=True)
-
         # Apply pagination
         total_count = len(articles)
         articles = articles[offset : offset + limit]
-
         # Format response
         article_responses = [create_article_response(a, storage, current_user_id) for a in articles]
-
         self._send_response(200, {"articles": article_responses, "articlesCount": total_count})
 
     def _handle_articles_feed(self, storage: InMemoryStorage, query_params: Dict, current_user_id: Optional[str]):
         """GET /articles/feed - Get feed of followed users"""
         user_id = self._require_auth(current_user_id)
-
         limit = int(query_params.get("limit", [20])[0])
         offset = int(query_params.get("offset", [0])[0])
-
         followed_user_ids = storage.follows.targets_for_source(user_id)
         articles = [a for a in storage.articles.values() if a["author_id"] in followed_user_ids]
-
         # Sort by creation date (newest first)
         articles.sort(key=lambda x: x["createdAt"], reverse=True)
-
         # Apply pagination
         total_count = len(articles)
         articles = articles[offset : offset + limit]
-
         # Format response
         article_responses = [create_article_response(a, storage, current_user_id) for a in articles]
-
         self._send_response(200, {"articles": article_responses, "articlesCount": total_count})
 
-    def _handle_create_article(self, storage: InMemoryStorage, current_user_id: Optional[str]):
-        """POST /articles - Create article"""
-        user_id = self._require_auth(current_user_id)
-
-        data = self._get_request_body()
-        article_data = data.get("article", {})
-
-        title = article_data.get("title")
-        description = article_data.get("description")
-        body = article_data.get("body")
-        tag_list = article_data.get("tagList", [])
-
-        if not all([title, description, body]):
-            self._send_error(422, {"errors": {"body": ["Title, description and body are required"]}})
-            return
-
-        # Generate slug
+    def _helper_article_get_slug(self, storage, title):
+        """ensure slug is unique"""
         slug = generate_slug(title)
-
-        # Ensure slug is unique
         base_slug = slug
         counter = 1
         while get_article_by_slug(slug, storage):
             slug = f"{base_slug}-{counter}"
             counter += 1
+        return slug
 
+    def _helper_article_field(self, source_dict, name, max_len):
+        """returns True if there is an error"""
+        if name not in source_dict:
+            return False
+        if type(source_dict[name]) != str or len(source_dict[name]) > max_len:
+            err_str = f"{name} is an optional string of length <= {max_len}"
+            self._send_error(422, {"errors": {"body": [err_str]}})
+            return True
+        return False
+
+    def _handle_create_article(self, storage: InMemoryStorage, current_user_id: Optional[str]):
+        """POST /articles - Create article"""
+        user_id = self._require_auth(current_user_id)
+        data = self._get_request_body()
+        article_data = data.get("article", {})
+        title = article_data.get("title")
+        description = article_data.get("description")
+        body = article_data.get("body")
+        if not all([title, description, body]):
+            self._send_error(422, {"errors": {"body": ["Title, description and body are required"]}})
+            return
+        if (
+            self._helper_article_field(article_data, "title", MAX_LEN_ARTICLE_TITLE)
+            or self._helper_article_field(article_data, "description", MAX_LEN_ARTICLE_DESCRIPTION)
+            or self._helper_article_field(article_data, "body", MAX_LEN_ARTICLE_BODY)
+        ):
+            return
+        tag_list = article_data.get("tagList", [])
+        if (
+            type(tag_list) != list
+            or len(tag_list) > MAX_LEN_ARTICLE_TAG_LIST
+            or any(type(e) != str for e in tag_list)
+            or any(len(e) > MAX_LEN_ARTICLE_TAG_LEN for e in tag_list)
+        ):
+            err_str = f"tagList is an optional list of less than {MAX_LEN_ARTICLE_TAG_LIST} strings "
+            err_str += f"of less than {MAX_LEN_ARTICLE_TAG_LEN} chars"
+            self._send_error(422, {"errors": {"body": [err_str]}})
+            return True
+        slug = self._helper_article_get_slug(storage, title)
         # Create article
         current_time = get_current_time()
         article = {
@@ -778,7 +792,6 @@ class RealWorldHandler(BaseHTTPRequestHandler):
             "createdAt": current_time,
             "updatedAt": current_time,
         }
-
         storage.articles.add(article)
         self._send_response(201, {"article": create_article_response(article, storage, user_id)})
 
@@ -788,63 +801,58 @@ class RealWorldHandler(BaseHTTPRequestHandler):
         if not article:
             self._send_error(404, {"errors": {"body": ["Article not found"]}})
             return
-
         self._send_response(200, {"article": create_article_response(article, storage, current_user_id)})
 
     def _handle_update_article(self, storage: InMemoryStorage, slug: str, current_user_id: Optional[str]):
         """PUT /articles/{slug} - Update article"""
         user_id = self._require_auth(current_user_id)
-
         article = get_article_by_slug(slug, storage)
         if not article:
             self._send_error(404, {"errors": {"body": ["Article not found"]}})
             return
-
         if article["author_id"] != user_id:
             self._send_error(403, {"errors": {"body": ["Forbidden"]}})
             return
-
         data = self._get_request_body()
         article_data = data.get("article", {})
-
+        article_update = {}  # update this intermediary dict to prevent half-finished updates
         # Update fields if provided
-        if "title" in article_data:
-            article["title"] = article_data["title"]
-            article["slug"] = generate_slug(article_data["title"])
+        if "title" in article_data and article["title"] != article_data["title"]:  # additional check for slug
+            if (self._helper_article_field(article_data, "title", MAX_LEN_ARTICLE_TITLE)):
+                return
+            article_update["title"] = article_data["title"]
+            article_update["slug"] = self._helper_article_get_slug(storage, title)  # checked different title before
         if "description" in article_data:
-            article["description"] = article_data["description"]
+            if (self._helper_article_field(article_data, "description", MAX_LEN_ARTICLE_DESCRIPTION)):
+                return
+            article_update["description"] = article_data["description"]
         if "body" in article_data:
-            article["body"] = article_data["body"]
-
-        article["updatedAt"] = get_current_time()
-
+            if (self._helper_article_field(article_data, "body", MAX_LEN_ARTICLE_BODY)):
+                return
+            article_update["body"] = article_data["body"]
+        article_update["updatedAt"] = get_current_time()
+        article.update(**article_update)
         self._send_response(200, {"article": create_article_response(article, storage, user_id)})
 
     def _handle_delete_article(self, storage: InMemoryStorage, slug: str, current_user_id: Optional[str]):
         """DELETE /articles/{slug} - Delete article"""
         user_id = self._require_auth(current_user_id)
-
         article = get_article_by_slug(slug, storage)
         if not article:
             self._send_error(404, {"errors": {"body": ["Article not found"]}})
             return
-
         if article["author_id"] != user_id:
             self._send_error(403, {"errors": {"body": ["Forbidden"]}})
             return
-
         # Delete article and related data
         article_id = article["id"]
         storage.articles.delete(article_id)
-
         # Remove from favorites
         storage.favorites.delete_target(article_id)
-
         # Delete comments
         comments_to_delete = [c_id for c_id, c in storage.comments.items() if c["article_id"] == article_id]
         for c_id in comments_to_delete:
             storage.comments.delete(c_id)
-
         # Send 204 No Content
         self.send_response(204)
         self.send_header("Access-Control-Allow-Origin", "*")
@@ -855,58 +863,52 @@ class RealWorldHandler(BaseHTTPRequestHandler):
     def _handle_favorite_article(self, storage: InMemoryStorage, slug: str, current_user_id: Optional[str]):
         """POST /articles/{slug}/favorite - Favorite article"""
         user_id = self._require_auth(current_user_id)
-
         article = get_article_by_slug(slug, storage)
         if not article:
             self._send_error(404, {"errors": {"body": ["Article not found"]}})
             return
-
         storage.favorites.add(user_id, article["id"])
         self._send_response(200, {"article": create_article_response(article, storage, user_id)})
 
     def _handle_unfavorite_article(self, storage: InMemoryStorage, slug: str, current_user_id: Optional[str]):
         """DELETE /articles/{slug}/favorite - Unfavorite article"""
         user_id = self._require_auth(current_user_id)
-
         article = get_article_by_slug(slug, storage)
         if not article:
             self._send_error(404, {"errors": {"body": ["Article not found"]}})
             return
-
         storage.favorites.remove(user_id, article["id"])
         self._send_response(200, {"article": create_article_response(article, storage, user_id)})
 
     # Comment endpoints
+
     def _handle_get_comments(self, storage: InMemoryStorage, slug: str, current_user_id: Optional[str]):
         """GET /articles/{slug}/comments - Get comments"""
         article = get_article_by_slug(slug, storage)
         if not article:
             self._send_error(404, {"errors": {"body": ["Article not found"]}})
             return
-
         comments = [c for c in storage.comments.values() if c["article_id"] == article["id"]]
         comments.sort(key=lambda x: x["createdAt"], reverse=True)
-
         comment_responses = [create_comment_response(c, storage, current_user_id) for c in comments]
         self._send_response(200, {"comments": comment_responses})
 
     def _handle_create_comment(self, storage: InMemoryStorage, slug: str, current_user_id: Optional[str]):
         """POST /articles/{slug}/comments - Create comment"""
         user_id = self._require_auth(current_user_id)
-
         article = get_article_by_slug(slug, storage)
         if not article:
             self._send_error(404, {"errors": {"body": ["Article not found"]}})
             return
-
         data = self._get_request_body()
         comment_data = data.get("comment", {})
         body = comment_data.get("body")
-
         if not body:
             self._send_error(422, {"errors": {"body": ["Body is required"]}})
             return
-
+        if type(body) != str or len(body) > MAX_LEN_COMMENT_BODY:
+            self._send_error(422, {"errors": {"body": [f"Body is a string of less than {MAX_LEN_COMMENT_BODY} chars"]}})
+            return
         # Create comment
         current_time = get_current_time()
         comment = {
@@ -916,9 +918,7 @@ class RealWorldHandler(BaseHTTPRequestHandler):
             "createdAt": current_time,
             "updatedAt": current_time,
         }
-
         storage.comments.add(comment)
-
         self._send_response(200, {"comment": create_comment_response(comment, storage, user_id)})
 
     def _handle_delete_comment(
@@ -926,24 +926,19 @@ class RealWorldHandler(BaseHTTPRequestHandler):
     ):
         """DELETE /articles/{slug}/comments/{id} - Delete comment"""
         user_id = self._require_auth(current_user_id)
-
         article = get_article_by_slug(slug, storage)
         if not article:
             self._send_error(404, {"errors": {"body": ["Article not found"]}})
             return
-
         comment = storage.comments.get(comment_id)
         if not comment or comment["article_id"] != article["id"]:
             self._send_error(404, {"errors": {"body": ["Comment not found"]}})
             return
-
         # Only comment author or article author can delete
         if comment["author_id"] != user_id and article["author_id"] != user_id:
             self._send_error(403, {"errors": {"body": ["Forbidden"]}})
             return
-
         storage.comments.delete(comment_id)
-
         # Send 204 No Content
         self.send_response(204)
         self.send_header("Access-Control-Allow-Origin", "*")
@@ -952,9 +947,10 @@ class RealWorldHandler(BaseHTTPRequestHandler):
         self.end_headers()
 
     # Tag endpoints
+
     def _handle_get_tags(self, storage: InMemoryStorage):
         """GET /tags - Get all tags"""
-        self._send_response(200, {"tags": sorted({t for u in storage.users.values() for t in u.get("tagList", [])})})
+        self._send_response(200, {"tags": sorted({t for a in storage.articles.values() for t in a.get("tagList", [])})})
 
     def do_OPTIONS(self):
         """Handle OPTIONS requests for CORS"""
@@ -1013,20 +1009,20 @@ if __name__ == "__main__":
 class TestInMemoryModel(TestCase):
 
     def setUp(self):
-        self.model = InMemoryModel(max_count=3, validate_input=lambda x: True)
+        self.model = InMemoryModel(max_count=3)
 
     # init
 
     def test_init(self):
-        model = InMemoryModel(max_count=5, validate_input=lambda x: True)
+        model = InMemoryModel(max_count=5)
         self.assertEqual(model.max_count, 5)
         self.assertEqual(model.objects, {})
-        self.assertEqual(model.last_updated, [])
+        self.assertEqual(model.last_accessed_ids, [])
         self.assertEqual(model.current_id_counter, 1)
 
     def test_negative_max_count(self):
         with self.assertRaises(ValueError) as exc:
-            model = InMemoryModel(max_count=-1, validate_input=lambda x: True)
+            model = InMemoryModel(max_count=-1)
         self.assertEqual(str(exc.exception), "invalid value for max_count")
 
     # add
@@ -1056,7 +1052,7 @@ class TestInMemoryModel(TestCase):
 
     def test_add_with_auto_id(self):
         """an object with a set is id is then expected"""
-        model = InMemoryModel(max_count=3, validate_input=lambda x: True)
+        model = InMemoryModel(max_count=3)
         obj = {"name": "test"}
         result = model.add(obj)
         self.assertEqual(result, obj)
@@ -1076,7 +1072,7 @@ class TestInMemoryModel(TestCase):
             self.model.objects,
             {'2': {'name': 'test2', 'id': '2'}, '3': {'name': 'test3', 'id': '3'}, '4': {'name': 'test4', 'id': '4'}},
         )
-        self.assertEqual(self.model.last_updated, ['2', '3', '4'])
+        self.assertEqual(self.model.last_accessed_ids, ['2', '3', '4'])
 
     def test_add_dict_with_existing_id_key(self):
         # Test adding object that already has an "id" key
@@ -1125,123 +1121,21 @@ class TestInMemoryModel(TestCase):
     # keys / values / items
 
     def test_keys(self):
-        obj1 = {"name": "test1"}
-        obj2 = {"name": "test2"}
-        self.model.add(obj1)
-        self.model.add(obj2)
+        self.model.add({"name": "test1"})
+        self.model.add({"name": "test2"})
         keys = list(self.model.keys())
         self.assertEqual(sorted(keys), ["1", "2"])
 
     def test_values(self):
-        obj1 = {"name": "test1"}
-        obj2 = {"name": "test2"}
-        self.model.add(obj1)
-        self.model.add(obj2)
-        values = list(self.model.values())
-        self.assertIn(obj1, values)
-        self.assertIn(obj2, values)
-        self.assertEqual(len(values), 2)
+        self.model.add({"name": "test1"})
+        self.model.add({"name": "test2"})
+        self.assertEqual(list(self.model.values()), [{"id": "1", "name": "test1"}, {"id": "2", "name": "test2"}])
 
     def test_items(self):
-        obj1 = {"name": "test1"}
-        obj2 = {"name": "test2"}
-        self.model.add(obj1)
-        self.model.add(obj2)
+        self.model.add({"name": "test1"})
+        self.model.add({"name": "test2"})
         items = dict(self.model.items())
-        self.assertEqual(items["1"], obj1)
-        self.assertEqual(items["2"], obj2)
-
-    # update
-
-    def test_object_mutation_after_storage(self):
-        # currently implemented that way, but not supposed to be used as a mutable object
-        obj = {"name": "test", "data": {"count": 0}}
-        self.model.add(obj)
-        # mutate the stored object
-        retrieved = self.model.get("1")
-        retrieved["data"]["count"] = 42
-        retrieved["new_field"] = "added"
-        # changes should persist
-        retrieved_again = self.model.get("1")
-        self.assertEqual(retrieved_again["data"]["count"], 42)
-        self.assertEqual(retrieved_again["new_field"], "added")
-
-    def test_update_existing_object_success(self):
-        obj = {"name": "test", "value": 42}
-        added_obj = self.model.add(obj)
-        test_id = added_obj["id"]
-        new_values = {"name": "updated", "extra": "new_field"}
-        result = self.model.update(test_id, new_values)
-        expected = {"id": test_id, "name": "updated", "value": 42, "extra": "new_field"}
-        self.assertEqual(result, expected)
-        self.assertEqual(self.model.get(test_id), expected)
-
-    def test_update_preserves_id(self):
-        obj = {"name": "test"}
-        added_obj = self.model.add(obj)
-        test_id = added_obj["id"]
-        new_values = {"id": "different_id", "name": "updated"}
-        result = self.model.update(test_id, new_values)
-        self.assertEqual(result["id"], test_id)
-        self.assertEqual(self.model.get(test_id)["id"], test_id)
-
-    def test_update_with_string_and_int_id(self):
-        obj = {"name": "test"}
-        added_obj = self.model.add(obj)
-        test_id = added_obj["id"]
-        # Test with string ID
-        result1 = self.model.update(str(test_id), {"name": "string_test"})
-        self.assertEqual(result1["name"], "string_test")
-        # Test with integer ID
-        result2 = self.model.update(int(test_id), {"name": "int_test"})
-        self.assertEqual(result2["name"], "int_test")
-
-    def test_update_nonexistent_object_raises_error(self):
-        with self.assertRaises(ValueError) as context:
-            self.model.update("nonexistent_id", {"name": "test"})
-        self.assertEqual(str(context.exception), "object not found")
-
-    def test_update_empty_new_values(self):
-        obj = {"name": "test"}
-        added_obj = self.model.add(obj)
-        test_id = added_obj["id"]
-        original_obj = self.model.get(test_id).copy()
-        result = self.model.update(test_id, {})
-        self.assertEqual(result, original_obj)
-
-    def test_update_updates_last_updated_list(self):
-        obj1 = self.model.add({"name": "first"})
-        obj2 = self.model.add({"name": "second"})
-        initial_order = [obj1["id"], obj2["id"]]
-        self.assertEqual(self.model.last_updated, initial_order)
-        # Update first object - should move to end
-        self.model.update(obj1["id"], {"name": "updated_first"})
-        self.assertEqual(self.model.last_updated, [obj2["id"], obj1["id"]])
-
-    def test_update_same_object_twice(self):
-        obj = self.model.add({"name": "test"})
-        test_id = obj["id"]
-        self.model.update(test_id, {"name": "first_update"})
-        self.assertEqual(self.model.last_updated[-1], test_id)
-        self.model.update(test_id, {"name": "second_update"})
-        self.assertEqual(self.model.last_updated[-1], test_id)
-        self.assertEqual(self.model.get(test_id)["name"], "second_update")
-
-    def test_update_merges_values_correctly(self):
-        obj = {"name": "test", "value": 42}
-        added_obj = self.model.add(obj)
-        test_id = added_obj["id"]
-        new_values = {"value": 100, "new_field": "added"}
-        result = self.model.update(test_id, new_values)
-        expected = {"id": test_id, "name": "test", "value": 100, "new_field": "added"}
-        self.assertEqual(result, expected)
-
-    def test_update_returns_stored_object_reference(self):
-        obj = self.model.add({"name": "test"})
-        test_id = obj["id"]
-        result = self.model.update(test_id, {"name": "updated"})
-        stored_obj = self.model.get(test_id)
-        self.assertIs(result, stored_obj)
+        self.assertEqual(items, {"1": {"id": "1", "name": "test1"}, "2": {"id": "2", "name": "test2"}})
 
     # delete
 
@@ -1253,46 +1147,37 @@ class TestInMemoryModel(TestCase):
         self.assertEqual(len(self.model.objects), 0)
 
     def test_delete_existing_object_with_multiple_objects_deletes_first(self):
-        obj1 = {"name": "test1"}
-        obj2 = {"name": "test2"}
-        obj3 = {"name": "test3"}
-        self.model.add(obj1)
-        self.model.add(obj2)
-        self.model.add(obj3)
+        self.model.add({"name": "test1"})
+        self.model.add({"name": "test2"})
+        self.model.add({"name": "test3"})
         self.assertEqual(self.model.current_id_counter, 4)
         result = self.model.delete("1")
         self.assertTrue(result)
         self.assertEqual(len(self.model.objects), 2)
         self.assertEqual(self.model.objects, {'2': {'name': 'test2', 'id': '2'}, '3': {'name': 'test3', 'id': '3'}})
-        self.assertEqual(self.model.last_updated, ['2', '3'])
+        self.assertEqual(self.model.last_accessed_ids, ['2', '3'])
 
     def test_delete_existing_object_with_multiple_objects_deletes_middle(self):
-        obj1 = {"name": "test1"}
-        obj2 = {"name": "test2"}
-        obj3 = {"name": "test3"}
-        self.model.add(obj1)
-        self.model.add(obj2)
-        self.model.add(obj3)
+        self.model.add({"name": "test1"})
+        self.model.add({"name": "test2"})
+        self.model.add({"name": "test3"})
         self.assertEqual(self.model.current_id_counter, 4)
         result = self.model.delete("2")
         self.assertTrue(result)
         self.assertEqual(len(self.model.objects), 2)
         self.assertEqual(self.model.objects, {'1': {'name': 'test1', 'id': '1'}, '3': {'name': 'test3', 'id': '3'}})
-        self.assertEqual(self.model.last_updated, ['1', '3'])
+        self.assertEqual(self.model.last_accessed_ids, ['1', '3'])
 
     def test_delete_existing_object_with_multiple_objects_deletes_last(self):
-        obj1 = {"name": "test1"}
-        obj2 = {"name": "test2"}
-        obj3 = {"name": "test3"}
-        self.model.add(obj1)
-        self.model.add(obj2)
-        self.model.add(obj3)
+        self.model.add({"name": "test1"})
+        self.model.add({"name": "test2"})
+        self.model.add({"name": "test3"})
         self.assertEqual(self.model.current_id_counter, 4)
         result = self.model.delete("3")
         self.assertTrue(result)
         self.assertEqual(len(self.model.objects), 2)
         self.assertEqual(self.model.objects, {'1': {'name': 'test1', 'id': '1'}, '2': {'name': 'test2', 'id': '2'}})
-        self.assertEqual(self.model.last_updated, ['1', '2'])
+        self.assertEqual(self.model.last_accessed_ids, ['1', '2'])
 
     def test_delete_nonexistent_object(self):
         result = self.model.delete("999")
@@ -1318,7 +1203,7 @@ class TestInMemoryModel(TestCase):
         import realworld_dummy_server
         realworld_dummy_server.MAX_ID_LEN = 1
         try:
-            model = InMemoryModel(max_count=10, validate_input=lambda x: True)
+            model = InMemoryModel(max_count=10)
             # Add enough objects to reach the limit
             for i in range(9):  # IDs will be 1-9 (single digit)
                 model.add({"name": f"test{i}"})
@@ -1351,11 +1236,11 @@ class TestInMemoryModel(TestCase):
 
     def test_model_zero_max_count(self):
         with self.assertRaises(ValueError) as exc:
-            model = InMemoryModel(max_count=0, validate_input=lambda x: True)
+            model = InMemoryModel(max_count=0)
         self.assertEqual(str(exc.exception), "invalid value for max_count")
 
     def test_one_max_count(self):
-        model = InMemoryModel(max_count=1, validate_input=lambda x: True)
+        model = InMemoryModel(max_count=1)
         obj1 = {"name": "test1"}
         obj2 = {"name": "test2"}
         model.add(obj1)
@@ -1372,7 +1257,7 @@ class TestInMemoryModel(TestCase):
         self.assertEqual(self.model.get(1), {"id": "1", "name": "test"})
 
     def test_large_max_count(self):
-        model = InMemoryModel(max_count=1000000, validate_input=lambda x: True)
+        model = InMemoryModel(max_count=1000000)
         obj = {"name": "test"}
         model.add(obj)
         self.assertEqual(len(model.objects), 1)
