@@ -22,7 +22,7 @@ https://github.com/c4ffein/realworld-django-ninja/
   - Any other route is safe against CSRF as we are using Token in headers and not a cookie
 - **Zero dependencies**: Python standard library only
 - **Single file**: Entire server implementation in one module
-- **Simple logging**: Of most operations TODO document log files
+- **Simple logging**: Of most operations (see `Deploy`)
 
 ## Rate Limiting
 - Applied per browser session (not per RealWorld user account) via the UNDOCUMENTED_DEMO_SESSION cookie
@@ -33,6 +33,7 @@ https://github.com/c4ffein/realworld-django-ninja/
 ## Deploy
 - You should also rate limit per IPv4 address and IPv6 range through a reverse proxy
 - You should still limit the max body size per request through a reverse proxy
+- You should set LOG_LEVEL / LOG_FILE / LOG_MAX_SIZE / LOG_BACKUP_COUNT to enable rotating logs
 
 ## Development Notes
 - Vibe coded with Claude Code
