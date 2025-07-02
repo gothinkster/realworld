@@ -22,7 +22,7 @@ https://github.com/c4ffein/realworld-django-ninja/
   - Any other route is safe against CSRF as we are using Token in headers and not a cookie
 - **Zero dependencies**: Python standard library only
 - **Single file**: Entire server implementation in one module
-- **Simple logging**: Of most operations  TODO
+- **Simple logging**: Of most operations TODO document log files
 
 ## Rate Limiting
 - Applied per browser session (not per RealWorld user account) via the UNDOCUMENTED_DEMO_SESSION cookie
@@ -46,6 +46,8 @@ https://github.com/c4ffein/realworld-django-ninja/
 
 import hashlib
 import json
+import logging
+import logging.handlers
 import re
 import time
 import uuid
@@ -58,7 +60,11 @@ from pathlib import Path
 from time import time_ns
 from typing import Dict, List, Optional, Tuple
 from unittest import TestCase
+from unittest.mock import patch
 from urllib.parse import parse_qs, urlparse
+
+
+#### CONFIGURATION #####################################################################################################
 
 
 # security
@@ -68,6 +74,11 @@ BYPASS_ORIGIN_CHECK = getenv("BYPASS_ORIGIN_CHECK", "FALSE").lower() == "true"
 ALLOWED_ORIGINS = getenv("ALLOWED_ORIGINS", "").split(";")
 if ALLOWED_ORIGINS == [""] and not BYPASS_ORIGIN_CHECK:
     raise ValueError("ALLOWED_ORIGINS varenv should be set if BYPASS_ORIGIN_CHECK isn't")
+# logging
+LOG_LEVEL = getenv("LOG_LEVEL", "INFO").upper()
+LOG_FILE = getenv("LOG_FILE")  # Optional file logging
+LOG_MAX_SIZE = int(getenv("LOG_MAX_SIZE", 10 * 1024 * 1024))  # 10MB default
+LOG_BACKUP_COUNT = int(getenv("LOG_BACKUP_COUNT", 5))
 # data persistence
 DATA_FILE_PATH = (lambda path: Path(path) if path else None)(getenv("DATA_FILE_PATH"))
 # max lengths for keys and objects per session
@@ -99,7 +110,67 @@ NAIVE_SIZE_SESSION_USER = NAIVE_SIZE_USER * MAX_USERS_PER_SESSION
 NAIVE_SIZE_SESSION_ARTICLE = NAIVE_SIZE_ARTICLE * MAX_ARTICLES_PER_SESSION
 NAIVE_SIZE_SESSION_COMMENT = NAIVE_SIZE_COMMENT * MAX_COMMENTS_PER_SESSION
 NAIVE_SIZE_SESSION = NAIVE_SIZE_SESSION_USER + NAIVE_SIZE_SESSION_ARTICLE + NAIVE_SIZE_SESSION_COMMENT
-NAIVE_SIZE_TOTAL = NAIVE_SIZE_SESSION * MAX_ARTICLES_PER_SESSION  # TODO log total result on start
+NAIVE_SIZE_TOTAL = NAIVE_SIZE_SESSION * MAX_ARTICLES_PER_SESSION
+
+
+#### LOGGING ###########################################################################################################
+
+
+class JSONFormatter(logging.Formatter):
+    def format(self, record):
+        log_entry = {
+            "timestamp": self.formatTime(record, self.datefmt),
+            "logger": record.name,
+            "level": record.levelname,
+            "category": (lambda v: f"{record.name}.{v}" if v is not None else record.name)(
+                getattr(record, 'category', None)
+            ),
+            "message": record.getMessage(),
+            "data": getattr(record, "data", {}),
+        }
+        return json.dumps(log_entry)
+
+
+def setup_logging():
+    """Set up logging configuration with console and optional file output"""
+    # Create root logger
+    logger = logging.getLogger()
+    logger.setLevel(getattr(logging, LOG_LEVEL, logging.INFO))
+    # Clear any existing handlers
+    logger.handlers.clear()
+    # Create formatter
+    formatter = JSONFormatter(datefmt='%Y-%m-%dT%H:%M:%S')
+    # Console handler
+    console_handler = logging.StreamHandler()
+    console_handler.setFormatter(formatter)
+    logger.addHandler(console_handler)
+    # Optional file handler with rotation
+    if LOG_FILE:
+        file_handler = logging.handlers.RotatingFileHandler(
+            LOG_FILE, maxBytes=LOG_MAX_SIZE, backupCount=LOG_BACKUP_COUNT
+        )
+        file_handler.setFormatter(formatter)
+        logger.addHandler(file_handler)
+    return logger
+
+
+# Set up logging
+main_logger = setup_logging()
+# Create category-specific loggers
+auth_logger = logging.getLogger('auth')
+http_logger = logging.getLogger('http')
+storage_logger = logging.getLogger('storage')
+security_logger = logging.getLogger('security')
+config_logger = logging.getLogger('config')
+lifecycle_logger = logging.getLogger('lifecycle')
+
+
+def log_structured(logger, level, message, category=None, **extra_data_fields):
+    """Helper function to log structured data as JSON"""
+    logger.log(level, message, extra={"category": category or "general", "data": extra_data_fields})
+
+
+#### IMPLEMENTATION ####################################################################################################
 
 
 def normalize_id(value):
@@ -132,17 +203,31 @@ class InMemoryModel:
         obj["id"] = str(self.current_id_counter)
         self.current_id_counter += 1
         if len(self.objects) > self.max_count:
-            del self.objects[self.last_accessed_ids[0]]
+            evicted_id = self.last_accessed_ids[0]
+            log_structured(security_logger, logging.WARNING,
+                "Rate limit reached - Object storage full, evicting oldest object",
+                rate_limit_type="object_storage", max_count=self.max_count,
+                evicted_id=evicted_id, new_id=obj["id"])
+            del self.objects[evicted_id]
             self.last_accessed_ids = self.last_accessed_ids[1:] + [obj["id"]]
         else:
             self.last_accessed_ids.append(obj["id"])
+        log_structured(storage_logger, logging.DEBUG,
+            "Storage add: object added",
+            operation="add", object_id=obj['id'], total_objects=len(self.objects))
         return obj
 
     def get(self, _id):
         _id = normalize_id(_id)
         if _id not in self.objects:
+            log_structured(storage_logger, logging.DEBUG,
+                "Storage get: object not found",
+                operation="get", object_id=_id, found=False)
             return None
         self.last_accessed_ids = [*(e for e in self.last_accessed_ids if e != _id), _id]
+        log_structured(storage_logger, logging.DEBUG,
+            "Storage get: object retrieved",
+            operation="get", object_id=_id, found=True)
         return self.objects[_id]
 
     def keys(self):
@@ -159,7 +244,13 @@ class InMemoryModel:
         if _id in self.objects:
             del self.objects[_id]
             self.last_accessed_ids = [cid for cid in self.last_accessed_ids if cid != _id]
+            log_structured(storage_logger, logging.DEBUG,
+                "Storage delete: object deleted",
+                operation="delete", object_id=_id, success=True)
             return True
+        log_structured(storage_logger, logging.DEBUG,
+            "Storage delete: object not found",
+            operation="delete", object_id=_id, success=False)
         return False
 
 
@@ -176,6 +267,11 @@ class InMemoryLinks:
         if _index is not None:
             self.links = [*self.links[:_index], *self.links[_index+1:], (source, target)]
         elif len(self.links) >= self.max_count:
+            evicted_link = self.links[0] if self.links else None
+            log_structured(security_logger, logging.WARNING,
+                "Rate limit reached - Link storage full, evicting oldest link",
+                rate_limit_type="link_storage", max_count=self.max_count,
+                evicted_link=evicted_link, new_link=(source, target))
             self.links = [*self.links[1:], (source, target)]
         else:
             self.links = [*self.links, (source, target)]
@@ -301,11 +397,24 @@ class _StorageContainer:
         storage_container_index = self.index_map.get(identifier)
         if storage_container_index is None:
             if len(self.index_map) >= self.MAX_SESSIONS:
-                self._pop()
+                evicted_session = self._pop()
+                if evicted_session:
+                    log_structured(security_logger, logging.WARNING,
+                        "Rate limit reached - Session storage full, evicting session",
+                        rate_limit_type="session_storage", max_sessions=self.MAX_SESSIONS,
+                        evicted_session_id=evicted_session[1], new_session_id=identifier)
+                else:
+                    self._pop()
             self._push(time_ns(), identifier, data=InMemoryStorage())
+            log_structured(security_logger, logging.INFO,
+                "New session created",
+                session_event="created", session_id=identifier, total_sessions=len(self.index_map))
             return self.heap[self.index_map.get(identifier)][2]
         r = self.heap[storage_container_index][2]
         self._update_priority(identifier, time_ns())
+        log_structured(storage_logger, logging.DEBUG,
+            "Session accessed",
+            session_event="accessed", session_id=identifier)
         return r
 
 
@@ -315,8 +424,17 @@ storage_container = _StorageContainer()
 def save_data():
     """Save storage_container data to JSON file"""
     if not DATA_FILE_PATH:
+        log_structured(storage_logger, logging.DEBUG,
+            "Data persistence skipped - DATA_FILE_PATH not configured",
+            data_file_path=None)
         return False
+
+    log_structured(storage_logger, logging.INFO,
+        "Starting data save",
+        data_file_path=str(DATA_FILE_PATH), operation="save_start")
+
     data = {}
+    session_count = 0
     # Save heap items in order from oldest to newest by popping from heap
     saved_items = []
     while storage_container.heap:
@@ -324,6 +442,7 @@ def save_data():
         if heap_item:
             priority, session_id, storage, _ = heap_item
             saved_items.append((priority, session_id, storage))
+            session_count += 1
             session_data = {
                 'users': {
                     'objects': dict(storage.users.objects),
@@ -350,21 +469,36 @@ def save_data():
     try:
         with DATA_FILE_PATH.open("w") as f:
             json.dump(data, f, indent=2)
+        log_structured(storage_logger, logging.INFO,
+            "Data saved successfully",
+            data_file_path=str(DATA_FILE_PATH), session_count=session_count, operation="save_success")
         return True
     except Exception as e:
-        print(f"Error saving data: {e}")
+        log_structured(storage_logger, logging.ERROR,
+            "Error saving data",
+            data_file_path=str(DATA_FILE_PATH), error=str(e), operation="save_error")
     return False
 
 
 def load_data():
     """Load storage_container data from JSON file"""
     if not DATA_FILE_PATH:
+        log_structured(storage_logger, logging.DEBUG,
+            "Data persistence skipped - DATA_FILE_PATH not configured",
+            data_file_path=None)
         return
+
+    log_structured(storage_logger, logging.INFO,
+        "Starting data load",
+        data_file_path=str(DATA_FILE_PATH), operation="load_start")
+
     try:
         with DATA_FILE_PATH.open("r") as f:
             data = json.load(f)
+        session_count = 0
         for session_id, session_data in data.items():
             storage = InMemoryStorage()
+            session_count += 1
             if 'users' in session_data:
                 storage.users.objects.update(session_data['users'].get('objects', {}))
                 storage.users.last_accessed_ids = session_data['users'].get('last_accessed_ids', [])
@@ -381,10 +515,18 @@ def load_data():
             storage.favorites.links = session_data.get('favorites', [])
             storage_container._push(time_ns(), session_id, storage)
         DATA_FILE_PATH.unlink()  # ensures we won't reload past data
+        log_structured(storage_logger, logging.INFO,
+            "Data loaded successfully",
+            data_file_path=str(DATA_FILE_PATH), session_count=session_count, operation="load_success")
     except FileNotFoundError:
+        log_structured(storage_logger, logging.INFO,
+            "No data file found - starting with empty storage",
+            data_file_path=str(DATA_FILE_PATH), operation="load_no_file")
         pass
     except Exception as e:
-        print(f"Error loading data: {e}")
+        log_structured(storage_logger, logging.ERROR,
+            "Error loading data",
+            data_file_path=str(DATA_FILE_PATH), error=str(e), operation="load_error")
 
 
 def generate_slug(title: str) -> str:
@@ -405,12 +547,24 @@ def generate_token(user_id: str) -> str:
     return f"token_{hashlib.sha256(payload.encode()).hexdigest()[:32]}"
 
 
-def verify_token(token: str, storage: InMemoryStorage) -> Optional[int]:
+def verify_token(token: str, storage: InMemoryStorage, client_ip: str = None) -> Optional[int]:
     """Verify token and return user_id if valid"""
     if not token or not token.startswith("token_"):
+        if token:  # Only log if token was provided but invalid
+            log_structured(security_logger, logging.WARNING,
+                "Invalid token format",
+                ip=client_ip, token_invalid=True, token_prefix=token[:10] if token else 'None')
         return None
+
     # in a real implementation, you'd decode the JWT => for simplicity, we'll store token->user_id mapping
-    return next((user_id for user_id, user in storage.users.items() if user.get("token") == token), None)
+    user_id = next((user_id for user_id, user in storage.users.items() if user.get("token") == token), None)
+
+    if user_id is None:
+        log_structured(security_logger, logging.WARNING,
+            "Token verification failed",
+            ip=client_ip, token_not_found=True, token_prefix=token[:10])
+
+    return user_id
 
 
 def get_user_by_email(email: str, storage: InMemoryStorage) -> Optional[Dict]:
@@ -532,19 +686,31 @@ class RealWorldHandler(BaseHTTPRequestHandler):
         except Exception as e:
             self._send_error(500, {"errors": {"body": [str(e)]}})
 
+    def _get_client_ip(self):
+        # TODO implement session limit per ip / range for ipv6
+        return self.request.getpeername()[0]  # TODO Use this or X-Forwarded-For / X-Real-IP depending on setup + document
+
     def _handle_request(self, method: str):
         """Route request to appropriate handler"""
-        ip_address = self.request.getpeername()[0]  # TODO Use this or X-Forwarded-For / X-Real-IP depending on setup + document
+        self._request_start_time = time_ns()
         storage = storage_container.get_storage(self._get_demo_session_cookie())
         parsed = urlparse(self.path)
         path = parsed.path
+        self._request_method = method
+        self._request_path = path
         query_params = parse_qs(parsed.query)
         # Remove leading slash and split path
         path_parts = path.strip("/").split("/")
         # Get authorization header
         auth_header = self.headers.get("Authorization", "")
         token = auth_header.replace("Token ", "") if auth_header.startswith("Token ") else None
-        current_user_id = verify_token(token, storage) if token else None
+        client_ip = self._get_client_ip()
+        current_user_id = verify_token(token, storage, client_ip) if token else None
+
+        # Log request start
+        log_structured(http_logger, logging.INFO,
+            "Request started",
+            method=method, path=path, ip=client_ip, user_id=current_user_id)
         # Route to handlers
         if method == "POST" and path == "/users":
             if not self._check_csrf_protection():
@@ -599,9 +765,21 @@ class RealWorldHandler(BaseHTTPRequestHandler):
         """Parse JSON request body"""
         content_length = int(self.headers.get("Content-Length", 0))
         if content_length == 0:
+            log_structured(http_logger, logging.DEBUG,
+                "Request body: empty (no content-length)",
+                payload_size=0, has_body=False)
             return {}
         body = self.rfile.read(content_length).decode("utf-8")
-        return json.loads(body) if body else {}
+        parsed_body = json.loads(body) if body else {}
+
+        # Log detailed request payload at debug level
+        client_ip = self._get_client_ip()
+        log_structured(
+            *(http_logger, logging.DEBUG, "Request body received"),
+            **{"payload_size": content_length, "body_preview": body[:200], "ip": client_ip, "has_body": True},
+            **{"content_length": content_length, "body_truncated": len(body) > 200},
+        )
+        return parsed_body
 
     def _get_demo_session_cookie(self) -> Optional[str]:
         """Get UNDOCUMENTED_DEMO_SESSION cookie value"""
@@ -615,7 +793,8 @@ class RealWorldHandler(BaseHTTPRequestHandler):
                 return cookie.split("=", 1)[1]
         return None
 
-    def _send_response(self, status_code: int, data: Dict, demo_session_id: Optional[uuid.UUID] = None):
+    def _send_response(self, status_code: int, data: Dict, demo_session_id: Optional[uuid.UUID] = None,
+                       start_time: int = None, method: str = None, path: str = None):
         """Send JSON response"""
         self.send_response(status_code)
         self.send_header("Content-Type", "application/json")
@@ -628,17 +807,57 @@ class RealWorldHandler(BaseHTTPRequestHandler):
         response_body = json.dumps(data, indent=2)
         self.wfile.write(response_body.encode("utf-8"))
 
-    def _send_error(self, status_code: int, error_data: Dict):
+        # Log response with timing if available
+        if start_time and method and path:
+            duration_ms = (time_ns() - start_time) / 1_000_000  # Convert to milliseconds
+            client_ip = self._get_client_ip()
+            response_size = len(response_body.encode("utf-8"))
+            log_structured(http_logger, logging.INFO,
+                "Request completed",
+                method=method, path=path, status_code=status_code,
+                duration_ms=duration_ms, response_size=response_size, ip=client_ip)
+
+    def _send_error(self, status_code: int, error_data: Dict, start_time: int = None, method: str = None, path: str = None):
         """Send error response"""
-        self._send_response(status_code, error_data)
+        # Use stored request timing if available
+        start_time = start_time or getattr(self, '_request_start_time', None)
+        method = method or getattr(self, '_request_method', None)
+        path = path or getattr(self, '_request_path', None)
+        self._send_response(status_code, error_data, None, start_time, method, path)
+
+    def _send_response_with_timing(self, status_code: int, data: Dict, demo_session_id: Optional[uuid.UUID] = None):
+        """Send response with automatic timing from stored request data"""
+        start_time = getattr(self, '_request_start_time', None)
+        method = getattr(self, '_request_method', None)
+        path = getattr(self, '_request_path', None)
+        self._send_response(status_code, data, demo_session_id, start_time, method, path)
 
     def _check_csrf_protection(self) -> bool:
         """Check CSRF protection using Origin header for POST requests"""
-        return BYPASS_ORIGIN_CHECK or (self.headers.get("Origin") in ALLOWED_ORIGINS)
+        origin = self.headers.get("Origin")
+        client_ip = self._get_client_ip()
+
+        if BYPASS_ORIGIN_CHECK:
+            log_structured(security_logger, logging.DEBUG, "CSRF protection bypassed",
+                ip=client_ip, origin=origin, bypass=True)
+            return True
+
+        if origin in ALLOWED_ORIGINS:
+            log_structured(security_logger, logging.DEBUG, "CSRF protection passed",
+                ip=client_ip, origin=origin)
+            return True
+        else:
+            log_structured(security_logger, logging.WARNING, "CSRF protection failed",
+                ip=client_ip, origin=origin, allowed_origins=ALLOWED_ORIGINS)
+            return False
 
     def _require_auth(self, current_user_id: Optional[int]) -> int:
         """Require authentication, return user_id or raise error"""
         if current_user_id is None:
+            client_ip = self._get_client_ip()
+            log_structured(security_logger, logging.WARNING,
+                "Authentication required but not provided",
+                ip=client_ip, auth_required=True)
             self._send_error(401, {"errors": {"body": ["Unauthorized"]}})
             raise Exception("Unauthorized")
         return current_user_id
@@ -652,19 +871,31 @@ class RealWorldHandler(BaseHTTPRequestHandler):
         email = user_data.get("email")
         username = user_data.get("username")
         password = user_data.get("password")
+
+        client_ip = self._get_client_ip()
+
         if not all([email, username, password]):
+            log_structured(auth_logger, logging.WARNING, "Registration failed: missing fields",
+                ip=client_ip, email=email, username=username)
             self._send_error(422, {"errors": {"body": ["Email, username and password are required"]}})
             return
+
         max_lens = ((email, MAX_LEN_USER_EMAIL), (username, MAX_LEN_USER_USERNAME), (password, MAX_LEN_USER_PASSWORD))
         if not all(type[d] == str for d in (email, username, password)) and not all(len(d) <= l for d, l in max_lens):
             err_str = "Email, username and password are expected as strings of length less than "
             err_str += f"{MAX_LEN_USER_EMAIL}, {MAX_LEN_USER_USERNAME}, and {MAX_LEN_USER_PASSWORD}, respectively"
+            log_structured(auth_logger, logging.WARNING, "Registration failed: invalid field lengths",
+                ip=client_ip, email=email, username=username)
             self._send_error(422, {"errors": {"body": [err_str]}})
             return
+
         # Check if user already exists
         if get_user_by_email(email, storage) or get_user_by_username(username, storage):
+            log_structured(auth_logger, logging.WARNING, "Registration failed: user already exists",
+                ip=client_ip, email=email, username=username)
             self._send_error(409, {"errors": {"body": ["User already exists"]}})
             return
+
         # Create new user
         user = {
             "email": email,
@@ -681,7 +912,12 @@ class RealWorldHandler(BaseHTTPRequestHandler):
         token = generate_token(user_id)
         user["token"] = token
         demo_session_id = None if self._get_demo_session_cookie() else uuid.uuid4()
-        self._send_response(201, {"user": create_user_response(user)}, demo_session_id)
+
+        log_structured(auth_logger, logging.INFO,
+            "User registered successfully",
+            ip=client_ip, email=email, username=username, user_id=user_id)
+
+        self._send_response_with_timing(201, {"user": create_user_response(user)}, demo_session_id)
 
     def _handle_login(self, storage: InMemoryStorage):
         """POST /users/login - Login user"""
@@ -689,16 +925,32 @@ class RealWorldHandler(BaseHTTPRequestHandler):
         user_data = data.get("user", {})
         email = user_data.get("email")
         password = user_data.get("password")
+
+        client_ip = self._get_client_ip()
+
         if not all([email, password]):
+            log_structured(auth_logger, logging.WARNING,
+                "Login failed: missing fields",
+                ip=client_ip, email=email)
             self._send_error(422, {"errors": {"body": ["Email and password are required"]}})
             return
+
         user = get_user_by_email(email, storage)
         if not user or user["password"] != hash_password(password):
+            log_structured(auth_logger, logging.WARNING,
+                "Login failed: invalid credentials",
+                ip=client_ip, email=email)
             self._send_error(401, {"errors": {"body": ["Invalid credentials"]}})
             return
+
         user["token"] = generate_token(user["id"])  # Generate new token
         demo_session_id = None if self._get_demo_session_cookie() else uuid.uuid4()
-        self._send_response(200, {"user": create_user_response(user)}, demo_session_id)
+
+        log_structured(auth_logger, logging.INFO,
+            "User logged in successfully",
+            ip=client_ip, email=email, username=user.get('username'), user_id=user['id'])
+
+        self._send_response_with_timing(200, {"user": create_user_response(user)}, demo_session_id)
 
     def _handle_get_current_user(self, storage: InMemoryStorage, current_user_id: Optional[int]):
         """GET /user - Get current user"""
@@ -758,7 +1010,15 @@ class RealWorldHandler(BaseHTTPRequestHandler):
             self._send_error(422, {"errors": {"body": ["Cannot follow yourself"]}})
             return
         storage.follows.add(user_id, target_user["id"])
-        self._send_response(200, {"profile": create_profile_response(target_user, storage, user_id)})
+
+        # Log successful follow operation
+        client_ip = self._get_client_ip()
+        log_structured(http_logger, logging.INFO,
+            "User followed",
+            "CRUD", operation="follow_user", follower_id=user_id, followed_username=username,
+            followed_id=target_user['id'], ip=client_ip)
+
+        self._send_response_with_timing(200, {"profile": create_profile_response(target_user, storage, user_id)})
 
     def _handle_unfollow_user(self, storage: InMemoryStorage, username: str, current_user_id: Optional[int]):
         """DELETE /profiles/{username}/follow - Unfollow user"""
@@ -768,7 +1028,15 @@ class RealWorldHandler(BaseHTTPRequestHandler):
             self._send_error(404, {"errors": {"body": ["Profile not found"]}})
             return
         storage.follows.remove(user_id, target_user["id"])
-        self._send_response(200, {"profile": create_profile_response(target_user, storage, user_id)})
+
+        # Log successful unfollow operation
+        client_ip = self._get_client_ip()
+        log_structured(http_logger, logging.INFO,
+            "User unfollowed",
+            "CRUD", operation="unfollow_user", follower_id=user_id, unfollowed_username=username,
+            unfollowed_id=target_user['id'], ip=client_ip)
+
+        self._send_response_with_timing(200, {"profile": create_profile_response(target_user, storage, user_id)})
 
     # Article endpoints
 
@@ -882,7 +1150,15 @@ class RealWorldHandler(BaseHTTPRequestHandler):
             "updatedAt": current_time,
         }
         storage.articles.add(article)
-        self._send_response(201, {"article": create_article_response(article, storage, user_id)})
+
+        # Log successful article creation
+        client_ip = self._get_client_ip()
+        log_structured(http_logger, logging.INFO,
+            "Article created",
+            "CRUD", operation="create_article", slug=article['slug'], title=article['title'],
+            author_id=user_id, article_id=article['id'], ip=client_ip)
+
+        self._send_response_with_timing(201, {"article": create_article_response(article, storage, user_id)})
 
     def _handle_get_article(self, storage: InMemoryStorage, slug: str, current_user_id: Optional[str]):
         """GET /articles/{slug} - Get article"""
@@ -921,7 +1197,16 @@ class RealWorldHandler(BaseHTTPRequestHandler):
             article_update["body"] = article_data["body"]
         article_update["updatedAt"] = get_current_time()
         article.update(**article_update)
-        self._send_response(200, {"article": create_article_response(article, storage, user_id)})
+
+        # Log successful article update
+        client_ip = self._get_client_ip()
+        updated_fields = list(article_update.keys())
+        log_structured(http_logger, logging.INFO,
+            "Article updated",
+            "CRUD", operation="update_article", slug=slug, updated_fields=updated_fields,
+            author_id=user_id, article_id=article['id'], ip=client_ip)
+
+        self._send_response_with_timing(200, {"article": create_article_response(article, storage, user_id)})
 
     def _handle_delete_article(self, storage: InMemoryStorage, slug: str, current_user_id: Optional[str]):
         """DELETE /articles/{slug} - Delete article"""
@@ -942,6 +1227,14 @@ class RealWorldHandler(BaseHTTPRequestHandler):
         comments_to_delete = [c_id for c_id, c in storage.comments.items() if c["article_id"] == article_id]
         for c_id in comments_to_delete:
             storage.comments.delete(c_id)
+
+        # Log successful article deletion
+        client_ip = self._get_client_ip()
+        log_structured(http_logger, logging.INFO,
+            "Article deleted",
+            "CRUD", operation="delete_article", slug=slug, article_id=article_id,
+            author_id=user_id, deleted_comments_count=len(comments_to_delete), ip=client_ip)
+
         # Send 204 No Content
         self.send_response(204)
         self.send_header("Access-Control-Allow-Origin", "*")
@@ -1008,7 +1301,15 @@ class RealWorldHandler(BaseHTTPRequestHandler):
             "updatedAt": current_time,
         }
         storage.comments.add(comment)
-        self._send_response(200, {"comment": create_comment_response(comment, storage, user_id)})
+
+        # Log successful comment creation
+        client_ip = self._get_client_ip()
+        log_structured(http_logger, logging.INFO,
+            "Comment created",
+            "CRUD", operation="create_comment", comment_id=comment['id'], slug=slug,
+            author_id=user_id, article_id=article['id'], ip=client_ip)
+
+        self._send_response_with_timing(200, {"comment": create_comment_response(comment, storage, user_id)})
 
     def _handle_delete_comment(
         self, storage: InMemoryStorage, slug: str, comment_id: int, current_user_id: Optional[str]
@@ -1028,6 +1329,14 @@ class RealWorldHandler(BaseHTTPRequestHandler):
             self._send_error(403, {"errors": {"body": ["Forbidden"]}})
             return
         storage.comments.delete(comment_id)
+
+        # Log successful comment deletion
+        client_ip = self._get_client_ip()
+        log_structured(http_logger, logging.INFO,
+            "Comment deleted",
+            "CRUD", operation="delete_comment", comment_id=comment_id, slug=slug,
+            deleted_by_user_id=user_id, article_id=article['id'], ip=client_ip)
+
         # Send 204 No Content
         self.send_response(204)
         self.send_header("Access-Control-Allow-Origin", "*")
@@ -1053,8 +1362,25 @@ class RealWorldHandler(BaseHTTPRequestHandler):
 def run_server(port: int = 8000):
     """Run the RealWorld API server"""
     load_data()  # will load data if temp file found
+    # Log server startup
+    log_structured(lifecycle_logger, logging.INFO, "RealWorld API Server starting", port=port)
+    # Log security configuration
+    log_structured(config_logger, logging.INFO, "Security config",
+        isolation_disabled=DISABLE_ISOLATION_MODE, csrf_bypass=BYPASS_ORIGIN_CHECK, max_sessions=MAX_SESSIONS)
+    # Log data persistence configuration
+    log_structured(config_logger, logging.INFO, "Data persistence",
+        data_persistence=bool(DATA_FILE_PATH), data_file_path=str(DATA_FILE_PATH) if DATA_FILE_PATH else None)
+    # Log resource limits
+    log_structured(config_logger, logging.INFO, "Resource limits",
+        max_users=MAX_USERS_PER_SESSION, max_articles=MAX_ARTICLES_PER_SESSION, max_comments=MAX_COMMENTS_PER_SESSION)
+    # Log estimated memory usage
+    log_structured(config_logger, logging.INFO, "Estimated max memory used by data - x2 in reality due to overhead",
+        max_memory_mb=NAIVE_SIZE_TOTAL / (1024*1024))
+    # Log logging configuration
+    log_structured(config_logger, logging.INFO, "Logging config",
+        log_level=LOG_LEVEL, log_file=bool(LOG_FILE), log_file_path=LOG_FILE)
     httpd = HTTPServer(("", port), RealWorldHandler)  # ty: ignore[invalid-argument-type]
-    # Document routes
+    # Document routes - using print here
     print(f"RealWorld API Server running on http://localhost:{port}")
     print("API endpoints available:")
     print("  POST   /users  -------------------------- Register")
@@ -1081,14 +1407,14 @@ def run_server(port: int = 8000):
     try:
         httpd.serve_forever()
     except KeyboardInterrupt:
-        print("\nshutting down server...")
+        log_structured(lifecycle_logger, logging.INFO, "shutting down server")
         httpd.shutdown()
-        print("httpd down")
+        log_structured(lifecycle_logger, logging.INFO, "httpd down")
         if DATA_FILE_PATH:
-            print("now trying to save")
+            log_structured(lifecycle_logger, logging.INFO, "trying to save data")
             did_save = save_data()
-            print("saved data to {DATA_FILE_PATH}" if did_save else "couldn't save data")
-        print("process terminating now")
+            log_structured(lifecycle_logger, logging.INFO, "saved data" if did_save else "couldn't save data")
+        log_structured(lifecycle_logger, logging.INFO, "process terminating now")
 
 
 if __name__ == "__main__":
@@ -1154,7 +1480,8 @@ class TestInMemoryModel(TestCase):
         self.assertEqual(obj["id"], "1")
         self.assertEqual(model.current_id_counter, 2)
 
-    def test_add_exceeds_max_count_will_overwrite(self):
+    @patch("realworld_dummy_server.log_structured")
+    def test_add_exceeds_max_count_will_overwrite(self, log_structured_mock):
         obj1 = {"name": "test1"}
         obj2 = {"name": "test2"}
         obj3 = {"name": "test3"}
@@ -1334,7 +1661,8 @@ class TestInMemoryModel(TestCase):
             model = InMemoryModel(max_count=0)
         self.assertEqual(str(exc.exception), "invalid value for max_count")
 
-    def test_one_max_count(self):
+    @patch("realworld_dummy_server.log_structured")
+    def test_one_max_count(self, log_structured_mock):
         model = InMemoryModel(max_count=1)
         obj1 = {"name": "test1"}
         obj2 = {"name": "test2"}
@@ -1432,7 +1760,8 @@ class TestInMemoryModel(TestCase):
         self.assertEqual(len(self.model.objects), initial_objects_count)
         self.assertEqual(self.model.current_id_counter, initial_counter)
 
-    def test_concurrent_access_simulation(self):
+    @patch("realworld_dummy_server.log_structured")
+    def test_concurrent_access_simulation(self, log_structured_mock):
         # Simulate concurrent access patterns
         objects = []
         for i in range(5):
@@ -1477,7 +1806,8 @@ class TestInMemoryLinks(TestCase):
         self.links.add("1", "2")  # Duplicate
         self.assertEqual(self.links.links, [("2", "3"), ("1", "2")])
 
-    def test_add_exceeds_max_count_removes_oldest(self):
+    @patch("realworld_dummy_server.log_structured")
+    def test_add_exceeds_max_count_removes_oldest(self, log_structured_mock):
         self.links.add("1", "2")
         self.links.add("2", "3")
         self.links.add("3", "4")
@@ -1518,7 +1848,8 @@ class TestInMemoryLinks(TestCase):
         links.add("1", "2")
         self.assertEqual(links.links, [])
 
-    def test_one_max_count(self):
+    @patch("realworld_dummy_server.log_structured")
+    def test_one_max_count(self, log_structured_mock):
         links = InMemoryLinks(max_count=1)
         links.add("1", "2")
         links.add("2", "3")
@@ -1848,14 +2179,16 @@ class TestStorageContainer(TestCase):
         self.assertIs(storage1, storage0)
         self.assertIs(storage2, storage0)
 
-    def test_get_storage_with_isolation_enabled_2_different_session(self):
+    @patch("realworld_dummy_server.log_structured")
+    def test_get_storage_with_isolation_enabled_2_different_session(self, log_structured_mock):
         container = _StorageContainer(disable_isolation_mode=False)
         storage1 = container.get_storage("session1")
         storage2 = container.get_storage("session2")
         # Different sessions should get different storage
         self.assertIsNot(storage1, storage2)
 
-    def test_get_storage_with_isolation_enabled_2_same(self):
+    @patch("realworld_dummy_server.log_structured")
+    def test_get_storage_with_isolation_enabled_2_same(self, log_structured_mock):
         container = _StorageContainer(disable_isolation_mode=False)
         storage1 = container.get_storage("session1")
         container.get_storage("something-else")  # Call to other session in between
@@ -2140,7 +2473,8 @@ class TestStorageContainer(TestCase):
         self._verify_heap_property(self.container)
         self._verify_index_consistency(self.container)
 
-    def test_max_sessions_is_working_with_a_continuous_sequence(self):
+    @patch("realworld_dummy_server.log_structured")
+    def test_max_sessions_is_working_with_a_continuous_sequence(self, log_structured_mock):
         # Test that when max_sessions is reached, oldest sessions are evicted
         max_sessions = 3
         container = _StorageContainer(disable_isolation_mode=False, max_sessions=max_sessions)
@@ -2174,7 +2508,8 @@ class TestStorageContainer(TestCase):
         # First session should have been evicted (it had the smallest timestamp)
         self.assertNotIn("session_0", container.index_map)
 
-    def test_max_sessions_is_working_with_a_sequence_of_calls_actually_triggering_reorders(self):
+    @patch("realworld_dummy_server.log_structured")
+    def test_max_sessions_is_working_with_a_sequence_of_calls_actually_triggering_reorders(self, log_structured_mock):
         # Test that accessing existing sessions updates their priority and affects eviction order
         import time
         max_sessions = 3
@@ -2420,7 +2755,8 @@ class TestSaveAndLoadData(TestCase):
         DATA_FILE_PATH = self.original_data_file_path
         self.TEST_DATA_FILE_PATH.unlink(missing_ok=True)
 
-    def test_save_data_complex(self):
+    @patch("realworld_dummy_server.log_structured")
+    def test_save_data_complex(self, log_structured_mock):
         """Complex test for save_data with multiple storages containing comprehensive data"""
         global storage_container
         # Create multiple storage sessions with comprehensive data
@@ -2573,7 +2909,8 @@ class TestSaveAndLoadData(TestCase):
         # Next line actually compares order
         self.assertEqual(json.dumps(saved_data), json.dumps(self.TEST_DATA_EXPECTED_FILE_CONTENT))
 
-    def test_load_data_complex(self):
+    @patch("realworld_dummy_server.log_structured")
+    def test_load_data_complex(self, log_structured_mock):
         """Complex test for load_data using the same expected data structure"""
         global storage_container
         with self.TEST_DATA_FILE_PATH.open('w') as f:
