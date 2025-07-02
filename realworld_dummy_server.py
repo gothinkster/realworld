@@ -14,7 +14,7 @@ https://github.com/c4ffein/realworld-django-ninja/
 
 ## Key Design Decisions
 - **In-memory storage**: Data persists only during server runtime
-  - TODO Save temporary data during graceful shutdown
+  - Data can actually be saved on SIGINT reception if the DATA_FILE_PATH var env is set (so only handles `kill -2` rn)
 - **Per-browser isolation**: Uses an additional undocumented cookie to separate data between different browsers
   - As the Origin header is included for POST requests regardless of origin, use it against CSRF for the
     - regitration: POST on /users
@@ -54,6 +54,7 @@ from copy import deepcopy
 from datetime import datetime, timezone
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from os import getenv
+from pathlib import Path
 from time import time_ns
 from typing import Dict, List, Optional, Tuple
 from unittest import TestCase
@@ -67,6 +68,8 @@ BYPASS_ORIGIN_CHECK = getenv("BYPASS_ORIGIN_CHECK", "FALSE").lower() == "true"
 ALLOWED_ORIGINS = getenv("ALLOWED_ORIGINS", "").split(";")
 if ALLOWED_ORIGINS == [""] and not BYPASS_ORIGIN_CHECK:
     raise ValueError("ALLOWED_ORIGINS varenv should be set if BYPASS_ORIGIN_CHECK isn't")
+# data persistence
+DATA_FILE_PATH = (lambda path: Path(path) if path else None)(getenv("DATA_FILE_PATH"))
 # max lengths for keys and objects per session
 MAX_ID_LEN = int(getenv("MAX_ID_LEN", 64))
 MAX_USERS_PER_SESSION = int(getenv("MAX_USERS_PER_SESSION", 60))
@@ -307,6 +310,81 @@ class _StorageContainer:
 
 
 storage_container = _StorageContainer()
+
+
+def save_data():
+    """Save storage_container data to JSON file"""
+    if not DATA_FILE_PATH:
+        return False
+    data = {}
+    # Save heap items in order from oldest to newest by popping from heap
+    saved_items = []
+    while storage_container.heap:
+        heap_item = storage_container._pop()
+        if heap_item:
+            priority, session_id, storage, _ = heap_item
+            saved_items.append((priority, session_id, storage))
+            session_data = {
+                'users': {
+                    'objects': dict(storage.users.objects),
+                    'last_accessed_ids': storage.users.last_accessed_ids,
+                    'current_id_counter': storage.users.current_id_counter
+                },
+                'articles': {
+                    'objects': dict(storage.articles.objects),
+                    'last_accessed_ids': storage.articles.last_accessed_ids,
+                    'current_id_counter': storage.articles.current_id_counter
+                },
+                'comments': {
+                    'objects': dict(storage.comments.objects),
+                    'last_accessed_ids': storage.comments.last_accessed_ids,
+                    'current_id_counter': storage.comments.current_id_counter
+                },
+                'follows': storage.follows.links,
+                'favorites': storage.favorites.links
+            }
+            data[session_id] = session_data
+    # Restore heap in original order
+    for priority, session_id, storage in saved_items:
+        storage_container._push(priority, session_id, storage)
+    try:
+        with DATA_FILE_PATH.open("w") as f:
+            json.dump(data, f, indent=2)
+        return True
+    except Exception as e:
+        print(f"Error saving data: {e}")
+    return False
+
+
+def load_data():
+    """Load storage_container data from JSON file"""
+    if not DATA_FILE_PATH:
+        return
+    try:
+        with DATA_FILE_PATH.open("r") as f:
+            data = json.load(f)
+        for session_id, session_data in data.items():
+            storage = InMemoryStorage()
+            if 'users' in session_data:
+                storage.users.objects.update(session_data['users'].get('objects', {}))
+                storage.users.last_accessed_ids = session_data['users'].get('last_accessed_ids', [])
+                storage.users.current_id_counter = session_data['users'].get('current_id_counter', 1)
+            if 'articles' in session_data:
+                storage.articles.objects.update(session_data['articles'].get('objects', {}))
+                storage.articles.last_accessed_ids = session_data['articles'].get('last_accessed_ids', [])
+                storage.articles.current_id_counter = session_data['articles'].get('current_id_counter', 1)
+            if 'comments' in session_data:
+                storage.comments.objects.update(session_data['comments'].get('objects', {}))
+                storage.comments.last_accessed_ids = session_data['comments'].get('last_accessed_ids', [])
+                storage.comments.current_id_counter = session_data['comments'].get('current_id_counter', 1)
+            storage.follows.links = session_data.get('follows', [])
+            storage.favorites.links = session_data.get('favorites', [])
+            storage_container._push(time_ns(), session_id, storage)
+        DATA_FILE_PATH.unlink()  # ensures we won't reload past data
+    except FileNotFoundError:
+        pass
+    except Exception as e:
+        print(f"Error loading data: {e}")
 
 
 def generate_slug(title: str) -> str:
@@ -974,9 +1052,9 @@ class RealWorldHandler(BaseHTTPRequestHandler):
 
 def run_server(port: int = 8000):
     """Run the RealWorld API server"""
-    server_address = ("", port)
-    httpd = HTTPServer(server_address, RealWorldHandler)  # ty: ignore[invalid-argument-type]
-
+    load_data()  # will load data if temp file found
+    httpd = HTTPServer(("", port), RealWorldHandler)  # ty: ignore[invalid-argument-type]
+    # Document routes
     print(f"RealWorld API Server running on http://localhost:{port}")
     print("API endpoints available:")
     print("  POST   /users  -------------------------- Register")
@@ -999,12 +1077,18 @@ def run_server(port: int = 8000):
     print("  DELETE /articles/{slug}/comments/{id}  -- Delete comment")
     print("  GET    /tags  --------------------------- Get tags")
     print("\nPress Ctrl+C to stop the server")
-
+    # Serve until SIGINT
     try:
         httpd.serve_forever()
     except KeyboardInterrupt:
-        print("\nShutting down server...")
+        print("\nshutting down server...")
         httpd.shutdown()
+        print("httpd down")
+        if DATA_FILE_PATH:
+            print("now trying to save")
+            did_save = save_data()
+            print("saved data to {DATA_FILE_PATH}" if did_save else "couldn't save data")
+        print("process terminating now")
 
 
 if __name__ == "__main__":
@@ -2142,3 +2226,362 @@ class TestStorageContainer(TestCase):
         self.assertIn("session_5", container.index_map)
         # session_1 should now be evicted
         self.assertNotIn("session_1", container.index_map)
+
+
+class TestSaveAndLoadData(TestCase):
+    TEST_DATA_FILE_PATH = Path("test-file-save-data-b29e89dd-d67a-4ef6-ab2d-09d6204771bf")
+    TEST_DATA_EXPECTED_FILE_CONTENT = {
+      "session_2": {
+        "users": {
+          "objects": {
+            "1": {
+              "email": "user3@example.com",
+              "username": "user3",
+              "password": "hashed_password_3",
+              "bio": "Bio for user 3 in session 2",
+              "image": "https://example.com/user3.jpg",
+              "id": "1"
+            },
+            "2": {
+              "email": "user4@example.com",
+              "username": "user4",
+              "password": "hashed_password_4",
+              "bio": "Bio for user 4 in session 2",
+              "image": "https://example.com/user4.jpg",
+              "id": "2"
+            }
+          },
+          **{"last_accessed_ids": ["1", "2"]},
+          "current_id_counter": 3
+        },
+        "articles": {
+          "objects": {
+            "1": {
+              "title": "Third Article in Session 2",
+              "description": "This article is in a different session",
+              "body": "Content for the third article in session 2",
+              **{"tagList": ["session2", "testing"]},
+              "author": "1",
+              "slug": "third-article-session2",
+              "id": "1"
+            }
+          },
+          **{"last_accessed_ids": ["1"]},
+          "current_id_counter": 2
+        },
+        "comments": {
+          **{"objects": {"1": {"body": "Comment from session 2", "author": "2", "article": "1", "id": "1"}}},
+          **{"last_accessed_ids": ["1"]},
+          "current_id_counter": 2
+        },
+        **{"follows": [["1", "2"]]},
+        **{"favorites": [["2", "1"]]},
+      },
+      "session_3": {
+        "users": {
+          "objects": {
+            "1": {
+              "email": "user5@example.com",
+              "username": "user5",
+              "password": "hashed_password_5",
+              "bio": "User 5 bio in session 3",
+              "image": "https://example.com/user5.jpg",
+              "id": "1"
+            },
+            "2": {
+              "email": "user6@example.com",
+              "username": "user6",
+              "password": "hashed_password_6",
+              "bio": "User 6 bio in session 3",
+              "image": "https://example.com/user6.jpg",
+              "id": "2"
+            },
+            "3": {
+              "email": "user7@example.com",
+              "username": "user7",
+              "password": "hashed_password_7",
+              "bio": "User 7 bio in session 3",
+              "image": "https://example.com/user7.jpg",
+              "id": "3"
+            }
+          },
+          **{"last_accessed_ids": ["1", "2", "3"]},
+          "current_id_counter": 4
+        },
+        "articles": {
+          "objects": {
+            "1": {
+              "title": "Fourth Article Session 3",
+              "description": "Article 4 description",
+              "body": "Content for article 4 in session 3",
+              "tagList": ["session3", "multiple", "tags"],
+              "author": "1",
+              "slug": "fourth-article-session3",
+              "id": "1"
+            },
+            "2": {
+              "title": "Fifth Article Session 3",
+              "description": "Article 5 description",
+              "body": "Content for article 5 in session 3",
+              "tagList": ["more", "tags"],
+              "author": "2",
+              "slug": "fifth-article-session3",
+              "id": "2"
+            }
+          },
+          "last_accessed_ids": ["1", "2"],
+          "current_id_counter": 3
+        },
+        "comments": {
+          "objects": {
+            "1": {"body": "First comment in session 3","author": "2","article": "1","id": "1"},
+            "2": {"body": "Second comment in session 3","author": "3","article": "1","id": "2"},
+            "3": {"body": "Third comment in session 3","author": "1","article": "2","id": "3"}
+          },
+          **{"last_accessed_ids": ["1", "2", "3"]},
+          "current_id_counter": 4
+        },
+        **{"follows": [["1", "2"], ["2", "3"], ["3", "1"]]},
+        **{"favorites": [["1", "2"], ["2", "1"], ["3", "1"], ["3", "2"]]},
+      },
+      "session_1": {
+        "users": {
+          "objects": {
+            "1": {
+              "email": "user1@example.com",
+              "username": "user1",
+              "password": "hashed_password_1",
+              "bio": "Bio for user 1",
+              "image": "https://example.com/user1.jpg",
+              "id": "1"
+            },
+            "2": {
+              "email": "user2@example.com",
+              "username": "user2",
+              "password": "hashed_password_2",
+              "bio": "Bio for user 2",
+              "image": "https://example.com/user2.jpg",
+              "id": "2"
+            }
+          },
+          **{"last_accessed_ids": ["2", "1"]},
+          "current_id_counter": 3
+        },
+        "articles": {
+          "objects": {
+            "1": {
+              "title": "First Article",
+              "description": "Description of first article",
+              "body": "Body content of the first article with lots of text",
+              **{"tagList": ["tech", "programming"]},
+              "author": "1",
+              "slug": "first-article",
+              "id": "1"
+            },
+            "2": {
+              "title": "Second Article",
+              "description": "Description of second article",
+              "body": "Body content of the second article",
+              **{"tagList": ["science", "research"]},
+              "author": "2",
+              "slug": "second-article",
+              "id": "2"
+            }
+          },
+          **{"last_accessed_ids": ["2", "1"]},
+          "current_id_counter": 3
+        },
+        "comments": {
+          "objects": {
+            **{"1": {"body": "Great article! Very informative.", "author": "2", "article": "1", "id": "1"}},
+            **{"2": {"body": "I disagree but gg.", "author": "1", "article": "1", "id": "2"}},
+          },
+          **{"last_accessed_ids": ["2", "1"]},
+          "current_id_counter": 3
+        },
+        **{"follows": [["1", "2"]]},
+        **{"favorites": [["1", "2"], ["2", "1"]]},
+      }
+    }
+
+    def setUp(self):
+        # Set up a test file path
+        global DATA_FILE_PATH
+        self.TEST_DATA_FILE_PATH.unlink(missing_ok=True)
+        self.original_data_file_path = DATA_FILE_PATH
+        DATA_FILE_PATH = self.TEST_DATA_FILE_PATH
+        # Clear the storage container
+        global storage_container
+        storage_container = _StorageContainer()
+
+    def tearDown(self):
+        # Restore original DATA_FILE_PATH
+        global DATA_FILE_PATH
+        DATA_FILE_PATH = self.original_data_file_path
+        self.TEST_DATA_FILE_PATH.unlink(missing_ok=True)
+
+    def test_save_data_complex(self):
+        """Complex test for save_data with multiple storages containing comprehensive data"""
+        global storage_container
+        # Create multiple storage sessions with comprehensive data
+        storage1 = storage_container.get_storage("session_1")
+        storage2 = storage_container.get_storage("session_2")
+        storage3 = storage_container.get_storage("session_3")
+        # Populate storage1 with multiple users
+        user1_data = {
+            "email": "user1@example.com",
+            "username": "user1",
+            "password": "hashed_password_1",
+            "bio": "Bio for user 1",
+            "image": "https://example.com/user1.jpg"
+        }
+        user2_data = {
+            "email": "user2@example.com",
+            "username": "user2",
+            "password": "hashed_password_2",
+            "bio": "Bio for user 2",
+            "image": "https://example.com/user2.jpg"
+        }
+        user1, user2 = storage1.users.add(user1_data), storage1.users.add(user2_data)
+        storage1.users.get(user1["id"])  # reorders data
+        # Add articles to storage1
+        article1_data = {
+            "title": "First Article",
+            "description": "Description of first article",
+            "body": "Body content of the first article with lots of text",
+            "tagList": ["tech", "programming"],
+            "author": user1["id"],
+            "slug": "first-article"
+        }
+        article2_data = {
+            "title": "Second Article",
+            "description": "Description of second article",
+            "body": "Body content of the second article",
+            "tagList": ["science", "research"],
+            "author": user2["id"],
+            "slug": "second-article"
+        }
+        article1, article2 = storage1.articles.add(article1_data), storage1.articles.add(article2_data)
+        storage1.articles.get(article1["id"])  # reorders data
+        # Add comments to storage1
+        comment1_data = {"body": "Great article! Very informative.", "author": user2["id"], "article": article1["id"]}
+        comment2_data = {"body": "I disagree but gg.", "author": user1["id"], "article": article1["id"]}
+        comment1 = storage1.comments.add(comment1_data)
+        comment2 = storage1.comments.add(comment2_data)
+        storage1.comments.get(comment1["id"])  # reorders data
+        # Add follows and favorites to storage1
+        storage1.follows.add(user1["id"], user2["id"])  # user1 follows user2
+        storage1.favorites.add(user1["id"], article2["id"])  # user1 favorites article2
+        storage1.favorites.add(user2["id"], article1["id"])  # user2 favorites article1
+        # Populate storage2 with different data
+        user3_data = {
+            "email": "user3@example.com",
+            "username": "user3",
+            "password": "hashed_password_3",
+            "bio": "Bio for user 3 in session 2",
+            "image": "https://example.com/user3.jpg"
+        }
+        user4_data = {
+            "email": "user4@example.com",
+            "username": "user4",
+            "password": "hashed_password_4",
+            "bio": "Bio for user 4 in session 2",
+            "image": "https://example.com/user4.jpg"
+        }
+        user3 = storage2.users.add(user3_data)
+        user4 = storage2.users.add(user4_data)
+        # Add articles to storage2
+        article3_data = {
+            "title": "Third Article in Session 2",
+            "description": "This article is in a different session",
+            "body": "Content for the third article in session 2",
+            "tagList": ["session2", "testing"],
+            "author": user3["id"],
+            "slug": "third-article-session2"
+        }
+        article3 = storage2.articles.add(article3_data)
+        # Add comments and links to storage2
+        comment3_data = {"body": "Comment from session 2", "author": user4["id"], "article": article3["id"]}
+        comment3 = storage2.comments.add(comment3_data)
+        storage2.follows.add(user3["id"], user4["id"])
+        storage2.favorites.add(user4["id"], article3["id"])
+        # Populate storage3 with even more data
+        user5_data = {
+            "email": "user5@example.com",
+            "username": "user5",
+            "password": "hashed_password_5",
+            "bio": "User 5 bio in session 3",
+            "image": "https://example.com/user5.jpg"
+        }
+        user6_data = {
+            "email": "user6@example.com",
+            "username": "user6",
+            "password": "hashed_password_6",
+            "bio": "User 6 bio in session 3",
+            "image": "https://example.com/user6.jpg"
+        }
+        user7_data = {
+            "email": "user7@example.com",
+            "username": "user7",
+            "password": "hashed_password_7",
+            "bio": "User 7 bio in session 3",
+            "image": "https://example.com/user7.jpg"
+        }
+        user5 = storage3.users.add(user5_data)
+        user6 = storage3.users.add(user6_data)
+        user7 = storage3.users.add(user7_data)
+        # Add multiple articles to storage3
+        article4_data = {
+            "title": "Fourth Article Session 3",
+            "description": "Article 4 description",
+            "body": "Content for article 4 in session 3",
+            "tagList": ["session3", "multiple", "tags"],
+            "author": user5["id"],
+            "slug": "fourth-article-session3"
+        }
+        article5_data = {
+            "title": "Fifth Article Session 3",
+            "description": "Article 5 description",
+            "body": "Content for article 5 in session 3",
+            "tagList": ["more", "tags"],
+            "author": user6["id"],
+            "slug": "fifth-article-session3"
+        }
+        article4 = storage3.articles.add(article4_data)
+        article5 = storage3.articles.add(article5_data)
+        # Add multiple comments to storage3
+        comment4_data = {"body": "First comment in session 3", "author": user6["id"], "article": article4["id"]}
+        comment5_data = {"body": "Second comment in session 3", "author": user7["id"], "article": article4["id"]}
+        comment6_data = {"body": "Third comment in session 3", "author": user5["id"], "article": article5["id"]}
+        comment4 = storage3.comments.add(comment4_data)
+        comment5 = storage3.comments.add(comment5_data)
+        comment6 = storage3.comments.add(comment6_data)
+        # Add complex follow/favorite relationships in storage3
+        storage3.follows.add(user5["id"], user6["id"])  # user5 follows user6
+        storage3.follows.add(user6["id"], user7["id"])  # user6 follows user7
+        storage3.follows.add(user7["id"], user5["id"])  # user7 follows user5 (circular)
+        storage3.favorites.add(user5["id"], article5["id"])  # user5 favorites article5
+        storage3.favorites.add(user6["id"], article4["id"])  # user6 favorites article4
+        storage3.favorites.add(user7["id"], article4["id"])  # user7 favorites article4
+        storage3.favorites.add(user7["id"], article5["id"])  # user7 favorites article5
+        # This should reorder the storages in output
+        storage1 = storage_container.get_storage("session_1")
+        # Call save_data to save all the populated data
+        save_data()
+        with self.TEST_DATA_FILE_PATH.open() as f:
+            saved_data = json.loads(f.read())
+        # Next line actually compares order
+        self.assertEqual(json.dumps(saved_data), json.dumps(self.TEST_DATA_EXPECTED_FILE_CONTENT))
+
+    def test_load_data_complex(self):
+        """Complex test for load_data using the same expected data structure"""
+        global storage_container
+        with self.TEST_DATA_FILE_PATH.open('w') as f:
+            json.dump(self.TEST_DATA_EXPECTED_FILE_CONTENT, f)
+        load_data()
+        self.assertFalse(self.TEST_DATA_FILE_PATH.exists())  # ensure the existing file has been wiped on load
+        save_data()  # we can trust save_data from previous test so we'll just reuse it
+        with self.TEST_DATA_FILE_PATH.open() as f:
+            loaded_data = json.loads(f.read())
+        # Next line actually compares order
+        self.assertEqual(json.dumps(loaded_data), json.dumps(self.TEST_DATA_EXPECTED_FILE_CONTENT))
