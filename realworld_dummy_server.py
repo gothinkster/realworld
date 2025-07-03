@@ -2139,6 +2139,17 @@ class TestStorageContainer(TestCase):
             if right_child < len(self.container.heap):
                 self.assertLessEqual(self.container.heap[i][0], self.container.heap[right_child][0])
 
+    def test_heap_pop_multiple_items_pop_from_lowest_to_highest(self):
+        base_ordering = (10, 5, 15, 0, 20, 11, 6, 16, 1, 21, 12, 7, 17, 2, 22)
+        for i in base_ordering:
+            self.container._push(i, f"item{i}", f"data_{i}")
+        poppeds = []
+        for i in range(len(base_ordering) + 5):
+            self._verify_heap_property(self.container)
+            self._verify_index_consistency(self.container)
+            poppeds.append(self.container._pop())
+        self.assertEqual(poppeds, [*([i, f"item{i}", f"data_{i}", 0] for i in sorted(base_ordering)), *([None] * 5)])
+
     def test_update_priority_increase(self):
         self.container._push(5, "item1", "data1")
         self.container._push(10, "item2", "data2")
