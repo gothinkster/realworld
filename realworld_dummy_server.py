@@ -27,7 +27,7 @@ https://github.com/c4ffein/realworld-django-ninja/
 ## Rate Limiting
 - Applied per browser session (not per RealWorld user account) via the UNDOCUMENTED_DEMO_SESSION cookie
   - Prevents the same IPv4 or IPv6 range to use too many different UNDOCUMENTED_DEMO_SESSION
-    - That way it doesn't overflow the pool of the currently saved sessions
+    - That way it doesn't overflow the pool of the currently saved sessions -> MAX_SESSIONS_PER_IP
 - There are limits on the objects that will be saved in memory
 
 ## Deploy
@@ -71,7 +71,7 @@ from urllib.parse import parse_qs, urlparse
 # security
 DISABLE_ISOLATION_MODE = getenv("DISABLE_ISOLATION_MODE", "FALSE").lower() == "true"
 MAX_SESSIONS = int(getenv("MAX_SESSIONS") or 3000)
-MAX_SESSIONS_PER_IP = int(getenv("MAX_SESSIONS_PER_IP") or 30)  # TODO
+MAX_SESSIONS_PER_IP = int(getenv("MAX_SESSIONS_PER_IP") or 30)
 BYPASS_ORIGIN_CHECK = getenv("BYPASS_ORIGIN_CHECK", "FALSE").lower() == "true"
 ALLOWED_ORIGINS = getenv("ALLOWED_ORIGINS", "").split(";")
 if ALLOWED_ORIGINS == [""] and not BYPASS_ORIGIN_CHECK:
@@ -114,6 +114,7 @@ NAIVE_SIZE_SESSION_COMMENT = NAIVE_SIZE_COMMENT * MAX_COMMENTS_PER_SESSION
 NAIVE_SIZE_SESSION = NAIVE_SIZE_SESSION_USER + NAIVE_SIZE_SESSION_ARTICLE + NAIVE_SIZE_SESSION_COMMENT
 NAIVE_SIZE_TOTAL = NAIVE_SIZE_SESSION * MAX_SESSIONS
 
+# TODO Log the ip handling
 
 #### LOGGING ###########################################################################################################
 
@@ -313,24 +314,37 @@ class InMemoryStorage:
 
 
 class _StorageContainer:
-    """Remove storage for the least used session once max_sessions is reached"""
+    """
+    Removes storage for the least used session once max_sessions is reached
+    Limits the number of sessions the same IPv4 address or IPv6 range can handle
+    It is arguable that this class breaks separation of concerns
+    But the intricate relationships between the multiple data structures needed to achieve the target behavior
+    make this implementation an acceptable choice
+    """
+
+    # init
 
     def __init__(self, disable_isolation_mode=DISABLE_ISOLATION_MODE, max_sessions=MAX_SESSIONS):
         self.DISABLE_ISOLATION_MODE = disable_isolation_mode
         self.MAX_SESSIONS = max_sessions
-        self.heap = []
-        self.index_map = {}
+        self.heap = []  # list of (priority, obj_id, data, index, client_ip)
+        self.index_map = {}  # session_id -> heap index
+        self.ip_to_sessions = {}  # ip -> list of session_ids
+        if not MAX_SESSIONS_PER_IP or MAX_SESSIONS_PER_IP < 1:
+            raise ValueError(f"MAX_SESSIONS_PER_IP is set to {MAX_SESSIONS_PER_IP}, you need at least one")
 
-    def _push(self, priority, obj_id, data=None):
-        """Push an item onto the heap"""
+    # heap + index_map operations -> call _handle_client_ip_and_session helpers as side-effect
+
+    def _push(self, priority, obj_id, data=None, client_ip=None):
+        """Push a session onto the heap, add it to the index"""
         index = len(self.heap)
-        item = [priority, obj_id, data, index]  # Include index in item
+        item = [priority, obj_id, data, index, client_ip]  # includes index and client_ip
         self.heap.append(item)
         self.index_map[obj_id] = index
         self._sift_up(index)
 
     def _pop(self):
-        """Pop the smallest item from the heap"""
+        """Pop the oldest session from the heap, clean it form the index"""
         if not self.heap:
             return None
         # Remove from index map
@@ -338,7 +352,7 @@ class _StorageContainer:
         del self.index_map[root_item[1]]
         if len(self.heap) == 1:
             return self.heap.pop()
-        # Move last item to root
+        # Move last item to root and sift down (updates indexes)
         last_item = self.heap.pop()
         self.heap[0] = last_item
         self.heap[0][3] = 0  # Update index
@@ -385,11 +399,104 @@ class _StorageContainer:
 
     def _swap(self, i, j):
         """Swap two items and update their indices"""
-        self.index_map[self.heap[i][1]], self.index_map[self.heap[j][1]] = j, i  # Update index map
-        self.heap[i][3], self.heap[j][3] = j, i  # Update indices in items
-        self.heap[i], self.heap[j] = self.heap[j], self.heap[i]  # Swap items
+        self.index_map[self.heap[i][1]], self.index_map[self.heap[j][1]] = j, i  # update index map
+        self.heap[i][3], self.heap[j][3] = j, i  # update indices in items
+        self.heap[i], self.heap[j] = self.heap[j], self.heap[i]  # swap items
 
-    def get_storage(self, identifier):
+    # _handle_client_ip_and_session helpers -> actualize ip and session relations
+
+    def _normalize_ip_for_limiting(self, ip):
+        """Normalize IP for session limiting - IPv4 as-is, IPv6 to /64 range"""
+        if ip.endswith("/64"):  # makes it safe to call multiple times
+            return ip
+        if ':' in ip:  # IPv6, limit per /64 subnet (first 4 groups)
+            parts = ip.split(':')
+            return ':'.join(parts[:4]) + '::/64' if len(parts) >= 4 else ip + "/64"  # unsafe but shouldn't happen
+        return ip  # IPv4 as-is
+
+    def _handle_client_ip_and_session_eviction(self, identifier, client_ip):
+        """Helper that cleanly removes a session from ip_to_sessions: removes the ip entirely if it becomes empty"""
+        if not client_ip:
+            return
+        normalized_ip = self._normalize_ip_for_limiting(client_ip)
+        if normalized_ip in self.ip_to_sessions:
+            self.ip_to_sessions[normalized_ip] = [e for e in self.ip_to_sessions[normalized_ip] if e != identifier]
+            if not self.ip_to_sessions[normalized_ip]:  # Remove empty lists
+                del self.ip_to_sessions[normalized_ip]
+
+    def _handle_client_ip_and_session_addition(self, identifier, client_ip):
+        """Helper that adds a session to ip_to_sessions: may remove a session as a side_effect"""
+        if not client_ip:
+            return
+        normalized_ip = self._normalize_ip_for_limiting(client_ip)
+        if normalized_ip not in self.ip_to_sessions:
+            self.ip_to_sessions[normalized_ip] = [identifier]
+            return
+        self.ip_to_sessions[normalized_ip].append(identifier)
+        while len(self.ip_to_sessions[normalized_ip]) > MAX_SESSIONS_PER_IP:
+            session_id_to_remove = self.ip_to_sessions[normalized_ip][0]
+            self._update_priority(session_id_to_remove, 0)
+            self._pop()
+            self.ip_to_sessions[normalized_ip] = self.ip_to_sessions[normalized_ip][1:]
+
+    def _handle_client_ip_and_session_priority(self, session_id, client_ip):
+        """
+        Helper that modifies ip_to_sessions accordingly to the changes to the session priorities
+        May actually pop the oldest session for an ip if we reattribute a session from an ip to another
+        """
+        if not client_ip:
+            return
+        normalized_ip = self._normalize_ip_for_limiting(client_ip)
+        _, _, _, _, saved_client_ip = self.heap[self.index_map[session_id]]
+        if saved_client_ip == normalized_ip:
+            if normalized_ip not in self.ip_to_sessions:  # shouldn't happen but safer to handle it anyway
+                self.ip_to_sessions[normalized_ip] = [session_id]
+                return
+            self.ip_to_sessions[normalized_ip] = [
+                e for e in self.ip_to_sessions[normalized_ip] if e != session_id  # still safe if not present
+            ] + [session_id]  # we should never exceed MAX_SESSIONS_PER_IP as this session is supposed to be here though
+            return
+        self._handle_client_ip_and_session_reattribution(session_id, saved_client_ip, normalized_ip)
+
+    def _handle_client_ip_and_session_reattribution(self, session_id, normalized_saved_ip, normalized_client_ip):
+        """expects normalized_client_ip and normalized_saved_ip to both be defined, and different"""
+        self.heap[self.index_map[session_id]][4] = normalized_client_ip  # update the client_ip in the data struct
+        if normalized_saved_ip and normalized_saved_ip in self.ip_to_sessions:
+            self.ip_to_sessions[normalized_saved_ip] = [
+                e for e in self.ip_to_sessions[normalized_saved_ip] if e != session_id
+            ]
+            if not self.ip_to_sessions[normalized_saved_ip]:  # Remove empty lists
+                del self.ip_to_sessions[normalized_saved_ip]
+        self.ip_to_sessions[normalized_client_ip] = [
+            e for e in self.ip_to_sessions.get(normalized_client_ip, []) if e != session_id  # still safe if not present
+        ] + [session_id]
+        while len(self.ip_to_sessions[normalized_client_ip]) > MAX_SESSIONS_PER_IP:
+            self._update_priority(self.ip_to_sessions[normalized_client_ip][0], 0)
+            self._pop()
+            self.ip_to_sessions[normalized_client_ip] = self.ip_to_sessions[normalized_client_ip][1:]
+
+    # only external method that should get called
+
+    def push(self, priority, session_id, data=None, client_ip=None):
+        """Push a session onto the heap, add it to the index, and manage the sessions by ip (possible evictment)"""
+        self._push(priority, session_id, data, client_ip)
+        self._handle_client_ip_and_session_addition(session_id, client_ip)  # can potentially remove a session
+
+    def pop(self):
+        """Pop the oldest session from the heap, clean it form the index, and removes it from the sessions by ip"""
+        root_item = self._pop()
+        if root_item is None:
+            return None
+        _, session_id, _, _, client_ip = root_item
+        self._handle_client_ip_and_session_eviction(session_id, client_ip)  # remove the session
+        return root_item
+
+    def update_priority(self, obj_id, new_priority, client_ip=None):
+        """Update the priority of an existing item, and may reattribute it to another ip if there is a discrepancy"""
+        self._update_priority(obj_id, new_priority)
+        self._handle_client_ip_and_session_priority(obj_id, client_ip)  # also manages session's ip != client_ip
+
+    def get_storage(self, identifier, client_ip=None):
         if self.DISABLE_ISOLATION_MODE:
             if not self.heap:
                 self.heap.append(InMemoryStorage())  # Not using expected implem
@@ -397,25 +504,22 @@ class _StorageContainer:
         if not identifier:  # UNDOCUMENTED_DEMO_SESSION is not defined, but what if the logged-in user deleted it?
             return InMemoryStorage()  # quick and dirty solution to prevent overwriting
         storage_container_index = self.index_map.get(identifier)
-        if storage_container_index is None:
+        if storage_container_index is None:  # create the session, push and pop manage the ip
             if len(self.index_map) >= self.MAX_SESSIONS:
-                evicted_session = self._pop()
+                evicted_session = self.pop()
                 if evicted_session:
-                    log_structured(security_logger, logging.WARNING,
+                    log_structured(security_logger, logging.INFO,
                         "Rate limit reached - Session storage full, evicting session",
                         rate_limit_type="session_storage", max_sessions=self.MAX_SESSIONS,
                         evicted_session_id=evicted_session[1], new_session_id=identifier)
-                else:
-                    self._pop()
-            self._push(time_ns(), identifier, data=InMemoryStorage())
-            log_structured(security_logger, logging.INFO,
-                "New session created",
-                session_event="created", session_id=identifier, total_sessions=len(self.index_map))
+            self.push(time_ns(), identifier, data=InMemoryStorage(), client_ip=client_ip)
+            log_structured(security_logger, logging.INFO, "New session created",
+                session_event="created", session_id=identifier, total_sessions=len(self.index_map),
+                client_ip=client_ip)
             return self.heap[self.index_map.get(identifier)][2]
-        r = self.heap[storage_container_index][2]
-        self._update_priority(identifier, time_ns())
-        log_structured(storage_logger, logging.DEBUG,
-            "Session accessed",
+        r = self.heap[storage_container_index][2]  # existing session
+        self.update_priority(identifier, time_ns(), client_ip=client_ip)  # manage priority and ip/session
+        log_structured(storage_logger, logging.DEBUG, "Session accessed",
             session_event="accessed", session_id=identifier)
         return r
 
@@ -424,7 +528,7 @@ storage_container = _StorageContainer()
 
 
 def save_data():
-    """Save storage_container data to JSON file"""
+    """Save storage_container data to JSON file - WARNING the current implementation wipes all session to ip data"""
     if not DATA_FILE_PATH:
         log_structured(storage_logger, logging.DEBUG,
             "Data persistence skipped - DATA_FILE_PATH not configured",
@@ -440,10 +544,10 @@ def save_data():
     # Save heap items in order from oldest to newest by popping from heap
     saved_items = []
     while storage_container.heap:
-        heap_item = storage_container._pop()
+        heap_item = storage_container.pop()
         if heap_item:
-            priority, session_id, storage, _ = heap_item
-            saved_items.append((priority, session_id, storage))
+            priority, session_id, storage, _, client_ip = heap_item
+            saved_items.append((priority, session_id, storage, client_ip))
             session_count += 1
             session_data = {
                 'users': {
@@ -465,9 +569,8 @@ def save_data():
                 'favorites': storage.favorites.links
             }
             data[session_id] = session_data
-    # Restore heap in original order
-    for priority, session_id, storage in saved_items:
-        storage_container._push(priority, session_id, storage)
+    for priority, session_id, storage, client_ip in saved_items:
+        storage_container.push(priority, session_id, storage, client_ip=client_ip)
     try:
         with DATA_FILE_PATH.open("w") as f:
             json.dump(data, f, indent=2)
@@ -689,13 +792,13 @@ class RealWorldHandler(BaseHTTPRequestHandler):
             self._send_error(500, {"errors": {"body": [str(e)]}})
 
     def _get_client_ip(self):
-        # TODO implement session limit per ip / range for ipv6
         return self.request.getpeername()[0]  # TODO Use this or X-Forwarded-For / X-Real-IP depending on setup + document
 
     def _handle_request(self, method: str):
         """Route request to appropriate handler"""
         self._request_start_time = time_ns()
-        storage = storage_container.get_storage(self._get_demo_session_cookie())
+        client_ip = self._get_client_ip()
+        storage = storage_container.get_storage(self._get_demo_session_cookie(), client_ip)
         parsed = urlparse(self.path)
         path = parsed.path
         self._request_method = method
@@ -706,7 +809,6 @@ class RealWorldHandler(BaseHTTPRequestHandler):
         # Get authorization header
         auth_header = self.headers.get("Authorization", "")
         token = auth_header.replace("Token ", "") if auth_header.startswith("Token ") else None
-        client_ip = self._get_client_ip()
         current_user_id = verify_token(token, storage, client_ip) if token else None
 
         # Log request start
@@ -2088,7 +2190,7 @@ class TestStorageContainer(TestCase):
     def test_heap_push_single_item(self):
         self.container._push(5, "item1", "data1")
         self.assertEqual(len(self.container.heap), 1)
-        self.assertEqual(self.container.heap[0], [5, "item1", "data1", 0])
+        self.assertEqual(self.container.heap[0], [5, "item1", "data1", 0, None])
         self.assertEqual(self.container.index_map["item1"], 0)
 
     def test_heap_push_multiple_items_maintains_min_heap(self):
@@ -2115,7 +2217,7 @@ class TestStorageContainer(TestCase):
     def test_heap_pop_single_item(self):
         self.container._push(5, "item1", "data1")
         result = self.container._pop()
-        self.assertEqual(result, [5, "item1", "data1", 0])
+        self.assertEqual(result, [5, "item1", "data1", 0, None])
         self.assertEqual(len(self.container.heap), 0)
         self.assertNotIn("item1", self.container.index_map)
 
@@ -2148,7 +2250,9 @@ class TestStorageContainer(TestCase):
             self._verify_heap_property(self.container)
             self._verify_index_consistency(self.container)
             poppeds.append(self.container._pop())
-        self.assertEqual(poppeds, [*([i, f"item{i}", f"data_{i}", 0] for i in sorted(base_ordering)), *([None] * 5)])
+        self.assertEqual(
+            poppeds, [*([i, f"item{i}", f"data_{i}", 0, None] for i in sorted(base_ordering)), *([None] * 5)]
+        )
 
     def test_update_priority_increase(self):
         self.container._push(5, "item1", "data1")
@@ -2574,6 +2678,235 @@ class TestStorageContainer(TestCase):
         self.assertIn("session_5", container.index_map)
         # session_1 should now be evicted
         self.assertNotIn("session_1", container.index_map)
+
+    # Tests - _handle_client_ip_and_session* methods
+
+    def test_handle_client_ip_and_session_eviction_with_empty_ip(self):
+        """Test eviction with empty/None client_ip"""
+        self.container._push(1, "session1", "data1", "192.168.1.1")
+        self.container.ip_to_sessions["192.168.1.1"] = ["session1"]
+        self.container._handle_client_ip_and_session_eviction("session1", None)
+        self.assertEqual(self.container.ip_to_sessions, {"192.168.1.1": ["session1"]})
+        self.container._handle_client_ip_and_session_eviction("session1", "")
+        self.assertEqual(self.container.ip_to_sessions, {"192.168.1.1": ["session1"]})
+
+    def test_handle_client_ip_and_session_eviction_removes_session_from_ip(self):
+        """Test eviction removes session from ip_to_sessions"""
+        self.container._push(1, "session1", "data1", "192.168.1.1")
+        self.container._push(2, "session2", "data2", "192.168.1.1")
+        self.container.ip_to_sessions["192.168.1.1"] = ["session1", "session2"]
+        self.container._handle_client_ip_and_session_eviction("session1", "192.168.1.1")
+        self.assertEqual(self.container.ip_to_sessions, {"192.168.1.1": ["session2"]})
+
+    def test_handle_client_ip_and_session_eviction_removes_empty_ip_entry(self):
+        """Test eviction removes IP entry when it becomes empty"""
+        self.container._push(1, "session1", "data1", "192.168.1.1")
+        self.container.ip_to_sessions["192.168.1.1"] = ["session1"]
+        self.container._handle_client_ip_and_session_eviction("session1", "192.168.1.1")
+        self.assertEqual(self.container.ip_to_sessions, {})
+
+    def test_handle_client_ip_and_session_eviction_nonexistent_ip(self):
+        """Test eviction with non-existent IP"""
+        self.container._handle_client_ip_and_session_eviction("session1", "192.168.1.1")
+        self.assertEqual(self.container.ip_to_sessions, {})
+
+    def test_handle_client_ip_and_session_eviction_ipv6_normalization(self):
+        """Test eviction with IPv6 address normalization"""
+        ipv6_addr = "2001:db8:85a3:8d3:1319:8a2e:370:7348"
+        normalized_ip = "2001:db8:85a3:8d3::/64"
+        self.container._push(1, "session1", "data1", ipv6_addr)
+        self.container.ip_to_sessions[normalized_ip] = ["session1"]
+        self.container._handle_client_ip_and_session_eviction("session1", ipv6_addr)
+        self.assertEqual(self.container.ip_to_sessions, {})
+
+    def test_handle_client_ip_and_session_addition_with_empty_ip(self):
+        """Test addition with empty/None client_ip"""
+        self.container._handle_client_ip_and_session_addition("session1", None)
+        self.assertEqual(self.container.ip_to_sessions, {})
+        self.container._handle_client_ip_and_session_addition("session1", "")
+        self.assertEqual(self.container.ip_to_sessions, {})
+
+    def test_handle_client_ip_and_session_addition_new_ip(self):
+        """Test addition creates new IP entry"""
+        self.container._handle_client_ip_and_session_addition("session1", "192.168.1.1")
+        self.assertEqual(self.container.ip_to_sessions["192.168.1.1"], ["session1"])
+
+    def test_handle_client_ip_and_session_addition_existing_ip(self):
+        """Test addition to existing IP entry"""
+        self.container.ip_to_sessions["192.168.1.1"] = ["session1"]
+        self.container._handle_client_ip_and_session_addition("session2", "192.168.1.1")
+        self.assertEqual(self.container.ip_to_sessions["192.168.1.1"], ["session1", "session2"])
+
+    def test_handle_client_ip_and_session_addition_exceeds_max_sessions_by_one(self):
+        """Test addition that exceeds MAX_SESSIONS_PER_IP by one"""
+        # Setup sessions up to the limit
+        sessions = [f"session{i}" for i in range(MAX_SESSIONS_PER_IP + 1)]
+        for i, session in enumerate(sessions[:-1]):
+            self.container._push(i, session, f"data{i}", "192.168.1.1")
+        self.container.ip_to_sessions["192.168.1.1"] = sessions[:-1]
+        # Add the final session that exceeds the limit
+        final_session = sessions[-1]
+        self.container._push(len(sessions), final_session, f"data{len(sessions)}", "192.168.1.1")
+        # This should trigger eviction
+        self.container._handle_client_ip_and_session_addition(final_session, "192.168.1.1")
+        # Verify the session was added and the first session was deleted
+        self.assertIn(final_session, self.container.ip_to_sessions["192.168.1.1"])
+        self.assertEqual(self.container.ip_to_sessions, {"192.168.1.1": [f"session{i}" for i in range(1, 31)]})
+
+    def test_handle_client_ip_and_session_addition_exceeds_max_sessions_by_multiple(self):
+        """Test addition that exceeds MAX_SESSIONS_PER_IP by multiple"""
+        # Setup sessions up to the limit
+        sessions = [f"session{i}" for i in range(MAX_SESSIONS_PER_IP + 5)]
+        for i, session in enumerate(sessions[:-1]):
+            self.container._push(i, session, f"data{i}", "192.168.1.1")
+        self.container.ip_to_sessions["192.168.1.1"] = sessions[:-1]
+        # Add the final session that exceeds the limit
+        final_session = sessions[-1]
+        self.container._push(len(sessions), final_session, f"data{len(sessions)}", "192.168.1.1")
+        # This should trigger eviction
+        self.container._handle_client_ip_and_session_addition(final_session, "192.168.1.1")
+        # Verify the session was added and the first session was deleted
+        self.assertIn(final_session, self.container.ip_to_sessions["192.168.1.1"])
+        self.assertEqual(self.container.ip_to_sessions, {"192.168.1.1": [f"session{i}" for i in range(5, 35)]})
+
+    def test_handle_client_ip_and_session_addition_ipv6_normalization(self):
+        """Test addition with IPv6 address normalization"""
+        ipv6_addr = "2001:db8:85a3:8d3:1319:8a2e:370:7348"
+        normalized_ip = "2001:db8:85a3:8d3::/64"
+        self.container._handle_client_ip_and_session_addition("session1", ipv6_addr)
+        self.assertEqual(self.container.ip_to_sessions, {normalized_ip: ["session1"]})
+
+    def test_handle_client_ip_and_session_priority_with_empty_ip(self):
+        """Test priority handling with empty/None client_ip"""
+        self.container._push(1, "session1", "data1", "192.168.1.1")
+        self.container._handle_client_ip_and_session_priority("session1", None)
+        self.container._handle_client_ip_and_session_priority("session1", "")
+        self.assertEqual(self.container.ip_to_sessions, {})
+
+    def test_handle_client_ip_and_session_priority_same_ip_one_session(self):
+        """Test priority handling when session IP hasn't changed"""
+        self.container._push(1, "session1", "data1", "192.168.1.1")
+        self.container.ip_to_sessions["192.168.1.1"] = ["session1"]
+        self.container._handle_client_ip_and_session_priority("session1", "192.168.1.1")
+        self.assertEqual(self.container.ip_to_sessions, {"192.168.1.1": ["session1"]})
+
+    def test_handle_client_ip_and_session_priority_same_ip_no_reorder(self):
+        """Test priority handling when session IP hasn't changed"""
+        self.container._push(1, "session1", "data1", "192.168.1.1")
+        self.container._push(2, "session2", "data2", "192.168.1.1")
+        self.container.ip_to_sessions["192.168.1.1"] = ["session1", "session2"]
+        self.container._handle_client_ip_and_session_priority("session2", "192.168.1.1")
+        self.assertEqual(self.container.ip_to_sessions, {"192.168.1.1": ["session1", "session2"]})
+
+    def test_handle_client_ip_and_session_priority_same_ip_with_reorder(self):
+        """Test priority handling when session IP hasn't changed"""
+        self.container._push(1, "session1", "data1", "192.168.1.1")
+        self.container._push(2, "session2", "data2", "192.168.1.1")
+        self.container.ip_to_sessions["192.168.1.1"] = ["session1", "session2"]
+        self.container._handle_client_ip_and_session_priority("session1", "192.168.1.1")
+        self.assertEqual(self.container.ip_to_sessions, {"192.168.1.1": ["session2", "session1"]})
+
+    def test_handle_client_ip_and_session_priority_ip_not_in_sessions_and_no_sessions(self):
+        """Test priority handling when IP not in sessions (edge case) - no sessions at all"""
+        self.container._push(1, "session1", "data1", "192.168.1.1")
+        self.container._handle_client_ip_and_session_priority("session1", "192.168.1.1")
+        self.assertEqual(self.container.ip_to_sessions, {"192.168.1.1": ["session1"]})
+
+    def test_handle_client_ip_and_session_priority_ip_not_in_sessions_and_existing_session(self):
+        """Test priority handling when IP not in sessions (edge case) - existing session for that ip"""
+        self.container._push(1, "session1", "data1", "192.168.1.1")
+        self.container._push(2, "session2", "data2", "192.168.1.1")
+        self.container.ip_to_sessions["192.168.1.1"] = ["session2"]
+        self.container._handle_client_ip_and_session_priority("session1", "192.168.1.1")
+        self.assertEqual(self.container.ip_to_sessions, {"192.168.1.1": ["session2", "session1"]})
+
+    def test_handle_client_ip_and_session_priority_different_ip_only_one_session(self):
+        """Test priority handling when session IP has changed - only one session exists"""
+        self.container._push(1, "session1", "data1", "192.168.1.1")
+        self.container._handle_client_ip_and_session_priority("session1", "192.168.1.2")
+        self.assertEqual(self.container.ip_to_sessions, {"192.168.1.2": ["session1"]})
+
+    def test_handle_client_ip_and_session_priority_different_ip_one_other_session_for_previous_ip(self):
+        """Test priority handling when session IP has changed - one other session for previous ip"""
+        self.container._push(0, "session0", "data0", "192.168.1.1")
+        self.container._push(1, "session1", "data1", "192.168.1.1")
+        self.container.ip_to_sessions["192.168.1.1"] = ["session0", "session1"]
+        self.container._handle_client_ip_and_session_priority("session1", "192.168.1.2")
+        self.assertEqual(self.container.ip_to_sessions, {"192.168.1.1": ["session0"], "192.168.1.2": ["session1"]})
+
+    def test_handle_client_ip_and_session_priority_different_ip_one_other_session_for_next_ip(self):
+        """Test priority handling when session IP has changed - one other session for next ip"""
+        self.container._push(0, "session0", "data0", "192.168.1.2")
+        self.container._push(1, "session1", "data1", "192.168.1.1")
+        self.container.ip_to_sessions["192.168.1.2"] = ["session0"]
+        self.container.ip_to_sessions["192.168.1.1"] = ["session1"]
+        self.container._handle_client_ip_and_session_priority("session1", "192.168.1.2")
+        self.assertEqual(self.container.ip_to_sessions, {"192.168.1.2": ["session0", "session1"]})
+
+    def test_handle_client_ip_and_session_priority_different_ip_max_other_session_for_next_ip(self):
+        """Test priority handling when session IP has changed - enough sessions for next ip to trigger cleaning"""
+        self.container._push(0, "session0", "data0", "192.168.1.1")
+        self.container.ip_to_sessions["192.168.1.1"] = ["session0"]
+        self.container.ip_to_sessions["192.168.1.2"] = []
+        for i in range(1, MAX_SESSIONS_PER_IP + 1):
+            self.container._push(i, f"session{i}", f"data{i}", "192.168.1.2")
+            self.container.ip_to_sessions["192.168.1.2"].append(f"session{i}")
+        self.container._handle_client_ip_and_session_priority("session0", "192.168.1.2")
+        self.assertEqual(
+            self.container.ip_to_sessions,
+            {"192.168.1.2": [*(f"session{i}" for i in range(2, MAX_SESSIONS_PER_IP + 1)), "session0"]},
+        )
+
+    def test_handle_client_ip_and_session_priority_different_ip_more_than_max_other_session_for_next_ip(self):
+        """Test priority handling when session IP has changed - enough sessions for next ip to trigger cleaning x5"""
+        self.container._push(0, "session0", "data0", "192.168.1.1")
+        self.container.ip_to_sessions["192.168.1.1"] = ["session0"]
+        self.container.ip_to_sessions["192.168.1.2"] = []
+        for i in range(1, MAX_SESSIONS_PER_IP + 5):
+            self.container._push(i, f"session{i}", f"data{i}", "192.168.1.2")
+            self.container.ip_to_sessions["192.168.1.2"].append(f"session{i}")
+        self.container._handle_client_ip_and_session_priority("session0", "192.168.1.2")
+        self.assertEqual(
+            self.container.ip_to_sessions,
+            {"192.168.1.2": [*(f"session{i}" for i in range(6, MAX_SESSIONS_PER_IP + 5)), "session0"]},
+        )
+
+    def test_handle_client_ip_and_session_reattribution_updates_data_structure(self):
+        """Test reattribution updates heap data structure"""
+        self.container._push(1, "session1", "data1", "192.168.1.1")
+        self.container._handle_client_ip_and_session_reattribution("session1", "192.168.1.1", "192.168.1.2")
+        session_data = self.container.heap[self.container.index_map["session1"]]
+        self.assertEqual(session_data[4], "192.168.1.2")
+        self.assertEqual(self.container.ip_to_sessions, {"192.168.1.2": ["session1"]})
+
+    def test_handle_client_ip_and_session_reattribution_with_none_old_ip(self):
+        """Test reattribution with None old IP"""
+        self.container._push(1, "session1", "data1", "192.168.1.1")
+        self.container._handle_client_ip_and_session_reattribution("session1", None, "192.168.1.2")
+        self.assertEqual(self.container.ip_to_sessions, {"192.168.1.2": ["session1"]})
+
+    def test_normalize_ip_for_limiting_ipv4(self):
+        """Test IP normalization for IPv4 addresses"""
+        result = self.container._normalize_ip_for_limiting("192.168.1.1")
+        self.assertEqual(result, "192.168.1.1")
+
+    def test_normalize_ip_for_limiting_ipv6(self):
+        """Test IP normalization for IPv6 addresses"""
+        ipv6_addr = "2001:db8:85a3:8d3:1319:8a2e:370:7348"
+        result = self.container._normalize_ip_for_limiting(ipv6_addr)
+        self.assertEqual(result, "2001:db8:85a3:8d3::/64")
+
+    def test_normalize_ip_for_limiting_ipv6_short(self):
+        """Test IP normalization for short IPv6 addresses"""
+        ipv6_addr = "2001:db8:85a3"
+        result = self.container._normalize_ip_for_limiting(ipv6_addr)
+        self.assertEqual(result, "2001:db8:85a3/64")
+
+    def test_normalize_ip_for_limiting_already_normalized(self):
+        """Test IP normalization for already normalized IPv6"""
+        ipv6_normalized = "2001:db8:85a3:8d3::/64"
+        result = self.container._normalize_ip_for_limiting(ipv6_normalized)
+        self.assertEqual(result, ipv6_normalized)
 
 
 class TestSaveAndLoadData(TestCase):
