@@ -114,7 +114,6 @@ NAIVE_SIZE_SESSION_COMMENT = NAIVE_SIZE_COMMENT * MAX_COMMENTS_PER_SESSION
 NAIVE_SIZE_SESSION = NAIVE_SIZE_SESSION_USER + NAIVE_SIZE_SESSION_ARTICLE + NAIVE_SIZE_SESSION_COMMENT
 NAIVE_SIZE_TOTAL = NAIVE_SIZE_SESSION * MAX_SESSIONS
 
-# TODO Log the ip handling
 
 #### LOGGING ###########################################################################################################
 
@@ -160,12 +159,13 @@ def setup_logging():
 # Set up logging
 main_logger = setup_logging()
 # Create category-specific loggers
-auth_logger = logging.getLogger('auth')
-http_logger = logging.getLogger('http')
-storage_logger = logging.getLogger('storage')
-security_logger = logging.getLogger('security')
-config_logger = logging.getLogger('config')
-lifecycle_logger = logging.getLogger('lifecycle')
+auth_logger = logging.getLogger("auth")
+http_logger = logging.getLogger("http")
+storage_logger = logging.getLogger("storage")
+session_management_logger = logging.getLogger("storage.session_management")
+security_logger = logging.getLogger("security")
+config_logger = logging.getLogger("config")
+lifecycle_logger = logging.getLogger("lifecycle")
 
 
 def log_structured(logger, level, message, category=None, **extra_data_fields):
@@ -215,21 +215,18 @@ class InMemoryModel:
             self.last_accessed_ids = self.last_accessed_ids[1:] + [obj["id"]]
         else:
             self.last_accessed_ids.append(obj["id"])
-        log_structured(storage_logger, logging.DEBUG,
-            "Storage add: object added",
+        log_structured(storage_logger, logging.DEBUG, "object added",
             operation="add", object_id=obj['id'], total_objects=len(self.objects))
         return obj
 
     def get(self, _id):
         _id = normalize_id(_id)
         if _id not in self.objects:
-            log_structured(storage_logger, logging.DEBUG,
-                "Storage get: object not found",
+            log_structured(storage_logger, logging.DEBUG, "get - object not found",
                 operation="get", object_id=_id, found=False)
             return None
         self.last_accessed_ids = [*(e for e in self.last_accessed_ids if e != _id), _id]
-        log_structured(storage_logger, logging.DEBUG,
-            "Storage get: object retrieved",
+        log_structured(storage_logger, logging.DEBUG, "get - object retrieved",
             operation="get", object_id=_id, found=True)
         return self.objects[_id]
 
@@ -247,12 +244,10 @@ class InMemoryModel:
         if _id in self.objects:
             del self.objects[_id]
             self.last_accessed_ids = [cid for cid in self.last_accessed_ids if cid != _id]
-            log_structured(storage_logger, logging.DEBUG,
-                "Storage delete: object deleted",
+            log_structured(storage_logger, logging.DEBUG, "delete - object deleted",
                 operation="delete", object_id=_id, success=True)
             return True
-        log_structured(storage_logger, logging.DEBUG,
-            "Storage delete: object not found",
+        log_structured(storage_logger, logging.DEBUG, "delete - object not deleted",
             operation="delete", object_id=_id, success=False)
         return False
 
@@ -417,27 +412,56 @@ class _StorageContainer:
     def _handle_client_ip_and_session_eviction(self, identifier, client_ip):
         """Helper that cleanly removes a session from ip_to_sessions: removes the ip entirely if it becomes empty"""
         if not client_ip:
+            log_structured(session_management_logger, logging.DEBUG, "Client IP and session eviction skipped",
+                          identifier=identifier, client_ip=None)
             return
         normalized_ip = self._normalize_ip_for_limiting(client_ip)
         if normalized_ip in self.ip_to_sessions:
+            sessions_before = len(self.ip_to_sessions[normalized_ip])
             self.ip_to_sessions[normalized_ip] = [e for e in self.ip_to_sessions[normalized_ip] if e != identifier]
             if not self.ip_to_sessions[normalized_ip]:  # Remove empty lists
                 del self.ip_to_sessions[normalized_ip]
+                log_structured(session_management_logger, logging.DEBUG,
+                    "Client IP and session eviction completed - IP entry removed",
+                    identifier=identifier, client_ip=client_ip, normalized_ip=normalized_ip,
+                    sessions_before=sessions_before)
+            else:
+                log_structured(session_management_logger, logging.DEBUG,
+                    "Client IP and session eviction completed - session removed",
+                    identifier=identifier, client_ip=client_ip,
+                    normalized_ip=normalized_ip, sessions_before=sessions_before,
+                    sessions_after=len(self.ip_to_sessions[normalized_ip]))
+        else:
+            log_structured(session_management_logger, logging.DEBUG, "Client IP and session eviction - IP not found",
+                identifier=identifier, client_ip=client_ip,
+                normalized_ip=normalized_ip)
 
     def _handle_client_ip_and_session_addition(self, identifier, client_ip):
         """Helper that adds a session to ip_to_sessions: may remove a session as a side_effect"""
         if not client_ip:
+            log_structured(session_management_logger, logging.DEBUG,
+                "Client IP and session addition skipped - no client IP", identifier=identifier)
             return
         normalized_ip = self._normalize_ip_for_limiting(client_ip)
         if normalized_ip not in self.ip_to_sessions:
             self.ip_to_sessions[normalized_ip] = [identifier]
+            log_structured(session_management_logger, logging.DEBUG,
+                "Client IP and session addition completed - new IP entry",
+                identifier=identifier, client_ip=client_ip, normalized_ip=normalized_ip)
             return
+        sessions_before = len(self.ip_to_sessions[normalized_ip])
         self.ip_to_sessions[normalized_ip].append(identifier)
+        sessions_removed = 0
         while len(self.ip_to_sessions[normalized_ip]) > MAX_SESSIONS_PER_IP:
             session_id_to_remove = self.ip_to_sessions[normalized_ip][0]
             self._update_priority(session_id_to_remove, 0)
             self._pop()
             self.ip_to_sessions[normalized_ip] = self.ip_to_sessions[normalized_ip][1:]
+            sessions_removed += 1
+        log_structured(session_management_logger, logging.DEBUG, "Client IP and session addition completed",
+            identifier=identifier, client_ip=client_ip,
+            normalized_ip=normalized_ip, sessions_before=sessions_before,
+            sessions_after=len(self.ip_to_sessions[normalized_ip]), sessions_removed=sessions_removed)
 
     def _handle_client_ip_and_session_priority(self, session_id, client_ip):
         """
@@ -445,35 +469,62 @@ class _StorageContainer:
         May actually pop the oldest session for an ip if we reattribute a session from an ip to another
         """
         if not client_ip:
+            log_structured(session_management_logger, logging.DEBUG,
+                "Client IP and session priority skipped - no client IP", session_id=session_id)
             return
         normalized_ip = self._normalize_ip_for_limiting(client_ip)
         _, _, _, _, saved_client_ip = self.heap[self.index_map[session_id]]
         if saved_client_ip == normalized_ip:
             if normalized_ip not in self.ip_to_sessions:  # shouldn't happen but safer to handle it anyway
                 self.ip_to_sessions[normalized_ip] = [session_id]
+                log_structured(session_management_logger, logging.DEBUG,
+                    "Client IP and session priority - created missing IP entry",
+                    session_id=session_id, client_ip=client_ip, normalized_ip=normalized_ip)
                 return
+            sessions_before = len(self.ip_to_sessions[normalized_ip])
             self.ip_to_sessions[normalized_ip] = [
                 e for e in self.ip_to_sessions[normalized_ip] if e != session_id  # still safe if not present
             ] + [session_id]  # we should never exceed MAX_SESSIONS_PER_IP as this session is supposed to be here though
+            log_structured(session_management_logger, logging.DEBUG,
+                "Client IP and session priority - session moved to end",
+                session_id=session_id, client_ip=client_ip,
+                normalized_ip=normalized_ip, sessions_count=sessions_before)
             return
+        log_structured(session_management_logger, logging.DEBUG,
+            "Client IP and session priority - triggering reattribution",
+              session_id=session_id, client_ip=client_ip,
+              normalized_ip=normalized_ip, saved_client_ip=saved_client_ip)
         self._handle_client_ip_and_session_reattribution(session_id, saved_client_ip, normalized_ip)
 
     def _handle_client_ip_and_session_reattribution(self, session_id, normalized_saved_ip, normalized_client_ip):
         """expects normalized_client_ip and normalized_saved_ip to both be defined, and different"""
+        log_structured(session_management_logger, logging.DEBUG, "Client IP and session reattribution started",
+              session_id=session_id, normalized_saved_ip=normalized_saved_ip, normalized_client_ip=normalized_client_ip)
         self.heap[self.index_map[session_id]][4] = normalized_client_ip  # update the client_ip in the data struct
+        saved_ip_removed = False
         if normalized_saved_ip and normalized_saved_ip in self.ip_to_sessions:
+            sessions_before = len(self.ip_to_sessions[normalized_saved_ip])
             self.ip_to_sessions[normalized_saved_ip] = [
                 e for e in self.ip_to_sessions[normalized_saved_ip] if e != session_id
             ]
             if not self.ip_to_sessions[normalized_saved_ip]:  # Remove empty lists
                 del self.ip_to_sessions[normalized_saved_ip]
+                saved_ip_removed = True
+        client_ip_sessions_before = len(self.ip_to_sessions.get(normalized_client_ip, []))
         self.ip_to_sessions[normalized_client_ip] = [
             e for e in self.ip_to_sessions.get(normalized_client_ip, []) if e != session_id  # still safe if not present
         ] + [session_id]
+        sessions_removed = 0
         while len(self.ip_to_sessions[normalized_client_ip]) > MAX_SESSIONS_PER_IP:
             self._update_priority(self.ip_to_sessions[normalized_client_ip][0], 0)
             self._pop()
             self.ip_to_sessions[normalized_client_ip] = self.ip_to_sessions[normalized_client_ip][1:]
+            sessions_removed += 1
+        log_structured(session_management_logger, logging.DEBUG, "Client IP and session reattribution completed",
+            session_id=session_id, normalized_saved_ip=normalized_saved_ip, normalized_client_ip=normalized_client_ip,
+            saved_ip_removed=saved_ip_removed, client_ip_sessions_before=client_ip_sessions_before,
+            client_ip_sessions_after=len(self.ip_to_sessions[normalized_client_ip]),
+            sessions_removed=sessions_removed)
 
     # only external method that should get called
 
