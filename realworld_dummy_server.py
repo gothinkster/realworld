@@ -34,6 +34,9 @@ https://github.com/c4ffein/realworld-django-ninja/
 - You should also rate limit per IPv4 address and IPv6 range through a reverse proxy
 - You should still limit the max body size per request through a reverse proxy
 - You should set LOG_LEVEL / LOG_FILE / LOG_MAX_SIZE / LOG_BACKUP_COUNT to enable rotating logs
+- You should set CLIENT_IP_HEADER when running behind a reverse proxy (e.g., "X-Forwarded-For" or "X-Real-IP")
+  - This ensures proper client IP detection for rate limiting when behind nginx, Apache, or load balancers
+  - Without this setting, all requests will appear to come from the proxy's IP address
 
 ## Development Notes
 - Vibe coded with Claude Code
@@ -76,6 +79,8 @@ BYPASS_ORIGIN_CHECK = getenv("BYPASS_ORIGIN_CHECK", "FALSE").lower() == "true"
 ALLOWED_ORIGINS = getenv("ALLOWED_ORIGINS", "").split(";")
 if ALLOWED_ORIGINS == [""] and not BYPASS_ORIGIN_CHECK:
     raise ValueError("ALLOWED_ORIGINS varenv should be set if BYPASS_ORIGIN_CHECK isn't")
+# client ip detection
+CLIENT_IP_HEADER = getenv("CLIENT_IP_HEADER")  # Optional header name for client IP detection
 # logging
 LOG_LEVEL = getenv("LOG_LEVEL", "INFO").upper()
 LOG_FILE = getenv("LOG_FILE")  # Optional file logging
@@ -843,7 +848,12 @@ class RealWorldHandler(BaseHTTPRequestHandler):
             self._send_error(500, {"errors": {"body": [str(e)]}})
 
     def _get_client_ip(self):
-        return self.request.getpeername()[0]  # TODO Use this or X-Forwarded-For / X-Real-IP depending on setup + document
+        """Get client IP address from header (if configured) or socket connection"""
+        if CLIENT_IP_HEADER:  # use configured header for client IP (useful when behind reverse proxy)
+            header_value = self.headers.get(CLIENT_IP_HEADER)
+            if header_value:
+                return header_value.split(',')[0].strip()  # comma-separated IPs (X-Forwarded-For format) - use first
+        return self.request.getpeername()[0]  # fall back to socket connection IP
 
     def _handle_request(self, method: str):
         """Route request to appropriate handler"""
