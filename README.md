@@ -1,8 +1,6 @@
 ![RealWorld Example Applications](media/realworld-dual-mode.png)
 
-<p align="center" style="margin-top: 30px;">
-<img src="media/stacks_hr.gif"  />
-</p>
+<p align="center" style="margin-top: 30px;"><img src="media/stacks_hr.gif"></p>
 
 ### See how [_the exact same_ Medium.com clone](https://demo.realworld.build) is built using different [frontends](https://codebase.show/projects/realworld?category=frontend) and [backends](https://codebase.show/projects/realworld?category=backend)
 
@@ -38,6 +36,5 @@ Or you can [view upcoming implementations (WIPs)](https://github.com/gothinkster
 
 # Active Maintainers
 
-- **[c4ffein](https://github.com/c4ffein) - Maintainer** - currently maintains the [demo website](https://demo.realworld.build).
-- **[Manuel Vila](https://github.com/mvila) - Maintainer** - creator of the [Layr framework](https://layrjs.com) and the [CodebaseShow website](https://codebase.show/).
-
+- **[c4ffein](https://github.com/c4ffein) - Maintainer** - currently maintains the [demo website](https://demo.realworld.build)
+- **[Manuel Vila](https://github.com/mvila) - Maintainer** - creator of the [Layr framework](https://layrjs.com) and the [CodebaseShow website](https://codebase.show/)
