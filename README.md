@@ -38,15 +38,11 @@ Or you can [view upcoming implementations (WIPs)](https://github.com/gothinkster
 
 # Active Maintainers
 
-#### [Gérôme Grignon](https://github.com/geromegrignon) - Maintainer
+#### [c4ffein](https://github.com/c4ffein) - Maintainer
 
-<img align="left" width="40" height="40" src="https://avatars.githubusercontent.com/u/32737308?v=4">
-
-Gérôme is a Frontend Software Engineer at Lucca. He's an open-source enthusiast.<br /><br />
+c4ffein currently maintains the [demo website](https://demo.realworld.build).
 
 #### [Manuel Vila](https://github.com/mvila) - Maintainer
 
-<img align="left" width="40" height="40" src="https://avatars.githubusercontent.com/u/381671?v=40">
-
-Manuel is an independent Software Engineer, creator of the [Layr framework](https://layrjs.com) and the [CodebaseShow website](https://codebase.show/).<br /><br />
+Manuel is the creator of the [Layr framework](https://layrjs.com) and the [CodebaseShow website](https://codebase.show/).<br /><br />
 
