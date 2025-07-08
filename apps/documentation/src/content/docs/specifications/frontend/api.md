@@ -36,7 +36,7 @@ The **limited** branch will be more suitable if you plan to host your implementa
 ## Demo API
 
 This project provides you with a public hosted API to test your frontend implementations.  
-Point your API requests to `https://api.realworld.io/api` and you're good to go!
+Point your API requests to `https://api.realworld.build/api` and you're good to go!
 
 ### API Usage
 
