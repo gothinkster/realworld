@@ -4,7 +4,7 @@
 <img src="media/stacks_hr.gif"  />
 </p>
 
-### See how [_the exact same_ Medium.com clone](https://demo.realworld.build)) is built using different [frontends](https://codebase.show/projects/realworld?category=frontend) and [backends](https://codebase.show/projects/realworld?category=backend)
+### See how [_the exact same_ Medium.com clone](https://demo.realworld.build) is built using different [frontends](https://codebase.show/projects/realworld?category=frontend) and [backends](https://codebase.show/projects/realworld?category=backend)
 
 You can combine any frontend with any backend, because **they all adhere to the same API spec**
 
