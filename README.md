@@ -38,11 +38,6 @@ Or you can [view upcoming implementations (WIPs)](https://github.com/gothinkster
 
 # Active Maintainers
 
-#### [c4ffein](https://github.com/c4ffein) - Maintainer
-
-c4ffein currently maintains the [demo website](https://demo.realworld.build).
-
-#### [Manuel Vila](https://github.com/mvila) - Maintainer
-
-Manuel is the creator of the [Layr framework](https://layrjs.com) and the [CodebaseShow website](https://codebase.show/).<br /><br />
+- **[c4ffein](https://github.com/c4ffein) - Maintainer** - currently maintains the [demo website](https://demo.realworld.build).
+- **[Manuel Vila](https://github.com/mvila) - Maintainer** - creator of the [Layr framework](https://layrjs.com) and the [CodebaseShow website](https://codebase.show/).
 
