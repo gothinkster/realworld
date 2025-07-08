@@ -31,8 +31,8 @@ Or you can [view upcoming implementations (WIPs)](https://github.com/gothinkster
 - [Documentation introduction](https://docs.realworld.build/introduction/)
 - Every tutorial is built against the same [API spec](api/) to ensure modularity of every frontend & backend
 - Every frontend utilizes the same handcrafted [Bootstrap 4 theme](https://github.com/gothinkster/conduit-bootstrap-template) for identical UI/UX
-- There is a hosted version of the backend API available for public usage at [api.realworld.build](https://api.realworld.build), no API keys are required
-- There is a hosted version of the angular frontend available for public usage at [demo.realworld.build](https://demo.realworld.build) (with strong account isolation)
+- There is a hosted version of the backend API available for public usage at [api.realworld.build](https://api.realworld.build)(with strong account isolation), no API keys are required
+- There is an angular frontend plugged to this backend available at [demo.realworld.build](https://demo.realworld.build)
 - Interested in creating a new RealWorld stack? View our [starter guide & spec](https://docs.realworld.build/implementation-creation/introduction)
 
 # Active Maintainers
