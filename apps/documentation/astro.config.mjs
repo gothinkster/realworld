@@ -1,7 +1,6 @@
 import {defineConfig} from 'astro/config';
 import starlight from '@astrojs/starlight';
 import tailwind from "@astrojs/tailwind";
-import react from "@astrojs/react";
 
 /**
  * A Vite plugin that removes `.md` extensions from URLs during the build process.
@@ -57,9 +56,13 @@ function removeMdExtension() {
 export default defineConfig({
     integrations: [starlight({
         title: 'RealWorld',
-        social: {
-            github: 'https://github.com/gothinkster/realworld'
-        },
+        social: [
+            {
+                icon: 'github',
+                label: 'GitHub',
+                href: 'https://github.com/gothinkster/realworld'
+            }
+        ],
         customCss: [
             './src/tailwind.css',
         ],
