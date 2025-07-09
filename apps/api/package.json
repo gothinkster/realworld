@@ -13,7 +13,6 @@
   },
   "devDependencies": {
     "@ngneat/falso": "^5.0.0",
-    "@types": "link:@types",
     "jsonwebtoken": "^9.0.2",
     "nitropack": "latest",
     "prisma": "^5.18.0"
