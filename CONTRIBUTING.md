@@ -3,17 +3,12 @@
 We would love for you to contribute to RealWorld and help make it even better than it is
 today! As a contributor, here are the guidelines we would like you to follow:
 
-- [Code of Conduct](#coc)
 - [Question or Problem?](#question)
 - [Issues and Bugs](#issue)
 - [Feature Requests](#feature)
 - [Submission Guidelines](#submit)
 - [Coding Rules](#rules)
 - [Commit Message Guidelines](#commit)
-
-## <a name="coc"></a> Code of Conduct
-
-Help us keep RealWorld open and inclusive. Please read and follow our [Code of Conduct][coc].
 
 ## <a name="question"></a> Got a Question or Problem?
 
@@ -211,7 +206,6 @@ BREAKING CHANGE:
 change login route to /users/login
 ```
 
-[coc]: https://github.com/gothinkster/realworld/blob/master/CODE_OF_CONDUCT.md
 [github]: https://github.com/gothinkster/realworld
 [github-issue]: https://github.com/gothinkster/realworld/issues/new?assignees=&labels=bug&template=---bug-report.md&title=
 [github-feature]: https://github.com/gothinkster/realworld/issues/new?assignees=&labels=enhancement&template=---feature-request.md&title=
