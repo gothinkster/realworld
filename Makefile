@@ -38,7 +38,7 @@ test-reference-implementation-with-postman:
 	sleep 0.3; \
 	kill -0 "$$SERVER_PID" 2>/dev/null || exit 4; \
 	make test-reference-implementation-with-postman-and-already-launched-server && ( \
-		make clean-running-processes; echo -e '\n\033[0;32m    TESTS OK\033[0m\n' && exit 1 \
+		make clean-running-processes; echo -e '\n\033[0;32m    TESTS OK\033[0m\n' && exit 0 \
 	) || ( \
 		make clean-running-processes; echo -e '\n\033[0;31m    TESTS FAILED\033[0m\n' && exit 1 \
 	)
