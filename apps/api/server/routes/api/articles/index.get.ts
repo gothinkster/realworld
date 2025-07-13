@@ -14,7 +14,6 @@ export default definePrivateEventHandler(async (event, {auth}) => {
     const articles = await usePrisma().article.findMany({
         omit: {
             body: true,
-            updatedAt: true,
         },
         where: { AND: andQueries },
         orderBy: {
@@ -24,6 +23,9 @@ export default definePrivateEventHandler(async (event, {auth}) => {
         take: Number(query.limit) || 10,
         include: {
             tagList: {
+                orderBy: {
+                    name: 'asc',
+                },
                 select: {
                     name: true,
                 },

@@ -43,3 +43,6 @@ yarn-error.log*
 
 # Python
 __pycache__
+
+# Local db
+dev.db
