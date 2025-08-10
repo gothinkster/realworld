@@ -35,7 +35,7 @@
   ],
   "servers": [
     {
-      "url": "https://api.realworld.build/api"
+      "url": "https://api.realworld.show/api"
     }
   ],
   "paths": {
