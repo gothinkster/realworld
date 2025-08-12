@@ -52,7 +52,7 @@ function removeMdExtension() {
     };
 };
 
-// https://astro.build/config
+// https://astro.show/config
 export default defineConfig({
     integrations: [starlight({
         title: 'RealWorld',
