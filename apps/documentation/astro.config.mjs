@@ -54,6 +54,7 @@ function removeMdExtension() {
 
 // https://astro.show/config
 export default defineConfig({
+    site: 'https://your-netlify-site.netlify.app', // ← Replace with your actual site URL
     integrations: [starlight({
         title: 'RealWorld',
         social: [
@@ -82,7 +83,6 @@ export default defineConfig({
                         label: 'Expectations',
                         slug: 'implementation-creation/expectations',
                     }
-
                 ]
             },
             {
@@ -96,7 +96,7 @@ export default defineConfig({
                                 slug: 'specifications/frontend/templates',
                             },
                             {
-                              label: 'Styles',
+                                label: 'Styles',
                                 slug: 'specifications/frontend/styles',
                             },
                             {
@@ -155,7 +155,6 @@ export default defineConfig({
             {
                 label: 'Community',
                 items: [
-                    // Each item here is one entry in the navigation menu.
                     {
                         label: 'Authors',
                         slug: 'community/authors',
