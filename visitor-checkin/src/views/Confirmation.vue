@@ -4,20 +4,24 @@ import { useRouter } from 'vue-router'
 
 const router = useRouter()
 const visitorInfo = ref(null)
-const checkInTime = ref('')
-const checkOutTime = ref('')
+const visitDate = ref('')
 const hostName = ref('张三')
-const hostPhone = ref('13800138000')
-const meetingRoom = ref('会议室A')
+const visitFloor = ref('3楼')
 
 const confirmCheckIn = () => {
+  // 设置签到和退房时间
+  const now = new Date()
+  const checkInTime = now.toLocaleString('zh-CN')
+  // 设置默认退房时间为当天18:00
+  const checkOutTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 18, 0, 0).toLocaleString('zh-CN')
+  
   // 保存签到信息到sessionStorage
   sessionStorage.setItem('checkInInfo', JSON.stringify({
-    checkInTime: checkInTime.value,
-    checkOutTime: checkOutTime.value,
+    checkInTime: checkInTime,
+    checkOutTime: checkOutTime,
     hostName: hostName.value,
-    hostPhone: hostPhone.value,
-    meetingRoom: meetingRoom.value
+    hostPhone: '13800138000', // 默认联系电话
+    meetingRoom: '会议室A' // 默认会议室
   }))
   
   router.push('/print')
@@ -37,26 +41,12 @@ onMounted(() => {
     router.push('/verification')
   }
   
-  // 设置当前时间
+  // 设置来访日期
   const now = new Date()
-  checkInTime.value = now.toLocaleString('zh-CN', {
+  visitDate.value = now.toLocaleDateString('zh-CN', {
     year: 'numeric',
     month: '2-digit',
-    day: '2-digit',
-    hour: '2-digit',
-    minute: '2-digit',
-    second: '2-digit'
-  })
-  
-  // 设置预计离开时间（当前时间+2小时）
-  const checkOut = new Date(now.getTime() + 2 * 60 * 60 * 1000)
-  checkOutTime.value = checkOut.toLocaleString('zh-CN', {
-    year: 'numeric',
-    month: '2-digit',
-    day: '2-digit',
-    hour: '2-digit',
-    minute: '2-digit',
-    second: '2-digit'
+    day: '2-digit'
   })
 })
 </script>
@@ -70,42 +60,22 @@ onMounted(() => {
     
     <div class="info-container">
       <div class="info-section">
-        <h2>访客信息</h2>
-        <div class="info-item">
-          <label>手机号码:</label>
-          <span>{{ visitorInfo?.phoneNumber }}</span>
-        </div>
-        <div class="info-item">
-          <label>身份证号码:</label>
-          <span>{{ visitorInfo?.idNumber }}</span>
-        </div>
-      </div>
-      
-      <div class="info-section">
-        <h2>签到信息</h2>
-        <div class="info-item">
-          <label>签到时间:</label>
-          <span>{{ checkInTime }}</span>
-        </div>
-        <div class="info-item">
-          <label>预计离开时间:</label>
-          <span>{{ checkOutTime }}</span>
-        </div>
-      </div>
-      
-      <div class="info-section">
         <h2>拜访信息</h2>
         <div class="info-item">
-          <label>拜访对象:</label>
+          <label>姓名:</label>
           <span>{{ hostName }}</span>
         </div>
         <div class="info-item">
-          <label>拜访对象电话:</label>
-          <span>{{ hostPhone }}</span>
+          <label>来访楼层:</label>
+          <span>{{ visitFloor }}</span>
         </div>
         <div class="info-item">
-          <label>会议室:</label>
-          <span>{{ meetingRoom }}</span>
+          <label>来访日期:</label>
+          <span>{{ visitDate }}</span>
+        </div>
+        <div class="info-item">
+          <label>接待人:</label>
+          <span>{{ hostName }}</span>
         </div>
       </div>
     </div>
@@ -121,13 +91,13 @@ onMounted(() => {
 .confirmation-container {
   width: 100vw;
   height: 100vh;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, rgb(3, 57, 166) 0%, rgb(2, 40, 114) 100%);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   color: white;
-  font-family: 'Arial', sans-serif;
+  font-family: 'Microsoft Yahei', sans-serif;
   padding: 0 20px;
   overflow-y: auto;
 }
@@ -224,12 +194,12 @@ onMounted(() => {
 
 .back-btn {
   background: rgba(255, 255, 255, 0.7);
-  color: #667eea;
+  color: rgb(3, 57, 166);
 }
 
 .confirm-btn {
   background: white;
-  color: #667eea;
+  color: rgb(3, 57, 166);
 }
 
 .back-btn:hover, .confirm-btn:hover {

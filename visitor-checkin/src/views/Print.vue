@@ -5,11 +5,11 @@ import { useRouter } from 'vue-router'
 const router = useRouter()
 const visitorInfo = ref(null)
 const checkInInfo = ref(null)
-const qrCodeUrl = ref('https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=visitor-checkin')
+
 
 const printBadge = () => {
   // 模拟打印功能
-  console.log('打印访客 badge')
+  console.log('打印访客证')
   alert('打印功能已触发，请检查打印机')
 }
 
@@ -37,15 +37,7 @@ onMounted(() => {
     checkInInfo.value = JSON.parse(checkIn)
   }
   
-  // 生成二维码
-  const data = JSON.stringify({
-    phoneNumber: visitorInfo.value?.phoneNumber,
-    idNumber: visitorInfo.value?.idNumber,
-    checkInTime: checkInInfo.value?.checkInTime,
-    checkOutTime: checkInInfo.value?.checkOutTime,
-    hostName: checkInInfo.value?.hostName
-  })
-  qrCodeUrl.value = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(data)}`
+
   
   // 自动触发打印
   setTimeout(() => {
@@ -58,38 +50,30 @@ onMounted(() => {
   <div class="print-container">
     <div class="header">
       <h1>签到完成</h1>
-      <p class="subtitle">请领取您的访客 badge</p>
+      <p class="subtitle">请领取您的访客证</p>
     </div>
     
     <div class="content">
       <div class="badge-container">
         <div class="badge-header">
-          <h2>访客 badge</h2>
+          <h2>访客证</h2>
           <p class="company-name">XX公司</p>
         </div>
         
         <div class="badge-info">
-          <div class="qr-code">
-            <img :src="qrCodeUrl" alt="访客二维码" />
-          </div>
+
           
           <div class="visitor-details">
             <div class="detail-item">
-              <label>手机号码:</label>
-              <span>{{ visitorInfo?.phoneNumber }}</span>
+              <label>来访ID:</label>
+              <span>{{ visitorInfo?.visitId || 'N/A' }}</span>
             </div>
-            <div class="detail-item">
-              <label>身份证号码:</label>
-              <span>{{ visitorInfo?.idNumber }}</span>
-            </div>
+
             <div class="detail-item">
               <label>签到时间:</label>
               <span>{{ checkInInfo?.checkInTime }}</span>
             </div>
-            <div class="detail-item">
-              <label>预计离开:</label>
-              <span>{{ checkInInfo?.checkOutTime }}</span>
-            </div>
+            
             <div class="detail-item">
               <label>拜访对象:</label>
               <span>{{ checkInInfo?.hostName }}</span>
@@ -98,7 +82,7 @@ onMounted(() => {
         </div>
         
         <div class="badge-footer">
-          <p>请妥善保管此 badge</p>
+          <p>请妥善保管此访客证</p>
           <p>离开时请归还</p>
         </div>
       </div>
@@ -115,14 +99,15 @@ onMounted(() => {
 .print-container {
   width: 100vw;
   height: 100vh;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, rgb(3, 57, 166) 0%, rgb(2, 40, 114) 100%);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   color: white;
-  font-family: 'Arial', sans-serif;
+  font-family: 'Microsoft Yahei', sans-serif;
   padding: 0 20px;
+  overflow-y: auto;
 }
 
 .header {
@@ -162,13 +147,13 @@ onMounted(() => {
   text-align: center;
   margin-bottom: 20px;
   padding-bottom: 15px;
-  border-bottom: 2px solid #667eea;
+  border-bottom: 2px solid rgb(163, 8, 160);
 }
 
 .badge-header h2 {
   font-size: 1.5rem;
   margin-bottom: 5px;
-  color: #667eea;
+  color: rgb(3, 57, 166);
 }
 
 .company-name {
@@ -182,12 +167,7 @@ onMounted(() => {
   margin-bottom: 20px;
 }
 
-.qr-code img {
-  width: 150px;
-  height: 150px;
-  border: 1px solid #ddd;
-  padding: 5px;
-}
+
 
 .visitor-details {
   flex: 1;
@@ -222,7 +202,7 @@ onMounted(() => {
 .badge-footer {
   text-align: center;
   padding-top: 15px;
-  border-top: 2px solid #667eea;
+  border-top: 2px solid rgb(3, 57, 166);
   font-size: 0.8rem;
   color: #666;
 }
@@ -249,12 +229,12 @@ onMounted(() => {
 
 .print-btn {
   background: rgba(255, 255, 255, 0.7);
-  color: #667eea;
+  color: rgb(3, 57, 166);
 }
 
 .complete-btn {
   background: white;
-  color: #667eea;
+  color: rgb(3, 57, 166);
 }
 
 .print-btn:hover, .complete-btn:hover {
