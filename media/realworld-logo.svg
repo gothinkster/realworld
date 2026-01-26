@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <!-- Top puzzle piece: flat edges, tab on left-bottom, socket on right-bottom -->
+  <path d="M15 15
+           L85 15
+           L85 50
+           L72 50
+           L72 42
+           C72 34, 58 34, 58 42
+           L58 50
+           L42 50
+           L42 58
+           C42 66, 28 66, 28 58
+           L28 50
+           L15 50
+           Z"
+        fill="#5B8DEE" stroke="#3A6BC9" stroke-width="2"/>
+
+  <!-- Bottom puzzle piece: flat edges, socket on left-top, tab on right-top -->
+  <path d="M15 50
+           L28 50
+           L28 58
+           C28 66, 42 66, 42 58
+           L42 50
+           L58 50
+           L58 42
+           C58 34, 72 34, 72 42
+           L72 50
+           L85 50
+           L85 85
+           L15 85
+           Z"
+        fill="#4A7BD8" stroke="#3A6BC9" stroke-width="2"/>
+
+  <!-- Green checkmark circle background -->
+  <circle cx="82" cy="18" r="12" fill="#22C55E"/>
+
+  <!-- White checkmark -->
+  <path d="M76 18 L80 22 L88 14"
+        stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+</svg>
