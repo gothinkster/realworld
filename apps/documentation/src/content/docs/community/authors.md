@@ -2,7 +2,7 @@
 title: Authors
 ---
 
-# Who currently maintain the project
+# Who currently maintains the project
 
 #### [Gérôme Grignon](https://github.com/geromegrignon) - Maintainer
 
@@ -18,7 +18,7 @@ Manuel is an independent Software Engineer, creator of the [Layr framework](http
 
 
 
-# Who create it
+# Who created it
 
 RealWorld would not be possible without the [open source community](https://realworld-docs.netlify.app/docs/community/special-thanks) continuously helping push the project forward. In addition, the former team was composed of:
 
@@ -50,7 +50,7 @@ Albert is a Software Engineer, DevOps ninja, and author of many technical books 
 
 <img class="mr-4" align="left" width="40" height="40" src="https://avatars0.githubusercontent.com/u/8601733?v=3&s=100" />
 
-[Thinkster](https://thinkster.io) creates high quality resources that help Javascript developers succeed. The RealWorld project wouldn't exist without their funding, so please consider investing in [a Pro subscription](https://thinkster.io/pro) to help support us!
+[Thinkster](https://x.com/GoThinkster) created high quality resources that helped Javascript developers succeed. The RealWorld project wouldn't exist without their funding!
 
 #### [James Brewer](https://twitter.com/brwr_) - Admin
 
