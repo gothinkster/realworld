@@ -1,112 +1,112 @@
 .PHONY: help \
-	setup-reference-implementation-install-dependencies \
-	setup-reference-implementation-nitro-prepare \
-	setup-reference-implementation-db-generate \
-	setup-reference-implementation \
-	run-reference-implementation-for-postman \
-	test-reference-implementation-with-postman-and-already-launched-server \
-	test-reference-implementation-with-postman \
-	clean-running-processes \
-	clean-all-non-default-files \
-	setup-documentation \
-	run-documentation-dev \
-	run-documentation-dev-host \
-	run-documentation-build \
-	run-documentation-preview \
-	clean-documentation
+	reference-implementation-setup-install-dependencies \
+	reference-implementation-setup-nitro-prepare \
+	reference-implementation-setup-db-generate \
+	reference-implementation-setup \
+	reference-implementation-run-for-postman \
+	reference-implementation-test-with-postman-and-already-launched-server \
+	reference-implementation-test-with-postman \
+	running-processes-clean \
+	non-default-files-clean \
+	documentation-setup \
+	documentation-dev \
+	documentation-dev-host \
+	documentation-build \
+	documentation-preview \
+	documentation-clean
 
 help:
 	@echo "Reference Implementation:"
-	@echo "  setup-reference-implementation"
-	@echo "  run-reference-implementation-for-postman"
-	@echo "  test-reference-implementation-with-postman"
-	@echo "  clean-running-processes"
-	@echo "  clean-all-non-default-files"
+	@echo "  reference-implementation-setup"
+	@echo "  reference-implementation-run-for-postman"
+	@echo "  reference-implementation-test-with-postman"
+	@echo "  running-processes-clean"
+	@echo "  non-default-files-clean"
 	@echo ""
 	@echo "Documentation:"
-	@echo "  setup-documentation"
-	@echo "  run-documentation-dev"
-	@echo "  run-documentation-dev-host"
-	@echo "  run-documentation-build"
-	@echo "  run-documentation-preview"
-	@echo "  clean-documentation"
+	@echo "  documentation-setup"
+	@echo "  documentation-dev"
+	@echo "  documentation-dev-host"
+	@echo "  documentation-build"
+	@echo "  documentation-preview"
+	@echo "  documentation-clean"
 
 ########################
-# Setup
+# Reference Implementation - Setup
 
-setup-reference-implementation-install-dependencies:
+reference-implementation-setup-install-dependencies:
 	cd apps/api && npm i
 
-setup-reference-implementation-nitro-prepare:
+reference-implementation-setup-nitro-prepare:
 	cd apps/api && npm run prepare
 
-setup-reference-implementation-db-generate:
+reference-implementation-setup-db-generate:
 	cd apps/api/server && npm run db:generate
 
-setup-reference-implementation:
-	make setup-reference-implementation-install-dependencies
+reference-implementation-setup:
+	make reference-implementation-setup-install-dependencies
 	echo -e '\n\033[0;32m    INSTALLED DEPENDENCIES\033[0m\n'
-	make setup-reference-implementation-nitro-prepare
+	make reference-implementation-setup-nitro-prepare
 	echo -e '\n\033[0;32m    PREPARED NITRO\033[0m\n'
-	make setup-reference-implementation-db-generate
+	make reference-implementation-setup-db-generate
 	echo -e '\n\033[0;32m    GENERATED PRISMA\033[0m\n'
 
 ########################
-# Run
+# Reference Implementation - Run
 
-run-reference-implementation-for-postman:  # WARNING clearly not production ready
+reference-implementation-run-for-postman:  # WARNING clearly not production ready
 	JWT_SECRET=dxLmhnE0pRY2+vUlu+i5Pxh8LTxLBTgBWdp82W74mMs= npm -C apps/api run dev
 
 ########################
-# Tests
+# Reference Implementation - Tests
 
-test-reference-implementation-with-postman-and-already-launched-server:
+reference-implementation-test-with-postman-and-already-launched-server:
 	DELAY_REQUEST=50 APIURL=http://localhost:3000/api api/run-api-tests.sh
 
-test-reference-implementation-with-postman:
+reference-implementation-test-with-postman:
 	@set -e; \
 	JWT_SECRET=dxLmhnE0pRY2+vUlu+i5Pxh8LTxLBTgBWdp82W74mMs= npm -C apps/api run dev & \
 	SERVER_PID=$$!; \
 	trap "kill $$SERVER_PID 2>/dev/null || true" EXIT; \
 	sleep 0.3; \
 	kill -0 "$$SERVER_PID" 2>/dev/null || exit 4; \
-	make test-reference-implementation-with-postman-and-already-launched-server && ( \
-		make clean-running-processes; echo -e '\n\033[0;32m    TESTS OK\033[0m\n' && exit 0 \
+	make reference-implementation-test-with-postman-and-already-launched-server && ( \
+		make running-processes-clean; echo -e '\n\033[0;32m    TESTS OK\033[0m\n' && exit 0 \
 	) || ( \
-		make clean-running-processes; echo -e '\n\033[0;31m    TESTS FAILED\033[0m\n' && exit 1 \
+		make running-processes-clean; echo -e '\n\033[0;31m    TESTS FAILED\033[0m\n' && exit 1 \
 	)
 
 ########################
 # Cleaning
 
-clean-running-processes:  # killing the parent is usually not enough, we should kill throught this helper
+running-processes-clean:  # killing the parent is usually not enough, we should kill through this helper
 	ps a -A -o pid,cmd \
 	| grep "$$(pwd)/apps/api/node_modules/.bin/nitro dev" \
 	| cut -d" " -f1 \
 	| xargs -I {} kill -9 {} \
 	|| true
 
-clean-all-non-default-files:
+non-default-files-clean:
 	rm -rf apps/api/node_modules  # npm modules - includes some files generated by prisma -> node_modules/@prisma/client
 	rm -f appd/api/prisma/dev.db  # dev database
 
 ########################
 # Documentation
 
-setup-documentation:
+documentation-setup:
 	cd apps/documentation && bun install
 
-run-documentation-dev:
+documentation-dev:
 	cd apps/documentation && bun run dev
 
-run-documentation-dev-host:
+documentation-dev-host:
 	cd apps/documentation && bun run dev --host
 
-run-documentation-build:
+documentation-build:
 	cd apps/documentation && bun run build
 
-run-documentation-preview:
+documentation-preview:
 	cd apps/documentation && bun run preview
 
-clean-documentation:
+documentation-clean:
 	rm -rf apps/documentation/.astro apps/documentation/dist apps/documentation/node_modules
