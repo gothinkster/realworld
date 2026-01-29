@@ -104,8 +104,7 @@ If a user is logged in, then the header should include links to:
   <div class="container">
     <a href="/" class="logo-font">conduit</a>
     <span class="attribution">
-      An interactive learning project from <a href="https://thinkster.io">Thinkster</a>. Code &amp;
-      design licensed under MIT.
+      An interactive learning project. Code &amp; design licensed under MIT.
     </span>
   </div>
 </footer>
