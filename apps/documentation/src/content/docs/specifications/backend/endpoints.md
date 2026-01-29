@@ -14,7 +14,7 @@ You can read the authentication header from the headers of the request
 
 Example request body:
 
-```JSON
+```json
 {
   "user":{
     "email": "jake@jake.jake",
@@ -33,7 +33,7 @@ Required fields: `email`, `password`
 
 Example request body:
 
-```JSON
+```json
 {
   "user":{
     "username": "Jacob",
@@ -59,7 +59,7 @@ Authentication required, returns a [User](/specifications/backend/api-response-f
 
 Example request body:
 
-```JSON
+```json
 {
   "user":{
     "email": "jake@jake.jake",
@@ -145,7 +145,7 @@ No authentication required, will return [single article](/specifications/backend
 
 Example request body:
 
-```JSON
+```json
 {
   "article": {
     "title": "How to train your dragon",
@@ -168,7 +168,7 @@ Optional fields: `tagList` as an array of Strings
 
 Example request body:
 
-```JSON
+```json
 {
   "article": {
     "title": "Did you train your dragon?"
@@ -194,7 +194,7 @@ Authentication required
 
 Example request body:
 
-```JSON
+```json
 {
   "comment": {
     "body": "His name was my name too."

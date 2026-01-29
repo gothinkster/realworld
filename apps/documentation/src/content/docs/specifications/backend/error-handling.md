@@ -6,7 +6,7 @@ title: Error handling
 
 If a request fails any validations, expect a 422 and errors in the following format:
 
-```JSON
+```json
 {
   "errors":{
     "body": [

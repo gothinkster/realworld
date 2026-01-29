@@ -8,7 +8,7 @@ Make sure the right content type like `Content-Type: application/json; charset=u
 
 ### Users (for authentication)
 
-```JSON
+```json
 {
   "user": {
     "email": "jake@jake.jake",
@@ -22,7 +22,7 @@ Make sure the right content type like `Content-Type: application/json; charset=u
 
 ### Profile
 
-```JSON
+```json
 {
   "profile": {
     "username": "jake",
@@ -35,7 +35,7 @@ Make sure the right content type like `Content-Type: application/json; charset=u
 
 ### Single Article
 
-```JSON
+```json
 {
   "article": {
     "slug": "how-to-train-your-dragon",
@@ -66,7 +66,7 @@ It affcts:
 - `GET /api/articles/feed`
 :::
 
-```JSON
+```json
 {
   "articles":[{
     "slug": "how-to-train-your-dragon",
@@ -105,7 +105,7 @@ It affcts:
 
 ### Single Comment
 
-```JSON
+```json
 {
   "comment": {
     "id": 1,
@@ -124,7 +124,7 @@ It affcts:
 
 ### Multiple Comments
 
-```JSON
+```json
 {
   "comments": [{
     "id": 1,
@@ -143,7 +143,7 @@ It affcts:
 
 ### List of Tags
 
-```JSON
+```json
 {
   "tags": [
     "reactjs",

@@ -1,3 +1,40 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@import "@astrojs/starlight-tailwind";
+@source "../**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}";
+
+@theme {
+    --color-accent-200: #e3b6ed;
+    --color-accent-600: #a700c3;
+    --color-accent-900: #4e0e5b;
+    --color-accent-950: #36113e;
+    --color-gray-100: #f8f4fe;
+    --color-gray-200: #f2e9fd;
+    --color-gray-300: #c7bdd5;
+    --color-gray-400: #9581ae;
+    --color-gray-500: #614e78;
+    --color-gray-700: #412e55;
+    --color-gray-800: #2f1c42;
+    --color-gray-900: #1c1425;
+}
+
+/* Restore list styles in content area */
+.sl-markdown-content ul {
+    list-style-type: disc;
+    padding-left: 1.5rem;
+}
+
+.sl-markdown-content ol {
+    list-style-type: decimal;
+    padding-left: 1.5rem;
+}
+
+.sl-markdown-content ul ul,
+.sl-markdown-content ol ul {
+    list-style-type: circle;
+}
+
+.sl-markdown-content ul ul ul,
+.sl-markdown-content ol ol ul,
+.sl-markdown-content ol ul ul {
+    list-style-type: square;
+}

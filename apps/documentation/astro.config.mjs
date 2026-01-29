@@ -1,6 +1,6 @@
 import {defineConfig} from 'astro/config';
 import starlight from '@astrojs/starlight';
-import tailwind from "@astrojs/tailwind";
+import tailwindcss from "@tailwindcss/vite";
 
 /**
  * A Vite plugin that removes `.md` extensions from URLs during the build process.
@@ -171,10 +171,11 @@ export default defineConfig({
                 ]
             }
         ]
-    }), tailwind({
-        applyBaseStyles: false,
     })],
     vite: {
-        plugins: [removeMdExtension()],
+        plugins: [tailwindcss(), removeMdExtension()],
+        ssr: {
+            noExternal: ['@astrojs/starlight-tailwind'],
+        },
     }
 });
