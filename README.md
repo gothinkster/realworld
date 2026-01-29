@@ -12,7 +12,7 @@ While most "todo" demos provide an excellent cursory glance at a framework's cap
 
 _Read the [full blog post announcing RealWorld on Medium.](https://medium.com/@ericsimons/introducing-realworld-6016654d36b5)_
 
-Join us on [GitHub Discussions!](https://github.com/gothinkster/realworld/discussions) 🎉
+Join us on [GitHub Discussions!](https://github.com/realworld-apps/realworld/discussions) 🎉
 
 # Implementations
 
@@ -24,7 +24,7 @@ Explore them on [**CodebaseShow**](https://codebase.show/projects/realworld).
 
 [**Create a new implementation >>>**](https://docs.realworld.show/implementation-creation/introduction)
 
-Or you can [view upcoming implementations (WIPs)](https://github.com/gothinkster/realworld/discussions/categories/wip-implementations).
+Or you can [view upcoming implementations (WIPs)](https://github.com/realworld-apps/realworld/discussions/categories/wip-implementations).
 
 # Learn more
 

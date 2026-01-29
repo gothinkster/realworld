@@ -17,7 +17,7 @@ For open discussions, we encourage you to use the [Github Discussions][github-di
 
 ## <a name="issue"></a> Interested in creating Conduit for your framework?
 
-To create an official implementation of Conduit, check out our [Github Discussions](https://github.com/gothinkster/realworld/discussions/categories/wip-implementations) and see if anyone else has requested and/or is already working on your framework.
+To create an official implementation of Conduit, check out our [Github Discussions](https://github.com/realworld-apps/realworld/discussions/categories/wip-implementations) and see if anyone else has requested and/or is already working on your framework.
 If not, feel free to start working on one!
 
 Start [here][github-spec]!
@@ -54,11 +54,11 @@ You can file new issues by selecting from our [new issue templates][github-choos
 
 Before you submit your Pull Request (PR) consider the following guidelines:
 
-1. Search [GitHub](https://github.com/gothinkster/realworld/pulls) for an open or closed PR
+1. Search [GitHub](https://github.com/realworld-apps/realworld/pulls) for an open or closed PR
    that relates to your submission. You don't want to duplicate effort.
 1. Be sure that an issue describes the problem you're fixing, or documents the design for the feature you'd like to add.
    Discussing the design up front helps to ensure that we're ready to accept your work.
-1. Fork the gothinkster/realworld repo.
+1. Fork the realworld-apps/realworld repo.
 1. Make your changes in a new git branch:
 
    ```bash
@@ -206,9 +206,9 @@ BREAKING CHANGE:
 change login route to /users/login
 ```
 
-[github]: https://github.com/gothinkster/realworld
-[github-issue]: https://github.com/gothinkster/realworld/issues/new?assignees=&labels=bug&template=---bug-report.md&title=
-[github-feature]: https://github.com/gothinkster/realworld/issues/new?assignees=&labels=enhancement&template=---feature-request.md&title=
-[github-choose]: https://github.com/gothinkster/realworld/issues/new/choose
-[github-discussions]: https://github.com/gothinkster/realworld/discussions
-[github-spec]: https://github.com/gothinkster/realworld/tree/master/spec
+[github]: https://github.com/realworld-apps/realworld
+[github-issue]: https://github.com/realworld-apps/realworld/issues/new?assignees=&labels=bug&template=---bug-report.md&title=
+[github-feature]: https://github.com/realworld-apps/realworld/issues/new?assignees=&labels=enhancement&template=---feature-request.md&title=
+[github-choose]: https://github.com/realworld-apps/realworld/issues/new/choose
+[github-discussions]: https://github.com/realworld-apps/realworld/discussions
+[github-spec]: https://github.com/realworld-apps/realworld/tree/master/spec

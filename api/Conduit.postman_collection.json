@@ -2,7 +2,7 @@
   "info": {
     "_postman_id": "0574ad8a-a525-43ae-8e1e-5fd9756037f4",
     "name": "Conduit",
-    "description": "Collection for testing the Conduit API\n\nhttps://github.com/gothinkster/realworld",
+    "description": "Collection for testing the Conduit API\n\nhttps://github.com/realworld-apps/realworld",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "item": [
