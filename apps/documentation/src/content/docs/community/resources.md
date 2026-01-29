@@ -11,5 +11,5 @@ title: Resources
   - [A Real-World Comparison of Front-End Frameworks with Benchmarks 2017](https://medium.freecodecamp.org/a-real-world-comparison-of-front-end-frameworks-with-benchmarks-e1cb62fd526c)
 
 :::tip
-Hello fellow writer, get in touch with us in [**GitHub Discussions**](https://github.com/gothinkster/realworld/discussions/categories/community) so we can add your RealWorld related content here.
+Hello fellow writer, get in touch with us in [**GitHub Discussions**](https://github.com/realworld-apps/realworld/discussions/categories/community) so we can add your RealWorld related content here.
 :::

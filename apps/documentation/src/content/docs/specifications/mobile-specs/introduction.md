@@ -2,7 +2,7 @@
 title: Introduction
 ---
 
-### [Icons for (iOS/Android)](https://github.com/gothinkster/realworld/tree/master/spec/mobile_icons)
+### [Icons for (iOS/Android)](https://github.com/realworld-apps/realworld/tree/master/spec/mobile_icons)
 
 ### Styles/Templates
 

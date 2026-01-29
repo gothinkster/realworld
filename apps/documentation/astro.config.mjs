@@ -60,7 +60,7 @@ export default defineConfig({
             {
                 icon: 'github',
                 label: 'GitHub',
-                href: 'https://github.com/gothinkster/realworld'
+                href: 'https://github.com/realworld-apps/realworld'
             }
         ],
         customCss: [

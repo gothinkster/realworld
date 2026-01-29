@@ -5,7 +5,7 @@ title: Introduction
 **Conduit** is a social blogging site (i.e. a Medium.com clone). It uses a custom API for all requests, including authentication.
 
 :::tip
-Check for [Discussions](https://github.com/gothinkster/realworld/discussions/categories/wip-implementations) about works in progress as we don't list duplicate projects.  
+Check for [Discussions](https://github.com/realworld-apps/realworld/discussions/categories/wip-implementations) about works in progress as we don't list duplicate projects.  
 An opportunity to collaborate might await you already.
 :::
 
