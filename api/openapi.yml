@@ -279,7 +279,7 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        '204':
           $ref: '#/components/responses/EmptyOkResponse'
         '401':
           $ref: '#/components/responses/Unauthorized'
@@ -354,7 +354,7 @@ paths:
           schema:
             type: integer
       responses:
-        '200':
+        '204':
           $ref: '#/components/responses/EmptyOkResponse'
         '401':
           $ref: '#/components/responses/Unauthorized'
