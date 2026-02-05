@@ -1,4 +1,4 @@
-openapi: 3.0.1
+openapi: 3.1.0
 info:
   title: RealWorld Conduit API
   description: Conduit API documentation
@@ -8,7 +8,7 @@ info:
   license:
     name: MIT License
     url: https://opensource.org/licenses/MIT
-  version: 1.0.0
+  version: 1.1.0
 tags:
   - name: Articles
   - name: Comments
@@ -17,7 +17,7 @@ tags:
   - name: Tags
   - name: User and Authentication
 servers:
-  - url: https://api.realworld.io/api
+  - url: https://api.realworld.show/api
 paths:
   /users/login:
     post:
